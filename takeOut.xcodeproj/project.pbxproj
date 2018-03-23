@@ -17,8 +17,10 @@
 		9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2B42064F21900393DE5 /* HomePageVC.m */; };
 		9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2B72064F23400393DE5 /* MinePageVC.m */; };
 		9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2BA2064F24700393DE5 /* OrderPageVC.m */; };
-		9DDFD2BE2064F85000393DE5 /* BaseTabbarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2BD2064F85000393DE5 /* BaseTabbarVC.m */; };
 		AE8788150AACCD47B1AFF44F /* libPods-takeOut.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C52C8109E37E7630666F17 /* libPods-takeOut.a */; };
+		D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88CF20652EA7000D509A /* UIColor+Hex.m */; };
+		D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88D120652F24000D509A /* EXNavigationVC.m */; };
+		D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88D420652F24000D509A /* EXTabBarVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +64,12 @@
 		9DDFD2B72064F23400393DE5 /* MinePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePageVC.m; sourceTree = "<group>"; };
 		9DDFD2B92064F24700393DE5 /* OrderPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderPageVC.h; sourceTree = "<group>"; };
 		9DDFD2BA2064F24700393DE5 /* OrderPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderPageVC.m; sourceTree = "<group>"; };
-		9DDFD2BC2064F85000393DE5 /* BaseTabbarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabbarVC.h; sourceTree = "<group>"; };
-		9DDFD2BD2064F85000393DE5 /* BaseTabbarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTabbarVC.m; sourceTree = "<group>"; };
+		D65D88CE20652EA7000D509A /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		D65D88CF20652EA7000D509A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		D65D88D120652F24000D509A /* EXNavigationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXNavigationVC.m; sourceTree = "<group>"; };
+		D65D88D220652F24000D509A /* EXNavigationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXNavigationVC.h; sourceTree = "<group>"; };
+		D65D88D320652F24000D509A /* EXTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTabBarVC.h; sourceTree = "<group>"; };
+		D65D88D420652F24000D509A /* EXTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTabBarVC.m; sourceTree = "<group>"; };
 		F3C52C8109E37E7630666F17 /* libPods-takeOut.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-takeOut.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -118,6 +124,8 @@
 		9DDFD2732064EC7100393DE5 /* takeOut */ = {
 			isa = PBXGroup;
 			children = (
+				D65D88CC20652E82000D509A /* Tabbar */,
+				D65D88CB20652E82000D509A /* Tools */,
 				9DDFD2AB2064F1C300393DE5 /* HomePage */,
 				9DDFD2A72064F1C300393DE5 /* MinePage */,
 				9DDFD2AF2064F1C300393DE5 /* OrderPage */,
@@ -129,8 +137,6 @@
 				9DDFD2822064EC7100393DE5 /* Info.plist */,
 				9DDFD2832064EC7100393DE5 /* main.m */,
 				9DDFD2A62064EFDE00393DE5 /* PrefixHeader.pch */,
-				9DDFD2BC2064F85000393DE5 /* BaseTabbarVC.h */,
-				9DDFD2BD2064F85000393DE5 /* BaseTabbarVC.m */,
 			);
 			path = takeOut;
 			sourceTree = "<group>";
@@ -267,6 +273,34 @@
 				67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D65D88CB20652E82000D509A /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				D65D88CD20652EA7000D509A /* hexColor */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		D65D88CC20652E82000D509A /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				D65D88D220652F24000D509A /* EXNavigationVC.h */,
+				D65D88D120652F24000D509A /* EXNavigationVC.m */,
+				D65D88D320652F24000D509A /* EXTabBarVC.h */,
+				D65D88D420652F24000D509A /* EXTabBarVC.m */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		D65D88CD20652EA7000D509A /* hexColor */ = {
+			isa = PBXGroup;
+			children = (
+				D65D88CE20652EA7000D509A /* UIColor+Hex.h */,
+				D65D88CF20652EA7000D509A /* UIColor+Hex.m */,
+			);
+			path = hexColor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,9 +491,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DDFD2842064EC7100393DE5 /* main.m in Sources */,
-				9DDFD2BE2064F85000393DE5 /* BaseTabbarVC.m in Sources */,
+				D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */,
 				9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */,
+				D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */,
 				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
+				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
 				9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */,
 				9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */,
 			);
