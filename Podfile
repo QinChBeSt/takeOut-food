@@ -1,0 +1,6 @@
+platform :ios, '7.0'
+target 'takeOut' do
+pod 'AFNetworking'
+pod 'Masonry'
+pod 'SDWebImage'
+end

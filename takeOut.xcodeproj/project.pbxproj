@@ -1,0 +1,751 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2752064EC7100393DE5 /* AppDelegate.m */; };
+		9DDFD27C2064EC7100393DE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27A2064EC7100393DE5 /* Main.storyboard */; };
+		9DDFD27E2064EC7100393DE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27D2064EC7100393DE5 /* Assets.xcassets */; };
+		9DDFD2812064EC7100393DE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27F2064EC7100393DE5 /* LaunchScreen.storyboard */; };
+		9DDFD2842064EC7100393DE5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2832064EC7100393DE5 /* main.m */; };
+		9DDFD28E2064EC7100393DE5 /* takeOutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD28D2064EC7100393DE5 /* takeOutTests.m */; };
+		9DDFD2992064EC7100393DE5 /* takeOutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2982064EC7100393DE5 /* takeOutUITests.m */; };
+		9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2B42064F21900393DE5 /* HomePageVC.m */; };
+		9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2B72064F23400393DE5 /* MinePageVC.m */; };
+		9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2BA2064F24700393DE5 /* OrderPageVC.m */; };
+		9DDFD2BE2064F85000393DE5 /* BaseTabbarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2BD2064F85000393DE5 /* BaseTabbarVC.m */; };
+		AE8788150AACCD47B1AFF44F /* libPods-takeOut.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C52C8109E37E7630666F17 /* libPods-takeOut.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9DDFD28A2064EC7100393DE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DDFD2692064EC7100393DE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DDFD2702064EC7100393DE5;
+			remoteInfo = takeOut;
+		};
+		9DDFD2952064EC7100393DE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DDFD2692064EC7100393DE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DDFD2702064EC7100393DE5;
+			remoteInfo = takeOut;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3EA3BA8955BAFE3DE06D4D6D /* Pods-takeOut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.debug.xcconfig"; sourceTree = "<group>"; };
+		67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.release.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.release.xcconfig"; sourceTree = "<group>"; };
+		9DDFD2712064EC7100393DE5 /* takeOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DDFD2742064EC7100393DE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9DDFD2752064EC7100393DE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9DDFD27B2064EC7100393DE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9DDFD27D2064EC7100393DE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9DDFD2802064EC7100393DE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9DDFD2822064EC7100393DE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DDFD2832064EC7100393DE5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9DDFD2892064EC7100393DE5 /* takeOutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = takeOutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DDFD28D2064EC7100393DE5 /* takeOutTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = takeOutTests.m; sourceTree = "<group>"; };
+		9DDFD28F2064EC7100393DE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DDFD2942064EC7100393DE5 /* takeOutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = takeOutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DDFD2982064EC7100393DE5 /* takeOutUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = takeOutUITests.m; sourceTree = "<group>"; };
+		9DDFD29A2064EC7100393DE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DDFD2A62064EFDE00393DE5 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		9DDFD2B32064F21900393DE5 /* HomePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageVC.h; sourceTree = "<group>"; };
+		9DDFD2B42064F21900393DE5 /* HomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageVC.m; sourceTree = "<group>"; };
+		9DDFD2B62064F23400393DE5 /* MinePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinePageVC.h; sourceTree = "<group>"; };
+		9DDFD2B72064F23400393DE5 /* MinePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePageVC.m; sourceTree = "<group>"; };
+		9DDFD2B92064F24700393DE5 /* OrderPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderPageVC.h; sourceTree = "<group>"; };
+		9DDFD2BA2064F24700393DE5 /* OrderPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderPageVC.m; sourceTree = "<group>"; };
+		9DDFD2BC2064F85000393DE5 /* BaseTabbarVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabbarVC.h; sourceTree = "<group>"; };
+		9DDFD2BD2064F85000393DE5 /* BaseTabbarVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTabbarVC.m; sourceTree = "<group>"; };
+		F3C52C8109E37E7630666F17 /* libPods-takeOut.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-takeOut.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9DDFD26E2064EC7100393DE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE8788150AACCD47B1AFF44F /* libPods-takeOut.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DDFD2862064EC7100393DE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DDFD2912064EC7100393DE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9DDFD2682064EC7100393DE5 = {
+			isa = PBXGroup;
+			children = (
+				9DDFD2732064EC7100393DE5 /* takeOut */,
+				9DDFD28C2064EC7100393DE5 /* takeOutTests */,
+				9DDFD2972064EC7100393DE5 /* takeOutUITests */,
+				9DDFD2722064EC7100393DE5 /* Products */,
+				C297A2B7AA0750A2C693A9CE /* Pods */,
+				B8AEC27C127AA822F6B807AB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9DDFD2722064EC7100393DE5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9DDFD2712064EC7100393DE5 /* takeOut.app */,
+				9DDFD2892064EC7100393DE5 /* takeOutTests.xctest */,
+				9DDFD2942064EC7100393DE5 /* takeOutUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9DDFD2732064EC7100393DE5 /* takeOut */ = {
+			isa = PBXGroup;
+			children = (
+				9DDFD2AB2064F1C300393DE5 /* HomePage */,
+				9DDFD2A72064F1C300393DE5 /* MinePage */,
+				9DDFD2AF2064F1C300393DE5 /* OrderPage */,
+				9DDFD2742064EC7100393DE5 /* AppDelegate.h */,
+				9DDFD2752064EC7100393DE5 /* AppDelegate.m */,
+				9DDFD27A2064EC7100393DE5 /* Main.storyboard */,
+				9DDFD27D2064EC7100393DE5 /* Assets.xcassets */,
+				9DDFD27F2064EC7100393DE5 /* LaunchScreen.storyboard */,
+				9DDFD2822064EC7100393DE5 /* Info.plist */,
+				9DDFD2832064EC7100393DE5 /* main.m */,
+				9DDFD2A62064EFDE00393DE5 /* PrefixHeader.pch */,
+				9DDFD2BC2064F85000393DE5 /* BaseTabbarVC.h */,
+				9DDFD2BD2064F85000393DE5 /* BaseTabbarVC.m */,
+			);
+			path = takeOut;
+			sourceTree = "<group>";
+		};
+		9DDFD28C2064EC7100393DE5 /* takeOutTests */ = {
+			isa = PBXGroup;
+			children = (
+				9DDFD28D2064EC7100393DE5 /* takeOutTests.m */,
+				9DDFD28F2064EC7100393DE5 /* Info.plist */,
+			);
+			path = takeOutTests;
+			sourceTree = "<group>";
+		};
+		9DDFD2972064EC7100393DE5 /* takeOutUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9DDFD2982064EC7100393DE5 /* takeOutUITests.m */,
+				9DDFD29A2064EC7100393DE5 /* Info.plist */,
+			);
+			path = takeOutUITests;
+			sourceTree = "<group>";
+		};
+		9DDFD2A72064F1C300393DE5 /* MinePage */ = {
+			isa = PBXGroup;
+			children = (
+				9DDFD2A92064F1C300393DE5 /* VC */,
+				9DDFD2A82064F1C300393DE5 /* Model */,
+				9DDFD2AA2064F1C300393DE5 /* View */,
+			);
+			path = MinePage;
+			sourceTree = "<group>";
+		};
+		9DDFD2A82064F1C300393DE5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9DDFD2A92064F1C300393DE5 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				9DDFD2B62064F23400393DE5 /* MinePageVC.h */,
+				9DDFD2B72064F23400393DE5 /* MinePageVC.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		9DDFD2AA2064F1C300393DE5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9DDFD2AB2064F1C300393DE5 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				9DDFD2AD2064F1C300393DE5 /* VC */,
+				9DDFD2AC2064F1C300393DE5 /* Model */,
+				9DDFD2AE2064F1C300393DE5 /* View */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		9DDFD2AC2064F1C300393DE5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9DDFD2AD2064F1C300393DE5 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				9DDFD2B32064F21900393DE5 /* HomePageVC.h */,
+				9DDFD2B42064F21900393DE5 /* HomePageVC.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		9DDFD2AE2064F1C300393DE5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9DDFD2AF2064F1C300393DE5 /* OrderPage */ = {
+			isa = PBXGroup;
+			children = (
+				9DDFD2B12064F1C300393DE5 /* VC */,
+				9DDFD2B02064F1C300393DE5 /* Model */,
+				9DDFD2B22064F1C300393DE5 /* View */,
+			);
+			path = OrderPage;
+			sourceTree = "<group>";
+		};
+		9DDFD2B02064F1C300393DE5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9DDFD2B12064F1C300393DE5 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				9DDFD2B92064F24700393DE5 /* OrderPageVC.h */,
+				9DDFD2BA2064F24700393DE5 /* OrderPageVC.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		9DDFD2B22064F1C300393DE5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B8AEC27C127AA822F6B807AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3C52C8109E37E7630666F17 /* libPods-takeOut.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C297A2B7AA0750A2C693A9CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3EA3BA8955BAFE3DE06D4D6D /* Pods-takeOut.debug.xcconfig */,
+				67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9DDFD2702064EC7100393DE5 /* takeOut */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DDFD29D2064EC7100393DE5 /* Build configuration list for PBXNativeTarget "takeOut" */;
+			buildPhases = (
+				0F4FB561A9D0FA0D189F33AE /* [CP] Check Pods Manifest.lock */,
+				9DDFD26D2064EC7100393DE5 /* Sources */,
+				9DDFD26E2064EC7100393DE5 /* Frameworks */,
+				9DDFD26F2064EC7100393DE5 /* Resources */,
+				F5DBF31B02AD1C1B3E6C5DE8 /* [CP] Embed Pods Frameworks */,
+				7D56CCDF824650D23C771961 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = takeOut;
+			productName = takeOut;
+			productReference = 9DDFD2712064EC7100393DE5 /* takeOut.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9DDFD2882064EC7100393DE5 /* takeOutTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DDFD2A02064EC7100393DE5 /* Build configuration list for PBXNativeTarget "takeOutTests" */;
+			buildPhases = (
+				9DDFD2852064EC7100393DE5 /* Sources */,
+				9DDFD2862064EC7100393DE5 /* Frameworks */,
+				9DDFD2872064EC7100393DE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9DDFD28B2064EC7100393DE5 /* PBXTargetDependency */,
+			);
+			name = takeOutTests;
+			productName = takeOutTests;
+			productReference = 9DDFD2892064EC7100393DE5 /* takeOutTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9DDFD2932064EC7100393DE5 /* takeOutUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DDFD2A32064EC7100393DE5 /* Build configuration list for PBXNativeTarget "takeOutUITests" */;
+			buildPhases = (
+				9DDFD2902064EC7100393DE5 /* Sources */,
+				9DDFD2912064EC7100393DE5 /* Frameworks */,
+				9DDFD2922064EC7100393DE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9DDFD2962064EC7100393DE5 /* PBXTargetDependency */,
+			);
+			name = takeOutUITests;
+			productName = takeOutUITests;
+			productReference = 9DDFD2942064EC7100393DE5 /* takeOutUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9DDFD2692064EC7100393DE5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = QinChBeSt;
+				TargetAttributes = {
+					9DDFD2702064EC7100393DE5 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					9DDFD2882064EC7100393DE5 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9DDFD2702064EC7100393DE5;
+					};
+					9DDFD2932064EC7100393DE5 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9DDFD2702064EC7100393DE5;
+					};
+				};
+			};
+			buildConfigurationList = 9DDFD26C2064EC7100393DE5 /* Build configuration list for PBXProject "takeOut" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9DDFD2682064EC7100393DE5;
+			productRefGroup = 9DDFD2722064EC7100393DE5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9DDFD2702064EC7100393DE5 /* takeOut */,
+				9DDFD2882064EC7100393DE5 /* takeOutTests */,
+				9DDFD2932064EC7100393DE5 /* takeOutUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9DDFD26F2064EC7100393DE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DDFD2812064EC7100393DE5 /* LaunchScreen.storyboard in Resources */,
+				9DDFD27E2064EC7100393DE5 /* Assets.xcassets in Resources */,
+				9DDFD27C2064EC7100393DE5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DDFD2872064EC7100393DE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DDFD2922064EC7100393DE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F4FB561A9D0FA0D189F33AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-takeOut-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D56CCDF824650D23C771961 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-takeOut/Pods-takeOut-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5DBF31B02AD1C1B3E6C5DE8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-takeOut/Pods-takeOut-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9DDFD26D2064EC7100393DE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DDFD2842064EC7100393DE5 /* main.m in Sources */,
+				9DDFD2BE2064F85000393DE5 /* BaseTabbarVC.m in Sources */,
+				9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */,
+				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
+				9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */,
+				9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DDFD2852064EC7100393DE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DDFD28E2064EC7100393DE5 /* takeOutTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DDFD2902064EC7100393DE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DDFD2992064EC7100393DE5 /* takeOutUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9DDFD28B2064EC7100393DE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9DDFD2702064EC7100393DE5 /* takeOut */;
+			targetProxy = 9DDFD28A2064EC7100393DE5 /* PBXContainerItemProxy */;
+		};
+		9DDFD2962064EC7100393DE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9DDFD2702064EC7100393DE5 /* takeOut */;
+			targetProxy = 9DDFD2952064EC7100393DE5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9DDFD27A2064EC7100393DE5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9DDFD27B2064EC7100393DE5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9DDFD27F2064EC7100393DE5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9DDFD2802064EC7100393DE5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9DDFD29B2064EC7100393DE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9DDFD29C2064EC7100393DE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9DDFD29E2064EC7100393DE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EA3BA8955BAFE3DE06D4D6D /* Pods-takeOut.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/takeOut/PrefixHeader.pch";
+				INFOPLIST_FILE = takeOut/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.text.www.takeOut;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9DDFD29F2064EC7100393DE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/takeOut/PrefixHeader.pch";
+				INFOPLIST_FILE = takeOut/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.text.www.takeOut;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9DDFD2A12064EC7100393DE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = takeOutTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.text.www.takeOutTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/takeOut.app/takeOut";
+			};
+			name = Debug;
+		};
+		9DDFD2A22064EC7100393DE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = takeOutTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.text.www.takeOutTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/takeOut.app/takeOut";
+			};
+			name = Release;
+		};
+		9DDFD2A42064EC7100393DE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = takeOutUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.text.www.takeOutUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = takeOut;
+			};
+			name = Debug;
+		};
+		9DDFD2A52064EC7100393DE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = takeOutUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.text.www.takeOutUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = takeOut;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9DDFD26C2064EC7100393DE5 /* Build configuration list for PBXProject "takeOut" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DDFD29B2064EC7100393DE5 /* Debug */,
+				9DDFD29C2064EC7100393DE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DDFD29D2064EC7100393DE5 /* Build configuration list for PBXNativeTarget "takeOut" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DDFD29E2064EC7100393DE5 /* Debug */,
+				9DDFD29F2064EC7100393DE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DDFD2A02064EC7100393DE5 /* Build configuration list for PBXNativeTarget "takeOutTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DDFD2A12064EC7100393DE5 /* Debug */,
+				9DDFD2A22064EC7100393DE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DDFD2A32064EC7100393DE5 /* Build configuration list for PBXNativeTarget "takeOutUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DDFD2A42064EC7100393DE5 /* Debug */,
+				9DDFD2A52064EC7100393DE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9DDFD2692064EC7100393DE5 /* Project object */;
+}
