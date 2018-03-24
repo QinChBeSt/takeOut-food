@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D92577D2065F90C00A6E262 /* SortButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577C2065F90C00A6E262 /* SortButton.m */; };
 		9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2752064EC7100393DE5 /* AppDelegate.m */; };
 		9DDFD27C2064EC7100393DE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27A2064EC7100393DE5 /* Main.storyboard */; };
 		9DDFD27E2064EC7100393DE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27D2064EC7100393DE5 /* Assets.xcassets */; };
@@ -43,6 +44,8 @@
 /* Begin PBXFileReference section */
 		3EA3BA8955BAFE3DE06D4D6D /* Pods-takeOut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.debug.xcconfig"; sourceTree = "<group>"; };
 		67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.release.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.release.xcconfig"; sourceTree = "<group>"; };
+		9D92577B2065F90C00A6E262 /* SortButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortButton.h; sourceTree = "<group>"; };
+		9D92577C2065F90C00A6E262 /* SortButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortButton.m; sourceTree = "<group>"; };
 		9DDFD2712064EC7100393DE5 /* takeOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DDFD2742064EC7100393DE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9DDFD2752064EC7100393DE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -221,6 +224,8 @@
 		9DDFD2AE2064F1C300393DE5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9D92577B2065F90C00A6E262 /* SortButton.h */,
+				9D92577C2065F90C00A6E262 /* SortButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */,
 				9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */,
 				D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */,
+				9D92577D2065F90C00A6E262 /* SortButton.m in Sources */,
 				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
 				9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */,
