@@ -7,24 +7,35 @@
 //
 
 #import "HomePageVC.h"
+//VIEW
+#import "SortButton.h"
+#import "CollectionViewCellForHomePageChoose.h"
+#import "TableViewCellForHomepageList.h"
+
 #define kHeadAdderssViewHeight 40
 #define kHeadSelectViewHeight 150
 #define kHeadImageViewHeight 100
 #define kHeadCollectionViewHeight SCREEN_WIDTH / 4 * 2
-@interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
-@property (nonatomic , strong)UIView *headView;
-@property (nonatomic , strong)UITableView *tableView;
-@property (nonatomic , strong)UICollectionView *collectionView;
-@end
 
-@implementation HomePageVC{
+@interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
+{
     UIView *headviewAddressView;
     UILabel *headviewAddressLabel;
     UIImageView *headviewImageView;
     UIView *headviewSelectView;
     UIImageView *headviewSelectLeftView;
     UIImageView *headviewSelectRightView;
+    UIView *sortingView;
+    SortButton *clickButton;
 }
+@property (nonatomic , strong)UIView *headView;
+@property (nonatomic , strong)UITableView *tableView;
+@property (nonatomic , strong)UICollectionView *collectionView;
+@property (nonatomic , strong)UIButton *replaceButton;
+@end
+
+@implementation HomePageVC
+
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
 }
@@ -41,13 +52,14 @@
 }
 #pragma mark - 创建透视图
 -(void)createHeadView{
-    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeadAdderssViewHeight + kHeadImageViewHeight + kHeadCollectionViewHeight + kHeadSelectViewHeight + 50)];
+    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeadAdderssViewHeight + kHeadImageViewHeight + kHeadCollectionViewHeight + kHeadSelectViewHeight + 65)];
     self.headView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.headView];
     [self createHeadViewAddressView];
     [self createHeadviewImageView];
     [self createCollectionView];
     [self createHeadviewSelectView];
+    [self createSortingView];
 }
 //地址栏
 -(void)createHeadViewAddressView{
@@ -73,7 +85,7 @@
 //头视图
 -(void)createHeadviewImageView{
     headviewImageView = [[UIImageView alloc]init];
-    headviewImageView.backgroundColor = [UIColor redColor];
+    headviewImageView.backgroundColor = [UIColor orangeColor];
     [self.headView addSubview:headviewImageView];
     [headviewImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(headviewAddressView.mas_bottom);
@@ -84,34 +96,7 @@
     
    
 }
-//选块
--(void)createCollectionView{
-    CGFloat itemWidth = (SCREEN_WIDTH - 5 )/ 4;
-    CGFloat itemHeight = (SCREEN_WIDTH - 5 ) / 4;
-    UICollectionViewFlowLayout *shareflowLayout = [[UICollectionViewFlowLayout alloc] init];
-    shareflowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    shareflowLayout.sectionInset = UIEdgeInsetsMake(1, 1, 1,1);
-    shareflowLayout.itemSize =CGSizeMake(itemWidth, itemHeight);
-    // 1.设置列间距
-    shareflowLayout.minimumInteritemSpacing = 0;
-    // 2.设置行间距
-    shareflowLayout.minimumLineSpacing = 0;
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:shareflowLayout];
-    self.collectionView.backgroundColor = [UIColor whiteColor];
-    [self.headView addSubview:self.collectionView];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-    self.collectionView.delaysContentTouches = NO;
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.scrollEnabled = NO;
-    self.collectionView.showsHorizontalScrollIndicator = NO;
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(headviewImageView.mas_bottom);
-        make.width.equalTo(headviewImageView);
-        make.centerX.equalTo(headviewImageView);
-        make.height.equalTo(@(kHeadCollectionViewHeight));
-    }];
-}
+
 //选择
 -(void)createHeadviewSelectView{
     headviewSelectView = [[UIView alloc]init];
@@ -123,6 +108,10 @@
         make.centerX.equalTo(headviewImageView);
         make.height.equalTo(@(kHeadSelectViewHeight));
     }];
+    
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+    line.backgroundColor = [UIColor grayColor];
+    [self.headView addSubview:line];
     
     UIImageView *selectImage = [[UIImageView alloc]init];
     selectImage.backgroundColor = [UIColor orangeColor];
@@ -163,8 +152,86 @@
 }
 //筛选排序
 -(void)createSortingView{
+  
+    sortingView = [[UIView alloc]init];
+    [sortingView setBackgroundColor:[UIColor whiteColor]];
+    [_headView addSubview:sortingView];
+    [sortingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(headviewSelectView.mas_bottom);
+        make.width.equalTo(headviewImageView);
+        make.centerX.equalTo(headviewImageView);
+        make.height.equalTo(@(65));
+    }];
     
+     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+    line.backgroundColor = [UIColor lightGrayColor];
+    [sortingView addSubview:line];
+    
+    UIImageView *selectImage = [[UIImageView alloc]init];
+    selectImage.backgroundColor = [UIColor orangeColor];
+    [sortingView addSubview:selectImage];
+    [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(line.mas_bottom).offset(5);
+        make.left.equalTo(sortingView.mas_left).offset(20);
+        make.height.equalTo(@(20));
+        make.width.equalTo(@(100));
+    }];
+
+    NSArray *arrButtonTitle = @[@"综合排序",@"销量最高",@"距离最近"];
+    CGFloat buttonW = SCREEN_WIDTH / arrButtonTitle.count; //按钮的宽度和高度
+    CGFloat buttonH = 30;
+    for (int i=0; i<arrButtonTitle.count; i++) {  // 循环创建3个按钮
+        clickButton=[[SortButton alloc]initWithFrame:CGRectMake(buttonW*i, 15 + 20, buttonW, buttonH)];
+        if(i==0){
+            clickButton.selected=YES;  // 设置第一个为默认值
+            self.replaceButton=clickButton;
+        }
+        
+        clickButton.tag=i;
+        clickButton.titleLabel.font=[UIFont systemFontOfSize:14.0];
+        [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+        [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
+        [clickButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
+        [clickButton setImage:[UIImage imageNamed:@"up"] forState:UIControlStateSelected];
+        [clickButton setTitle:arrButtonTitle[i] forState:UIControlStateNormal];
+        [clickButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [sortingView addSubview:clickButton];
+        
+        
+    }
 }
+
+#pragma mark - 创建collecttionView
+-(void)createCollectionView{
+    CGFloat itemWidth = (SCREEN_WIDTH - 5 )/ 4;
+    CGFloat itemHeight = (SCREEN_WIDTH - 5 ) / 4;
+    UICollectionViewFlowLayout *shareflowLayout = [[UICollectionViewFlowLayout alloc] init];
+    shareflowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    shareflowLayout.sectionInset = UIEdgeInsetsMake(1, 1, 1,1);
+    shareflowLayout.itemSize =CGSizeMake(itemWidth, itemHeight);
+    // 1.设置列间距
+    shareflowLayout.minimumInteritemSpacing = 0;
+    // 2.设置行间距
+    shareflowLayout.minimumLineSpacing = 0;
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:shareflowLayout];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    [self.headView addSubview:self.collectionView];
+    [self.collectionView registerClass:[CollectionViewCellForHomePageChoose class] forCellWithReuseIdentifier:@"cell"];
+    self.collectionView.delaysContentTouches = NO;
+    self.collectionView.delegate = self;
+    self.collectionView.backgroundColor = [UIColor lightGrayColor];
+    self.collectionView.dataSource = self;
+    self.collectionView.scrollEnabled = NO;
+    self.collectionView.showsHorizontalScrollIndicator = NO;
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(headviewImageView.mas_bottom);
+        make.width.equalTo(headviewImageView);
+        make.centerX.equalTo(headviewImageView);
+        make.height.equalTo(@(kHeadCollectionViewHeight));
+    }];
+}
+
 #pragma mark - 创建tableView
 -(void)createTableView{
     
@@ -176,12 +243,8 @@
     self.tableView.tableHeaderView = self.headView;
     
     /** 注册cell. */
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"pool"];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"pool1"];
-    
+    [self.tableView registerClass:[TableViewCellForHomepageList class] forCellReuseIdentifier:@"pool1"];
     [self.view addSubview:self.tableView];
-    
-    
 }
 
 #pragma mark - tableView DataSouce
@@ -193,27 +256,18 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pool"];
-        cell.selectionStyle = UIAccessibilityTraitNone;
-        cell.backgroundColor = [UIColor grayColor];
-        return cell;
-    }else{
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
+  
+        TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
        
         return cell;
         
-    }
-   return nil;
+   
 }
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        return SafeAreaStatsBarHeight + 30;
-    }else{
+   
        return 100;
-    }
-    return 0 ;
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -237,9 +291,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    CollectionViewCellForHomePageChoose *cell = (CollectionViewCellForHomePageChoose *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     //设置数据
-    cell.backgroundColor = [UIColor blueColor];
+    cell.backgroundColor = [UIColor lightGrayColor];
     return cell;
 }
 
@@ -254,6 +308,20 @@
     
 }
 -(void)tapSelectRight{
+    
+}
+//点击了对应的筛选条件按钮操作
+-(void)clickAction:(UIButton *)sender{
+    
+    self.replaceButton.selected=NO;  // 改变箭头的方向
+    sender.selected=YES;
+    self.replaceButton=sender;
+    
+    [self loadData:sender.tag]; // 重新加载数据,刷新表
+    
+}
+//加载模型数据数组
+-(void)loadData:(NSInteger)tagNum{
     
 }
 @end

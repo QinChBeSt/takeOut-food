@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9D92577D2065F90C00A6E262 /* SortButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577C2065F90C00A6E262 /* SortButton.m */; };
+		9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577F2066015D00A6E262 /* CollectionViewCellForHomePageChoose.m */; };
+		9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */; };
 		9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2752064EC7100393DE5 /* AppDelegate.m */; };
 		9DDFD27C2064EC7100393DE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27A2064EC7100393DE5 /* Main.storyboard */; };
 		9DDFD27E2064EC7100393DE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27D2064EC7100393DE5 /* Assets.xcassets */; };
@@ -46,6 +48,10 @@
 		67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.release.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.release.xcconfig"; sourceTree = "<group>"; };
 		9D92577B2065F90C00A6E262 /* SortButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortButton.h; sourceTree = "<group>"; };
 		9D92577C2065F90C00A6E262 /* SortButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortButton.m; sourceTree = "<group>"; };
+		9D92577E2066015D00A6E262 /* CollectionViewCellForHomePageChoose.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewCellForHomePageChoose.h; sourceTree = "<group>"; };
+		9D92577F2066015D00A6E262 /* CollectionViewCellForHomePageChoose.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCellForHomePageChoose.m; sourceTree = "<group>"; };
+		9D9257812066146B00A6E262 /* TableViewCellForHomepageList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellForHomepageList.h; sourceTree = "<group>"; };
+		9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellForHomepageList.m; sourceTree = "<group>"; };
 		9DDFD2712064EC7100393DE5 /* takeOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DDFD2742064EC7100393DE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9DDFD2752064EC7100393DE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -226,6 +232,10 @@
 			children = (
 				9D92577B2065F90C00A6E262 /* SortButton.h */,
 				9D92577C2065F90C00A6E262 /* SortButton.m */,
+				9D92577E2066015D00A6E262 /* CollectionViewCellForHomePageChoose.h */,
+				9D92577F2066015D00A6E262 /* CollectionViewCellForHomePageChoose.m */,
+				9D9257812066146B00A6E262 /* TableViewCellForHomepageList.h */,
+				9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -503,10 +513,12 @@
 				9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */,
 				D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */,
 				9D92577D2065F90C00A6E262 /* SortButton.m in Sources */,
+				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
 				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
 				9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */,
 				9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */,
+				9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,11 +683,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JGJTDZSME3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/takeOut/PrefixHeader.pch";
 				INFOPLIST_FILE = takeOut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.text.www.takeOut;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QC.takeOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -687,11 +700,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JGJTDZSME3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/takeOut/PrefixHeader.pch";
 				INFOPLIST_FILE = takeOut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.text.www.takeOut;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QC.takeOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
