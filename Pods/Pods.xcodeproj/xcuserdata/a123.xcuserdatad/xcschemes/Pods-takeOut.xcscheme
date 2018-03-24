@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D25B32B08F8D12D2096E01D281821E03"
+               BlueprintIdentifier = "FBB4480517ADDA58C0F87B87338FE203"
                BlueprintName = "Pods-takeOut"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libPods-takeOut.a">

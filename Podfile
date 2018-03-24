@@ -3,4 +3,6 @@ target 'takeOut' do
 pod 'AFNetworking'
 pod 'Masonry'
 pod 'SDWebImage'
+pod 'SDAutoLayout'
+pod 'MJRefresh'
 end
