@@ -29,6 +29,72 @@
         make.width.equalTo(@(50));
         make.height.equalTo(@(50));
     }];
+    
+    self.shopName = [[UILabel alloc]init];
+    self.shopName.font = [UIFont systemFontOfSize:14];
+    self.shopName.text = @"商家";
+    [self.contentView addSubview:self.shopName];
+    [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(ws.contentView.mas_top).offset(10);
+        make.left.equalTo(ws.bigImage.mas_right).offset(15);
+    }];
+
+    self.shopDistance = [[UILabel alloc]init];
+    self.shopDistance.font = [UIFont systemFontOfSize:14];
+    self.shopDistance.text = @"12min|1Km";
+    [self.contentView addSubview:self.shopDistance];
+    [self.shopDistance mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(ws.contentView.mas_right).offset(-10);
+        make.top.equalTo(ws.shopName);
+    }];
+    
+    self.shopMassage = [[UILabel alloc]init];
+    self.shopMassage.textColor = [UIColor lightGrayColor];
+    self.shopMassage.font = [UIFont systemFontOfSize:12];
+    self.shopMassage.text = @"配送：¥3.00 | 起送：¥3.00 | 月售：0";
+    [self.contentView addSubview:self.shopMassage];
+    [self.shopMassage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.bigImage.mas_right).offset(15);
+        make.top.equalTo(ws.shopName.mas_bottom).offset(10);
+    }];
+    
+    self.shopPreferentImg1 = [[UIImageView alloc]init];
+    self.shopPreferentImg1.backgroundColor = [UIColor orangeColor];
+    [self.contentView addSubview:self.shopPreferentImg1];
+    [self.shopPreferentImg1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.bigImage.mas_right).offset(15);
+        make.top.equalTo(ws.shopMassage.mas_bottom).offset(10);
+        make.width.equalTo(@(15));
+        make.height.equalTo(@(15));
+    }];
+    
+    self.shopPreferential1 = [[UILabel alloc]init];
+    self.shopPreferential1.text = @"满10-5";
+    self.shopPreferential1.font = [UIFont systemFontOfSize:12];
+    [self.contentView addSubview:self.shopPreferential1];
+    [self.shopPreferential1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.shopPreferentImg1.mas_right).offset(10);
+        make.centerY.equalTo(ws.shopPreferentImg1);
+    }];
+    
+    self.shopPreferentImg2 = [[UIImageView alloc]init];
+    self.shopPreferentImg2.backgroundColor = [UIColor orangeColor];
+    [self.contentView addSubview:self.shopPreferentImg2];
+    [self.shopPreferentImg2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.bigImage.mas_right).offset(15);
+        make.top.equalTo(ws.shopPreferentImg1.mas_bottom).offset(10);
+        make.width.equalTo(@(15));
+        make.height.equalTo(@(15));
+    }];
+    
+    self.shopPreferential2 = [[UILabel alloc]init];
+    self.shopPreferential2.text = @"满10-5";
+    self.shopPreferential2.font = [UIFont systemFontOfSize:12];
+    [self.contentView addSubview:self.shopPreferential2];
+    [self.shopPreferential2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.shopPreferentImg2.mas_right).offset(10);
+        make.centerY.equalTo(ws.shopPreferentImg2);
+    }];
 }
 
 - (void)awakeFromNib {

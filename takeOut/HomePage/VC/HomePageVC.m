@@ -12,6 +12,9 @@
 #import "CollectionViewCellForHomePageChoose.h"
 #import "TableViewCellForHomepageList.h"
 
+//model
+#import "ModelForHomeType.h"
+
 #define kHeadAdderssViewHeight 40
 #define kHeadSelectViewHeight 150
 #define kHeadImageViewHeight 100
@@ -32,9 +35,19 @@
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)UICollectionView *collectionView;
 @property (nonatomic , strong)UIButton *replaceButton;
+
+@property (nonatomic , strong)NSMutableArray *arrForHomePageTypeName;
 @end
 
 @implementation HomePageVC
+
+-(NSMutableArray*)arrForHomePageTypeName{
+       if (_arrForHomePageTypeName == nil) {
+               _arrForHomePageTypeName = [NSMutableArray array];
+            }
+        return _arrForHomePageTypeName;
+}
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
@@ -46,10 +59,49 @@
     // Do any additional setup after loading the view.
     [self getNetWork];
 }
+#pragma mark - 网络请求
 -(void)getNetWork{
+    [self getNetWorkForBanner];
+    [self getNetworkForType];
     headviewAddressLabel.text = @"陕西省西安市未央区";
     [self.tableView reloadData];
 }
+//banner
+-(void)getNetWorkForBanner{
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,LUNBOURL];
+    //@"http://118.24.100.177:8080/spmvc/xmfapi/getCarousel";
+    [MHNetWorkTask getWithURL:url withParameter:nil withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+        
+        NSArray *dic = result[@"value"];
+        NSString *bannerImg = dic[0][@"img"];
+        
+        [headviewImageView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+        }];
+    } withFail:^(NSError *error) {
+        NSLog(@"轮播图请求错误：%@,",error);
+    }];
+    
+}
+//选择分类
+-(void)getNetworkForType{
+    NSString *URL = [NSString stringWithFormat:@"%@%@",BASEURL,homeTypeURL];
+    [self.arrForHomePageTypeName removeAllObjects];
+    [MHNetWorkTask getWithURL:URL withParameter:nil withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+        NSLog(@"%@",result);
+        NSArray *arr = result[@"value"];
+        for (NSDictionary *dic in arr) {
+            ModelForHomeType *mod = [[ModelForHomeType alloc]init];
+            mod.id = dic[@"id"];
+            mod.shopTypeName = dic[@"shopTypeName"];
+            [self.arrForHomePageTypeName addObject:mod];
+        }
+        [self.collectionView reloadData];
+    } withFail:^(NSError *error) {
+        
+    }];
+}
+
 #pragma mark - 创建透视图
 -(void)createHeadView{
     self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeadAdderssViewHeight + kHeadImageViewHeight + kHeadCollectionViewHeight + kHeadSelectViewHeight + 65)];
@@ -258,7 +310,7 @@
 {
   
         TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-       
+        cell.selectionStyle = UITableViewCellSelectionStyleNone; 
         return cell;
         
    
@@ -266,7 +318,7 @@
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
    
-       return 100;
+       return 110;
     
 }
 
@@ -285,7 +337,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-    return 8;
+    return self.arrForHomePageTypeName.count;
     
 }
 
@@ -293,6 +345,7 @@
 {
     CollectionViewCellForHomePageChoose *cell = (CollectionViewCellForHomePageChoose *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     //设置数据
+    cell.mod = [self.arrForHomePageTypeName objectAtIndex:indexPath.row];
     cell.backgroundColor = [UIColor lightGrayColor];
     return cell;
 }

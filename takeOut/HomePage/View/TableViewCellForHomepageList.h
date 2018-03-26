@@ -13,6 +13,8 @@
 @property (nonatomic , strong) UILabel *shopName;
 @property (nonatomic , strong) UILabel *shopDistance;
 @property (nonatomic , strong) UILabel *shopMassage;
+@property (nonatomic , strong) UIImageView *shopPreferentImg1;
 @property (nonatomic , strong) UILabel *shopPreferential1;
+@property (nonatomic , strong) UIImageView *shopPreferentImg2;
 @property (nonatomic , strong) UILabel *shopPreferential2;
 @end

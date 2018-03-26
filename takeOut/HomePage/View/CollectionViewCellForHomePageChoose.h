@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ModelForHomeType.h"
 
 @interface CollectionViewCellForHomePageChoose : UICollectionViewCell
 @property (nonatomic , strong)UIImageView *iconImg;
 @property (nonatomic , strong)UILabel *titleLable;
+
+@property (nonatomic , strong)ModelForHomeType *mod;
+
 @end

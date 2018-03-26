@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524B2068850D005A6BBC /* MHNetWorkTask.m */; };
+		9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524E2068944E005A6BBC /* ModelForHomeType.m */; };
 		9D92577D2065F90C00A6E262 /* SortButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577C2065F90C00A6E262 /* SortButton.m */; };
 		9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577F2066015D00A6E262 /* CollectionViewCellForHomePageChoose.m */; };
 		9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */; };
@@ -46,6 +48,10 @@
 /* Begin PBXFileReference section */
 		3EA3BA8955BAFE3DE06D4D6D /* Pods-takeOut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.debug.xcconfig"; sourceTree = "<group>"; };
 		67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.release.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.release.xcconfig"; sourceTree = "<group>"; };
+		9D49524A2068850D005A6BBC /* MHNetWorkTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNetWorkTask.h; sourceTree = "<group>"; };
+		9D49524B2068850D005A6BBC /* MHNetWorkTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHNetWorkTask.m; sourceTree = "<group>"; };
+		9D49524D2068944E005A6BBC /* ModelForHomeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForHomeType.h; sourceTree = "<group>"; };
+		9D49524E2068944E005A6BBC /* ModelForHomeType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForHomeType.m; sourceTree = "<group>"; };
 		9D92577B2065F90C00A6E262 /* SortButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortButton.h; sourceTree = "<group>"; };
 		9D92577C2065F90C00A6E262 /* SortButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortButton.m; sourceTree = "<group>"; };
 		9D92577E2066015D00A6E262 /* CollectionViewCellForHomePageChoose.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewCellForHomePageChoose.h; sourceTree = "<group>"; };
@@ -108,6 +114,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D4952492068850D005A6BBC /* MHNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				9D49524A2068850D005A6BBC /* MHNetWorkTask.h */,
+				9D49524B2068850D005A6BBC /* MHNetWorkTask.m */,
+			);
+			path = MHNetwork;
+			sourceTree = "<group>";
+		};
 		9DDFD2682064EC7100393DE5 = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +229,8 @@
 		9DDFD2AC2064F1C300393DE5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9D49524D2068944E005A6BBC /* ModelForHomeType.h */,
+				9D49524E2068944E005A6BBC /* ModelForHomeType.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,6 +310,7 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9D4952492068850D005A6BBC /* MHNetwork */,
 				D65D88CD20652EA7000D509A /* hexColor */,
 			);
 			path = Tools;
@@ -516,6 +534,8 @@
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
 				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
+				9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */,
+				9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */,
 				9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */,
 				9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */,
 				9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */,

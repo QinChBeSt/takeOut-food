@@ -34,12 +34,13 @@
     
     self.titleLable = [[UILabel alloc]init];
     self.titleLable.font = [UIFont systemFontOfSize:12];
-    self.titleLable.text = @"标题";
     [self.contentView addSubview:self.titleLable];
     [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.iconImg);
         make.top.equalTo(ws.iconImg.mas_bottom).offset(5);
     }];
 }
-
+-(void)setMod:(ModelForHomeType *)mod{
+    self.titleLable.text = mod.shopTypeName;
+}
 @end

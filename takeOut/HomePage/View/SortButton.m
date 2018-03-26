@@ -26,7 +26,7 @@
     imageY=0;
     imageW=self.frame.size.height;
     imageH=self.frame.size.height;
-    imageX=self.frame.size.width*0.8;
+    imageX=self.frame.size.width*0.85;
     return  CGRectMake(imageX, imageY, imageW, imageH);
 }
 -(CGRect)titleRectForContentRect:(CGRect)contentRect{
