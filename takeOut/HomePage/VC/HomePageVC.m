@@ -7,6 +7,10 @@
 //
 
 #import "HomePageVC.h"
+#import <CoreLocation/CoreLocation.h>
+//VC
+#import "ShopDetailVC.h"
+
 //VIEW
 #import "SortButton.h"
 #import "CollectionViewCellForHomePageChoose.h"
@@ -14,13 +18,14 @@
 
 //model
 #import "ModelForHomeType.h"
+#import "ModelForShopList.h"
 
 #define kHeadAdderssViewHeight 40
 #define kHeadSelectViewHeight 150
 #define kHeadImageViewHeight 100
 #define kHeadCollectionViewHeight SCREEN_WIDTH / 4 * 2
 
-@interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
+@interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate>
 {
     UIView *headviewAddressView;
     UILabel *headviewAddressLabel;
@@ -37,20 +42,33 @@
 @property (nonatomic , strong)UIButton *replaceButton;
 
 @property (nonatomic , strong)NSMutableArray *arrForHomePageTypeName;
+@property (nonatomic , strong)NSMutableArray *arrForHomePageShopList;
 @end
 
-@implementation HomePageVC
-
--(NSMutableArray*)arrForHomePageTypeName{
-       if (_arrForHomePageTypeName == nil) {
-               _arrForHomePageTypeName = [NSMutableArray array];
-            }
-        return _arrForHomePageTypeName;
+@implementation HomePageVC{
+    CLLocationManager *locationmanager;//定位服务
+    NSString *currentCity;//当前城市
+    NSString *strlatitude;//经度
+    NSString *strlongitude;//纬度
 }
 
+-(NSMutableArray *)arrForHomePageTypeName{
+    if (_arrForHomePageTypeName == nil) {
+        _arrForHomePageTypeName = [NSMutableArray array];
+    }
+    return _arrForHomePageTypeName;
+}
+-(NSMutableArray *)arrForHomePageShopList{
+    if (_arrForHomePageShopList == nil) {
+        _arrForHomePageShopList = [NSMutableArray array];
+    }
+    return _arrForHomePageShopList;
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
+    
+    [self getLocation];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,11 +77,12 @@
     // Do any additional setup after loading the view.
     [self getNetWork];
 }
+
 #pragma mark - 网络请求
 -(void)getNetWork{
     [self getNetWorkForBanner];
     [self getNetworkForType];
-    headviewAddressLabel.text = @"陕西省西安市未央区";
+    
     [self.tableView reloadData];
 }
 //banner
@@ -88,7 +107,6 @@
     NSString *URL = [NSString stringWithFormat:@"%@%@",BASEURL,homeTypeURL];
     [self.arrForHomePageTypeName removeAllObjects];
     [MHNetWorkTask getWithURL:URL withParameter:nil withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
-        NSLog(@"%@",result);
         NSArray *arr = result[@"value"];
         for (NSDictionary *dic in arr) {
             ModelForHomeType *mod = [[ModelForHomeType alloc]init];
@@ -101,7 +119,54 @@
         
     }];
 }
-
+//推荐列表
+-(void)netWorkForShopList{
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,homeshopRecommendList];
+    NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
+    if (!strlongitude) {
+        strlongitude = @"0";
+    }
+    if (!strlatitude) {
+        strlatitude = @"0";
+    }
+    [par setValue:strlongitude forKey:@"lonng"];
+    [par setValue:strlatitude forKey:@"lat"];
+    NSString * strFlg =@"1";
+    int strFlgid =[strFlg intValue];
+    NSNumber *numFlg =[NSNumber numberWithInt:strFlgid];
+    
+    NSString * strTypeFlg =@"1";
+    int strTypeFlgid =[strTypeFlg intValue];
+    NSNumber *numTypeFlg =[NSNumber numberWithInt:strTypeFlgid];
+    
+    NSString * strPage =@"1";
+    int strPageid =[strPage intValue];
+    NSNumber *numPage =[NSNumber numberWithInt:strPageid];
+    [par setValue:numFlg forKey:@"flg"];
+    [par setValue:numTypeFlg forKey:@"typeflg"];
+    [par setValue:numPage forKey:@"page"];
+    [self.arrForHomePageShopList removeAllObjects];
+    [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+    
+        NSArray *arr = result[@"value"];
+        for (NSDictionary *dic in arr) {
+            ModelForShopList *mod = [[ModelForShopList alloc]init];
+            mod.per_mean = dic[@"per_mean"];
+            mod.send_dis = dic[@"send_dis"];
+            mod.send_time = dic[@"send_time"];
+            mod.send_pic = dic[@"send_pic"];
+            mod.store_id = dic[@"store_id"];
+            mod.store_img = dic[@"store_img"];
+            mod.store_name = dic[@"store_name"];
+            mod.up_pic = dic[@"up_pic"];
+            mod.act_list = dic[@"act_list"];
+            [self.arrForHomePageShopList addObject:mod];
+        }
+        [self.tableView reloadData];
+    } withFail:^(NSError *error) {
+        
+    }];
+}
 #pragma mark - 创建透视图
 -(void)createHeadView{
     self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeadAdderssViewHeight + kHeadImageViewHeight + kHeadCollectionViewHeight + kHeadSelectViewHeight + 65)];
@@ -126,7 +191,7 @@
     
     //地址
     headviewAddressLabel = [[UILabel alloc]init];
-    headviewAddressLabel.text = @"";
+    headviewAddressLabel.text = @"获取位置中....";
     [headviewAddressView addSubview:headviewAddressLabel];
     [headviewAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(locationIcon.mas_right).offset(15);
@@ -303,15 +368,16 @@
 /**** 行数 ****/
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.arrForHomePageShopList.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   
-        TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone; 
-        return cell;
+    TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
+    cell.mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
         
    
 }
@@ -323,7 +389,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    ShopDetailVC *shopDetailVC = [[ShopDetailVC alloc]init];
+    shopDetailVC.modShopList = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:shopDetailVC animated:YES];
     
 }
 
@@ -353,6 +421,74 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%@",indexPath);
+    
+}
+
+#pragma mark - 定位
+-(void)getLocation
+{
+    //判断定位功能是否打开
+    if ([CLLocationManager locationServicesEnabled]) {
+        locationmanager = [[CLLocationManager alloc]init];
+        locationmanager.delegate = self;
+        [locationmanager requestAlwaysAuthorization];
+        currentCity = [NSString new];
+        [locationmanager requestWhenInUseAuthorization];
+        
+        //设置寻址精度
+        locationmanager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationmanager.distanceFilter = 5.0;
+        [locationmanager startUpdatingLocation];
+    }
+}
+#pragma mark CoreLocation delegate (定位失败)
+//定位失败后调用此代理方法
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    //设置提示提醒用户打开定位服务
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"允许定位提示" message:@"请在设置中打开定位" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"打开定位" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+#pragma mark 定位成功后则执行此代理方法
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+{
+    [locationmanager stopUpdatingHeading];
+    if (!strlatitude) {
+        [self netWorkForShopList];
+    }
+    //旧址
+    CLLocation *currentLocation = [locations lastObject];
+    CLGeocoder *geoCoder = [[CLGeocoder alloc]init];
+    //打印当前的经度与纬度
+    NSLog(@"%f,%f",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude);
+    //反地理编码
+    strlatitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
+    strlongitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
+   
+    
+    
+    [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (placemarks.count > 0) {
+            CLPlacemark *placeMark = placemarks[0];
+            currentCity = placeMark.locality;
+            if (!currentCity) {
+                currentCity = @"无法定位当前城市";
+            }
+            
+            
+           
+            NSString *locStr = [NSString stringWithFormat:@"%@%@%@",currentCity,placeMark.subLocality,placeMark.name];
+             NSLog(@"%@",locStr);//具体地址
+            headviewAddressLabel.text = locStr;
+            
+        }
+    }];
+    
     
 }
 

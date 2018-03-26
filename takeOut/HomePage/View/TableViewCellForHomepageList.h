@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ModelForShopList.h"
 @interface TableViewCellForHomepageList : UITableViewCell
 @property (nonatomic , strong) UIImageView *bigImage;
 @property (nonatomic , strong) UILabel *shopName;
@@ -17,4 +17,6 @@
 @property (nonatomic , strong) UILabel *shopPreferential1;
 @property (nonatomic , strong) UIImageView *shopPreferentImg2;
 @property (nonatomic , strong) UILabel *shopPreferential2;
+
+@property (nonatomic , strong) ModelForShopList *mod;
 @end

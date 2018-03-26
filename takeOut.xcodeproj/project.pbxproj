@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524B2068850D005A6BBC /* MHNetWorkTask.m */; };
 		9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524E2068944E005A6BBC /* ModelForHomeType.m */; };
+		9D49525B2068A546005A6BBC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D49525A2068A546005A6BBC /* CoreLocation.framework */; };
+		9D49525E2068B25A005A6BBC /* ModelForShopList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49525D2068B25A005A6BBC /* ModelForShopList.m */; };
+		9D4952612068C97C005A6BBC /* ShopDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952602068C97C005A6BBC /* ShopDetailVC.m */; };
+		9D4952692068CD95005A6BBC /* UIView+ZWMBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952642068CD95005A6BBC /* UIView+ZWMBadge.m */; };
+		9D49526A2068CD95005A6BBC /* ZWMSegmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952662068CD95005A6BBC /* ZWMSegmentController.m */; };
+		9D49526B2068CD95005A6BBC /* ZWMSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952682068CD95005A6BBC /* ZWMSegmentView.m */; };
+		9D49526F2068D444005A6BBC /* FoodListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49526E2068D444005A6BBC /* FoodListVC.m */; };
+		9D4952722068D462005A6BBC /* EvaluationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952712068D462005A6BBC /* EvaluationVC.m */; };
+		9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952742068D491005A6BBC /* ShopMassageVC.m */; };
+		9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952772068EDD8005A6BBC /* ModelForFoodList.m */; };
+		9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49527A2068F1EA005A6BBC /* CellForShopFood.m */; };
 		9D92577D2065F90C00A6E262 /* SortButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577C2065F90C00A6E262 /* SortButton.m */; };
 		9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577F2066015D00A6E262 /* CollectionViewCellForHomePageChoose.m */; };
 		9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */; };
@@ -52,6 +63,27 @@
 		9D49524B2068850D005A6BBC /* MHNetWorkTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHNetWorkTask.m; sourceTree = "<group>"; };
 		9D49524D2068944E005A6BBC /* ModelForHomeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForHomeType.h; sourceTree = "<group>"; };
 		9D49524E2068944E005A6BBC /* ModelForHomeType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForHomeType.m; sourceTree = "<group>"; };
+		9D49525A2068A546005A6BBC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9D49525C2068B25A005A6BBC /* ModelForShopList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForShopList.h; sourceTree = "<group>"; };
+		9D49525D2068B25A005A6BBC /* ModelForShopList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForShopList.m; sourceTree = "<group>"; };
+		9D49525F2068C97C005A6BBC /* ShopDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopDetailVC.h; sourceTree = "<group>"; };
+		9D4952602068C97C005A6BBC /* ShopDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopDetailVC.m; sourceTree = "<group>"; };
+		9D4952632068CD95005A6BBC /* UIView+ZWMBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZWMBadge.h"; sourceTree = "<group>"; };
+		9D4952642068CD95005A6BBC /* UIView+ZWMBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZWMBadge.m"; sourceTree = "<group>"; };
+		9D4952652068CD95005A6BBC /* ZWMSegmentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWMSegmentController.h; sourceTree = "<group>"; };
+		9D4952662068CD95005A6BBC /* ZWMSegmentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWMSegmentController.m; sourceTree = "<group>"; };
+		9D4952672068CD95005A6BBC /* ZWMSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWMSegmentView.h; sourceTree = "<group>"; };
+		9D4952682068CD95005A6BBC /* ZWMSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWMSegmentView.m; sourceTree = "<group>"; };
+		9D49526D2068D444005A6BBC /* FoodListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodListVC.h; sourceTree = "<group>"; };
+		9D49526E2068D444005A6BBC /* FoodListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodListVC.m; sourceTree = "<group>"; };
+		9D4952702068D462005A6BBC /* EvaluationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EvaluationVC.h; sourceTree = "<group>"; };
+		9D4952712068D462005A6BBC /* EvaluationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EvaluationVC.m; sourceTree = "<group>"; };
+		9D4952732068D491005A6BBC /* ShopMassageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopMassageVC.h; sourceTree = "<group>"; };
+		9D4952742068D491005A6BBC /* ShopMassageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopMassageVC.m; sourceTree = "<group>"; };
+		9D4952762068EDD8005A6BBC /* ModelForFoodList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForFoodList.h; sourceTree = "<group>"; };
+		9D4952772068EDD8005A6BBC /* ModelForFoodList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForFoodList.m; sourceTree = "<group>"; };
+		9D4952792068F1EA005A6BBC /* CellForShopFood.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForShopFood.h; sourceTree = "<group>"; };
+		9D49527A2068F1EA005A6BBC /* CellForShopFood.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForShopFood.m; sourceTree = "<group>"; };
 		9D92577B2065F90C00A6E262 /* SortButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortButton.h; sourceTree = "<group>"; };
 		9D92577C2065F90C00A6E262 /* SortButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortButton.m; sourceTree = "<group>"; };
 		9D92577E2066015D00A6E262 /* CollectionViewCellForHomePageChoose.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewCellForHomePageChoose.h; sourceTree = "<group>"; };
@@ -93,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D49525B2068A546005A6BBC /* CoreLocation.framework in Frameworks */,
 				AE8788150AACCD47B1AFF44F /* libPods-takeOut.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +154,34 @@
 				9D49524B2068850D005A6BBC /* MHNetWorkTask.m */,
 			);
 			path = MHNetwork;
+			sourceTree = "<group>";
+		};
+		9D4952622068CD95005A6BBC /* ZWMSegment */ = {
+			isa = PBXGroup;
+			children = (
+				9D4952632068CD95005A6BBC /* UIView+ZWMBadge.h */,
+				9D4952642068CD95005A6BBC /* UIView+ZWMBadge.m */,
+				9D4952652068CD95005A6BBC /* ZWMSegmentController.h */,
+				9D4952662068CD95005A6BBC /* ZWMSegmentController.m */,
+				9D4952672068CD95005A6BBC /* ZWMSegmentView.h */,
+				9D4952682068CD95005A6BBC /* ZWMSegmentView.m */,
+			);
+			path = ZWMSegment;
+			sourceTree = "<group>";
+		};
+		9D49526C2068D423005A6BBC /* ShopDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9D49525F2068C97C005A6BBC /* ShopDetailVC.h */,
+				9D4952602068C97C005A6BBC /* ShopDetailVC.m */,
+				9D49526D2068D444005A6BBC /* FoodListVC.h */,
+				9D49526E2068D444005A6BBC /* FoodListVC.m */,
+				9D4952702068D462005A6BBC /* EvaluationVC.h */,
+				9D4952712068D462005A6BBC /* EvaluationVC.m */,
+				9D4952732068D491005A6BBC /* ShopMassageVC.h */,
+				9D4952742068D491005A6BBC /* ShopMassageVC.m */,
+			);
+			path = ShopDetail;
 			sourceTree = "<group>";
 		};
 		9DDFD2682064EC7100393DE5 = {
@@ -231,6 +292,10 @@
 			children = (
 				9D49524D2068944E005A6BBC /* ModelForHomeType.h */,
 				9D49524E2068944E005A6BBC /* ModelForHomeType.m */,
+				9D49525C2068B25A005A6BBC /* ModelForShopList.h */,
+				9D49525D2068B25A005A6BBC /* ModelForShopList.m */,
+				9D4952762068EDD8005A6BBC /* ModelForFoodList.h */,
+				9D4952772068EDD8005A6BBC /* ModelForFoodList.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -240,6 +305,7 @@
 			children = (
 				9DDFD2B32064F21900393DE5 /* HomePageVC.h */,
 				9DDFD2B42064F21900393DE5 /* HomePageVC.m */,
+				9D49526C2068D423005A6BBC /* ShopDetail */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -253,6 +319,8 @@
 				9D92577F2066015D00A6E262 /* CollectionViewCellForHomePageChoose.m */,
 				9D9257812066146B00A6E262 /* TableViewCellForHomepageList.h */,
 				9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */,
+				9D4952792068F1EA005A6BBC /* CellForShopFood.h */,
+				9D49527A2068F1EA005A6BBC /* CellForShopFood.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -293,6 +361,7 @@
 		B8AEC27C127AA822F6B807AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D49525A2068A546005A6BBC /* CoreLocation.framework */,
 				F3C52C8109E37E7630666F17 /* libPods-takeOut.a */,
 			);
 			name = Frameworks;
@@ -310,6 +379,7 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9D4952622068CD95005A6BBC /* ZWMSegment */,
 				9D4952492068850D005A6BBC /* MHNetwork */,
 				D65D88CD20652EA7000D509A /* hexColor */,
 			);
@@ -527,18 +597,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DDFD2842064EC7100393DE5 /* main.m in Sources */,
+				9D4952692068CD95005A6BBC /* UIView+ZWMBadge.m in Sources */,
+				9D4952722068D462005A6BBC /* EvaluationVC.m in Sources */,
 				D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */,
+				9D49526B2068CD95005A6BBC /* ZWMSegmentView.m in Sources */,
+				9D49526F2068D444005A6BBC /* FoodListVC.m in Sources */,
 				9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */,
 				D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */,
 				9D92577D2065F90C00A6E262 /* SortButton.m in Sources */,
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
+				9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */,
 				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
 				9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */,
+				9D49526A2068CD95005A6BBC /* ZWMSegmentController.m in Sources */,
 				9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */,
 				9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */,
 				9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */,
+				9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */,
 				9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */,
+				9D4952612068C97C005A6BBC /* ShopDetailVC.m in Sources */,
+				9D49525E2068B25A005A6BBC /* ModelForShopList.m in Sources */,
+				9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
