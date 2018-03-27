@@ -23,6 +23,8 @@
 		9D92577D2065F90C00A6E262 /* SortButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577C2065F90C00A6E262 /* SortButton.m */; };
 		9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577F2066015D00A6E262 /* CollectionViewCellForHomePageChoose.m */; };
 		9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */; };
+		9D98D965206A14C30019AC0C /* CellForChooseSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D98D964206A14C30019AC0C /* CellForChooseSize.m */; };
+		9D98D969206A30BA0019AC0C /* UIView+CHView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D98D968206A30BA0019AC0C /* UIView+CHView.m */; };
 		9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2752064EC7100393DE5 /* AppDelegate.m */; };
 		9DDFD27C2064EC7100393DE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27A2064EC7100393DE5 /* Main.storyboard */; };
 		9DDFD27E2064EC7100393DE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27D2064EC7100393DE5 /* Assets.xcassets */; };
@@ -90,6 +92,10 @@
 		9D92577F2066015D00A6E262 /* CollectionViewCellForHomePageChoose.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCellForHomePageChoose.m; sourceTree = "<group>"; };
 		9D9257812066146B00A6E262 /* TableViewCellForHomepageList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellForHomepageList.h; sourceTree = "<group>"; };
 		9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellForHomepageList.m; sourceTree = "<group>"; };
+		9D98D963206A14C30019AC0C /* CellForChooseSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForChooseSize.h; sourceTree = "<group>"; };
+		9D98D964206A14C30019AC0C /* CellForChooseSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForChooseSize.m; sourceTree = "<group>"; };
+		9D98D967206A30BA0019AC0C /* UIView+CHView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CHView.h"; sourceTree = "<group>"; };
+		9D98D968206A30BA0019AC0C /* UIView+CHView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CHView.m"; sourceTree = "<group>"; };
 		9DDFD2712064EC7100393DE5 /* takeOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DDFD2742064EC7100393DE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9DDFD2752064EC7100393DE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -182,6 +188,15 @@
 				9D4952742068D491005A6BBC /* ShopMassageVC.m */,
 			);
 			path = ShopDetail;
+			sourceTree = "<group>";
+		};
+		9D98D966206A30B10019AC0C /* UIview+CHView */ = {
+			isa = PBXGroup;
+			children = (
+				9D98D967206A30BA0019AC0C /* UIView+CHView.h */,
+				9D98D968206A30BA0019AC0C /* UIView+CHView.m */,
+			);
+			path = "UIview+CHView";
 			sourceTree = "<group>";
 		};
 		9DDFD2682064EC7100393DE5 = {
@@ -321,6 +336,8 @@
 				9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */,
 				9D4952792068F1EA005A6BBC /* CellForShopFood.h */,
 				9D49527A2068F1EA005A6BBC /* CellForShopFood.m */,
+				9D98D963206A14C30019AC0C /* CellForChooseSize.h */,
+				9D98D964206A14C30019AC0C /* CellForChooseSize.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,6 +396,7 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9D98D966206A30B10019AC0C /* UIview+CHView */,
 				9D4952622068CD95005A6BBC /* ZWMSegment */,
 				9D4952492068850D005A6BBC /* MHNetwork */,
 				D65D88CD20652EA7000D509A /* hexColor */,
@@ -605,7 +623,9 @@
 				9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */,
 				D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */,
 				9D92577D2065F90C00A6E262 /* SortButton.m in Sources */,
+				9D98D965206A14C30019AC0C /* CellForChooseSize.m in Sources */,
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
+				9D98D969206A30BA0019AC0C /* UIView+CHView.m in Sources */,
 				9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */,
 				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,

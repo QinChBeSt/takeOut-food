@@ -13,7 +13,7 @@
 {
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
-        //[self setupUI];
+        [self setupUI];
     }
     return self;
 }
@@ -36,10 +36,17 @@
         make.bottom.equalTo(ws.contentView.mas_bottom).offset(-10);
     }];
     
+    self.chooseSizeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.chooseSizeBtn.backgroundColor = [UIColor orangeColor];
+    [self.chooseSizeBtn addTarget:self action:@selector(chooseSize:) forControlEvents:UIControlEventTouchUpInside];
+    [self.chooseSizeBtn setHidden:YES];
+    [self.contentView addSubview:self.chooseSizeBtn];
+    
     
 }
 -(void)setMod:(ModelForFoodList *)mod{
     __weak typeof(self) ws = self;
+    self.chooseMod = mod;
     self.shopName.text = mod.godsname;
     self.priceLabel.text = [NSString stringWithFormat:@"%.2f元",mod.pic];
     if (mod.goodspic.count > 1) {
@@ -53,25 +60,13 @@
     }
 }
 
--(instancetype)initWithIntNum:(int)section row:(int)row{
-    if (self == [super init]) {
-        [self setupUI];
-        self.chooseSizeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.chooseSizeBtn.backgroundColor = [UIColor orangeColor];
-        self.chooseSizeBtn.tag = section *100+row+1;
-        [self.chooseSizeBtn addTarget:self action:@selector(chooseSize:) forControlEvents:UIControlEventTouchUpInside];
-        [self.chooseSizeBtn setHidden:YES];
-        [self.contentView addSubview:self.chooseSizeBtn];
-    }
-    return self;
-}
 
 -(void)chooseSize:(UIButton *)btn{
     NSLog(@"xxxxxxxxxxx");
-    int tag = btn.tag;
-    int section = tag/100;
-    int row = tag%100;
-    [self.btnDelegate cellBtnClicked:section row:row];
+    if (self.blockChooseSize) {
+        self.blockChooseSize(self.chooseMod);
+    }
+   
     
 }
 - (void)awakeFromNib {
