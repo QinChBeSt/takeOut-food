@@ -120,7 +120,7 @@
     }];
 }
 //推荐列表
--(void)netWorkForShopList{
+-(void)netWorkForShopList:(NSInteger )tag{
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,homeshopRecommendList];
     NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
     if (!strlongitude) {
@@ -131,9 +131,9 @@
     }
     [par setValue:strlongitude forKey:@"lonng"];
     [par setValue:strlatitude forKey:@"lat"];
-    NSString * strFlg =@"1";
-    int strFlgid =[strFlg intValue];
-    NSNumber *numFlg =[NSNumber numberWithInt:strFlgid];
+    
+    NSInteger strFlgid =tag + 1;
+    NSNumber *numFlg =[NSNumber numberWithInteger:strFlgid];
     
     NSString * strTypeFlg =@"1";
     int strTypeFlgid =[strTypeFlg intValue];
@@ -459,7 +459,7 @@
 {
     [locationmanager stopUpdatingHeading];
     if (!strlatitude) {
-        [self netWorkForShopList];
+        [self netWorkForShopList:0];
     }
     //旧址
     CLLocation *currentLocation = [locations lastObject];
@@ -501,7 +501,7 @@
 }
 //点击了对应的筛选条件按钮操作
 -(void)clickAction:(UIButton *)sender{
-    
+    NSLog(@"%ld",(long)sender.tag);
     self.replaceButton.selected=NO;  // 改变箭头的方向
     sender.selected=YES;
     self.replaceButton=sender;
@@ -511,6 +511,6 @@
 }
 //加载模型数据数组
 -(void)loadData:(NSInteger)tagNum{
-    
+    [self netWorkForShopList:tagNum];
 }
 @end
