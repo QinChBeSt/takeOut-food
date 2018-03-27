@@ -20,6 +20,14 @@
 //店铺详情
 #define shopDatailUrl @"/xmfapi/getGoodsClassification"
 
+
+
+
+#define MainScreenScale [[UIScreen mainScreen]scale] //屏幕的分辨率 当结果为1时，显示的是普通屏幕，结果为2时，显示的是Retian屏幕
+// App Frame Height&Width
+#define Application_Frame  [[UIScreen mainScreen] applicationFrame] //除去信号区的屏幕的frame
+#define APP_Frame_Height   [[UIScreen mainScreen] applicationFrame].size.height //应用程序的屏幕高度
+#define App_Frame_Width    [[UIScreen mainScreen] applicationFrame].size.width  //应用程序的屏幕宽度
 #define SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
 #define SCREENH_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define SafeAreaTopHeight ([[UIScreen mainScreen] bounds].size.height == 812.0 ? 88 : 64)
