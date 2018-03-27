@@ -25,6 +25,7 @@
 		9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */; };
 		9D98D965206A14C30019AC0C /* CellForChooseSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D98D964206A14C30019AC0C /* CellForChooseSize.m */; };
 		9D98D969206A30BA0019AC0C /* UIView+CHView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D98D968206A30BA0019AC0C /* UIView+CHView.m */; };
+		9D98D96C206A43780019AC0C /* CellForShopFoodChooseSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D98D96B206A43780019AC0C /* CellForShopFoodChooseSize.m */; };
 		9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2752064EC7100393DE5 /* AppDelegate.m */; };
 		9DDFD27C2064EC7100393DE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27A2064EC7100393DE5 /* Main.storyboard */; };
 		9DDFD27E2064EC7100393DE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27D2064EC7100393DE5 /* Assets.xcassets */; };
@@ -96,6 +97,8 @@
 		9D98D964206A14C30019AC0C /* CellForChooseSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForChooseSize.m; sourceTree = "<group>"; };
 		9D98D967206A30BA0019AC0C /* UIView+CHView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CHView.h"; sourceTree = "<group>"; };
 		9D98D968206A30BA0019AC0C /* UIView+CHView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CHView.m"; sourceTree = "<group>"; };
+		9D98D96A206A43780019AC0C /* CellForShopFoodChooseSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForShopFoodChooseSize.h; sourceTree = "<group>"; };
+		9D98D96B206A43780019AC0C /* CellForShopFoodChooseSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForShopFoodChooseSize.m; sourceTree = "<group>"; };
 		9DDFD2712064EC7100393DE5 /* takeOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DDFD2742064EC7100393DE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9DDFD2752064EC7100393DE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 				9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */,
 				9D4952792068F1EA005A6BBC /* CellForShopFood.h */,
 				9D49527A2068F1EA005A6BBC /* CellForShopFood.m */,
+				9D98D96A206A43780019AC0C /* CellForShopFoodChooseSize.h */,
+				9D98D96B206A43780019AC0C /* CellForShopFoodChooseSize.m */,
 				9D98D963206A14C30019AC0C /* CellForChooseSize.h */,
 				9D98D964206A14C30019AC0C /* CellForChooseSize.m */,
 			);
@@ -621,6 +626,7 @@
 				9D49526B2068CD95005A6BBC /* ZWMSegmentView.m in Sources */,
 				9D49526F2068D444005A6BBC /* FoodListVC.m in Sources */,
 				9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */,
+				9D98D96C206A43780019AC0C /* CellForShopFoodChooseSize.m in Sources */,
 				D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */,
 				9D92577D2065F90C00A6E262 /* SortButton.m in Sources */,
 				9D98D965206A14C30019AC0C /* CellForChooseSize.m in Sources */,

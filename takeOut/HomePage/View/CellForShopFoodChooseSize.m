@@ -1,14 +1,14 @@
 //
-//  CellForShopFood.m
+//  CellForShopFoodChooseSize.m
 //  takeOut
 //
-//  Created by mac on 2018/3/26.
+//  Created by mac on 2018/3/27.
 //  Copyright © 2018年 QinChBeSt. All rights reserved.
 //
 
-#import "CellForShopFood.h"
+#import "CellForShopFoodChooseSize.h"
 
-@implementation CellForShopFood
+@implementation CellForShopFoodChooseSize
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier])
@@ -35,17 +35,19 @@
         make.left.equalTo(ws.bigImage.mas_right).offset(10);
         make.bottom.equalTo(ws.contentView.mas_bottom).offset(-10);
     }];
-
     
-    self.addToShoppingCar = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.addToShoppingCar.backgroundColor = [UIColor orangeColor];
-    [self.addToShoppingCar addTarget:self action:@selector(addToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:self.addToShoppingCar];
-    [self.addToShoppingCar setHidden:NO];
-    [self.addToShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.chooseSizeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.chooseSizeBtn.backgroundColor = [UIColor yellowColor];
+    [self.chooseSizeBtn addTarget:self action:@selector(chooseSize:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.chooseSizeBtn.layer.cornerRadius = 5;
+    [self.chooseSizeBtn setTitle:@"选规格" forState:UIControlStateNormal];
+    [self.chooseSizeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.contentView addSubview:self.chooseSizeBtn];
+    [self.chooseSizeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView.mas_right).offset(-15);
         make.centerY.equalTo(ws.priceLabel);
-        make.width.equalTo(@(25));
+        make.width.equalTo(@(85));
         make.height.equalTo(@(25));
     }];
     
@@ -54,13 +56,16 @@
     self.chooseMod = mod;
     self.shopName.text = mod.godsname;
     self.priceLabel.text = [NSString stringWithFormat:@"%.2f元",mod.pic];
+    
 }
 
--(void)addToShopingCarAction:(UIButton *)btn{
-    if (self.blockAddShopingCar) {
-        self.blockAddShopingCar(self.chooseMod);
+
+-(void)chooseSize:(UIButton *)btn{
+    if (self.blockChooseSize) {
+        self.blockChooseSize(self.chooseMod);
     }
 }
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

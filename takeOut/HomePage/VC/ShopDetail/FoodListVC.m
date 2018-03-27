@@ -10,6 +10,7 @@
 #import "ModelForFoodList.h"
 #import "CellForShopFood.h"
 #import "CellForChooseSize.h"
+#import "CellForShopFoodChooseSize.h"
 
 #define shoppingCarViewHeight 50
 
@@ -98,6 +99,7 @@
 #pragma mark - UI
 static NSString *const resueIdleft = @"leftCell";
 static NSString *const resueIdright = @"rightCell";
+static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 - (void)initTableView {
     self.leftTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width / 4, self.view.frame.size.height - SafeAreaTopHeight - 100 -36 - SafeAreaTabbarHeight - shoppingCarViewHeight) style:UITableViewStylePlain];
     self.leftTable.delegate = self;
@@ -111,6 +113,7 @@ static NSString *const resueIdright = @"rightCell";
     self.rightTable.delegate = self;
     [self.view addSubview:self.rightTable];
     [self.rightTable registerClass:[CellForShopFood class] forCellReuseIdentifier:resueIdright];
+    [self.rightTable registerClass:[CellForShopFoodChooseSize class] forCellReuseIdentifier:resueIdrightChooseSize];
 }
 -(void)addChooseView{
     self.chooseSizeBackgroundView = [[UIView alloc]initWithFrame:self.view.frame];
@@ -232,6 +235,21 @@ static NSString *const resueIdright = @"rightCell";
         make.centerY.equalTo(ws.buyCarView.mas_top).offset(shoppingCarViewHeight/2);
         make.left.equalTo(ws.buyCarView.mas_left).offset(20);
     }];
+    
+    UIButton *addBuyCar = [UIButton buttonWithType:UIButtonTypeCustom];
+    addBuyCar.backgroundColor = [UIColor yellowColor];
+    addBuyCar.layer.cornerRadius = 5;
+    [addBuyCar setTitle:@"加入购物车" forState:UIControlStateNormal];
+    [addBuyCar setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    addBuyCar.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+    [addBuyCar addTarget:self action:@selector(addShoppongCarNetWord) forControlEvents:UIControlEventTouchUpInside];
+    [self.buyCarView addSubview:addBuyCar];
+    [addBuyCar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.buyCarAddLabel);
+        make.right.equalTo(ws.buyCarView.mas_right).offset(-10);
+        make.top.equalTo(ws.buyCarView.mas_top).offset(5);
+        make.width.equalTo(@(100));
+    }];
 }
 
 #pragma mark - 滚动刷新
@@ -257,31 +275,62 @@ static NSString *const resueIdright = @"rightCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = nil;
+    
     if (tableView == self.leftTable) {
+        UITableViewCell *cell = nil;
         cell = [tableView dequeueReusableCellWithIdentifier:resueIdleft];
        NSDictionary *dic = [self.arrForType objectAtIndex:indexPath.row];
        cell.textLabel.text = dic[@"goodsTypeEntity"][@"goodsTypeName"];
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         return cell;
     } else {
-        CellForShopFood *cell1;
-        cell1.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell1 = [tableView dequeueReusableCellWithIdentifier:resueIdright];
-        ModelForFoodList *mod = [self.arrForDetal objectAtIndex:indexPath.row];
-        cell1.blockChooseSize = ^(ModelForFoodList *mod) {
-            NSLog(@"%f",mod.pic);
-            //[self.arrForChooseSize removeAllObjects];
-            self.chooesTitle.text = mod.godsname;
-            self.arrForChooseSize = mod.goodspic;
-            [self.collectionView reloadData];
-            self.chooseSizeBackgroundView.hidden = NO;
-            self.chooseSizeView.hidden = NO;
+        ModelForFoodList *modArr = [self.arrForDetal objectAtIndex:indexPath.row];
+        
+        if (modArr.goodspic.count > 1) {
+            CellForShopFoodChooseSize *cell1 = [tableView cellForRowAtIndexPath:indexPath];//根据indexPath准确地取出一行，而不是从cell重用队列中取出
+            if (cell1 == nil) {
+                cell1 = [[CellForShopFoodChooseSize alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:resueIdrightChooseSize];
+            }
+            cell1.selectionStyle = UITableViewCellSelectionStyleNone;
+            ModelForFoodList *mod = [self.arrForDetal objectAtIndex:indexPath.row];
+            cell1.mod = mod;
+            //选大小后加购物车
+            cell1.blockChooseSize = ^(ModelForFoodList *mod1) {
+                NSLog(@"%f",mod1.pic);
+                self.chooesTitle.text = mod1.godsname;
+                self.arrForChooseSize = mod1.goodspic;
+                [self.collectionView reloadData];
+                self.chooseSizeBackgroundView.hidden = NO;
+                self.chooseSizeView.hidden = NO;
+                
+            };
             
-        };
-        cell1.mod = mod;
-        return cell1;
+            return cell1;
+            
+        }else{
+            
+            CellForShopFood *cell2 = [tableView cellForRowAtIndexPath:indexPath];//根据indexPath准确地取出一行，而不是从cell重用队列中取出
+            if (cell2 == nil) {
+                cell2 = [[CellForShopFood alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:resueIdright];
+            }
+            cell2.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell2 = [tableView dequeueReusableCellWithIdentifier:resueIdright];
+            ModelForFoodList *mod = [self.arrForDetal objectAtIndex:indexPath.row];
+            cell2.mod = mod;
+            //直接加购物车
+            cell2.blockAddShopingCar = ^(ModelForFoodList *mod2) {
+                NSArray *arr = mod2.goodspic;
+                NSDictionary *dic = arr[0];
+                self.selectbuyCarMoncy = dic[@"goodsPicPic"];
+                self.selcetbuyCarId = dic[@"id"];
+                [self addBuyCar];
+            };
+           
+            return cell2;
+            
+        }
     }
+    return  nil;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -371,7 +420,9 @@ static NSString *const resueIdright = @"rightCell";
     self.addMoney = [self.selectbuyCarMoncy floatValue] + self.addMoney;
     self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
 }
-
+-(void)addShoppongCarNetWord{
+    
+}
 #pragma mark - 动效
 
 - (void)didReceiveMemoryWarning {
