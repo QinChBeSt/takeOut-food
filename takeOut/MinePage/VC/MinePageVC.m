@@ -13,6 +13,8 @@
 @property (nonatomic , strong) UIView *headView;
 @property (nonatomic , strong) UIImageView *headIamge;
 @property (nonatomic , strong) UILabel *userName;
+
+@property (nonatomic , assign) NSInteger isLoginOut;
 @end
 
 @implementation MinePageVC
@@ -22,12 +24,14 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userName = [defaults objectForKey:UD_USERNAME];
     NSString *userID = [defaults objectForKey:UD_USERID];
-    if (userID == nil) {
+    if (userID == nil || [userID isEqualToString:@""]) {
         self.userName.text = @"登陆";
+        _isLoginOut = 1;
     }else{
     self.userName.text = userName;
+        _isLoginOut = 2;
     }
-  
+    [self.tableView reloadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -93,7 +97,7 @@
     if (section == 0) {
         return 3;
     }else{
-       return 2;
+       return _isLoginOut;
     }
     
 }
@@ -133,7 +137,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"" forKey:UD_USERID];
+    [defaults setObject:@"" forKey:UD_USERNAME];
+    [defaults setObject:@"" forKey:UD_USERPHONE];
+    
+    [defaults synchronize];
+    
+    self.userName.text = @"登陆";
+    _isLoginOut = 1;
+    
+    [self.tableView reloadData];
+}
 /*
 #pragma mark - Navigation
 
