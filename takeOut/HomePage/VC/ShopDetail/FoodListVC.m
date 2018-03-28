@@ -357,9 +357,11 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         if (self.isSelected) {
             return;
         }
+        
         // 获取可见视图的第一个row
-        NSInteger currentSection = [[[self.rightTable indexPathsForVisibleRows] firstObject] section];
-        NSIndexPath *index = [NSIndexPath indexPathForRow:currentSection inSection:0];
+        //NSInteger currentSection = [[[self.rightTable indexPathsForVisibleRows] firstObject] section];
+       // NSIndexPath *index = [NSIndexPath indexPathForRow:currentSection inSection:0];
+        NSIndexPath *index = [NSIndexPath indexPathForRow:section inSection:0];
         // 点击左边对应区块
         [self.leftTable selectRowAtIndexPath:index animated:YES scrollPosition:UITableViewScrollPositionTop];
     }
