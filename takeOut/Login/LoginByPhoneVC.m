@@ -17,6 +17,7 @@
 @property (nonatomic , copy) NSString *codeNumStr;
 @property (nonatomic , strong) UIView *niveView;
 @property (nonatomic , strong) UIButton *codeButton;
+@property (nonatomic , strong) UIButton *toLoginButton;
 @end
 
 @implementation LoginByPhoneVC
@@ -100,7 +101,7 @@
         make.centerX.equalTo(ws.view);
         make.left.equalTo(CNLabel);
         make.height.equalTo(@(0.5));
-        make.top.equalTo(ws.phoneNumTextField.mas_bottom).offset(10);
+    make.top.equalTo(ws.phoneNumTextField.mas_bottom).offset(10);
     }];
 //验证码
   
@@ -167,16 +168,16 @@
         make.width.equalTo(@(SCREEN_WIDTH / 5));
     }];
     
-    UIButton *toLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [toLoginButton setBackgroundColor:[UIColor yellowColor]];
-    toLoginButton.layer.cornerRadius=10;
-    toLoginButton.clipsToBounds = YES;
-    [toLoginButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-    [toLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [toLoginButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
-    [self.view addSubview:toLoginButton];
-    [toLoginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-    [toLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.toLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.toLoginButton setBackgroundColor:[UIColor grayColor]];
+    self.toLoginButton.layer.cornerRadius=10;
+    self.toLoginButton.clipsToBounds = YES;
+    [self.toLoginButton setTitle:@"登陆" forState:UIControlStateNormal];
+    [self.toLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.toLoginButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [self.view addSubview:self.toLoginButton];
+    [self.toLoginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [self.toLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(codeLine.mas_right).offset(-5);
         make.top.equalTo(registerBtn.mas_bottom).offset(50);
         make.centerX.equalTo(ws.view);
@@ -196,21 +197,21 @@
     
     if (self.phoneNumTextField == textField)
     {
-        if ([toBeString length] > 11) {
-            textField.text = [toBeString substringToIndex:11];
-            NSLog(@"不能大于12");
-            [MBManager showBriefAlert:@"手机号不能大于12位数"];
-            return NO;
-        }
+//        if ([toBeString length] > 11) {
+//            textField.text = [toBeString substringToIndex:11];
+//            NSLog(@"不能大于12");
+//            [MBManager showBriefAlert:@"手机号不能大于12位数"];
+//            return NO;
+//        }
     }else if (self.codeTextField == textField)
     {
-        if ([toBeString length] > 8) {
-            textField.text = [toBeString substringToIndex:8];
-            
-            NSLog(@"不能大于8");
-            [MBManager showBriefAlert:@"请输入正确验证码"];
-            return NO;
-        }
+//        if ([toBeString length] > 8) {
+//            textField.text = [toBeString substringToIndex:8];
+//
+//            NSLog(@"不能大于8");
+//            [MBManager showBriefAlert:@"请输入正确验证码"];
+//            return NO;
+//        }
     }
     return YES;
 }
@@ -219,22 +220,19 @@
 -(void)phoneTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.phoneNumStr = theTextField.text;
+    if (self.phoneNumStr != nil && self.codeNumStr != nil) {
+        [self.toLoginButton setBackgroundColor:[UIColor yellowColor]];
+    }
 }
 -(void)codeTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.codeNumStr = theTextField.text;
+    if (self.phoneNumStr != nil && self.codeNumStr != nil) {
+        [self.toLoginButton setBackgroundColor:[UIColor yellowColor]];
+    }
 }
 
 #pragma mark - 倒计时
-- (void)verifyEvent
-{
-    if (self.phoneNumStr.length != 12 ) {
-        [MBManager showBriefAlert:@"请输入正确的手机号"];
-        return;
-    }
-    //启动倒计时
-    [self performSelector:@selector(reflashGetKeyBt:)withObject:[NSNumber numberWithInt:60] afterDelay:0];
-}
 
 //倒数
 - (void)reflashGetKeyBt:(NSNumber *)second
@@ -261,13 +259,32 @@
 }
 
 #pragma mark - 点击事件
--(void)loginByOther{
-    LoginByPasswordVC *loginPassword = [[LoginByPasswordVC alloc]init];
-    [self.navigationController pushViewController:loginPassword animated:YES];
-}
--(void)registerUser{
-    RegisterVC *registerVC = [[RegisterVC alloc]init];
-    [self.navigationController pushViewController:registerVC animated:YES];
+- (void)verifyEvent
+{
+    if (self.phoneNumStr.length != 11 ) {
+        [MBManager showBriefAlert:@"请输入正确的手机号"];
+        return;
+    }
+    NSString * uuidStr= [UUID getUUID];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getsmsMsg];
+    NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
+    
+    [par setValue:uuidStr forKey:@"phonemac"];
+    [par setValue:self.phoneNumStr forKey:@"phone"];
+    
+    [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+        NSString *code =[NSString stringWithFormat:@"%@",result[@"code"]];
+        if ([code isEqualToString:@"1"]) {
+            //启动倒计时
+            [self performSelector:@selector(reflashGetKeyBt:)withObject:[NSNumber numberWithInt:60] afterDelay:0];
+        }else{
+            NSString *mag = result[@"msg"];
+            [MBManager showBriefAlert:mag];
+        }
+        
+    } withFail:^(NSError *error) {
+        [MBManager showBriefAlert:@"获取验证码失败，请检查网络"];
+    }];
 }
 -(void)login{
     if (_phoneNumStr.length == 0) {
@@ -277,9 +294,51 @@
         [MBManager showBriefAlert:@"请填写验证码"];
         return;
     }
-    NSString *uuid = [[NSUUID UUID] UUIDString];
-    NSLog(@"%@",uuid);
+    NSString * uuidStr= [UUID getUUID];
+    NSString * md5Code = [MD5encryption MD5ForLower32Bate:self.codeNumStr];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,setsmsMsg];
+    NSDictionary *parameters = @{@"phone":self.phoneNumStr,
+                                 @"yzm":md5Code,
+                                 @"phonemac":uuidStr
+                                 };
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    //请求的方式：POST
+    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
+        if ([code isEqualToString:@"1"]) {
+           
+           
+            NSDictionary *dic = responseObject[@"value"];
+            NSString *userid =[NSString stringWithFormat:@"%@",dic[@"id"]];
+            NSString *userPhone =[NSString stringWithFormat:@"%@",dic[@"userPhone"]];
+            NSString *userName =[NSString stringWithFormat:@"%@",dic[@"userName"]];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:userid forKey:UD_USERID];
+            [defaults setObject:userName forKey:UD_USERNAME];
+            [defaults setObject:userPhone forKey:UD_USERPHONE];
+        
+            [defaults synchronize];
+            
+            [MBManager showBriefAlert:@"登陆成功"];
+            [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
+        }else{
+            [MBManager showBriefAlert:@"注册失败"];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
 }
+-(void)loginByOther{
+    LoginByPasswordVC *loginPassword = [[LoginByPasswordVC alloc]init];
+    [self.navigationController pushViewController:loginPassword animated:YES];
+}
+-(void)registerUser{
+    RegisterVC *registerVC = [[RegisterVC alloc]init];
+    [self.navigationController pushViewController:registerVC animated:YES];
+}
+
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }

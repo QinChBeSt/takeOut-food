@@ -18,6 +18,16 @@
 @implementation MinePageVC
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
+    [self.tabBarController.tabBar setHidden:NO];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userName = [defaults objectForKey:UD_USERNAME];
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    if (userID == nil) {
+        self.userName.text = @"登陆";
+    }else{
+    self.userName.text = userName;
+    }
+  
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,7 +55,7 @@
     }];
     
     self.userName = [[UILabel alloc]init];
-    self.userName.text = @"登陆";
+    
     self.userName.font = [UIFont systemFontOfSize:20];
     [self.headView addSubview:self.userName];
     [self.userName mas_makeConstraints:^(MASConstraintMaker *make) {

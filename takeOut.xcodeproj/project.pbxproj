@@ -40,6 +40,9 @@
 		9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2B42064F21900393DE5 /* HomePageVC.m */; };
 		9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2B72064F23400393DE5 /* MinePageVC.m */; };
 		9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2BA2064F24700393DE5 /* OrderPageVC.m */; };
+		9DFF11DC206B6DB30084D63F /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF11DB206B6DB30084D63F /* UUID.m */; };
+		9DFF11DF206B6DEE0084D63F /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF11DE206B6DEE0084D63F /* KeyChainStore.m */; };
+		9DFF11E3206B93DE0084D63F /* MD5encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF11E2206B93DE0084D63F /* MD5encryption.m */; };
 		AE8788150AACCD47B1AFF44F /* libPods-takeOut.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C52C8109E37E7630666F17 /* libPods-takeOut.a */; };
 		D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88CF20652EA7000D509A /* UIColor+Hex.m */; };
 		D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88D120652F24000D509A /* EXNavigationVC.m */; };
@@ -132,6 +135,13 @@
 		9DDFD2B72064F23400393DE5 /* MinePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePageVC.m; sourceTree = "<group>"; };
 		9DDFD2B92064F24700393DE5 /* OrderPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderPageVC.h; sourceTree = "<group>"; };
 		9DDFD2BA2064F24700393DE5 /* OrderPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderPageVC.m; sourceTree = "<group>"; };
+		9DFF11D8206B6D600084D63F /* takeOut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = takeOut.entitlements; sourceTree = "<group>"; };
+		9DFF11DA206B6DB30084D63F /* UUID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
+		9DFF11DB206B6DB30084D63F /* UUID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
+		9DFF11DD206B6DEE0084D63F /* KeyChainStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyChainStore.h; sourceTree = "<group>"; };
+		9DFF11DE206B6DEE0084D63F /* KeyChainStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
+		9DFF11E1206B93DE0084D63F /* MD5encryption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MD5encryption.h; sourceTree = "<group>"; };
+		9DFF11E2206B93DE0084D63F /* MD5encryption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MD5encryption.m; sourceTree = "<group>"; };
 		D65D88CE20652EA7000D509A /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		D65D88CF20652EA7000D509A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		D65D88D120652F24000D509A /* EXNavigationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXNavigationVC.m; sourceTree = "<group>"; };
@@ -261,6 +271,7 @@
 		9DDFD2732064EC7100393DE5 /* takeOut */ = {
 			isa = PBXGroup;
 			children = (
+				9DFF11D8206B6D600084D63F /* takeOut.entitlements */,
 				9D72E2B4206B259C00CEE3B0 /* Login */,
 				D65D88CC20652E82000D509A /* Tabbar */,
 				D65D88CB20652E82000D509A /* Tools */,
@@ -415,6 +426,26 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		9DFF11D9206B6D8E0084D63F /* UUID */ = {
+			isa = PBXGroup;
+			children = (
+				9DFF11DA206B6DB30084D63F /* UUID.h */,
+				9DFF11DB206B6DB30084D63F /* UUID.m */,
+				9DFF11DD206B6DEE0084D63F /* KeyChainStore.h */,
+				9DFF11DE206B6DEE0084D63F /* KeyChainStore.m */,
+			);
+			path = UUID;
+			sourceTree = "<group>";
+		};
+		9DFF11E0206B93BA0084D63F /* MD5 */ = {
+			isa = PBXGroup;
+			children = (
+				9DFF11E1206B93DE0084D63F /* MD5encryption.h */,
+				9DFF11E2206B93DE0084D63F /* MD5encryption.m */,
+			);
+			path = MD5;
+			sourceTree = "<group>";
+		};
 		B8AEC27C127AA822F6B807AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +467,8 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9DFF11E0206B93BA0084D63F /* MD5 */,
+				9DFF11D9206B6D8E0084D63F /* UUID */,
 				9D72E2BE206B4B3900CEE3B0 /* MBManager */,
 				9D98D966206A30B10019AC0C /* UIview+CHView */,
 				9D4952622068CD95005A6BBC /* ZWMSegment */,
@@ -536,6 +569,11 @@
 					9DDFD2702064EC7100393DE5 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					9DDFD2882064EC7100393DE5 = {
 						CreatedOnToolsVersion = 9.2;
@@ -658,6 +696,7 @@
 				9DDFD2842064EC7100393DE5 /* main.m in Sources */,
 				9D4952692068CD95005A6BBC /* UIView+ZWMBadge.m in Sources */,
 				9D72E2C1206B4B3A00CEE3B0 /* MBManager.m in Sources */,
+				9DFF11DF206B6DEE0084D63F /* KeyChainStore.m in Sources */,
 				9D4952722068D462005A6BBC /* EvaluationVC.m in Sources */,
 				D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */,
 				9D49526B2068CD95005A6BBC /* ZWMSegmentView.m in Sources */,
@@ -666,7 +705,9 @@
 				9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */,
 				9D98D96C206A43780019AC0C /* CellForShopFoodChooseSize.m in Sources */,
 				D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */,
+				9DFF11DC206B6DB30084D63F /* UUID.m in Sources */,
 				9D92577D2065F90C00A6E262 /* SortButton.m in Sources */,
+				9DFF11E3206B93DE0084D63F /* MD5encryption.m in Sources */,
 				9D98D965206A14C30019AC0C /* CellForChooseSize.m in Sources */,
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
 				9D98D969206A30BA0019AC0C /* UIView+CHView.m in Sources */,
@@ -848,6 +889,7 @@
 			baseConfigurationReference = 3EA3BA8955BAFE3DE06D4D6D /* Pods-takeOut.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = takeOut/takeOut.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = V2FVN6A8N7;
@@ -868,6 +910,7 @@
 			baseConfigurationReference = 67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = takeOut/takeOut.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = V2FVN6A8N7;
