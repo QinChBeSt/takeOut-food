@@ -5,4 +5,7 @@ pod 'Masonry'
 pod 'SDWebImage'
 pod 'SDAutoLayout'
 pod 'MJRefresh'
+pod 'MBProgressHUD'
+pod 'SDCycleScrollView'
+
 end

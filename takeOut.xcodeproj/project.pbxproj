@@ -23,6 +23,7 @@
 		9D72E2B7206B25E200CEE3B0 /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B6206B25E200CEE3B0 /* RegisterVC.m */; };
 		9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B9206B262300CEE3B0 /* LoginByPhoneVC.m */; };
 		9D72E2BD206B263F00CEE3B0 /* LoginByPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */; };
+		9D72E2C1206B4B3A00CEE3B0 /* MBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2C0206B4B3900CEE3B0 /* MBManager.m */; };
 		9D92577D2065F90C00A6E262 /* SortButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577C2065F90C00A6E262 /* SortButton.m */; };
 		9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577F2066015D00A6E262 /* CollectionViewCellForHomePageChoose.m */; };
 		9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */; };
@@ -96,6 +97,8 @@
 		9D72E2B9206B262300CEE3B0 /* LoginByPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginByPhoneVC.m; sourceTree = "<group>"; };
 		9D72E2BB206B263F00CEE3B0 /* LoginByPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginByPasswordVC.h; sourceTree = "<group>"; };
 		9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginByPasswordVC.m; sourceTree = "<group>"; };
+		9D72E2BF206B4B3900CEE3B0 /* MBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBManager.h; sourceTree = "<group>"; };
+		9D72E2C0206B4B3900CEE3B0 /* MBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBManager.m; sourceTree = "<group>"; };
 		9D92577B2065F90C00A6E262 /* SortButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortButton.h; sourceTree = "<group>"; };
 		9D92577C2065F90C00A6E262 /* SortButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortButton.m; sourceTree = "<group>"; };
 		9D92577E2066015D00A6E262 /* CollectionViewCellForHomePageChoose.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewCellForHomePageChoose.h; sourceTree = "<group>"; };
@@ -213,6 +216,15 @@
 				9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		9D72E2BE206B4B3900CEE3B0 /* MBManager */ = {
+			isa = PBXGroup;
+			children = (
+				9D72E2BF206B4B3900CEE3B0 /* MBManager.h */,
+				9D72E2C0206B4B3900CEE3B0 /* MBManager.m */,
+			);
+			path = MBManager;
 			sourceTree = "<group>";
 		};
 		9D98D966206A30B10019AC0C /* UIview+CHView */ = {
@@ -424,6 +436,7 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9D72E2BE206B4B3900CEE3B0 /* MBManager */,
 				9D98D966206A30B10019AC0C /* UIview+CHView */,
 				9D4952622068CD95005A6BBC /* ZWMSegment */,
 				9D4952492068850D005A6BBC /* MHNetwork */,
@@ -522,7 +535,7 @@
 				TargetAttributes = {
 					9DDFD2702064EC7100393DE5 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					9DDFD2882064EC7100393DE5 = {
 						CreatedOnToolsVersion = 9.2;
@@ -644,6 +657,7 @@
 			files = (
 				9DDFD2842064EC7100393DE5 /* main.m in Sources */,
 				9D4952692068CD95005A6BBC /* UIView+ZWMBadge.m in Sources */,
+				9D72E2C1206B4B3A00CEE3B0 /* MBManager.m in Sources */,
 				9D4952722068D462005A6BBC /* EvaluationVC.m in Sources */,
 				D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */,
 				9D49526B2068CD95005A6BBC /* ZWMSegmentView.m in Sources */,
@@ -834,14 +848,17 @@
 			baseConfigurationReference = 3EA3BA8955BAFE3DE06D4D6D /* Pods-takeOut.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGJTDZSME3;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = V2FVN6A8N7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/takeOut/PrefixHeader.pch";
 				INFOPLIST_FILE = takeOut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.QC.takeOut;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wtb.beeToC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7f25ab4c-7e41-401c-87fc-9ee33c9b1df4";
+				PROVISIONING_PROFILE_SPECIFIER = DevBee2C;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -851,14 +868,17 @@
 			baseConfigurationReference = 67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JGJTDZSME3;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = V2FVN6A8N7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/takeOut/PrefixHeader.pch";
 				INFOPLIST_FILE = takeOut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.QC.takeOut;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wtb.beeToC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7f25ab4c-7e41-401c-87fc-9ee33c9b1df4";
+				PROVISIONING_PROFILE_SPECIFIER = DevBee2C;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

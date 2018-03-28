@@ -42,4 +42,5 @@
 #import "MHNetWorkTask.h"
 #import <Masonry.h>
 #import "UIImageView+WebCache.h"
+#import "MBManager.h"
 #endif

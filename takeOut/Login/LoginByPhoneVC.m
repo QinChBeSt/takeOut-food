@@ -7,6 +7,8 @@
 //
 
 #import "LoginByPhoneVC.h"
+#import "LoginByPasswordVC.h"
+#import "RegisterVC.h"
 
 @interface LoginByPhoneVC ()<UITextFieldDelegate>
 @property (nonatomic , strong) UITextField *phoneNumTextField;
@@ -113,7 +115,7 @@
     [self.codeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(phoneLine.mas_bottom).offset(50);
         make.left.equalTo(CNLabel.mas_right);
-        make.right.equalTo(ws.view.mas_right).offset(-SCREEN_WIDTH / 5 - 30);
+        make.right.equalTo(ws.view.mas_right).offset(-SCREEN_WIDTH / 4 - 30);
     }];
     
     self.codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -127,7 +129,7 @@
         make.right.equalTo(ws.view.mas_right).offset(-30);
         make.top.equalTo(phoneLine.mas_bottom).offset(50);
         make.centerY.equalTo(ws.codeTextField);
-        make.width.equalTo(@(SCREEN_WIDTH /5));
+        make.width.equalTo(@(SCREEN_WIDTH /4));
     }];
     
     
@@ -141,6 +143,45 @@
         make.top.equalTo(ws.codeTextField.mas_bottom).offset(10);
     }];
     
+    UIButton *loginByOthr = [UIButton buttonWithType:UIButtonTypeCustom];
+    [loginByOthr setTitle:@"其他登陆" forState:UIControlStateNormal];
+    [loginByOthr addTarget:self action:@selector(loginByOther) forControlEvents:UIControlEventTouchUpInside];
+    [loginByOthr setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:loginByOthr];
+    [loginByOthr mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(codeLine.mas_left).offset(5);
+        make.top.equalTo(codeLine.mas_bottom).offset(30);
+        make.height.equalTo(@(30));
+        make.width.equalTo(@(SCREEN_WIDTH / 5));
+    }];
+    
+    UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [registerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [registerBtn addTarget:self action:@selector(registerUser) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:registerBtn];
+    [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(codeLine.mas_right).offset(-5);
+        make.top.equalTo(codeLine.mas_bottom).offset(30);
+        make.height.equalTo(@(30));
+        make.width.equalTo(@(SCREEN_WIDTH / 5));
+    }];
+    
+    UIButton *toLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [toLoginButton setBackgroundColor:[UIColor yellowColor]];
+    toLoginButton.layer.cornerRadius=10;
+    toLoginButton.clipsToBounds = YES;
+    [toLoginButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [toLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [toLoginButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [self.view addSubview:toLoginButton];
+    [toLoginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [toLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(codeLine.mas_right).offset(-5);
+        make.top.equalTo(registerBtn.mas_bottom).offset(50);
+        make.centerX.equalTo(ws.view);
+        make.height.equalTo(@(50));
+    }];
     
 }
 
@@ -157,8 +198,8 @@
     {
         if ([toBeString length] > 11) {
             textField.text = [toBeString substringToIndex:11];
-            
             NSLog(@"不能大于12");
+            [MBManager showBriefAlert:@"手机号不能大于12位数"];
             return NO;
         }
     }else if (self.codeTextField == textField)
@@ -167,13 +208,12 @@
             textField.text = [toBeString substringToIndex:8];
             
             NSLog(@"不能大于8");
+            [MBManager showBriefAlert:@"请输入正确验证码"];
             return NO;
         }
     }
     return YES;
 }
-
-
 
 #pragma mark - 监听textFile
 -(void)phoneTextFieldDidChange :(UITextField *)theTextField{
@@ -188,6 +228,10 @@
 #pragma mark - 倒计时
 - (void)verifyEvent
 {
+    if (self.phoneNumStr.length != 12 ) {
+        [MBManager showBriefAlert:@"请输入正确的手机号"];
+        return;
+    }
     //启动倒计时
     [self performSelector:@selector(reflashGetKeyBt:)withObject:[NSNumber numberWithInt:60] afterDelay:0];
 }
@@ -201,6 +245,7 @@
         _codeButton.userInteractionEnabled=YES;
         [_codeButton setTitle:@"重新获取"forState:(UIControlStateNormal)];
         [_codeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_codeButton setBackgroundColor:[UIColor yellowColor]];
     }
     else
     {
@@ -213,6 +258,27 @@
         [self performSelector:@selector(reflashGetKeyBt:)withObject:[NSNumber numberWithInt:i-1] afterDelay:1];
     }
     
+}
+
+#pragma mark - 点击事件
+-(void)loginByOther{
+    LoginByPasswordVC *loginPassword = [[LoginByPasswordVC alloc]init];
+    [self.navigationController pushViewController:loginPassword animated:YES];
+}
+-(void)registerUser{
+    RegisterVC *registerVC = [[RegisterVC alloc]init];
+    [self.navigationController pushViewController:registerVC animated:YES];
+}
+-(void)login{
+    if (_phoneNumStr.length == 0) {
+        [MBManager showBriefAlert:@"请填写手机号"];
+        return;
+    }else if (_codeNumStr.length == 0) {
+        [MBManager showBriefAlert:@"请填写验证码"];
+        return;
+    }
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    NSLog(@"%@",uuid);
 }
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
