@@ -30,7 +30,7 @@ DEF_SINGLETON(EXTabBarVC);
     [self createViewControllers];
    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [UITabBar appearance].translucent = NO;
-    [[UITabBar appearance] setBarTintColor:[UIColor yellowColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
     
    
     //tincolor设置
