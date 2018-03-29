@@ -35,7 +35,6 @@
 @property (nonatomic ,strong)UILabel *buyCarAddLabel;
 
 @property (nonatomic ,assign)NSInteger leftTableViewSelectRow;
-@property (nonatomic ,assign)NSInteger leftTableViewSelectNum;
 @property (nonatomic ,copy)NSMutableDictionary *leftTableNumDic;
 
 @property (nonatomic , copy)NSString *selectbuyCarMoncy;
@@ -353,8 +352,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 [self.collectionView reloadData];
                 self.chooseSizeBackgroundView.hidden = NO;
                 self.chooseSizeView.hidden = NO;
-                
-                [self.leftTable reloadData];
+                self.leftTableViewSelectRow = indexPath.section;
             };
             
             return cell1;
@@ -375,7 +373,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 NSDictionary *dic = arr[0];
                 self.selectbuyCarMoncy = dic[@"goodsPicPic"];
                 self.selcetbuyCarId = dic[@"id"];
-                [self addBuyCar];
+                [self addBuyCarNoSize];
                 self.leftTableViewSelectRow = indexPath.section;
                 NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%ld",(long)indexPath.section];
             
@@ -385,7 +383,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 count++;
                 countStr = [NSString stringWithFormat:@"%ld",(long)count];
                 [defaults setObject:countStr forKey:value];
-    
+                [defaults synchronize];
                 [self.leftTable reloadData];
             };
            
@@ -474,6 +472,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     self.choosePrice.text = [NSString stringWithFormat:@"%@ 元",strPic];
     self.selectbuyCarMoncy = dic[@"goodsPicPic"];
     self.selcetbuyCarId = dic[@"id"];
+    
+    
 }
 
 #pragma mark - 点击事件
@@ -482,6 +482,20 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     [self.chooseSizeView setHidden:YES];
 }
 -(void)addBuyCar{
+    NSLog(@"%@,%f",self.selectbuyCarMoncy,self.addMoney);
+    self.addMoney = [self.selectbuyCarMoncy floatValue] + self.addMoney;
+    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
+    
+    NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%ld",(long)self.leftTableViewSelectRow];
+    NSString *countStr = [defaults objectForKey:value];
+    NSInteger count = [countStr integerValue];
+    count++;
+    countStr = [NSString stringWithFormat:@"%ld",(long)count];
+    [defaults setObject:countStr forKey:value];
+    [defaults synchronize];
+    [self.leftTable reloadData];
+}
+-(void)addBuyCarNoSize{
     NSLog(@"%@,%f",self.selectbuyCarMoncy,self.addMoney);
     self.addMoney = [self.selectbuyCarMoncy floatValue] + self.addMoney;
     self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
