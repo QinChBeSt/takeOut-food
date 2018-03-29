@@ -9,7 +9,7 @@
 #import "ZWMSegmentView.h"
 
 typedef void(^ZWMIndexBlock)(NSUInteger ,UIButton *);
-int const ZWMSegmentHeight = 36;//可根据项目需求设置高度
+int const ZWMSegmentHeight = 45;//可根据项目需求设置高度
 
 @interface ZWMSegmentView ()
 @property (nonatomic, strong, readwrite) NSMutableArray *buttons;

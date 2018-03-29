@@ -122,17 +122,17 @@
     }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"我的地址";
+            cell.textLabel.text = NSLocalizedString(@"我的地址", nil);
         }else if (indexPath.row == 1){
-            cell.textLabel.text = @"我的评价";
+            cell.textLabel.text = NSLocalizedString(@"我的评价", nil);
         }else if (indexPath.row == 2){
-            cell.textLabel.text = @"关于我们";
+            cell.textLabel.text = NSLocalizedString(@"关于我们", nil);
         }
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"清除缓存";
+            cell.textLabel.text = NSLocalizedString(@"清除缓存", nil);
         }else if (indexPath.row == 1){
-            cell.textLabel.text = @"退出登陆";
+            cell.textLabel.text = NSLocalizedString(@"退出登录", nil);
         }
     }
     return cell;

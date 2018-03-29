@@ -231,7 +231,7 @@
     
     //地址
     headviewAddressLabel = [[UILabel alloc]init];
-    headviewAddressLabel.text = @"获取位置中....";
+    headviewAddressLabel.text = NSLocalizedString(@"获取位置中....", nil);
     [headviewAddressView addSubview:headviewAddressLabel];
     [headviewAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(locationIcon.mas_right).offset(5);

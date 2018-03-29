@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  takeOut
+
+  Created by mac on 2018/3/29.
+  Copyright © 2018年 QinChBeSt. All rights reserved.
+*/
+// ---------------------- 首页
+"首页" = "Home";
+"订单" = "Order";
+"我的" = "Mine";
+"获取位置中...." = "Getting location...";
+"去结算" = "To pay";
+// ---------------------- 订单
+"全部订单" = "All Order";
+"待评价" = "Will evaluate";
+
+// ---------------------- 我的
+"我的地址" = "My address";
+"我的评价" = "My evaluation";
+"关于我们" = "About us";
+"清除缓存" = "Clean cache";
+"退出登录" = "Log out";
