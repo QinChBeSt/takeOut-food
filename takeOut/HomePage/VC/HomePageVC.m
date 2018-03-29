@@ -12,6 +12,7 @@
 
 //VC
 #import "ShopDetailVC.h"
+#import "HomeTypeVC.h"
 
 //VIEW
 #import "SortButton.h"
@@ -347,8 +348,8 @@
         clickButton.titleLabel.font=[UIFont systemFontOfSize:14.0];
         [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
-        [clickButton setImage:[UIImage imageNamed:@"ic_pulldown"] forState:UIControlStateNormal];
-        [clickButton setImage:[UIImage imageNamed:@"up"] forState:UIControlStateSelected];
+        [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [clickButton setImage:[UIImage imageNamed:@"ic_pulldown"] forState:UIControlStateSelected];
         [clickButton setTitle:arrButtonTitle[i] forState:UIControlStateNormal];
         [clickButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -459,6 +460,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    HomeTypeVC *shop = [[HomeTypeVC alloc]init];
+    ModelForHomeType *mod = [self.arrForHomePageTypeName objectAtIndex:indexPath.row];
+    shop.typeName = mod.shopTypeName;
+    shop.shopTypeId = mod.id;
+    shop.strlatitude = strlatitude;
+    shop.strlongitude = strlongitude;
+   [self.navigationController pushViewController:shop animated:YES];
     NSLog(@"%@",indexPath);
     
 }

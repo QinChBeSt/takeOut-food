@@ -25,6 +25,8 @@
 #define homeTypeURL @"/xmfapi/getClassification"
 //首页推荐列表
 #define homeshopRecommendList @"/xmfapi/shopRecommendList"
+//首页获取店铺列表
+#define homeGetShopList @"/xmfapi/shopList"
 //店铺详情
 #define shopDatailUrl @"/xmfapi/getGoodsClassification"
 

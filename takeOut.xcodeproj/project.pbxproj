@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D26201E206C877200A2351B /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D26201D206C877200A2351B /* FileTool.m */; };
+		9D262021206CB50000A2351B /* HomeTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262020206CB50000A2351B /* HomeTypeVC.m */; };
 		9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524B2068850D005A6BBC /* MHNetWorkTask.m */; };
 		9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524E2068944E005A6BBC /* ModelForHomeType.m */; };
 		9D49525B2068A546005A6BBC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D49525A2068A546005A6BBC /* CoreLocation.framework */; };
@@ -72,6 +73,8 @@
 		67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.release.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.release.xcconfig"; sourceTree = "<group>"; };
 		9D26201C206C877200A2351B /* FileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileTool.h; sourceTree = "<group>"; };
 		9D26201D206C877200A2351B /* FileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileTool.m; sourceTree = "<group>"; };
+		9D26201F206CB50000A2351B /* HomeTypeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTypeVC.h; sourceTree = "<group>"; };
+		9D262020206CB50000A2351B /* HomeTypeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTypeVC.m; sourceTree = "<group>"; };
 		9D49524A2068850D005A6BBC /* MHNetWorkTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNetWorkTask.h; sourceTree = "<group>"; };
 		9D49524B2068850D005A6BBC /* MHNetWorkTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHNetWorkTask.m; sourceTree = "<group>"; };
 		9D49524D2068944E005A6BBC /* ModelForHomeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForHomeType.h; sourceTree = "<group>"; };
@@ -381,6 +384,8 @@
 			children = (
 				9DDFD2B32064F21900393DE5 /* HomePageVC.h */,
 				9DDFD2B42064F21900393DE5 /* HomePageVC.m */,
+				9D26201F206CB50000A2351B /* HomeTypeVC.h */,
+				9D262020206CB50000A2351B /* HomeTypeVC.m */,
 				9D49526C2068D423005A6BBC /* ShopDetail */,
 			);
 			path = VC;
@@ -727,6 +732,7 @@
 				9D98D969206A30BA0019AC0C /* UIView+CHView.m in Sources */,
 				9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */,
 				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
+				9D262021206CB50000A2351B /* HomeTypeVC.m in Sources */,
 				9D72E2B7206B25E200CEE3B0 /* RegisterVC.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
 				9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */,
