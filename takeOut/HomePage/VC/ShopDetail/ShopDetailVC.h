@@ -10,4 +10,5 @@
 #import "ModelForShopList.h"
 @interface ShopDetailVC : UIViewController
 @property (nonatomic , strong)ModelForShopList *modShopList;
+@property (nonatomic , strong)NSString *ShopTypeId;
 @end

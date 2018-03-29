@@ -25,7 +25,7 @@
 #define kHeadAdderssViewHeight 40
 #define kHeadSelectViewHeight 150
 #define kHeadImageViewHeight 100
-#define kHeadCollectionViewHeight SCREEN_WIDTH / 4 * 2
+#define kHeadCollectionViewHeight SCREEN_WIDTH / 5 * 2
 
 @interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate,SDCycleScrollViewDelegate>
 {
@@ -61,12 +61,7 @@
 -(NSArray *)netImages{
     
     if (!_netImages) {
-        _netImages = @[
-                       @"http://d.hiphotos.baidu.com/zhidao/pic/item/72f082025aafa40f507b2e99aa64034f78f01930.jpg",
-                       @"http://b.hiphotos.baidu.com/zhidao/pic/item/4b90f603738da9770889666fb151f8198718e3d4.jpg",
-                       @"http://g.hiphotos.baidu.com/zhidao/pic/item/f2deb48f8c5494ee4e84ef5d2cf5e0fe98257ed4.jpg",
-                       @"http://d.hiphotos.baidu.com/zhidao/pic/item/9922720e0cf3d7ca104edf32f31fbe096b63a93e.jpg"
-                       ];
+        _netImages = [NSArray array];
     }
     return _netImages;
 }
@@ -90,7 +85,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self createTableView];
     // Do any additional setup after loading the view.
     [self getNetWork];
@@ -114,12 +109,32 @@
         
         _netImages = @[
                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg",
-                       @"http://d.hiphotos.baidu.com/zhidao/pic/item/9922720e0cf3d7ca104edf32f31fbe096b63a93e.jpg",
-                       @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg",
-                       @"http://d.hiphotos.baidu.com/zhidao/pic/item/9922720e0cf3d7ca104edf32f31fbe096b63a93e.jpg"
+                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg"
+                      
                        ];
+        /** 测试本地图片数据*/
+        self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"PlacehoderImage.png"]];
+         self.cycleScrollView.imageURLStringsGroup = self.netImages;
+        //设置图片视图显示类型
+        self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+        //设置轮播视图的分页控件的显示
+        self.cycleScrollView.showPageControl = YES;
+        //设置轮播视图分也控件的位置
+        self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+        //当前分页控件小圆标图片
+        self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
+        //其他分页控件小圆标图片
+        self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
         
-
+        [headviewImageView addSubview:self.cycleScrollView];
+        [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(headviewAddressView.mas_bottom);
+            make.width.equalTo(headviewAddressView);
+            make.centerX.equalTo(headviewAddressView);
+            make.height.equalTo(@(kHeadImageViewHeight));
+        }];
+       
+        
     } withFail:^(NSError *error) {
         NSLog(@"轮播图请求错误：%@,",error);
     }];
@@ -235,28 +250,7 @@
         make.height.equalTo(@(kHeadImageViewHeight));
     }];
     
-    /** 测试本地图片数据*/
-    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"PlacehoderImage.png"]];
-    //设置网络图片数组
-    self.cycleScrollView.imageURLStringsGroup = self.netImages;
-    //设置图片视图显示类型
-    self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
-    //设置轮播视图的分页控件的显示
-    self.cycleScrollView.showPageControl = YES;
-    //设置轮播视图分也控件的位置
-    self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-    //当前分页控件小圆标图片
-    self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
-    //其他分页控件小圆标图片
-    self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
     
-    [headviewImageView addSubview:self.cycleScrollView];
-    [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(headviewAddressView.mas_bottom);
-        make.width.equalTo(headviewAddressView);
-        make.centerX.equalTo(headviewAddressView);
-        make.height.equalTo(@(kHeadImageViewHeight));
-    }];
 }
 
 //选择
@@ -325,7 +319,7 @@
         make.height.equalTo(@(65));
     }];
     
-     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
     line.backgroundColor = [UIColor lightGrayColor];
     [sortingView addSubview:line];
     
@@ -366,8 +360,8 @@
 
 #pragma mark - 创建collecttionView
 -(void)createCollectionView{
-    CGFloat itemWidth = (SCREEN_WIDTH - 5 )/ 4;
-    CGFloat itemHeight = (SCREEN_WIDTH - 5 ) / 4;
+    CGFloat itemWidth = (SCREEN_WIDTH - 5 )/ 5;
+    CGFloat itemHeight = (SCREEN_WIDTH - 5 ) / 5;
     UICollectionViewFlowLayout *shareflowLayout = [[UICollectionViewFlowLayout alloc] init];
     shareflowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     shareflowLayout.sectionInset = UIEdgeInsetsMake(1, 1, 1,1);
@@ -467,6 +461,19 @@
 {
     NSLog(@"%@",indexPath);
     
+}
+
+#pragma mark - 轮播图代理方法
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+    //NSLog(@"%ld",index);
+}
+
+/** 图片滚动回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
+    
+    //NSLog(@"%ld",index);
 }
 
 #pragma mark - 定位
