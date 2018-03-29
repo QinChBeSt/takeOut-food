@@ -37,7 +37,7 @@
     }];
     
     self.chooseSizeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.chooseSizeBtn.backgroundColor = [UIColor yellowColor];
+    self.chooseSizeBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.chooseSizeBtn addTarget:self action:@selector(chooseSize:) forControlEvents:UIControlEventTouchUpInside];
     
     self.chooseSizeBtn.layer.cornerRadius = 5;

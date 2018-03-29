@@ -199,7 +199,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     }];
     
     UIButton *addBuyCar = [UIButton buttonWithType:UIButtonTypeCustom];
-    addBuyCar.backgroundColor = [UIColor yellowColor];
+    addBuyCar.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     addBuyCar.layer.cornerRadius = 5;
     [addBuyCar setTitle:@"加入购物车" forState:UIControlStateNormal];
     [addBuyCar setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -237,7 +237,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     }];
     
     UIButton *addBuyCar = [UIButton buttonWithType:UIButtonTypeCustom];
-    addBuyCar.backgroundColor = [UIColor yellowColor];
+    addBuyCar.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     addBuyCar.layer.cornerRadius = 5;
     [addBuyCar setTitle:@"加入购物车" forState:UIControlStateNormal];
     [addBuyCar setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

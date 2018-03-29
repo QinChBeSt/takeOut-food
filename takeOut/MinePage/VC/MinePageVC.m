@@ -8,13 +8,17 @@
 
 #import "MinePageVC.h"
 #import "LoginByPhoneVC.h"
+#import "FileTool.h"
 @interface MinePageVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong) UITableView *tableView;
 @property (nonatomic , strong) UIView *headView;
 @property (nonatomic , strong) UIImageView *headIamge;
 @property (nonatomic , strong) UILabel *userName;
-
+//判断是否登录，Cell行数
 @property (nonatomic , assign) NSInteger isLoginOut;
+//清理缓存
+@property (nonatomic, assign) NSInteger totalSize;
+#define CachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 @end
 
 @implementation MinePageVC
@@ -36,12 +40,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [FileTool getFileSize:CachePath completion:^(NSInteger totalSize) {
+        
+        _totalSize = totalSize;
+        
+        [self.tableView reloadData];
+        
+    }];
     [self createTableView];
     // Do any additional setup after loading the view.
 }
 -(void)createHeadView{
     self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaStatsBarHeight + SCREENH_HEIGHT/3)];
-    self.headView.backgroundColor = [UIColor yellowColor];
+    self.headView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.view addSubview:self.headView];
     __weak typeof(self) ws = self;
     self.headIamge = [[UIImageView alloc]init];
@@ -128,9 +139,16 @@
 }
 
 -(void)toLogin{
-    LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
-    
-    [self.navigationController pushViewController:login animated:YES];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userName = [defaults objectForKey:UD_USERNAME];
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    if (userID == nil || [userID isEqualToString:@""]) {
+        LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+        [self.navigationController pushViewController:login animated:YES];
+    }else{
+        NSLog(@"========去设置个人信息");
+    }
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,17 +156,50 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"" forKey:UD_USERID];
-    [defaults setObject:@"" forKey:UD_USERNAME];
-    [defaults setObject:@"" forKey:UD_USERPHONE];
+    if (indexPath.section == 1) {
+    //清除缓存
+        if (indexPath.row == 0) {
+            if (_totalSize == 0) {
+                [MBManager showBriefAlert:@"没有缓存"];
+                return;
+            }
+            [FileTool removeDirectoryPath:CachePath];
+            NSInteger totalSize = _totalSize;
+            NSString *sizeStr = @"清除缓存";
+            // MB KB B
+            if (totalSize > 1000 * 1000) {
+                // MB
+                CGFloat sizeF = totalSize / 1000.0 / 1000.0;
+                sizeStr = [NSString stringWithFormat:@"%@%.1fMB",sizeStr,sizeF];
+            } else if (totalSize > 1000) {
+                // KB
+                CGFloat sizeF = totalSize / 1000.0;
+                sizeStr = [NSString stringWithFormat:@"%@%.1fKB",sizeStr,sizeF];
+            } else if (totalSize > 0) {
+                // B
+                sizeStr = [NSString stringWithFormat:@"%@%.ldB",sizeStr,totalSize];
+            }
+            NSString *cleanSize = [NSString stringWithFormat:@"%@成功",sizeStr];
+            [MBManager showBriefAlert:cleanSize];
+            _totalSize = 0;
+            [self.tableView reloadData];
+        }
+        
+        else if (indexPath.row == 1) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:@"" forKey:UD_USERID];
+            [defaults setObject:@"" forKey:UD_USERNAME];
+            [defaults setObject:@"" forKey:UD_USERPHONE];
+            
+            [defaults synchronize];
+            
+            self.userName.text = @"登陆";
+            _isLoginOut = 1;
+            
+            [self.tableView reloadData];
+        }
+    }
     
-    [defaults synchronize];
-    
-    self.userName.text = @"登陆";
-    _isLoginOut = 1;
-    
-    [self.tableView reloadData];
 }
 /*
 #pragma mark - Navigation
@@ -159,5 +210,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end

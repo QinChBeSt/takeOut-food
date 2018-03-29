@@ -42,5 +42,30 @@
 }
 -(void)setMod:(ModelForHomeType *)mod{
     self.titleLable.text = mod.shopTypeName;
+    if ([mod.shopTypeName containsString:@"美食"]) {
+        [self.iconImg setImage:[UIImage imageNamed:@"ic_ms"]];
+    }
+    else if ([mod.shopTypeName containsString:@"生鲜果蔬"]){
+        [self.iconImg setImage:[UIImage imageNamed:@"ic_sgsx"]];
+    }
+    else if ([mod.shopTypeName containsString:@"蜜蜂专送"]){
+        [self.iconImg setImage:[UIImage imageNamed:@"ic_mfzs"]];
+    }
+    else if ([mod.shopTypeName containsString:@"汉堡披萨"]){
+        [self.iconImg setImage:[UIImage imageNamed:@"ic_hbps"]];
+    }
+    else if ([mod.shopTypeName containsString:@"下午茶"]){
+        [self.iconImg setImage:[UIImage imageNamed:@"ic_xwc"]];
+    }
+    else if ([mod.shopTypeName containsString:@"炸鸡零食"]){
+        [self.iconImg setImage:[UIImage imageNamed:@"ic_zjls"]];
+    }
+    else if ([mod.shopTypeName containsString:@"家常菜"]){
+        [self.iconImg setImage:[UIImage imageNamed:@"ic_jcc"]];
+    }
+    else if ([mod.shopTypeName containsString:@"快餐"]){
+        [self.iconImg setImage:[UIImage imageNamed:@"ic_ptdg"]];
+    }
+    
 }
 @end

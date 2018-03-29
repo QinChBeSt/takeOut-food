@@ -8,6 +8,8 @@
 
 #import "HomePageVC.h"
 #import <CoreLocation/CoreLocation.h>
+#import <SDCycleScrollView.h>
+
 //VC
 #import "ShopDetailVC.h"
 
@@ -25,7 +27,7 @@
 #define kHeadImageViewHeight 100
 #define kHeadCollectionViewHeight SCREEN_WIDTH / 4 * 2
 
-@interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate>
+@interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate,SDCycleScrollViewDelegate>
 {
     UIView *headviewAddressView;
     UILabel *headviewAddressLabel;
@@ -36,6 +38,8 @@
     UIView *sortingView;
     SortButton *clickButton;
 }
+@property (strong,nonatomic)NSArray *netImages;  //网络图片
+@property (strong,nonatomic)SDCycleScrollView *cycleScrollView;//轮播器
 @property (nonatomic , strong)UIView *headView;
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)UICollectionView *collectionView;
@@ -51,7 +55,21 @@
     NSString *strlatitude;//经度
     NSString *strlongitude;//纬度
 }
-
+/**
+ *  懒加载网络图片数据
+ */
+-(NSArray *)netImages{
+    
+    if (!_netImages) {
+        _netImages = @[
+                       @"http://d.hiphotos.baidu.com/zhidao/pic/item/72f082025aafa40f507b2e99aa64034f78f01930.jpg",
+                       @"http://b.hiphotos.baidu.com/zhidao/pic/item/4b90f603738da9770889666fb151f8198718e3d4.jpg",
+                       @"http://g.hiphotos.baidu.com/zhidao/pic/item/f2deb48f8c5494ee4e84ef5d2cf5e0fe98257ed4.jpg",
+                       @"http://d.hiphotos.baidu.com/zhidao/pic/item/9922720e0cf3d7ca104edf32f31fbe096b63a93e.jpg"
+                       ];
+    }
+    return _netImages;
+}
 -(NSMutableArray *)arrForHomePageTypeName{
     if (_arrForHomePageTypeName == nil) {
         _arrForHomePageTypeName = [NSMutableArray array];
@@ -94,9 +112,14 @@
         NSArray *dic = result[@"value"];
         NSString *bannerImg = dic[0][@"img"];
         
-        [headviewImageView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            
-        }];
+        _netImages = @[
+                       @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg",
+                       @"http://d.hiphotos.baidu.com/zhidao/pic/item/9922720e0cf3d7ca104edf32f31fbe096b63a93e.jpg",
+                       @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg",
+                       @"http://d.hiphotos.baidu.com/zhidao/pic/item/9922720e0cf3d7ca104edf32f31fbe096b63a93e.jpg"
+                       ];
+        
+
     } withFail:^(NSError *error) {
         NSLog(@"轮播图请求错误：%@,",error);
     }];
@@ -181,12 +204,13 @@
 //地址栏
 -(void)createHeadViewAddressView{
     headviewAddressView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeadAdderssViewHeight)];
-    headviewAddressView.backgroundColor = [UIColor yellowColor];
+    headviewAddressView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.headView addSubview:headviewAddressView];
     
     //icon
-    UIImageView *locationIcon = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 30, 30)];
-    locationIcon.backgroundColor = [UIColor orangeColor];
+    UIImageView *locationIcon = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 15, 20)];
+    
+    [locationIcon setImage:[UIImage imageNamed:@"ic_point"]];
     [headviewAddressView addSubview:locationIcon];
     
     //地址
@@ -194,7 +218,7 @@
     headviewAddressLabel.text = @"获取位置中....";
     [headviewAddressView addSubview:headviewAddressLabel];
     [headviewAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(locationIcon.mas_right).offset(15);
+        make.left.equalTo(locationIcon.mas_right).offset(5);
         make.centerY.equalTo(locationIcon);
     }];
  
@@ -211,7 +235,28 @@
         make.height.equalTo(@(kHeadImageViewHeight));
     }];
     
-   
+    /** 测试本地图片数据*/
+    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"PlacehoderImage.png"]];
+    //设置网络图片数组
+    self.cycleScrollView.imageURLStringsGroup = self.netImages;
+    //设置图片视图显示类型
+    self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+    //设置轮播视图的分页控件的显示
+    self.cycleScrollView.showPageControl = YES;
+    //设置轮播视图分也控件的位置
+    self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+    //当前分页控件小圆标图片
+    self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
+    //其他分页控件小圆标图片
+    self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
+    
+    [headviewImageView addSubview:self.cycleScrollView];
+    [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(headviewAddressView.mas_bottom);
+        make.width.equalTo(headviewAddressView);
+        make.centerX.equalTo(headviewAddressView);
+        make.height.equalTo(@(kHeadImageViewHeight));
+    }];
 }
 
 //选择
@@ -231,17 +276,17 @@
     [self.headView addSubview:line];
     
     UIImageView *selectImage = [[UIImageView alloc]init];
-    selectImage.backgroundColor = [UIColor orangeColor];
+    [selectImage setImage:[UIImage imageNamed:@"yhhd"]];
     [headviewSelectView addSubview:selectImage];
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(headviewSelectView.mas_top).offset(10);
         make.left.equalTo(headviewSelectView.mas_left).offset(20);
         make.height.equalTo(@(20));
-        make.width.equalTo(@(100));
+        make.width.equalTo(@(80));
     }];
     
     headviewSelectLeftView = [[UIImageView alloc]init];
-    headviewSelectLeftView.backgroundColor = [UIColor orangeColor];
+    [headviewSelectLeftView setImage:[UIImage imageNamed:@"left"]];
     [headviewSelectView addSubview:headviewSelectLeftView];
     //添加手势
     UITapGestureRecognizer * tapGestureLeft = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelectLeft)];
@@ -254,7 +299,7 @@
     }];
     
     headviewSelectRightView = [[UIImageView alloc]init];
-    headviewSelectRightView.backgroundColor = [UIColor orangeColor];
+    [headviewSelectRightView setImage:[UIImage imageNamed:@"right"]];
     [headviewSelectView addSubview:headviewSelectRightView];
     //添加手势
     UITapGestureRecognizer * tapGestureRight = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelectRight)];
@@ -285,13 +330,13 @@
     [sortingView addSubview:line];
     
     UIImageView *selectImage = [[UIImageView alloc]init];
-    selectImage.backgroundColor = [UIColor orangeColor];
+    [selectImage setImage:[UIImage imageNamed:@"tjsj"]];
     [sortingView addSubview:selectImage];
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(line.mas_bottom).offset(5);
         make.left.equalTo(sortingView.mas_left).offset(20);
         make.height.equalTo(@(20));
-        make.width.equalTo(@(100));
+        make.width.equalTo(@(80));
     }];
 
     NSArray *arrButtonTitle = @[@"综合排序",@"销量最高",@"距离最近"];
@@ -308,7 +353,7 @@
         clickButton.titleLabel.font=[UIFont systemFontOfSize:14.0];
         [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
-        [clickButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
+        [clickButton setImage:[UIImage imageNamed:@"ic_pulldown"] forState:UIControlStateNormal];
         [clickButton setImage:[UIImage imageNamed:@"up"] forState:UIControlStateSelected];
         [clickButton setTitle:arrButtonTitle[i] forState:UIControlStateNormal];
         [clickButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -337,7 +382,6 @@
     [self.collectionView registerClass:[CollectionViewCellForHomePageChoose class] forCellWithReuseIdentifier:@"cell"];
     self.collectionView.delaysContentTouches = NO;
     self.collectionView.delegate = self;
-    self.collectionView.backgroundColor = [UIColor lightGrayColor];
     self.collectionView.dataSource = self;
     self.collectionView.scrollEnabled = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
@@ -414,7 +458,8 @@
     CollectionViewCellForHomePageChoose *cell = (CollectionViewCellForHomePageChoose *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     //设置数据
     cell.mod = [self.arrForHomePageTypeName objectAtIndex:indexPath.row];
-    cell.backgroundColor = [UIColor lightGrayColor];
+    cell.backgroundColor = [UIColor whiteColor];
+   
     return cell;
 }
 

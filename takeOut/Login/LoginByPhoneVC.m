@@ -36,7 +36,7 @@
 #pragma mark - ui
 -(void)createNaviView{
     self.niveView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaTopHeight )];
-    self.niveView.backgroundColor = [UIColor yellowColor];
+    self.niveView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.view addSubview:self.niveView];
     
     __weak typeof(self) ws = self;
@@ -120,7 +120,7 @@
     }];
     
     self.codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.codeButton setBackgroundColor:[UIColor yellowColor]];
+    [self.codeButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
     [self.codeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.codeButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
@@ -172,6 +172,7 @@
     [self.toLoginButton setBackgroundColor:[UIColor grayColor]];
     self.toLoginButton.layer.cornerRadius=10;
     self.toLoginButton.clipsToBounds = YES;
+    self.toLoginButton.enabled = NO;
     [self.toLoginButton setTitle:@"登陆" forState:UIControlStateNormal];
     [self.toLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.toLoginButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
@@ -220,15 +221,23 @@
 -(void)phoneTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.phoneNumStr = theTextField.text;
-    if (self.phoneNumStr != nil && self.codeNumStr != nil) {
-        [self.toLoginButton setBackgroundColor:[UIColor yellowColor]];
+    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length != 0) {
+        [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+        self.toLoginButton.enabled = YES;
+    }else{
+        [self.toLoginButton setBackgroundColor:[UIColor grayColor]];
+        self.toLoginButton.enabled = NO;
     }
 }
 -(void)codeTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.codeNumStr = theTextField.text;
-    if (self.phoneNumStr != nil && self.codeNumStr != nil) {
-        [self.toLoginButton setBackgroundColor:[UIColor yellowColor]];
+    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length != 0) {
+        [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+        self.toLoginButton.enabled = YES;
+    }else{
+        [self.toLoginButton setBackgroundColor:[UIColor grayColor]];
+        self.toLoginButton.enabled = NO;
     }
 }
 
@@ -243,7 +252,7 @@
         _codeButton.userInteractionEnabled=YES;
         [_codeButton setTitle:@"重新获取"forState:(UIControlStateNormal)];
         [_codeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_codeButton setBackgroundColor:[UIColor yellowColor]];
+        [_codeButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     }
     else
     {

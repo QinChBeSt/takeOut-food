@@ -244,12 +244,12 @@ int const ZWMSegmentHeight = 36;//可根据项目需求设置高度
 - (void)setSeparateColor:(UIColor *)separateColor {
     _separateColor = separateColor;
     
-    self.separateLine.backgroundColor = [UIColor yellowColor];
+    self.separateLine.backgroundColor = [UIColor colorWithHexString:BaseYellow];
 }
 
 - (void)setSegmentTintColor:(UIColor *)segmentTintColor {
     _segmentTintColor = segmentTintColor;
-    _indicateView.backgroundColor = [UIColor yellowColor];
+    _indicateView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     for (UIView *view in _contentView.subviews) {
         if ([view isKindOfClass:[UIButton class]]) {
             UIButton *button = (UIButton *)view;

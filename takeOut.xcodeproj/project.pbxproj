@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D26201E206C877200A2351B /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D26201D206C877200A2351B /* FileTool.m */; };
 		9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524B2068850D005A6BBC /* MHNetWorkTask.m */; };
 		9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524E2068944E005A6BBC /* ModelForHomeType.m */; };
 		9D49525B2068A546005A6BBC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D49525A2068A546005A6BBC /* CoreLocation.framework */; };
@@ -69,6 +70,8 @@
 /* Begin PBXFileReference section */
 		3EA3BA8955BAFE3DE06D4D6D /* Pods-takeOut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.debug.xcconfig"; sourceTree = "<group>"; };
 		67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.release.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.release.xcconfig"; sourceTree = "<group>"; };
+		9D26201C206C877200A2351B /* FileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileTool.h; sourceTree = "<group>"; };
+		9D26201D206C877200A2351B /* FileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileTool.m; sourceTree = "<group>"; };
 		9D49524A2068850D005A6BBC /* MHNetWorkTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNetWorkTask.h; sourceTree = "<group>"; };
 		9D49524B2068850D005A6BBC /* MHNetWorkTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHNetWorkTask.m; sourceTree = "<group>"; };
 		9D49524D2068944E005A6BBC /* ModelForHomeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForHomeType.h; sourceTree = "<group>"; };
@@ -178,6 +181,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D26201B206C875E00A2351B /* CleanCache */ = {
+			isa = PBXGroup;
+			children = (
+				9D26201C206C877200A2351B /* FileTool.h */,
+				9D26201D206C877200A2351B /* FileTool.m */,
+			);
+			path = CleanCache;
+			sourceTree = "<group>";
+		};
 		9D4952492068850D005A6BBC /* MHNetwork */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +479,7 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9D26201B206C875E00A2351B /* CleanCache */,
 				9DFF11E0206B93BA0084D63F /* MD5 */,
 				9DFF11D9206B6D8E0084D63F /* UUID */,
 				9D72E2BE206B4B3900CEE3B0 /* MBManager */,
@@ -696,6 +709,7 @@
 				9DDFD2842064EC7100393DE5 /* main.m in Sources */,
 				9D4952692068CD95005A6BBC /* UIView+ZWMBadge.m in Sources */,
 				9D72E2C1206B4B3A00CEE3B0 /* MBManager.m in Sources */,
+				9D26201E206C877200A2351B /* FileTool.m in Sources */,
 				9DFF11DF206B6DEE0084D63F /* KeyChainStore.m in Sources */,
 				9D4952722068D462005A6BBC /* EvaluationVC.m in Sources */,
 				D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */,

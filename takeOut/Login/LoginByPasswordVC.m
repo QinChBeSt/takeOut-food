@@ -31,7 +31,7 @@
 #pragma mark - ui
 -(void)createNaviView{
     self.niveView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaTopHeight )];
-    self.niveView.backgroundColor = [UIColor yellowColor];
+    self.niveView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.view addSubview:self.niveView];
     
     __weak typeof(self) ws = self;
@@ -121,6 +121,7 @@
     [self.regisBtn setBackgroundColor:[UIColor grayColor]];
     self.regisBtn.layer.cornerRadius=10;
     self.regisBtn.clipsToBounds = YES;
+    self.regisBtn.enabled = NO;
     [self.regisBtn setTitle:@"注册" forState:UIControlStateNormal];
     [self.regisBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.regisBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
@@ -138,25 +139,68 @@
 -(void)phoneTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.phoneNumStr = theTextField.text;
-    if (self.phoneNumStr != nil && self.codeNumStr != nil) {
-        [self.regisBtn setBackgroundColor:[UIColor yellowColor]];
+    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0) {
+        [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+        self.regisBtn.enabled = YES;
+    }else{
+        [self.regisBtn setBackgroundColor:[UIColor grayColor]];
+        self.regisBtn.enabled = NO;
     }
 }
 -(void)codeTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.codeNumStr = theTextField.text;
-    if (self.phoneNumStr != nil && self.codeNumStr != nil ) {
-        [self.regisBtn setBackgroundColor:[UIColor yellowColor]];
+    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0) {
+        [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+        self.regisBtn.enabled = YES;
+    }else {
+        [self.regisBtn setBackgroundColor:[UIColor grayColor]];
+        self.regisBtn.enabled = NO;
     }
 }
 #pragma mark - 点击事件
 -(void)regisAction{
-    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,LoginUserURL];
+//    NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
+//    [par setValue:self.codeNumStr forKey:@"pwd"];
+//    [par setValue:self.phoneNumStr forKey:@"name"];
+    NSDictionary *parameters = @{@"name":self.phoneNumStr,
+                                 @"pwd":self.codeNumStr,
+                                 };
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    //请求的方式：POST
+    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
+        if ([code isEqualToString:@"1"]) {
+            
+            
+            NSDictionary *dic = responseObject[@"value"];
+            NSString *userid =[NSString stringWithFormat:@"%@",dic[@"id"]];
+            NSString *userPhone =[NSString stringWithFormat:@"%@",dic[@"userPhone"]];
+            NSString *userName =[NSString stringWithFormat:@"%@",dic[@"userName"]];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:userid forKey:UD_USERID];
+            [defaults setObject:userName forKey:UD_USERNAME];
+            [defaults setObject:userPhone forKey:UD_USERPHONE];
+            
+            [defaults synchronize];
+            
+            [MBManager showBriefAlert:@"登陆成功"];
+            [self performSelector:@selector(backToMine) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
+        }else{
+            [MBManager showBriefAlert:@"注册失败"];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(void)backToMine{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent *)event{
     
     [self.view endEditing:YES];

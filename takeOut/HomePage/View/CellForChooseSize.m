@@ -30,7 +30,7 @@
 - (void)setSelected:(BOOL)selected{
     [super setSelected:selected];
     if (selected) {
-        self.backgroundColor = [UIColor yellowColor];
+        self.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     }else{
         self.backgroundColor = [UIColor grayColor];
     }
