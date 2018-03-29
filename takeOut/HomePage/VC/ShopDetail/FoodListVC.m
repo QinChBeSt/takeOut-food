@@ -34,12 +34,17 @@
 @property (nonatomic ,strong)UIView *buyCarView;
 @property (nonatomic ,strong)UILabel *buyCarAddLabel;
 
-@property (nonatomic ,assign)NSInteger leftTableViewSelectRow;
-@property (nonatomic ,copy)NSMutableDictionary *leftTableNumDic;
-
 @property (nonatomic , copy)NSString *selectbuyCarMoncy;
 @property (nonatomic , copy)NSString *selcetbuyCarId;
 @property (nonatomic , assign)CGFloat addMoney;
+
+//----小红点
+//左边购物车小圆点选择行数
+@property (nonatomic ,assign)NSInteger leftTableViewSelectRow;
+//下面购物车小红点
+@property (nonatomic , strong)UILabel *ShoppingCarRedLabel;
+//下面购物车小红点数字
+@property (nonatomic , assign)NSInteger ShoppingCarRedNum;
 
 @end
 
@@ -101,7 +106,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     defaults = [NSUserDefaults standardUserDefaults];
-    
+    self.ShoppingCarRedNum = 0;
     self.view.backgroundColor = [UIColor whiteColor];
     [self initTableView];
     [self addChooseView];
@@ -113,7 +118,7 @@ static NSString *const resueIdleft = @"leftCell";
 static NSString *const resueIdright = @"rightCell";
 static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 - (void)initTableView {
-    _leftTableNumDic = [NSMutableDictionary dictionary];
+    
     self.leftTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width / 4, self.view.frame.size.height - SafeAreaTopHeight - 100 -36 - SafeAreaTabbarHeight - shoppingCarViewHeight) style:UITableViewStylePlain];
     self.leftTable.delegate = self;
     self.leftTable.dataSource = self;
@@ -252,10 +257,26 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         make.width.equalTo(@(50));
     }];
     
+    self.ShoppingCarRedLabel = [[UILabel alloc]init];
+    self.ShoppingCarRedLabel.hidden = YES;
+    self.ShoppingCarRedLabel.layer.cornerRadius = 10;
+    self.ShoppingCarRedLabel.clipsToBounds = YES;
+    self.ShoppingCarRedLabel.font = [UIFont systemFontOfSize:12];
+    self.ShoppingCarRedLabel.textAlignment = NSTextAlignmentCenter;
+    self.ShoppingCarRedLabel.textColor = [UIColor whiteColor];
+    self.ShoppingCarRedLabel.backgroundColor = [UIColor redColor];
+    [imgShoppingCar addSubview:self.ShoppingCarRedLabel];
+    [self.ShoppingCarRedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(imgShoppingCar.mas_right).offset(5);
+        make.top.equalTo(imgShoppingCar.mas_top).offset(0);
+        make.width.equalTo(@(20));
+        make.height.equalTo(@(20));
+    }];
+    
     self.buyCarAddLabel = [[UILabel alloc]init];
     self.buyCarAddLabel.text = @"0 元";
     self.buyCarAddLabel.font = [UIFont systemFontOfSize:22];
-    self.buyCarAddLabel.textColor = [UIColor redColor];
+    self.buyCarAddLabel.textColor = [UIColor whiteColor];
     [self.buyCarView addSubview:self.buyCarAddLabel];
     [self.buyCarAddLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(ws.buyCarView.mas_top).offset(shoppingCarViewHeight/2);
@@ -385,6 +406,10 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 [defaults setObject:countStr forKey:value];
                 [defaults synchronize];
                 [self.leftTable reloadData];
+                
+                self.ShoppingCarRedNum++;
+                self.ShoppingCarRedLabel.hidden = NO;
+                self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
             };
            
             return cell2;
@@ -494,6 +519,10 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     [defaults setObject:countStr forKey:value];
     [defaults synchronize];
     [self.leftTable reloadData];
+    
+    self.ShoppingCarRedNum++;
+    self.ShoppingCarRedLabel.hidden = NO;
+    self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
 }
 -(void)addBuyCarNoSize{
     NSLog(@"%@,%f",self.selectbuyCarMoncy,self.addMoney);
