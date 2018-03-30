@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "544085525.639138"
+            timestampString = "544096985.293319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "-getNetWorkForAddShoppingCar"
+            startingLineNumber = "798"
+            endingLineNumber = "798"
+            landmarkName = "-addBuyCar"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "544085525.639908"
+            timestampString = "544096985.293646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "575"
-            endingLineNumber = "575"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "796"
+            endingLineNumber = "796"
+            landmarkName = "-addBuyCar"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "544085525.640479"
+            timestampString = "544096985.2939349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "553"
-            endingLineNumber = "553"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "838"
+            endingLineNumber = "838"
+            landmarkName = "-addBuyCar"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,44 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "544085525.640987"
+            timestampString = "544096985.294224"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "560"
-            endingLineNumber = "560"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "544085525.641498"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "584"
-            endingLineNumber = "584"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "544085525.642017"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "592"
-            endingLineNumber = "592"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "821"
+            endingLineNumber = "821"
+            landmarkName = "-addBuyCar"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
