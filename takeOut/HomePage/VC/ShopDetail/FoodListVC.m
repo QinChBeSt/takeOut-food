@@ -35,6 +35,7 @@
 @property (nonatomic ,strong)UILabel *buyCarAddLabel;
 @property (nonatomic , strong)NSMutableArray *arrForAddShoppingCarList;
 @property (nonatomic , copy)NSString *isDeleArr;
+@property (nonatomic , copy)NSString *isAddArr;
 
 @property (nonatomic , copy)NSString *selectbuyCarMoncy;
 @property (nonatomic , copy)NSString *selcetbuyCarId;
@@ -375,7 +376,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+//左边========
     if (tableView == self.leftTable) {
         UITableViewCell *cell = nil;
         cell = [tableView dequeueReusableCellWithIdentifier:resueIdleft];
@@ -411,9 +412,11 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         }
         
         return cell;
-    } else {
+    }
+//右边==============
+    else {
         ModelForFoodList *modArr = [self.arrForDetal objectAtIndex:indexPath.row];
-        
+     //需要选大小尺码==================
         if (modArr.goodspic.count > 1) {
             CellForShopFoodChooseSize *cell1 = [tableView cellForRowAtIndexPath:indexPath];//根据indexPath准确地取出一行，而不是从cell重用队列中取出
             if (cell1 == nil) {
@@ -438,13 +441,11 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             
             return cell1;
             
-        }else{
-            
-            // 定义cell标识  每个cell对应一个自己的标识
+        }
+        //直接加购物车=======================
+        else{
             NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-            // 通过不同标识创建cell实例
             CellForShopFood *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            // 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
              ModelForFoodList *mod = [self.arrForDetal objectAtIndex:indexPath.row];
             if (!cell2) {
                 
@@ -452,23 +453,17 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                  NSString *cellValue = [NSString stringWithFormat:@"RightTableViewsection%ldrow%ld",indexPath.section,indexPath.row];
                 [defaults setObject:nil forKey:cellValue];
             }
-            
-            
             cell2.selectionStyle = UITableViewCellSelectionStyleNone;
-           
             cell2.mod = mod;
-            //直接加购物车
+    //添加购物车+++++++++++++++++++++++++++++++++
             cell2.blockAddShopingCar = ^(ModelForFoodList *mod2) {
                 NSArray *arr = mod2.goodspic;
                 NSDictionary *dic = arr[0];
                 self.selectbuyCarMoncy = dic[@"goodsPicPic"];
                 self.selcetbuyCarId = dic[@"id"];
                 [self addBuyCarNoSize];
-                
                 ModelForFoodList *mod11 = [self.arrForDetal objectAtIndex:indexPath.row];
-               
-                
-                NSInteger removeIndex;
+                NSInteger removeIndex = 0;
                 for (int i = 0 ; i < self.arrForAddShoppingCarList.count; i++) {
                     NSMutableDictionary *dicForChoose = [NSMutableDictionary dictionary];
                     dicForChoose = [self.arrForAddShoppingCarList objectAtIndex:i];
@@ -487,10 +482,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                     GetgoodsCount = GetgoodsCount + 1;
                     NSNumber * goodsCount = [NSNumber numberWithInteger:GetgoodsCount];
                     [self.arrForAddShoppingCarList removeObjectAtIndex:removeIndex];
-                    //添加字典
                     NSNumber * good_Id =  [NSNumber numberWithInteger:mod11.id];
                     NSString *picStr = [NSString stringWithFormat:@"%.f",mod11.pic];
-                    
                     [dicForChoose setObject:goodsCount forKey:@"count"];
                     [dicForChoose setObject:good_Id forKey:@"g_id"];
                     [dicForChoose setObject:mod.godsname forKey:@"g_name"];
@@ -511,9 +504,6 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                     [dicForChoose setObject:mod.godslog forKey:@"g_log"];
                     [self.arrForAddShoppingCarList addObject:dicForChoose];
                 }
-                //添加字典
-                
-                
             //左边小红点
                 self.leftTableViewSelectRow = indexPath.section + 1;
                 if (self.leftTableViewSelectRow == nil) {
@@ -552,27 +542,62 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 
                 
             };
-            
+            //减少商品---------------------------
             cell2.blockDelShopingCar = ^(ModelForFoodList *mod3) {
                 NSArray *arr = mod3.goodspic;
                 NSDictionary *dic = arr[0];
                 self.selectbuyCarMoncy = dic[@"goodsPicPic"];
                 self.selcetbuyCarId = dic[@"id"];
                 [self delectBuyCarNoSize];
-   //************ 网路请求 error
-//                ModelForFoodList *mod11 = [self.arrForDetal objectAtIndex:indexPath.row];
-//                NSMutableDictionary *dicForChoose = [NSMutableDictionary dictionary];
-//                //添加字典
-//                NSNumber * good_Id =  [NSNumber numberWithInteger:mod11.id];
-//                NSString *picStr = [NSString stringWithFormat:@"%.f",mod11.pic];
-//                NSNumber * goodsCount = [NSNumber numberWithInteger:1];
-//
-//                [dicForChoose setObject:goodsCount forKey:@"count"];
-//                [dicForChoose setObject:good_Id forKey:@"g_id"];
-//                [dicForChoose setObject:mod.godsname forKey:@"g_name"];
-//                [dicForChoose setObject:picStr forKey:@"g_pic"];
-//                [dicForChoose setObject:mod.godslog forKey:@"g_log"];
-//                [self.arrForAddShoppingCarList addObject:dicForChoose];
+
+                NSInteger removeIndex = 0;
+                for (int i = 0 ; i < self.arrForAddShoppingCarList.count; i++) {
+                    NSMutableDictionary *dicForChoose = [NSMutableDictionary dictionary];
+                    dicForChoose = [self.arrForAddShoppingCarList objectAtIndex:i];
+                    NSNumber * getGoodsId =  [NSNumber numberWithInteger:mod3.id];
+                    if (dicForChoose[@"g_id"] == getGoodsId) {
+                        //已经添加过此商品 增加数量即可
+                        self.isAddArr = @"yes";
+                        removeIndex = i;
+                    }
+                }
+                if ([self.isAddArr isEqualToString:@"yes"]) {
+                    //已经添加过此商品 增加数量即可
+                    NSMutableDictionary *dicForChoose = [NSMutableDictionary dictionary];
+                    dicForChoose = [self.arrForAddShoppingCarList objectAtIndex:removeIndex];
+                    NSInteger  GetgoodsCount = [dicForChoose[@"count"] integerValue];
+                    GetgoodsCount = GetgoodsCount - 1;
+                    //减少后已选数量为0
+                    if (GetgoodsCount != 0) {
+                        NSNumber * goodsCount = [NSNumber numberWithInteger:GetgoodsCount];
+                        [self.arrForAddShoppingCarList removeObjectAtIndex:removeIndex];
+                        NSNumber * good_Id =  [NSNumber numberWithInteger:mod3.id];
+                        NSString *picStr = [NSString stringWithFormat:@"%.f",mod3.pic];
+                        [dicForChoose setObject:goodsCount forKey:@"count"];
+                        [dicForChoose setObject:good_Id forKey:@"g_id"];
+                        [dicForChoose setObject:mod.godsname forKey:@"g_name"];
+                        [dicForChoose setObject:picStr forKey:@"g_pic"];
+                        [dicForChoose setObject:mod.godslog forKey:@"g_log"];
+                        [self.arrForAddShoppingCarList addObject:dicForChoose];
+                        self.isDeleArr = @"no";
+                    }else{
+                        [self.arrForAddShoppingCarList removeObjectAtIndex:removeIndex];
+                        self.isDeleArr = @"no";
+                    }
+                   
+                }else{
+                    //新添加的商品
+                    NSNumber * good_Id =  [NSNumber numberWithInteger:mod3.id];
+                    NSString *picStr = [NSString stringWithFormat:@"%.f",mod3.pic];
+                    NSNumber * goodsCount = [NSNumber numberWithInteger:1];
+                    NSMutableDictionary *dicForChoose = [NSMutableDictionary dictionary];
+                    [dicForChoose setObject:goodsCount forKey:@"count"];
+                    [dicForChoose setObject:good_Id forKey:@"g_id"];
+                    [dicForChoose setObject:mod.godsname forKey:@"g_name"];
+                    [dicForChoose setObject:picStr forKey:@"g_pic"];
+                    [dicForChoose setObject:mod.godslog forKey:@"g_log"];
+                    [self.arrForAddShoppingCarList addObject:dicForChoose];
+                }
             
                 //左边小红点
                 self.leftTableViewSelectRow = indexPath.section + 1;
