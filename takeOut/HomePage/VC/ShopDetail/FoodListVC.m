@@ -344,7 +344,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             make.width.equalTo(@(16));
             make.height.equalTo(@(16));
         }];
-        if (indexPath.row == self.leftTableViewSelectRow) {
+        NSInteger nowRow = indexPath.row + 1;
+        if (nowRow == self.leftTableViewSelectRow && self.leftTableViewSelectRow != nil) {
             
             redIcon.hidden = NO;
             
@@ -373,7 +374,10 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 [self.collectionView reloadData];
                 self.chooseSizeBackgroundView.hidden = NO;
                 self.chooseSizeView.hidden = NO;
-                self.leftTableViewSelectRow = indexPath.section;
+                self.leftTableViewSelectRow = indexPath.section + 1;
+                if (self.leftTableViewSelectRow == nil) {
+                    self.leftTableViewSelectRow = 1;
+                }
             };
             
             return cell1;
@@ -395,7 +399,10 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 self.selectbuyCarMoncy = dic[@"goodsPicPic"];
                 self.selcetbuyCarId = dic[@"id"];
                 [self addBuyCarNoSize];
-                self.leftTableViewSelectRow = indexPath.section;
+                self.leftTableViewSelectRow = indexPath.section + 1;
+                if (self.leftTableViewSelectRow == nil) {
+                    self.leftTableViewSelectRow = 1;
+                }
                 NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%ld",(long)indexPath.section];
             
                 
@@ -510,8 +517,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     NSLog(@"%@,%f",self.selectbuyCarMoncy,self.addMoney);
     self.addMoney = [self.selectbuyCarMoncy floatValue] + self.addMoney;
     self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
-    
-    NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%ld",(long)self.leftTableViewSelectRow];
+    NSInteger row = self.leftTableViewSelectRow - 1;
+    NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%ld",(long)row];
     NSString *countStr = [defaults objectForKey:value];
     NSInteger count = [countStr integerValue];
     count++;
