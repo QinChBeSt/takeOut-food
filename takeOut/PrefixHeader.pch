@@ -29,6 +29,8 @@
 #define homeGetShopList @"/xmfapi/shopList"
 //店铺详情
 #define shopDatailUrl @"/xmfapi/getGoodsClassification"
+//加入购物车
+#define AddShoppingCarUlr @"/xmfapi/addCar"
 
 //注册
 #define RegisUserURL @"/xmfapi/eit"

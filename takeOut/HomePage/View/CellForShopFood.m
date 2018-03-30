@@ -49,6 +49,8 @@
         make.height.equalTo(@(25));
     }];
     
+    
+    
 }
 -(void)setMod:(ModelForFoodList *)mod{
     self.chooseMod = mod;
@@ -57,9 +59,35 @@
 }
 
 -(void)addToShopingCarAction:(UIButton *)btn{
+    
+    if (!_delectToShoppingCar) {
+        __weak typeof(self) ws = self;
+        
+        self.chooseCountLabel = [[UILabel alloc]init];
+        self.chooseCountLabel.text = [NSString stringWithFormat:@"-%ld-",(long)self.ChooseCount];
+        [self.contentView addSubview:self.chooseCountLabel];
+        [self.chooseCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.centerY.equalTo(ws.priceLabel);
+             make.right.equalTo(ws.addToShoppingCar.mas_left).offset(-5);
+        }];
+        self.delectToShoppingCar = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.delectToShoppingCar.backgroundColor = [UIColor orangeColor];
+        [self.delectToShoppingCar addTarget:self action:@selector(delectToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:self.delectToShoppingCar];
+        [self.delectToShoppingCar setHidden:NO];
+        [self.delectToShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(ws.chooseCountLabel.mas_left).offset(-5);
+            make.centerY.equalTo(ws.priceLabel);
+            make.width.equalTo(@(25));
+            make.height.equalTo(@(25));
+        }];
+    }
     if (self.blockAddShopingCar) {
         self.blockAddShopingCar(self.chooseMod);
     }
+}
+-(void)delectToShopingCarAction:(UIButton *)btn{
+    
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

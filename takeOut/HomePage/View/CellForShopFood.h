@@ -20,6 +20,8 @@ typedef void (^blockAddShopingCar)(ModelForFoodList *);
 @property (nonatomic , strong)UILabel *priceLabel;
 @property (nonatomic , strong)UIButton *chooseSizeBtn;
 @property (nonatomic , strong)UIButton *addToShoppingCar;
-
+@property (nonatomic , strong)UIButton *delectToShoppingCar;
+@property (nonatomic , assign)NSInteger ChooseCount;
+@property (nonatomic , strong)UILabel *chooseCountLabel;
 
 @end
