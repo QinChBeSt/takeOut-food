@@ -10,9 +10,11 @@
 #import "ModelForFoodList.h"
 typedef void (^blockChooseSize)(ModelForFoodList *);
 typedef void (^blockAddShopingCar)(ModelForFoodList *);
+typedef void (^blockDelShopingCar)(ModelForFoodList *);
 @interface CellForShopFood : UITableViewCell
 @property (nonatomic , copy)blockChooseSize blockChooseSize;
 @property (nonatomic , copy)blockAddShopingCar blockAddShopingCar;
+@property (nonatomic , copy)blockDelShopingCar blockDelShopingCar;
 @property (nonatomic , strong) ModelForFoodList *mod;
 @property (nonatomic , strong) ModelForFoodList *chooseMod;
 @property (nonatomic , strong)UIImageView *bigImage;

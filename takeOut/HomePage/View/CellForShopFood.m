@@ -87,7 +87,9 @@
     }
 }
 -(void)delectToShopingCarAction:(UIButton *)btn{
-    
+    if (self.blockDelShopingCar) {
+        self.blockDelShopingCar(self.chooseMod);
+    }
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
