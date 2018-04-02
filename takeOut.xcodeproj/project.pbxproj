@@ -26,6 +26,8 @@
 		9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952742068D491005A6BBC /* ShopMassageVC.m */; };
 		9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952772068EDD8005A6BBC /* ModelForFoodList.m */; };
 		9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49527A2068F1EA005A6BBC /* CellForShopFood.m */; };
+		9D58C4902071D26D00D49721 /* CellForHadAddShopingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */; };
+		9D58C4932071D4CF00D49721 /* ModForHadAddShoppingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D58C4922071D4CF00D49721 /* ModForHadAddShoppingCar.m */; };
 		9D72E2B7206B25E200CEE3B0 /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B6206B25E200CEE3B0 /* RegisterVC.m */; };
 		9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B9206B262300CEE3B0 /* LoginByPhoneVC.m */; };
 		9D72E2BD206B263F00CEE3B0 /* LoginByPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */; };
@@ -115,6 +117,10 @@
 		9D4952772068EDD8005A6BBC /* ModelForFoodList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForFoodList.m; sourceTree = "<group>"; };
 		9D4952792068F1EA005A6BBC /* CellForShopFood.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForShopFood.h; sourceTree = "<group>"; };
 		9D49527A2068F1EA005A6BBC /* CellForShopFood.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForShopFood.m; sourceTree = "<group>"; };
+		9D58C48E2071D26D00D49721 /* CellForHadAddShopingCar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForHadAddShopingCar.h; sourceTree = "<group>"; };
+		9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForHadAddShopingCar.m; sourceTree = "<group>"; };
+		9D58C4912071D4CF00D49721 /* ModForHadAddShoppingCar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModForHadAddShoppingCar.h; sourceTree = "<group>"; };
+		9D58C4922071D4CF00D49721 /* ModForHadAddShoppingCar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModForHadAddShoppingCar.m; sourceTree = "<group>"; };
 		9D72E2B5206B25E200CEE3B0 /* RegisterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
 		9D72E2B6206B25E200CEE3B0 /* RegisterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
 		9D72E2B8206B262300CEE3B0 /* LoginByPhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginByPhoneVC.h; sourceTree = "<group>"; };
@@ -396,6 +402,8 @@
 				9D4952772068EDD8005A6BBC /* ModelForFoodList.m */,
 				9DCF321E206E37BF0032F9B6 /* ModelForChooseSize.h */,
 				9DCF321F206E37BF0032F9B6 /* ModelForChooseSize.m */,
+				9D58C4912071D4CF00D49721 /* ModForHadAddShoppingCar.h */,
+				9D58C4922071D4CF00D49721 /* ModForHadAddShoppingCar.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -427,6 +435,8 @@
 				9D98D96B206A43780019AC0C /* CellForShopFoodChooseSize.m */,
 				9D98D963206A14C30019AC0C /* CellForChooseSize.h */,
 				9D98D964206A14C30019AC0C /* CellForChooseSize.m */,
+				9D58C48E2071D26D00D49721 /* CellForHadAddShopingCar.h */,
+				9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -741,6 +751,7 @@
 			files = (
 				9DDFD2842064EC7100393DE5 /* main.m in Sources */,
 				9D4952692068CD95005A6BBC /* UIView+ZWMBadge.m in Sources */,
+				9D58C4902071D26D00D49721 /* CellForHadAddShopingCar.m in Sources */,
 				9D72E2C1206B4B3A00CEE3B0 /* MBManager.m in Sources */,
 				9D26201E206C877200A2351B /* FileTool.m in Sources */,
 				9DFF11DF206B6DEE0084D63F /* KeyChainStore.m in Sources */,
@@ -777,6 +788,7 @@
 				9D262032206CD21F00A2351B /* AllOrderVC.m in Sources */,
 				9D49525E2068B25A005A6BBC /* ModelForShopList.m in Sources */,
 				9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */,
+				9D58C4932071D4CF00D49721 /* ModForHadAddShoppingCar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

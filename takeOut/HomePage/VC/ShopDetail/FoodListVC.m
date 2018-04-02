@@ -12,6 +12,8 @@
 #import "CellForShopFood.h"
 #import "CellForChooseSize.h"
 #import "CellForShopFoodChooseSize.h"
+#import "CellForHadAddShopingCar.h"
+#import "ModForHadAddShoppingCar.h"
 
 #define shoppingCarViewHeight 50
 
@@ -53,6 +55,10 @@
 //下面购物车小红点数字
 @property (nonatomic , assign)NSInteger ShoppingCarRedNum;
 
+//显示已经购买的列表
+@property (nonatomic , strong)UITableView *haveBuyListTableview;
+@property (nonatomic , strong)UIView *haveBuyBackView;
+@property (nonatomic , strong)NSMutableArray *arrForHaveBuyList;
 @end
 
 @implementation FoodListVC{
@@ -81,6 +87,12 @@
         _arrForAddShoppingCarList = [NSMutableArray array];
     }
     return _arrForAddShoppingCarList;
+}
+-(NSMutableArray *)arrForHaveBuyList{
+    if (_arrForHaveBuyList == nil) {
+        _arrForHaveBuyList = [NSMutableArray array];
+    }
+    return _arrForHaveBuyList;
 }
 #pragma makr - NetWork
 -(void)getNetWork{
@@ -120,6 +132,10 @@
     NSString *Url1 = [NSString stringWithFormat:@"%@%@",BASEURL,AddShoppingCarUlr];
     
     NSString *userID = [defaults objectForKey:UD_USERID];
+    if (userID == nil) {
+        NSLog(@"去登陆！！！");
+        return;
+    }
   
     NSURL* url = [NSURL URLWithString:Url1];
     // 请求
@@ -131,6 +147,9 @@
     
     // 设置请求体和参数
     // 创建一个描述订单的JSON数据
+    if (self.arrForAddShoppingCarList == nil) {
+        return;
+    }
     NSDictionary* orderInfo = @{@"s_id":self.shopId,
                                 @"u_id":userID,
                                 @"goods":self.arrForAddShoppingCarList};
@@ -355,6 +374,17 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         make.top.equalTo(ws.buyCarView.mas_top).offset(0);
         make.width.equalTo(@(100));
     }];
+   
+    UIButton *addShowHaveBuyList = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addShowHaveBuyList addTarget:self action:@selector(showHaveBuyList) forControlEvents:UIControlEventTouchUpInside];
+    [self.buyCarView addSubview:addShowHaveBuyList];
+    [addShowHaveBuyList mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.buyCarAddLabel);
+        make.right.equalTo(addBuyCar.mas_left).offset(0);
+        make.top.equalTo(ws.buyCarView.mas_top).offset(0);
+        make.left.equalTo(ws.buyCarView.mas_left);
+    }];
+   
 }
 
 #pragma mark - 滚动刷新
@@ -375,6 +405,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.leftTable) {
         return self.arrForType.count;
+    }else if (tableView == self.haveBuyListTableview ){
+        return self.arrForAddShoppingCarList.count;
     }
     return self.arrForDetal.count;
 }
@@ -419,7 +451,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         return cell;
     }
 //右边==============
-    else {
+    else if (tableView == self.rightTable) {
         
         ModelForFoodList *modArr = [self.arrForDetal objectAtIndex:indexPath.row];
      //需要选大小尺码==================
@@ -657,6 +689,25 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             return cell2;
             
         }
+    }else if (tableView == _haveBuyListTableview){
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cellShowHaveBuy%ld%ld",indexPath.section,indexPath.row];
+        ModForHadAddShoppingCar *mod = [[ModForHadAddShoppingCar alloc]init];
+       NSMutableDictionary *dic = [self.arrForAddShoppingCarList objectAtIndex:indexPath.row];
+        mod.g_name = dic[@"g_id"];
+        mod.count = dic[@"count"];
+        mod.g_name = dic[@"g_name"];
+        mod.g_pic = dic[@"g_pic"];
+        mod.g_log = dic[@"g_log"];
+        mod.g_chooseType = dic[@"g_typeName"];
+        CellForHadAddShopingCar *cell1 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell1) {
+            
+            cell1 = [[CellForHadAddShopingCar alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            
+        }
+        cell1.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell1.Mod = mod;
+        return cell1;
     }
     return  nil;
 }
@@ -818,6 +869,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         [dicForChoose setObject:dic[@"goodsPicName"] forKey:@"g_name"];
         [dicForChoose setObject:picStr forKey:@"g_pic"];
         [dicForChoose setObject:mod.godslog forKey:@"g_log"];
+        [dicForChoose setObject:self.chooesTitle forKey:@"g_typeName"];
         [self.arrForAddShoppingCarList addObject:dicForChoose];
         self.isDeleArr = @"no";
     }else{
@@ -835,6 +887,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         [dicForChoose setObject:dic[@"goodsPicName"] forKey:@"g_name"];
         [dicForChoose setObject:picStr forKey:@"g_pic"];
         [dicForChoose setObject:mod.godslog forKey:@"g_log"];
+        [dicForChoose setObject:self.chooesTitle.text forKey:@"g_typeName"];
         [self.arrForAddShoppingCarList addObject:dicForChoose];
     
     }
@@ -852,6 +905,45 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     NSLog(@"当前购物车%@,减去取消的%f",self.selectbuyCarMoncy,self.addMoney);
     self.addMoney =   self.addMoney  - [self.selectbuyCarMoncy floatValue];
     self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
+}
+- (UIWindow *)lastWindow
+{
+    NSArray *windows = [UIApplication sharedApplication].windows;
+    for(UIWindow *window in [windows reverseObjectEnumerator]) {
+        
+        if ([window isKindOfClass:[UIWindow class]] &&
+            CGRectEqualToRect(window.bounds, [UIScreen mainScreen].bounds))
+            
+            return window;
+    }
+    
+    return [UIApplication sharedApplication].keyWindow;
+}
+-(void)showHaveBuyList{
+    
+    self.haveBuyBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , SCREENH_HEIGHT)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeHaveBuy)];
+    [self.haveBuyBackView addGestureRecognizer:tapGesture];
+     self.haveBuyBackView.backgroundColor = [UIColor colorWithHexString:@"9C9C9C" alpha:0.5];
+    [self.lastWindow addSubview: self.haveBuyBackView];
+
+    UIView *haveBuyToolBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    [self.view addSubview:haveBuyToolBar];
+    haveBuyToolBar.backgroundColor = [UIColor orangeColor];
+    self.haveBuyListTableview = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.haveBuyListTableview.delegate = self;
+    self.haveBuyListTableview.dataSource = self;
+    self.haveBuyListTableview.tableHeaderView = haveBuyToolBar;
+    [ self.haveBuyBackView addSubview:self.haveBuyListTableview];
+    [self.haveBuyListTableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.buyCarView);
+        make.width.equalTo(self.view);
+        make.bottom.equalTo(self.buyCarView.mas_top);
+        make.height.equalTo(@(self.arrForAddShoppingCarList.count * 50 + 40));
+    }];
+}
+-(void)removeHaveBuy{
+    [self.haveBuyBackView  removeFromSuperview];
 }
 -(void)addShoppongCarNetWord{
     [self getNetWorkForAddShoppingCar];

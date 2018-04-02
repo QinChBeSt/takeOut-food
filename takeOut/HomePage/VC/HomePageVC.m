@@ -430,6 +430,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ShopDetailVC *shopDetailVC = [[ShopDetailVC alloc]init];
     shopDetailVC.modShopList = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
+    self.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:shopDetailVC animated:YES];
     
 }
