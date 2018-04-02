@@ -28,7 +28,7 @@
     
     self.addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.addBtn.backgroundColor = [UIColor orangeColor];
-   // [self.addBtn addTarget:self action:@selector(addToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.addBtn addTarget:self action:@selector(addToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.addBtn];
     [self.addBtn setHidden:NO];
     [self.addBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -47,7 +47,7 @@
     
     self.removeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.removeBtn.backgroundColor = [UIColor orangeColor];
-    // [self.addBtn addTarget:self action:@selector(addToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.removeBtn addTarget:self action:@selector(delectToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.removeBtn];
     [self.removeBtn setHidden:NO];
     [self.removeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -92,6 +92,18 @@
             make.bottom.equalTo(ws.contentView.mas_centerY);
             make.left.equalTo(ws.contentView).offset(10);
         }];
+    }
+    self.chooseMod = Mod;
+}
+
+-(void)addToShopingCarAction:(UIButton *)btn{
+    if (self.blockAddHadShopingCar) {
+        self.blockAddHadShopingCar(self.chooseMod);
+    }
+}
+-(void)delectToShopingCarAction:(UIButton *)btn{
+    if (self.blockDelHadShopingCar) {
+        self.blockDelHadShopingCar(self.chooseMod);
     }
 }
 - (void)awakeFromNib {
