@@ -58,10 +58,11 @@
     }];
     
     self.goodsMoney = [[UILabel alloc]init];
+    self.goodsMoney.textColor = [UIColor redColor];
     [self.contentView addSubview:self.goodsMoney];
     [self.goodsMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(ws.contentView);
-        make.right.equalTo(ws.removeBtn.mas_left).offset(-25);
+        make.left.equalTo(ws.goodsName.mas_right).offset(50);
     }];
     self.typeName = [[UILabel alloc]init];
     self.typeName.font = [UIFont systemFontOfSize:13];
