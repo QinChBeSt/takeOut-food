@@ -16,6 +16,12 @@
 @property (nonatomic , strong) UIView *niveView;
 @property (nonatomic, strong) ZWMSegmentController *segmentVC;
 @property (nonatomic , copy) NSString *shopId;
+@property (nonatomic , copy) NSString *shopUpPayMoney;
+@property (nonatomic , strong)NSArray *saveListArr;
+@property (nonatomic , strong)UIImageView *shipIcon;
+@property (nonatomic , strong)UILabel *shopName;
+@property (nonatomic , strong)UILabel *shopSaveLabel;
+@property (nonatomic , strong)UIImageView *shopSaveImg;
 @end
 
 @implementation ShopDetailVC
@@ -74,6 +80,7 @@
     
     FoodListVC *f = [[FoodListVC alloc] init];
     f.shopId = self.shopId;
+    f.upPayMoney = self.shopUpPayMoney;
     EvaluationVC *s = [[EvaluationVC alloc] init];
     ShopMassageVC *f1 = [[ShopMassageVC alloc] init];
 
@@ -104,6 +111,7 @@
 
 -(void)setModShopList:(ModelForShopList *)modShopList{
     self.shopId = modShopList.store_id;
+    self.shopUpPayMoney = modShopList.up_pic;
 }
 /*
 #pragma mark - Navigation
