@@ -9,6 +9,7 @@
 #import "MinePageVC.h"
 #import "LoginByPhoneVC.h"
 #import "FileTool.h"
+#import "MineAddressVC.h"
 @interface MinePageVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong) UITableView *tableView;
 @property (nonatomic , strong) UIView *headView;
@@ -156,7 +157,14 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            MineAddressVC *myaddress = [[MineAddressVC alloc]init];
+            self.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:myaddress animated:YES];
+        }
+    }
+    else if (indexPath.section == 1) {
     //清除缓存
         if (indexPath.row == 0) {
             if (_totalSize == 0) {

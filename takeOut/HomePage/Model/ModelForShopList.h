@@ -18,4 +18,5 @@
 @property (nonatomic , copy) NSString *store_img;
 @property (nonatomic , copy) NSString *up_pic;
 @property (nonatomic , strong)NSArray *act_list;
+@property (nonatomic , copy)NSString *opentime;
 @end

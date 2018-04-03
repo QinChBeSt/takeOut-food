@@ -12,12 +12,37 @@
 "获取位置中...." = "Getting location...";
 "去结算" = "To pay";
 "¥" = "$";
+"个活动" = " of activity";
+"配送" = "Distribution";
+"起送" = "Send out up";
+"月售" = "Months sell";
+"配送时间" = "Distribution time";
+
 // ---------------------- 订单
 "全部订单" = "All Order";
 "待评价" = "Will evaluate";
 
 // ---------------------- 我的
 "我的地址" = "My address";
+" + 新增收货地址" = "+ Add Shipping Address";
+"新增收货地址" = "Add Shipping Address";
+"保存" = "Save";
+"收货人" = "Consignee";
+"先生" = "Gentlemen";
+"女士" = "Ladies";
+"电话" = "Phone No.";
+"收货地址" = "Address";
+"点击选择" = "Click to select";
+"楼号/门牌号" = "House No.";
+"例3号楼3001" = "ex.building 3,apartment 3001";
+"未知城市" = "UnKonw City";
+"定位失败" = "Location error";
+"请获取地理位置" = "Please Get Location";
+"请填写收货人姓名" = "Please write Consignee";
+"请填写收货人电话" = "Please write PhoneNumber";
+"请获填写具体位置" = "Please write building Number";
+
+
 "我的评价" = "My evaluation";
 "关于我们" = "About us";
 "清除缓存" = "Clean cache";

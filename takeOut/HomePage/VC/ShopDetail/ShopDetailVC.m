@@ -11,6 +11,7 @@
 #import "FoodListVC.h"
 #import "EvaluationVC.h"
 #import "ShopMassageVC.h"
+#import "ShopDetailMassageVC.h"
 
 @interface ShopDetailVC ()
 @property (nonatomic , strong) UIView *niveView;
@@ -22,9 +23,16 @@
 @property (nonatomic , strong)UILabel *shopName;
 @property (nonatomic , strong)UILabel *shopSaveLabel;
 @property (nonatomic , strong)UIImageView *shopSaveImg;
+@property (nonatomic , strong)UILabel *shopSaveNumLabel;
+@property (nonatomic , strong)ModelForShopList *toNextMod;
 @end
 
-@implementation ShopDetailVC
+@implementation ShopDetailVC{
+    NSString *shopNameStr;
+    NSString *shopSaveIconUrl;
+    NSString *shopSaveStr;
+    NSString *numForSaveCount;
+}
 -(void)viewWillAppear:(BOOL)animated{
   
   
@@ -74,7 +82,84 @@
         make.centerX.equalTo(ws.view);
         make.centerY.equalTo(backImg);
     }];
+    
+    self.shipIcon = [[UIImageView alloc]init];
+    [self.shipIcon setBackgroundColor:[UIColor orangeColor]];
+    [self.niveView addSubview:self.shipIcon];
+    [self.shipIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.niveView.mas_left).offset(10);
+        make.bottom.equalTo(ws.niveView.mas_bottom).offset(-10);
+        make.width.equalTo(@(SCREEN_WIDTH / 5));
+        make.height.equalTo(@(SCREEN_WIDTH / 5));
+    }];
+    
+    self.shopName = [[UILabel alloc]init];
+    self.shopName.text = shopNameStr;
+    self.shopName.textColor = [UIColor whiteColor];
+    [self.niveView addSubview:self.shopName];
+    [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.shipIcon.mas_right).offset(20);
+        make.top.equalTo(ws.shipIcon);
+    }];
+    
+    self.shopSaveImg = [[UIImageView alloc]init];
+    [self.shopSaveImg sd_setImageWithURL:[NSURL URLWithString:shopSaveIconUrl]];
+    [self.niveView addSubview:self.shopSaveImg];
+    [self.shopSaveImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.shopName);
+        make.top.equalTo(ws.shopName.mas_bottom).offset(20);
+        make.width.equalTo(@(15));
+        make.height.equalTo(@(15));
+    }];
+    
+    self.shopSaveLabel = [[UILabel alloc]init];
+    self.shopSaveLabel.font = [UIFont systemFontOfSize:12];
+    self.shopSaveLabel.textColor = [UIColor whiteColor];
+    self.shopSaveLabel.text = shopSaveStr;
+    [self.niveView addSubview:self.shopSaveLabel];
+    [self.shopSaveLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_shopSaveImg);
+        make.left.equalTo(ws.shopSaveImg.mas_right).offset(5);
+    }];
+    
+    UIImageView *rightIcon = [[UIImageView alloc]init];
+    rightIcon.backgroundColor = [UIColor orangeColor];
+    [self.niveView addSubview:rightIcon];
+    [rightIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(ws.niveView.mas_right).offset(-15);
+        make.centerY.equalTo(ws.shopSaveImg);
+        make.width.equalTo(@(8));
+        make.height.equalTo(@(12));
+    }];
+    
+    
+    self.shopSaveNumLabel = [[UILabel alloc]init];
+    self.shopSaveNumLabel.font = [UIFont systemFontOfSize:12];
+    self.shopSaveNumLabel.textColor = [UIColor whiteColor];
+    self.shopSaveNumLabel.text = numForSaveCount;
+    [self.niveView addSubview:self.shopSaveNumLabel];
+    [self.shopSaveNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_shopSaveImg);
+        make.right.equalTo(rightIcon.mas_left).offset(-5);
+    }];
+    
+    UIButton *toDetailVC = [UIButton buttonWithType:UIButtonTypeCustom];
+    [toDetailVC addTarget:self action:@selector(toDetail) forControlEvents:UIControlEventTouchUpInside];
+    [self.niveView addSubview:toDetailVC];
+    [toDetailVC mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(ws.niveView.mas_bottom).offset(-10);
+        make.left.equalTo(ws.shipIcon.mas_right).offset(20);
+        make.top.equalTo(ws.shopName);
+        make.right.equalTo(ws.niveView.mas_right);
+    }];
+    
+    if (self.saveListArr.count == 0) {
+        self.shopSaveLabel.hidden = YES;
+        self.shopSaveImg.hidden = YES;
+        self.shopSaveNumLabel.hidden = YES;
+    }
 }
+
 - (void)CreateSegment{
     self.navigationController.navigationBar.translucent = NO;
     
@@ -108,10 +193,31 @@
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(void)toDetail{
+    ShopDetailMassageVC *detailVC = [[ShopDetailMassageVC alloc]init];
+    detailVC.modShopList = self.toNextMod;
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
 -(void)setModShopList:(ModelForShopList *)modShopList{
+    self.toNextMod = modShopList;
     self.shopId = modShopList.store_id;
     self.shopUpPayMoney = modShopList.up_pic;
+    shopNameStr = modShopList.store_name;
+    if (modShopList.act_list.count != 0) {
+        self.saveListArr = modShopList.act_list;
+        numForSaveCount = [NSString stringWithFormat:@"%lu%@",(unsigned long)self.saveListArr.count,NSLocalizedString(@"个活动", nil)];
+         NSString *imgUrl =  self.saveListArr[0][@"img"];
+         shopSaveIconUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,imgUrl] ;
+        for (NSMutableDictionary *dic in self.saveListArr) {
+            
+            if (shopSaveStr == nil) {
+                shopSaveStr = dic[@"content"];
+            }else{
+            shopSaveStr = [NSString stringWithFormat:@"%@,%@",shopSaveStr,dic[@"content"]];
+           }
+        }
+    }
+    
 }
 /*
 #pragma mark - Navigation

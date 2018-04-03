@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D012B1420734FDF0015322E /* MineAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B1320734FDF0015322E /* MineAddressVC.m */; };
+		9D012B17207354600015322E /* AddNewAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B16207354600015322E /* AddNewAddressVC.m */; };
+		9D012B1A20735CBF0015322E /* SexButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B1920735CBF0015322E /* SexButton.m */; };
+		9D012B1D20736C200015322E /* LocationMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B1C20736C200015322E /* LocationMapVC.m */; };
+		9D012B2120736E440015322E /* JZLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B2020736E440015322E /* JZLocationConverter.m */; };
+		9D012B23207371AC0015322E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D012B22207371AC0015322E /* MapKit.framework */; };
 		9D26201E206C877200A2351B /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D26201D206C877200A2351B /* FileTool.m */; };
 		9D262021206CB50000A2351B /* HomeTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262020206CB50000A2351B /* HomeTypeVC.m */; };
 		9D262026206CC93A00A2351B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D262028206CC93A00A2351B /* InfoPlist.strings */; };
@@ -28,6 +34,7 @@
 		9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49527A2068F1EA005A6BBC /* CellForShopFood.m */; };
 		9D58C4902071D26D00D49721 /* CellForHadAddShopingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */; };
 		9D58C4932071D4CF00D49721 /* ModForHadAddShoppingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D58C4922071D4CF00D49721 /* ModForHadAddShoppingCar.m */; };
+		9D6143922073268F00187232 /* ShopDetailMassageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6143912073268F00187232 /* ShopDetailMassageVC.m */; };
 		9D72E2B7206B25E200CEE3B0 /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B6206B25E200CEE3B0 /* RegisterVC.m */; };
 		9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B9206B262300CEE3B0 /* LoginByPhoneVC.m */; };
 		9D72E2BD206B263F00CEE3B0 /* LoginByPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */; };
@@ -78,6 +85,17 @@
 /* Begin PBXFileReference section */
 		3EA3BA8955BAFE3DE06D4D6D /* Pods-takeOut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.debug.xcconfig"; sourceTree = "<group>"; };
 		67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-takeOut.release.xcconfig"; path = "Pods/Target Support Files/Pods-takeOut/Pods-takeOut.release.xcconfig"; sourceTree = "<group>"; };
+		9D012B1220734FDF0015322E /* MineAddressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineAddressVC.h; sourceTree = "<group>"; };
+		9D012B1320734FDF0015322E /* MineAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineAddressVC.m; sourceTree = "<group>"; };
+		9D012B15207354600015322E /* AddNewAddressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddNewAddressVC.h; sourceTree = "<group>"; };
+		9D012B16207354600015322E /* AddNewAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddNewAddressVC.m; sourceTree = "<group>"; };
+		9D012B1820735CBF0015322E /* SexButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SexButton.h; sourceTree = "<group>"; };
+		9D012B1920735CBF0015322E /* SexButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SexButton.m; sourceTree = "<group>"; };
+		9D012B1B20736C200015322E /* LocationMapVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationMapVC.h; sourceTree = "<group>"; };
+		9D012B1C20736C200015322E /* LocationMapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationMapVC.m; sourceTree = "<group>"; };
+		9D012B1F20736E440015322E /* JZLocationConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZLocationConverter.h; sourceTree = "<group>"; };
+		9D012B2020736E440015322E /* JZLocationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZLocationConverter.m; sourceTree = "<group>"; };
+		9D012B22207371AC0015322E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		9D26201C206C877200A2351B /* FileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileTool.h; sourceTree = "<group>"; };
 		9D26201D206C877200A2351B /* FileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileTool.m; sourceTree = "<group>"; };
 		9D26201F206CB50000A2351B /* HomeTypeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTypeVC.h; sourceTree = "<group>"; };
@@ -121,6 +139,8 @@
 		9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForHadAddShopingCar.m; sourceTree = "<group>"; };
 		9D58C4912071D4CF00D49721 /* ModForHadAddShoppingCar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModForHadAddShoppingCar.h; sourceTree = "<group>"; };
 		9D58C4922071D4CF00D49721 /* ModForHadAddShoppingCar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModForHadAddShoppingCar.m; sourceTree = "<group>"; };
+		9D6143902073268F00187232 /* ShopDetailMassageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopDetailMassageVC.h; sourceTree = "<group>"; };
+		9D6143912073268F00187232 /* ShopDetailMassageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopDetailMassageVC.m; sourceTree = "<group>"; };
 		9D72E2B5206B25E200CEE3B0 /* RegisterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
 		9D72E2B6206B25E200CEE3B0 /* RegisterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
 		9D72E2B8206B262300CEE3B0 /* LoginByPhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginByPhoneVC.h; sourceTree = "<group>"; };
@@ -185,6 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D012B23207371AC0015322E /* MapKit.framework in Frameworks */,
 				9D49525B2068A546005A6BBC /* CoreLocation.framework in Frameworks */,
 				AE8788150AACCD47B1AFF44F /* libPods-takeOut.a in Frameworks */,
 			);
@@ -207,6 +228,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D012B1E20736E440015322E /* JZLocationConverter */ = {
+			isa = PBXGroup;
+			children = (
+				9D012B1F20736E440015322E /* JZLocationConverter.h */,
+				9D012B2020736E440015322E /* JZLocationConverter.m */,
+			);
+			path = JZLocationConverter;
+			sourceTree = "<group>";
+		};
 		9D26201B206C875E00A2351B /* CleanCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +279,8 @@
 				9D4952712068D462005A6BBC /* EvaluationVC.m */,
 				9D4952732068D491005A6BBC /* ShopMassageVC.h */,
 				9D4952742068D491005A6BBC /* ShopMassageVC.m */,
+				9D6143902073268F00187232 /* ShopDetailMassageVC.h */,
+				9D6143912073268F00187232 /* ShopDetailMassageVC.m */,
 			);
 			path = ShopDetail;
 			sourceTree = "<group>";
@@ -370,6 +402,12 @@
 			children = (
 				9DDFD2B62064F23400393DE5 /* MinePageVC.h */,
 				9DDFD2B72064F23400393DE5 /* MinePageVC.m */,
+				9D012B1220734FDF0015322E /* MineAddressVC.h */,
+				9D012B1320734FDF0015322E /* MineAddressVC.m */,
+				9D012B15207354600015322E /* AddNewAddressVC.h */,
+				9D012B16207354600015322E /* AddNewAddressVC.m */,
+				9D012B1B20736C200015322E /* LocationMapVC.h */,
+				9D012B1C20736C200015322E /* LocationMapVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -377,6 +415,8 @@
 		9DDFD2AA2064F1C300393DE5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9D012B1820735CBF0015322E /* SexButton.h */,
+				9D012B1920735CBF0015322E /* SexButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -501,6 +541,7 @@
 		B8AEC27C127AA822F6B807AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D012B22207371AC0015322E /* MapKit.framework */,
 				9D49525A2068A546005A6BBC /* CoreLocation.framework */,
 				F3C52C8109E37E7630666F17 /* libPods-takeOut.a */,
 			);
@@ -519,6 +560,7 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9D012B1E20736E440015322E /* JZLocationConverter */,
 				9D26201B206C875E00A2351B /* CleanCache */,
 				9DFF11E0206B93BA0084D63F /* MD5 */,
 				9DFF11D9206B6D8E0084D63F /* UUID */,
@@ -624,6 +666,9 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
 						};
@@ -749,6 +794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D012B1420734FDF0015322E /* MineAddressVC.m in Sources */,
 				9DDFD2842064EC7100393DE5 /* main.m in Sources */,
 				9D4952692068CD95005A6BBC /* UIView+ZWMBadge.m in Sources */,
 				9D58C4902071D26D00D49721 /* CellForHadAddShopingCar.m in Sources */,
@@ -759,6 +805,7 @@
 				D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */,
 				9D49526B2068CD95005A6BBC /* ZWMSegmentView.m in Sources */,
 				9D49526F2068D444005A6BBC /* FoodListVC.m in Sources */,
+				9D012B17207354600015322E /* AddNewAddressVC.m in Sources */,
 				9D72E2BD206B263F00CEE3B0 /* LoginByPasswordVC.m in Sources */,
 				9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */,
 				9D98D96C206A43780019AC0C /* CellForShopFoodChooseSize.m in Sources */,
@@ -780,13 +827,17 @@
 				9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */,
 				9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */,
 				9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */,
+				9D6143922073268F00187232 /* ShopDetailMassageVC.m in Sources */,
+				9D012B1A20735CBF0015322E /* SexButton.m in Sources */,
 				9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */,
 				9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */,
 				9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */,
 				9D262035206CD24500A2351B /* WillEvaluateVC.m in Sources */,
 				9D4952612068C97C005A6BBC /* ShopDetailVC.m in Sources */,
 				9D262032206CD21F00A2351B /* AllOrderVC.m in Sources */,
+				9D012B1D20736C200015322E /* LocationMapVC.m in Sources */,
 				9D49525E2068B25A005A6BBC /* ModelForShopList.m in Sources */,
+				9D012B2120736E440015322E /* JZLocationConverter.m in Sources */,
 				9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */,
 				9D58C4932071D4CF00D49721 /* ModForHadAddShoppingCar.m in Sources */,
 			);

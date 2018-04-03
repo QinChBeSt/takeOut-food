@@ -199,6 +199,7 @@
             mod.store_name = dic[@"store_name"];
             mod.up_pic = dic[@"up_pic"];
             mod.act_list = dic[@"act_list"];
+            mod.opentime = dic[@"opentime"];
             [self.arrForHomePageShopList addObject:mod];
         }
         [self.tableView reloadData];
