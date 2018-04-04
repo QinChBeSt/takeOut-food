@@ -201,7 +201,29 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)deleteAddress{
+    if (self.indexNum == nil) {
+        self.indexNum = 0;
+    }
+    ModelForGetAddress *mod = [[ModelForGetAddress alloc]init];
+    mod = [self.arrForGetAddress objectAtIndex:self.indexNum];
+    NSString *addresId = [NSString stringWithFormat:@"%@",mod.id];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,deleteAddressURL];
+    NSDictionary *parameters = @{@"addrid":addresId
+                                 };
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    //请求的方式：POST
+    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
+        if ([code isEqualToString:@"1"]) {
+            [MBManager showBriefAlert:NSLocalizedString(@"地址修改成功", nil)];
+            [self.arrForGetAddress removeObjectAtIndex:self.indexNum];
+            [self.tableView reloadData];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
 
 //实现手势对应的功能
 
@@ -230,6 +252,7 @@
         
         UIAlertAction *otherAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定删除", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             NSLog(@"确定执行");
+            [self deleteAddress];
         }];
         [alertController addAction:cancelAction];
         [alertController addAction:otherAction];
