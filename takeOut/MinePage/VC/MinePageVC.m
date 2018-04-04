@@ -159,9 +159,26 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *userID = [defaults objectForKey:UD_USERID];
+            if (userID == nil) {
+                LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+                [self.navigationController pushViewController:login animated:YES];
+            }else{
             MineAddressVC *myaddress = [[MineAddressVC alloc]init];
             self.hidesBottomBarWhenPushed=YES;
             [self.navigationController pushViewController:myaddress animated:YES];
+            }
+        }
+        else if (indexPath.row == 1){
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *userID = [defaults objectForKey:UD_USERID];
+            if (userID == nil) {
+                LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+                [self.navigationController pushViewController:login animated:YES];
+            }else{
+                
+            }
         }
     }
     else if (indexPath.section == 1) {
@@ -195,13 +212,13 @@
         
         else if (indexPath.row == 1) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:@"" forKey:UD_USERID];
-            [defaults setObject:@"" forKey:UD_USERNAME];
-            [defaults setObject:@"" forKey:UD_USERPHONE];
+            [defaults setObject:nil forKey:UD_USERID];
+            [defaults setObject:nil forKey:UD_USERNAME];
+            [defaults setObject:nil forKey:UD_USERPHONE];
             
             [defaults synchronize];
             
-            self.userName.text = @"登陆";
+            self.userName.text = NSLocalizedString(@"登陆", nil);
             _isLoginOut = 1;
             
             [self.tableView reloadData];

@@ -17,12 +17,23 @@
 "起送" = "Send out up";
 "月售" = "Months sell";
 "配送时间" = "Distribution time";
-
+"提交订单" = "Submit Order";
+"选择收货地址" = "choose your address";
+"配送费" = "Distribution Costs";
+"原价" = "Total Price";
+"小计" = "Subtotal";
+"备注" = "Remark";
+"合计:"="total:";
+"(已减￥" = "(Had Reduct $";
+"￥:" = "$:";
 // ---------------------- 订单
 "全部订单" = "All Order";
 "待评价" = "Will evaluate";
 
 // ---------------------- 我的
+"登陆" = "Login";
+"登陆成功" = "login success";
+"登陆失败" = "login failed";
 "我的地址" = "My address";
 " + 新增收货地址" = "+ Add Shipping Address";
 "新增收货地址" = "Add Shipping Address";

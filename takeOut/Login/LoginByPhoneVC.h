@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginByPhoneVC : UIViewController
-
+@property (nonatomic , assign)BOOL *isToHomePage;
 @end

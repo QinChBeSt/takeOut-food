@@ -14,7 +14,8 @@
 #import "CellForShopFoodChooseSize.h"
 #import "CellForHadAddShopingCar.h"
 #import "ModForHadAddShoppingCar.h"
-
+#import "SubmitOrderVC.h"
+#import "LoginByPhoneVC.h"
 #define shoppingCarViewHeight 50
 
 @interface FoodListVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
@@ -135,11 +136,21 @@
     NSString *Url1 = [NSString stringWithFormat:@"%@%@",BASEURL,AddShoppingCarUlr];
     
     NSString *userID = [defaults objectForKey:UD_USERID];
+    
     if (userID == nil) {
         NSLog(@"去登陆！！！");
+        LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+        [self.navigationController pushViewController:login animated:YES];
         return;
     }
-  
+    __block NSString *carid;
+    __block NSString *pspic;
+    __block NSString *yhpic;
+    __block NSString *ypic;
+
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [MBManager showLoadingInView:self.view];
     NSURL* url = [NSURL URLWithString:Url1];
     // 请求
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -177,16 +188,32 @@
         NSDictionary* dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         NSString* resultErro = dic[@"error"];
         if (resultErro)
-        {
+        { [MBManager hideAlert];
             NSLog(@"错误信息:%@",resultErro);
         }else
-        {
+        { [MBManager hideAlert];
             NSLog(@"结果信息:%@",dic);
+            NSMutableDictionary *dicRes = dic[@"value"];
+            carid = dicRes[@"carid"];
+            pspic = dicRes[@"pspic"];
+            yhpic = dicRes[@"yhpic"];
+            ypic = dicRes[@"ypic"];
+            //信号量+1
+            dispatch_semaphore_signal(semaphore);
+            
+        
         }
     }];
-    
+   
     [task resume];
-    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    SubmitOrderVC *order = [[SubmitOrderVC alloc]init];
+    order.carid = carid;
+    order.pspic = pspic;
+    order.yhpic = yhpic;
+    order.ypic =ypic;
+    order.arrForOrder = self.arrForAddShoppingCarList;
+    [self.navigationController pushViewController:order animated:YES];
 }
 
 - (void)viewDidLoad {

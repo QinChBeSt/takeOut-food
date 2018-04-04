@@ -56,7 +56,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = @"注册";
+    titleLabel.text = NSLocalizedString(@"登陆", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -122,7 +122,7 @@
     self.regisBtn.layer.cornerRadius=10;
     self.regisBtn.clipsToBounds = YES;
     self.regisBtn.enabled = NO;
-    [self.regisBtn setTitle:@"登陆" forState:UIControlStateNormal];
+    [self.regisBtn setTitle:NSLocalizedString(@"登陆", nil) forState:UIControlStateNormal];
     [self.regisBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.regisBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
     [self.view addSubview:self.regisBtn];
@@ -186,10 +186,10 @@
             
             [defaults synchronize];
             
-            [MBManager showBriefAlert:@"登陆成功"];
+            [MBManager showBriefAlert:NSLocalizedString(@"登陆成功", nil)];
             [self performSelector:@selector(backToMine) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
         }else{
-            [MBManager showBriefAlert:@"注册失败"];
+            [MBManager showBriefAlert:NSLocalizedString(@"登陆失败", nil)];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

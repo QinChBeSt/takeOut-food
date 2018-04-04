@@ -46,6 +46,8 @@
 		9D98D96C206A43780019AC0C /* CellForShopFoodChooseSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D98D96B206A43780019AC0C /* CellForShopFoodChooseSize.m */; };
 		9DA0227E20746DEB005F7168 /* ModelForGetAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA0227D20746DEB005F7168 /* ModelForGetAddress.m */; };
 		9DA022812074734F005F7168 /* CellForMyAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA022802074734F005F7168 /* CellForMyAddress.m */; };
+		9DA022842074B47A005F7168 /* SubmitOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA022832074B47A005F7168 /* SubmitOrderVC.m */; };
+		9DA022872074C5B3005F7168 /* CellForSubmitOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA022862074C5B3005F7168 /* CellForSubmitOrder.m */; };
 		9DCF3220206E37BF0032F9B6 /* ModelForChooseSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCF321F206E37BF0032F9B6 /* ModelForChooseSize.m */; };
 		9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2752064EC7100393DE5 /* AppDelegate.m */; };
 		9DDFD27C2064EC7100393DE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27A2064EC7100393DE5 /* Main.storyboard */; };
@@ -164,6 +166,10 @@
 		9DA0227D20746DEB005F7168 /* ModelForGetAddress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForGetAddress.m; sourceTree = "<group>"; };
 		9DA0227F2074734F005F7168 /* CellForMyAddress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForMyAddress.h; sourceTree = "<group>"; };
 		9DA022802074734F005F7168 /* CellForMyAddress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForMyAddress.m; sourceTree = "<group>"; };
+		9DA022822074B47A005F7168 /* SubmitOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubmitOrderVC.h; sourceTree = "<group>"; };
+		9DA022832074B47A005F7168 /* SubmitOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubmitOrderVC.m; sourceTree = "<group>"; };
+		9DA022852074C5B3005F7168 /* CellForSubmitOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForSubmitOrder.h; sourceTree = "<group>"; };
+		9DA022862074C5B3005F7168 /* CellForSubmitOrder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForSubmitOrder.m; sourceTree = "<group>"; };
 		9DCF321E206E37BF0032F9B6 /* ModelForChooseSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForChooseSize.h; sourceTree = "<group>"; };
 		9DCF321F206E37BF0032F9B6 /* ModelForChooseSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForChooseSize.m; sourceTree = "<group>"; };
 		9DDFD2712064EC7100393DE5 /* takeOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -284,6 +290,8 @@
 				9D4952742068D491005A6BBC /* ShopMassageVC.m */,
 				9D6143902073268F00187232 /* ShopDetailMassageVC.h */,
 				9D6143912073268F00187232 /* ShopDetailMassageVC.m */,
+				9DA022822074B47A005F7168 /* SubmitOrderVC.h */,
+				9DA022832074B47A005F7168 /* SubmitOrderVC.m */,
 			);
 			path = ShopDetail;
 			sourceTree = "<group>";
@@ -482,6 +490,8 @@
 				9D98D964206A14C30019AC0C /* CellForChooseSize.m */,
 				9D58C48E2071D26D00D49721 /* CellForHadAddShopingCar.h */,
 				9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */,
+				9DA022852074C5B3005F7168 /* CellForSubmitOrder.h */,
+				9DA022862074C5B3005F7168 /* CellForSubmitOrder.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -818,6 +828,7 @@
 				9DFF11DC206B6DB30084D63F /* UUID.m in Sources */,
 				9D92577D2065F90C00A6E262 /* SortButton.m in Sources */,
 				9DFF11E3206B93DE0084D63F /* MD5encryption.m in Sources */,
+				9DA022842074B47A005F7168 /* SubmitOrderVC.m in Sources */,
 				9D98D965206A14C30019AC0C /* CellForChooseSize.m in Sources */,
 				9DCF3220206E37BF0032F9B6 /* ModelForChooseSize.m in Sources */,
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
@@ -826,6 +837,7 @@
 				9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */,
 				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
 				9D262021206CB50000A2351B /* HomeTypeVC.m in Sources */,
+				9DA022872074C5B3005F7168 /* CellForSubmitOrder.m in Sources */,
 				9D72E2B7206B25E200CEE3B0 /* RegisterVC.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
 				9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */,
