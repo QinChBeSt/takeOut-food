@@ -122,7 +122,7 @@
     self.regisBtn.layer.cornerRadius=10;
     self.regisBtn.clipsToBounds = YES;
     self.regisBtn.enabled = NO;
-    [self.regisBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [self.regisBtn setTitle:@"登陆" forState:UIControlStateNormal];
     [self.regisBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.regisBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
     [self.view addSubview:self.regisBtn];

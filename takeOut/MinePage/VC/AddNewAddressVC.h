@@ -9,5 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface AddNewAddressVC : UIViewController
-
+@property (nonatomic , strong) NSString *locationStr;
+@property (nonatomic , strong) NSString *userNameStr;
+@property (nonatomic , strong) NSString *userSex;
+@property (nonatomic , strong) NSString *userPhoneStr;
+@property (nonatomic , strong) NSString *userHouseNoStr;
+@property (nonatomic , strong) NSString *naviTitle;
+@property (nonatomic , strong) NSString *getLat;
+@property (nonatomic , strong) NSString *getLong;
+@property (nonatomic , strong) NSString *addressId;
+@property (nonatomic , strong) NSString *userId;
 @end

@@ -40,8 +40,14 @@
 #define getsmsMsg @"/xmfapi/smsMsg"
 //验证验证码
 #define setsmsMsg @"/xmfapi/smslog"
-
-
+//添加地址
+#define addAddressUrl @"/xmfapi/addAddr"
+//获取地址
+#define getAddressUrl @"/xmfapi/getUserAddr"
+//修改地址
+#define editAddressURL @"/xmfapi/eitAddr"
+//删除地址
+#define deleteAddressURL @"/xmfapi/delAddr"
 
 #define ssRGBAlpha(r, g, b, a) [UIColor colorWithRed:(254 / 255.0) green:(214 / 255.0) blue:(49 / 255.0) alpha:1]
 #define BaseYellow @"#FED631"

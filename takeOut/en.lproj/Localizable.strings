@@ -41,9 +41,18 @@
 "请填写收货人姓名" = "Please write Consignee";
 "请填写收货人电话" = "Please write PhoneNumber";
 "请获填写具体位置" = "Please write building Number";
-
-
+"地址添加成功" = "Add address success";
+"地址添加失败" = "Add address failed";
+"温馨提示，点击可以编辑地址，长按可以删除" = "TIPS.  Click can edit it,Long press can delete it";
 "我的评价" = "My evaluation";
 "关于我们" = "About us";
 "清除缓存" = "Clean cache";
 "退出登录" = "Log out";
+"是否删除" = "Do you want to delete";
+"取消" = "cancel";
+"确定删除" = "delete";
+"修改收货地址" = "Edit Address";
+"地址修改成功" = "Edit address success";
+"地址修改失败" = "Edit address failed";
+"地址删除成功" = "Delete address success";
+"地址删除失败" = "Delete address failed";

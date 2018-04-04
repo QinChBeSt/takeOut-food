@@ -8,12 +8,65 @@
 
 #import "MineAddressVC.h"
 #import "AddNewAddressVC.h"
-@interface MineAddressVC ()
+#import "LoginByPhoneVC.h"
+#import "ModelForGetAddress.h"
+#import "CellForMyAddress.h"
+@interface MineAddressVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UIView *naviView;
+@property (nonatomic , strong)NSMutableArray *arrForGetAddress;
+@property (nonatomic , strong)UITableView *tableView;
+
+@property (nonatomic , strong)UIView *tbFirst;
+@property (nonatomic , strong)NSIndexPath *index;
+@property (nonatomic , assign)NSInteger indexNum;
 @end
 
 @implementation MineAddressVC
-
+-(NSMutableArray *)arrForGetAddress{
+    if (_arrForGetAddress == nil) {
+        _arrForGetAddress = [NSMutableArray array];
+    }
+    return _arrForGetAddress;
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [self getNetWork];
+}
+-(void)getNetWork{
+    self.view.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userid = [defaults objectForKey:UD_USERNAME];
+    if (userid == nil) {
+        LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+        [self.navigationController pushViewController:login animated:YES];
+    }else{
+        NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getAddressUrl];
+        NSDictionary *parameters = @{@"uid":userid,
+                                     @"page":@"1"
+                                     };
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        //请求的方式：POST
+        [self.arrForGetAddress removeAllObjects];
+        [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSMutableArray *arr = responseObject[@"value"];
+            for (NSDictionary *dic in arr) {
+                ModelForGetAddress *mod = [[ModelForGetAddress alloc]init];
+                 mod.id = dic[@"id"];
+                 mod.userAddrsAddr = dic[@"userAddrsAddr"];
+                 mod.userAddrsAddrText = dic[@"userAddrsAddrText"];
+                 mod.userAddrsLat = dic[@"userAddrsLat"];
+                 mod.userAddrsLong = dic[@"userAddrsLong"];
+                 mod.userAddrsUname = dic[@"userAddrsUname"];
+                 mod.userAddrsUphone = dic[@"userAddrsUphone"];
+                 mod.userAddrsUsex = dic[@"userAddrsUsex"];
+                 mod.userId = dic[@"userId"];
+                [self.arrForGetAddress addObject:mod];
+            }
+            [self.tableView reloadData];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -58,7 +111,67 @@
 }
 -(void)setUpUI{
     [self createButtonBtn];
+    [self createTableView];
+}
+-(void)createTableView{
+    UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, SafeAreaTopHeight, SCREEN_WIDTH - 60, 30)];
+    tipLabel.font = [UIFont systemFontOfSize:12];
+    tipLabel.text = NSLocalizedString(@"温馨提示，点击可以编辑地址，长按可以删除", nil);
+    [self.view addSubview:tipLabel];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight + 30, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -SafeAreaTabbarHeight - 50 - 30) style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+     self.tableView.tableFooterView=[[UIView alloc]init];
+    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self.tableView registerClass:[CellForMyAddress class] forCellReuseIdentifier:@"UITableViewCell"];
+    [self.view addSubview:self.tableView];
     
+}
+#pragma mark- UITabelViewDataSource/delegat
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrForGetAddress.count;
+    
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CellForMyAddress *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    if(cell == nil)
+    {
+        cell = [[CellForMyAddress alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+    }
+    ModelForGetAddress *mod = [[ModelForGetAddress alloc]init];
+    mod = [self.arrForGetAddress objectAtIndex:indexPath.row];
+    cell.Mod = mod;
+    cell.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    cell.selectionStyle =UITableViewCellSelectionStyleNone;
+    UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(lpGR:)];
+    //设定最小的长按时间 按不够这个时间不响应手势
+    longPressGR.minimumPressDuration = 1;
+    [cell addGestureRecognizer:longPressGR];
+    return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 90;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AddNewAddressVC *addnewVC = [[AddNewAddressVC alloc]init];
+    ModelForGetAddress *mod = [[ModelForGetAddress alloc]init];
+    mod = [self.arrForGetAddress objectAtIndex:indexPath.row];
+    addnewVC.userNameStr = mod.userAddrsUname;
+    addnewVC.locationStr = mod.userAddrsAddr;
+    addnewVC.userSex = mod.userAddrsUsex;
+    addnewVC.userPhoneStr = mod.userAddrsUsex;
+    addnewVC.userHouseNoStr = mod.userAddrsAddrText;
+    addnewVC.naviTitle = NSLocalizedString(@"修改收货地址", nil);
+    addnewVC.addressId = mod.id;
+    addnewVC.userId = mod.userId;
+    addnewVC.getLong = mod.userAddrsLong;
+    addnewVC.getLat = mod.userAddrsLat;
+    [self.navigationController pushViewController:addnewVC animated:YES];
 }
 -(void)createButtonBtn{
     
@@ -89,14 +202,42 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//实现手势对应的功能
+
+-(void)lpGR:(UILongPressGestureRecognizer *)lpGR
+
+{
+    
+    if (lpGR.state == UIGestureRecognizerStateBegan) {//手势开始
+        
+       CGPoint point = [lpGR locationInView:self.tableView];
+
+       self.index = [self.tableView indexPathForRowAtPoint:point]; // 可以获取我们在哪个cell上长按
+
+       self.indexNum = self.index.row;
+        
+    }
+    
+    if (lpGR.state == UIGestureRecognizerStateEnded)//手势结束
+        
+    {
+       
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"是否删除", nil) message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            NSLog(@"取消执行");
+        }];
+        
+        UIAlertAction *otherAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定删除", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            NSLog(@"确定执行");
+        }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:otherAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+        
+    }
+    
 }
-*/
 
 @end

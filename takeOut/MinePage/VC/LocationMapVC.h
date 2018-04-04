@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 typedef void (^ReturnValueBlock) (NSString *strValue);
+typedef void (^ReturnlatBlock) (NSString *lat);
+typedef void (^ReturnlongitBlock) (NSString *longit);
 @interface LocationMapVC : UIViewController
 @property(nonatomic, copy) ReturnValueBlock returnValueBlock;
+@property(nonatomic, copy) ReturnlatBlock returnlatBlock;
+@property(nonatomic, copy) ReturnlongitBlock returnlongitBlock;
 @end

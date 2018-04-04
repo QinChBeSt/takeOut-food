@@ -8,6 +8,7 @@
 
 #import "AddNewAddressVC.h"
 #import "LocationMapVC.h"
+#import "LoginByPhoneVC.h"
 
 @interface AddNewAddressVC ()<UITextFieldDelegate>
 @property (nonatomic , strong)UIView *naviView;
@@ -19,15 +20,13 @@
 @property (nonatomic , strong)UIImageView *womenIcon;
 @property (nonatomic , strong)UIButton *manBtn;
 @property (nonatomic , strong)UIButton *womanBtn;
+
+
 @end
 
 @implementation AddNewAddressVC{
     UILabel *tapToLoactionLabel;
-    NSString *locationStr;
-    NSString *userNameStr;
-    NSString *userSexStr;
-    NSString *userPhoneStr;
-    NSString *userHouseNoStr;
+   
 }
 
 - (void)viewDidLoad {
@@ -65,7 +64,12 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"新增收货地址", nil);
+    if (_naviTitle == nil) {
+        titleLabel.text = NSLocalizedString(@"新增收货地址", nil);
+    }
+    else{
+        titleLabel.text = _naviTitle;
+    }
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -76,7 +80,7 @@
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn setTitle:NSLocalizedString(@"保存", nil) forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [rightBtn addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn addTarget:self action:@selector(saveToChoose) forControlEvents:UIControlEventTouchUpInside];
     [self.naviView addSubview:rightBtn];
     [rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(backImg);
@@ -106,6 +110,9 @@
     }];
     self.userNameTextField = [[UITextField alloc]init];
     self.userNameTextField.delegate = self;
+    if (_userNameStr != nil) {
+        self.userNameTextField.text = _userNameStr;
+    }
      self.userNameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.userNameTextField addTarget:self action:@selector(UserTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [topBackgroundView addSubview:self.userNameTextField];
@@ -147,6 +154,7 @@
         make.height.equalTo(@(50));
     }];
     
+    
     self.womenIcon = [[UIImageView alloc]init];
     [self.womenIcon setBackgroundColor:[UIColor blackColor]];
     [topBackgroundView addSubview:self.womenIcon];
@@ -176,6 +184,15 @@
         make.height.equalTo(@(50));
     }];
     
+    if (_userSex != nil) {
+        NSString *sex = [NSString stringWithFormat:@"%@",_userSex];
+        if (![sex isEqualToString:@"1"]) {
+            self.manIcon.backgroundColor = [UIColor blackColor];
+            self.womenIcon.backgroundColor = [UIColor redColor];
+            _userSex = @"2";
+        }
+    }
+    
     
     UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(30, 100, SCREEN_WIDTH - 60, 0.5)];
     line2.backgroundColor = [UIColor lightGrayColor];
@@ -194,6 +211,7 @@
     }];
     self.userPhoneNum = [[UITextField alloc]init];
     self.userPhoneNum.delegate = self;
+    self.userPhoneNum.keyboardType = UIKeyboardTypeNumberPad;
     self.userPhoneNum.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.userPhoneNum addTarget:self action:@selector(PhoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [topBackgroundView addSubview:self.userPhoneNum];
@@ -203,6 +221,9 @@
         make.right.equalTo(topBackgroundView.mas_right).offset(-10);
         make.height.equalTo(@(45));
     }];
+    if (_userPhoneStr != nil) {
+        self.userPhoneNum.text =[NSString stringWithFormat:@"%@",_userPhoneStr];
+    }
     
 //下班部
     UIView *bottomBackgroundView = [[UIView alloc]init];
@@ -247,7 +268,13 @@
         make.centerY.equalTo(addressLabel);
         make.height.equalTo(@(50));
     }];
- 
+
+    if (_locationStr != nil) {
+        tapToLoactionLabel.text = _locationStr;
+        tapToLoactionLabel.textColor = [UIColor blackColor];
+        tapToLoactionLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    
     UILabel *houseNoLabel = [[UILabel alloc]init];
     houseNoLabel.text = NSLocalizedString(@"楼号/门牌号", nil);
     houseNoLabel.font = [UIFont systemFontOfSize:16];
@@ -270,6 +297,10 @@
         make.height.equalTo(@(45));
     }];
     
+    if (_userHouseNoStr != nil) {
+        self.houseAdd.text =_userHouseNoStr;
+    }
+    
     UIButton *addNewADD = [UIButton buttonWithType:UIButtonTypeCustom];
     [addNewADD addTarget:self action:@selector(taptoLocation) forControlEvents:UIControlEventTouchUpInside];
     addNewADD.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -285,40 +316,123 @@
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)save{
-    if (locationStr == nil) {
+-(void)saveToChoose{
+    if (_addressId != nil) {
+        [self edit];
+    }else{
+        [self save];
+    }
+}
+-(void)edit{
+    if (_locationStr == nil ) {
         [MBManager showBriefAlert:NSLocalizedString(@"请获取地理位置", nil)];
-    }else if (userNameStr == nil){
+    }else if (_userNameStr == nil){
         [MBManager showBriefAlert:NSLocalizedString(@"请填写收货人姓名", nil)];
-    }else if (userPhoneStr == nil){
+    }else if (_userPhoneStr == nil){
         [MBManager showBriefAlert:NSLocalizedString(@"请填写收货人电话", nil)];
-    }else if (userHouseNoStr == nil){
+    }else if (_userHouseNoStr == nil){
         [MBManager showBriefAlert:NSLocalizedString(@"请获填写具体位置", nil)];
     }else{
         
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *userid = [defaults objectForKey:UD_USERNAME];
+        if (userid == nil) {
+            LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+            [self.navigationController pushViewController:login animated:YES];
+        }else{
+            NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,editAddressURL];
+            NSDictionary *parameters = @{@"addrid":_addressId,
+                                         @"uname":_userNameStr,
+                                         @"sex":_userSex,
+                                         @"phone":_userPhoneStr,
+                                         @"addr":_locationStr,
+                                         @"addrtext":_userHouseNoStr,
+                                         @"lat":_getLat,
+                                         @"lonng":_getLong
+                                         };
+            AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+            //请求的方式：POST
+            [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
+                if ([code isEqualToString:@"1"]) {
+                    [MBManager showBriefAlert:NSLocalizedString(@"地址修改成功", nil)];
+                    [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
+                }
+                
+                
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [MBManager showBriefAlert:NSLocalizedString(@"地址修改失败", nil)];
+            }];
+        }
         
+    }
+}
+-(void)save{
+    if (_locationStr == nil ) {
+        [MBManager showBriefAlert:NSLocalizedString(@"请获取地理位置", nil)];
+    }else if (_userNameStr == nil){
+        [MBManager showBriefAlert:NSLocalizedString(@"请填写收货人姓名", nil)];
+    }else if (_userPhoneStr == nil){
+        [MBManager showBriefAlert:NSLocalizedString(@"请填写收货人电话", nil)];
+    }else if (_userHouseNoStr == nil){
+        [MBManager showBriefAlert:NSLocalizedString(@"请获填写具体位置", nil)];
+    }else{
+       
+          NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *userid = [defaults objectForKey:UD_USERNAME];
+        if (userid == nil) {
+            LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+            [self.navigationController pushViewController:login animated:YES];
+        }else{
+            NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,addAddressUrl];
+            NSDictionary *parameters = @{@"uid":userid,
+                                         @"uname":_userNameStr,
+                                         @"sex":_userSex,
+                                         @"phone":_userPhoneStr,
+                                         @"addr":_locationStr,
+                                         @"addrtext":_userHouseNoStr,
+                                         @"lat":_getLat,
+                                         @"lonng":_getLong
+                                         };
+            AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+            //请求的方式：POST
+            [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+               NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
+                if ([code isEqualToString:@"1"]) {
+                     [MBManager showBriefAlert:NSLocalizedString(@"地址添加成功", nil)];
+                     [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
+                }
+                
+                
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBManager showBriefAlert:NSLocalizedString(@"地址添加失败", nil)];
+            }];
+        }
+     
     }
 }
 
 #pragma mark - 监听textFile
 -(void)UserTextFieldDidChange :(UITextField *)theTextField{
-    
+    _userNameStr = theTextField.text;
 }
 -(void)PhoneTextFieldDidChange :(UITextField *)theTextField{
-    
+    _userPhoneStr = theTextField.text;
 }
 -(void)houseTextFieldDidChange :(UITextField *)theTextField{
-    
+    _userHouseNoStr = theTextField.text;
 }
 
 -(void)chooseMan{
     self.manIcon.backgroundColor = [UIColor blueColor];
     self.womenIcon.backgroundColor = [UIColor blackColor];
+    _userSex = @"1";
     
 }
 -(void)chooseWoman{
     self.manIcon.backgroundColor = [UIColor blackColor];
     self.womenIcon.backgroundColor = [UIColor redColor];
+    _userSex = @"2";
 }
 
 -(void)taptoLocation{
@@ -327,7 +441,13 @@
         tapToLoactionLabel.text = strValue;
         tapToLoactionLabel.textColor = [UIColor blackColor];
         tapToLoactionLabel.textAlignment = NSTextAlignmentCenter;
-        locationStr = strValue;
+        _locationStr = strValue;
+    };
+    mapVC.returnlatBlock = ^(NSString *lat) {
+        _getLat = lat;
+    };
+    mapVC.returnlongitBlock = ^(NSString *longit) {
+        _getLong = longit;
     };
     [self.navigationController pushViewController:mapVC animated:YES];
 }

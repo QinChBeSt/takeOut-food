@@ -19,6 +19,8 @@
     MKMapView         *   maMapView;
     NSString *currentCity;//当前城市
     NSString *locationStr;
+    NSString *getlatitude;
+    NSString *getlongitude;
     
     UILabel *cityName;
     UILabel *loactionLabel;
@@ -140,8 +142,8 @@
     
     CLLocation *location=[[CLLocation alloc]initWithLatitude:centerCoordinate.latitude longitude:centerCoordinate.longitude];
    
-    
-    //反地理编码
+    getlatitude =[NSString stringWithFormat:@"%f",centerCoordinate.latitude];
+    getlongitude = [NSString stringWithFormat:@"%f",centerCoordinate.longitude];
     [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         //判断是否有错误或者placemarks是否为空
         if (error !=nil || placemarks.count==0) {
@@ -179,6 +181,14 @@
     if (self.returnValueBlock) {
         //将自己的值传出去，完成传值
         self.returnValueBlock(locationStr);
+    }
+    
+    if (self.returnlatBlock) {
+        self.returnlatBlock(getlatitude);
+    }
+    
+    if (self.returnlongitBlock) {
+        self.returnlongitBlock(getlongitude);
     }
     [self back];
 }
