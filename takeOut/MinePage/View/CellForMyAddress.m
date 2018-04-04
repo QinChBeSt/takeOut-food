@@ -26,12 +26,18 @@
     backGroundView.clipsToBounds = YES;
     [self.contentView addSubview:backGroundView];
     
+    self.selectImage = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 30, 10, 10, 10)];
+    [self.contentView addSubview:self.selectImage];
+    
+    
     self.addressLabel = [[UILabel alloc]init];
+    self.addressLabel.numberOfLines = 2;
     self.addressLabel.font = [UIFont systemFontOfSize:14];
     [backGroundView addSubview:self.addressLabel];
     [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(backGroundView.mas_left).offset(15);
         make.centerY.equalTo(backGroundView.mas_top).offset(listHeight / 2);
+        make.right.equalTo(self.selectImage.mas_left).offset(5);
     }];
     
     UIView *midLine = [[UIView alloc]initWithFrame:CGRectMake(15, listHeight, SCREEN_WIDTH - 30, 0.5)];

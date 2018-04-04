@@ -9,6 +9,7 @@
 #import "SubmitOrderVC.h"
 #import "CellForSubmitOrder.h"
 #import "ModForHadAddShoppingCar.h"
+#import "PayOrderChooseAddressVC.h"
 #define topHieght 100
 #define midHeight 60
 #define bottomHeight 170
@@ -92,6 +93,9 @@
         make.left.equalTo(addIcon.mas_right).offset(20);
         make.right.equalTo(addBanckgroundView.mas_right).offset(-15);
     }];
+    UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toChooseAddress)];
+    
+    [addView addGestureRecognizer:tapGesturRecognizer];
 //尾视图
     UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, midHeight + bottomHeight)];
     bottomView.backgroundColor = [UIColor whiteColor];
@@ -260,6 +264,10 @@
 }
 -(void)toPay{
     
+}
+-(void)toChooseAddress{
+    PayOrderChooseAddressVC *mineAddvc = [[PayOrderChooseAddressVC alloc]init];
+    [self.navigationController pushViewController:mineAddvc animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -48,6 +48,7 @@
 		9DA022812074734F005F7168 /* CellForMyAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA022802074734F005F7168 /* CellForMyAddress.m */; };
 		9DA022842074B47A005F7168 /* SubmitOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA022832074B47A005F7168 /* SubmitOrderVC.m */; };
 		9DA022872074C5B3005F7168 /* CellForSubmitOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA022862074C5B3005F7168 /* CellForSubmitOrder.m */; };
+		9DA0228A2074DBDD005F7168 /* PayOrderChooseAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA022892074DBDD005F7168 /* PayOrderChooseAddressVC.m */; };
 		9DCF3220206E37BF0032F9B6 /* ModelForChooseSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCF321F206E37BF0032F9B6 /* ModelForChooseSize.m */; };
 		9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2752064EC7100393DE5 /* AppDelegate.m */; };
 		9DDFD27C2064EC7100393DE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DDFD27A2064EC7100393DE5 /* Main.storyboard */; };
@@ -170,6 +171,8 @@
 		9DA022832074B47A005F7168 /* SubmitOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubmitOrderVC.m; sourceTree = "<group>"; };
 		9DA022852074C5B3005F7168 /* CellForSubmitOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForSubmitOrder.h; sourceTree = "<group>"; };
 		9DA022862074C5B3005F7168 /* CellForSubmitOrder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForSubmitOrder.m; sourceTree = "<group>"; };
+		9DA022882074DBDD005F7168 /* PayOrderChooseAddressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayOrderChooseAddressVC.h; sourceTree = "<group>"; };
+		9DA022892074DBDD005F7168 /* PayOrderChooseAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayOrderChooseAddressVC.m; sourceTree = "<group>"; };
 		9DCF321E206E37BF0032F9B6 /* ModelForChooseSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForChooseSize.h; sourceTree = "<group>"; };
 		9DCF321F206E37BF0032F9B6 /* ModelForChooseSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForChooseSize.m; sourceTree = "<group>"; };
 		9DDFD2712064EC7100393DE5 /* takeOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = takeOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,6 +295,8 @@
 				9D6143912073268F00187232 /* ShopDetailMassageVC.m */,
 				9DA022822074B47A005F7168 /* SubmitOrderVC.h */,
 				9DA022832074B47A005F7168 /* SubmitOrderVC.m */,
+				9DA022882074DBDD005F7168 /* PayOrderChooseAddressVC.h */,
+				9DA022892074DBDD005F7168 /* PayOrderChooseAddressVC.m */,
 			);
 			path = ShopDetail;
 			sourceTree = "<group>";
@@ -831,6 +836,7 @@
 				9DA022842074B47A005F7168 /* SubmitOrderVC.m in Sources */,
 				9D98D965206A14C30019AC0C /* CellForChooseSize.m in Sources */,
 				9DCF3220206E37BF0032F9B6 /* ModelForChooseSize.m in Sources */,
+				9DA0228A2074DBDD005F7168 /* PayOrderChooseAddressVC.m in Sources */,
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
 				9DA0227E20746DEB005F7168 /* ModelForGetAddress.m in Sources */,
 				9D98D969206A30BA0019AC0C /* UIView+CHView.m in Sources */,

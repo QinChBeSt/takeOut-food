@@ -13,4 +13,5 @@
 @property (nonatomic , strong) UILabel *name;
 @property (nonatomic , strong) UILabel *phone;
 @property (nonatomic , strong)ModelForGetAddress *Mod;
+@property (nonatomic , strong) UIImageView *selectImage;
 @end
