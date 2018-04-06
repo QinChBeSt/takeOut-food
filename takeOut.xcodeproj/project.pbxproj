@@ -67,6 +67,9 @@
 		D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88CF20652EA7000D509A /* UIColor+Hex.m */; };
 		D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88D120652F24000D509A /* EXNavigationVC.m */; };
 		D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88D420652F24000D509A /* EXTabBarVC.m */; };
+		D6C301C42077BD24009B9B35 /* CellForOrderList.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C301C32077BD24009B9B35 /* CellForOrderList.m */; };
+		D6C301C82077C0BA009B9B35 /* ModelForOrderList.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C301C72077C0BA009B9B35 /* ModelForOrderList.m */; };
+		D6C301CB2077CA85009B9B35 /* ViewForOrderListFoodsName.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C301CA2077CA85009B9B35 /* ViewForOrderListFoodsName.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +212,12 @@
 		D65D88D220652F24000D509A /* EXNavigationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXNavigationVC.h; sourceTree = "<group>"; };
 		D65D88D320652F24000D509A /* EXTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTabBarVC.h; sourceTree = "<group>"; };
 		D65D88D420652F24000D509A /* EXTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTabBarVC.m; sourceTree = "<group>"; };
+		D6C301C22077BD24009B9B35 /* CellForOrderList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForOrderList.h; sourceTree = "<group>"; };
+		D6C301C32077BD24009B9B35 /* CellForOrderList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForOrderList.m; sourceTree = "<group>"; };
+		D6C301C62077C0BA009B9B35 /* ModelForOrderList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForOrderList.h; sourceTree = "<group>"; };
+		D6C301C72077C0BA009B9B35 /* ModelForOrderList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForOrderList.m; sourceTree = "<group>"; };
+		D6C301C92077CA85009B9B35 /* ViewForOrderListFoodsName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewForOrderListFoodsName.h; sourceTree = "<group>"; };
+		D6C301CA2077CA85009B9B35 /* ViewForOrderListFoodsName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewForOrderListFoodsName.m; sourceTree = "<group>"; };
 		F3C52C8109E37E7630666F17 /* libPods-takeOut.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-takeOut.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -504,18 +513,11 @@
 		9DDFD2AF2064F1C300393DE5 /* OrderPage */ = {
 			isa = PBXGroup;
 			children = (
+				D6C301C52077C0A0009B9B35 /* Model */,
+				D6C301C12077BD12009B9B35 /* View */,
 				9DDFD2B12064F1C300393DE5 /* VC */,
-				9DDFD2B02064F1C300393DE5 /* Model */,
-				9DDFD2B22064F1C300393DE5 /* View */,
 			);
 			path = OrderPage;
-			sourceTree = "<group>";
-		};
-		9DDFD2B02064F1C300393DE5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		9DDFD2B12064F1C300393DE5 /* VC */ = {
@@ -529,13 +531,6 @@
 				9D262034206CD24500A2351B /* WillEvaluateVC.m */,
 			);
 			path = VC;
-			sourceTree = "<group>";
-		};
-		9DDFD2B22064F1C300393DE5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		9DFF11D9206B6D8E0084D63F /* UUID */ = {
@@ -611,6 +606,26 @@
 				D65D88CF20652EA7000D509A /* UIColor+Hex.m */,
 			);
 			path = hexColor;
+			sourceTree = "<group>";
+		};
+		D6C301C12077BD12009B9B35 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D6C301C22077BD24009B9B35 /* CellForOrderList.h */,
+				D6C301C32077BD24009B9B35 /* CellForOrderList.m */,
+				D6C301C92077CA85009B9B35 /* ViewForOrderListFoodsName.h */,
+				D6C301CA2077CA85009B9B35 /* ViewForOrderListFoodsName.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D6C301C52077C0A0009B9B35 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D6C301C62077C0BA009B9B35 /* ModelForOrderList.h */,
+				D6C301C72077C0BA009B9B35 /* ModelForOrderList.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -840,9 +855,11 @@
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
 				9DA0227E20746DEB005F7168 /* ModelForGetAddress.m in Sources */,
 				9D98D969206A30BA0019AC0C /* UIView+CHView.m in Sources */,
+				D6C301CB2077CA85009B9B35 /* ViewForOrderListFoodsName.m in Sources */,
 				9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */,
 				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
 				9D262021206CB50000A2351B /* HomeTypeVC.m in Sources */,
+				D6C301C42077BD24009B9B35 /* CellForOrderList.m in Sources */,
 				9DA022872074C5B3005F7168 /* CellForSubmitOrder.m in Sources */,
 				9D72E2B7206B25E200CEE3B0 /* RegisterVC.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
@@ -859,6 +876,7 @@
 				9D4952612068C97C005A6BBC /* ShopDetailVC.m in Sources */,
 				9D262032206CD21F00A2351B /* AllOrderVC.m in Sources */,
 				9D012B1D20736C200015322E /* LocationMapVC.m in Sources */,
+				D6C301C82077C0BA009B9B35 /* ModelForOrderList.m in Sources */,
 				9D49525E2068B25A005A6BBC /* ModelForShopList.m in Sources */,
 				9D012B2120736E440015322E /* JZLocationConverter.m in Sources */,
 				9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */,

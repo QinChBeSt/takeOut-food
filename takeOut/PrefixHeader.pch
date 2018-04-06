@@ -70,5 +70,7 @@
 #import "MBManager.h"
 #import "UUID.h"
 #import "MD5encryption.h"
+#import "UIView+SDAutoLayout.h"
+#import "UITableView+SDAutoTableViewCellHeight.h"
 
 #endif
