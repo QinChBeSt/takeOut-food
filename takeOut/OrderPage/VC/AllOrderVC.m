@@ -21,8 +21,9 @@
 }
 #pragma mark - 创建tableView
 -(void)createTableView{
-    
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
+    UITabBarController *tabBarVC = [[UITabBarController alloc] init];
+    CGFloat tabBarHeight = tabBarVC.tabBar.frame.size.height;
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0 , self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaTopHeight - 66 - SafeAreaTabbarHeight) style:UITableViewStylePlain];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
