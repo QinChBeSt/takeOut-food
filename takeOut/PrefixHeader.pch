@@ -35,6 +35,8 @@
 #define setOrderToPayURL  @"/xmfapi/smbmitorder"
 //商家评价
 #define getShopEvaURL @"/xmfapi/getEvaluate"
+//商家详情
+#define getShopShopDeatailURL @"/xmfapi/getShopxx"
 
 //获取订单列表
 #define getOrderListURL @"/xmfapi/orderlist"

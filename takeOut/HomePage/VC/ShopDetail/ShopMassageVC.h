@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ShopMassageVC : UIViewController
-
+@property (nonatomic , copy) NSString *shopId;
 @end

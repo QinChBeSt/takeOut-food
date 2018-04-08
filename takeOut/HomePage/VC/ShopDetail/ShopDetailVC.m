@@ -169,7 +169,7 @@
     EvaluationVC *s = [[EvaluationVC alloc] init];
     s.shopId = self.shopId;
     ShopMassageVC *f1 = [[ShopMassageVC alloc] init];
-
+    f1.shopId = self.shopId;
     NSArray *array = @[f,s,f1];
     
     self.segmentVC = [[ZWMSegmentController alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight + 100, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -100) titles:@[@"点菜",@"评价",@"商家"]];
