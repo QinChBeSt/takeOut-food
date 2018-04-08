@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewForOrderListFoodsName.h"
+#import "ModelForOrderList.h"
 @interface CellForOrderList : UITableViewCell
 @property (nonatomic , strong)UIImageView *shopIcon;
 @property (nonatomic , strong)UILabel *shopNameLabel;
@@ -21,4 +22,5 @@
 @property (nonatomic , strong)UILabel *foodsMuch;
 @property (nonatomic , assign)int foodTypeCount;
 @property (nonatomic , strong)UIView *bottomLine;
+@property (nonatomic , strong)ModelForOrderList *mod;
 @end

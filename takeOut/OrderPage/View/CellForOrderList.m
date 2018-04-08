@@ -35,7 +35,7 @@
     .heightIs(30);
     
     self.shopNameLabel = [[UILabel alloc]init];
-    self.shopNameLabel.text = @"商家11";
+   
     [self.contentView addSubview:self.shopNameLabel];
     [self.shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.shopIcon);
@@ -100,14 +100,13 @@
     }];
     
     self.foodsMuch = [[UILabel alloc]init];
-    self.foodsMuch.text = @"10元";
     [self.contentView addSubview:self.foodsMuch];
     [self.foodsMuch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-15);
         make.top.equalTo(self.foodsView3.mas_bottom).offset(15);
     }];
     self.foodsTolitLabel = [[UILabel alloc]init];
-    self.foodsTolitLabel.text = @"共1件商品：";
+    
     [self.contentView addSubview:self.foodsTolitLabel];
     [self.foodsTolitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.foodsMuch.mas_left).offset(0);
@@ -125,22 +124,70 @@
 
     [self setupAutoHeightWithBottomView:bottomLine bottomMargin:10];
 }
--(void)setFoodTypeCount:(int)foodTypeCount{
-    if (foodTypeCount <= 1) {
-        self.foodsView.foodsName.text = @"实物名称";
-        self.foodsView.foodsCount.text = @"x 1";
-    }else if (foodTypeCount == 2){
-        self.foodsView.foodsName.text = @"实物名称";
-        self.foodsView.foodsCount.text = @"x 1";
-        self.foodsView2.foodsName.text = @"实物名称";
-        self.foodsView2.foodsCount.text = @"x 1";
-    }else if (foodTypeCount == 3){
-        self.foodsView.foodsName.text = @"实物名称";
-        self.foodsView.foodsCount.text = @"x 1";
-        self.foodsView2.foodsName.text = @"实物名称";
-        self.foodsView2.foodsCount.text = @"x 1";
-        self.foodsView3.foodsName.text = @"实物名称";
-        self.foodsView3.foodsCount.text = @"x 1";
+//-(void)setFoodTypeCount:(int)foodTypeCount{
+//    if (foodTypeCount <= 1) {
+//        self.foodsView.foodsName.text = @"实物名称";
+//        self.foodsView.foodsCount.text = @"x 1";
+//    }else if (foodTypeCount == 2){
+//        self.foodsView.foodsName.text = @"实物名称";
+//        self.foodsView.foodsCount.text = @"x 1";
+//        self.foodsView2.foodsName.text = @"实物名称";
+//        self.foodsView2.foodsCount.text = @"x 1";
+//    }else if (foodTypeCount == 3){
+//        self.foodsView.foodsName.text = @"实物名称";
+//        self.foodsView.foodsCount.text = @"x 1";
+//        self.foodsView2.foodsName.text = @"实物名称";
+//        self.foodsView2.foodsCount.text = @"x 1";
+//        self.foodsView3.foodsName.text = @"实物名称";
+//        self.foodsView3.foodsCount.text = @"x 1";
+//    }
+//}
+-(void)setMod:(ModelForOrderList *)mod{
+    self.shopNameLabel.text = mod.shopname;
+    self.foodsMuch.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"￥", nil),mod.totalpic];
+    NSString *foodsnum = [NSString stringWithFormat:@"%@",mod.goodsnum];
+    self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"共计", nil),foodsnum,NSLocalizedString(@"件商品", nil)];
+    NSArray *foodsArr = mod.godslist;
+    if (foodsArr.count == 1) {
+        self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
+        NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
+        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
+    }
+    else if (foodsArr.count == 2){
+        self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
+        NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
+        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
+       
+        self.foodsView2.foodsName.text = foodsArr[1][@"ordersGoodsName"];
+        NSString *listFoodcount2 = foodsArr[1][@"ordersGoodsNum"];
+        self.foodsView2.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount2];
+    }else if (foodsArr.count == 3){
+        
+        self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
+        NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
+        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
+        
+        self.foodsView2.foodsName.text = foodsArr[1][@"ordersGoodsName"];
+        NSString *listFoodcount2 = foodsArr[1][@"ordersGoodsNum"];
+        self.foodsView2.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount2];
+        
+        self.foodsView3.foodsName.text = foodsArr[2][@"ordersGoodsName"];
+        NSString *listFoodcount3 = foodsArr[2][@"ordersGoodsNum"];
+        self.foodsView3.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount3];
+
+        
+    }else if (foodsArr.count > 3){
+        self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
+        NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
+        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
+        
+        self.foodsView2.foodsName.text = foodsArr[1][@"ordersGoodsName"];
+        NSString *listFoodcount2 = foodsArr[1][@"ordersGoodsNum"];
+        self.foodsView2.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount2];
+        
+        self.foodsView3.foodsName.text = foodsArr[2][@"ordersGoodsName"];
+        NSString *listFoodcount3 = foodsArr[2][@"ordersGoodsNum"];
+        self.foodsView3.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount3];
     }
 }
 //-(void)layoutSubviews{

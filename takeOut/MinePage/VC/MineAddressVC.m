@@ -34,7 +34,7 @@
 -(void)getNetWork{
     self.view.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *userid = [defaults objectForKey:UD_USERNAME];
+    NSString *userid = [defaults objectForKey:UD_USERID];
     if (userid == nil) {
         LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
         [self.navigationController pushViewController:login animated:YES];

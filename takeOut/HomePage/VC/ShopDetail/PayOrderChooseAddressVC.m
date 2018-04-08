@@ -9,7 +9,7 @@
 #import "PayOrderChooseAddressVC.h"
 #import "AddNewAddressVC.h"
 #import "LoginByPhoneVC.h"
-#import "ModelForGetAddress.h"
+
 #import "CellForMyAddress.h"
 
 @interface PayOrderChooseAddressVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -20,6 +20,7 @@
 @property (nonatomic , strong)UIView *tbFirst;
 @property (nonatomic , strong)NSIndexPath *lastIndexPath;
 @property (nonatomic , assign)NSInteger indexNum;
+@property (nonatomic , strong)ModelForGetAddress *modForChoose;
 @end
 
 @implementation PayOrderChooseAddressVC
@@ -36,7 +37,7 @@
 -(void)getNetWork{
     self.view.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *userid = [defaults objectForKey:UD_USERNAME];
+    NSString *userid = [defaults objectForKey:UD_USERID];
     if (userid == nil) {
         LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
         [self.navigationController pushViewController:login animated:YES];
@@ -172,7 +173,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.lastIndexPath = indexPath;
     [self.tableView reloadData];
-
+    self.modForChoose = [[ModelForGetAddress alloc]init];
+    self.modForChoose = [self.arrForGetAddress objectAtIndex:indexPath.row];
+    NSLog(@"地址ID%@",self.modForChoose.id);
+    
 }
 -(void)createButtonBtn{
     
@@ -195,6 +199,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)save{
+    if (self.blockchooseAddress) {
+        self.blockchooseAddress(self.modForChoose);
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)addAddress{

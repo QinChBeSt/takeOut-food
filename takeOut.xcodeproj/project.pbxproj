@@ -18,6 +18,7 @@
 		9D26202C206CCA8700A2351B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D26202E206CCA8700A2351B /* Localizable.strings */; };
 		9D262032206CD21F00A2351B /* AllOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262031206CD21F00A2351B /* AllOrderVC.m */; };
 		9D262035206CD24500A2351B /* WillEvaluateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262034206CD24500A2351B /* WillEvaluateVC.m */; };
+		9D3854E82079AC4200175693 /* OrderSuccessfullVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854E72079AC4200175693 /* OrderSuccessfullVC.m */; };
 		9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524B2068850D005A6BBC /* MHNetWorkTask.m */; };
 		9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524E2068944E005A6BBC /* ModelForHomeType.m */; };
 		9D49525B2068A546005A6BBC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D49525A2068A546005A6BBC /* CoreLocation.framework */; };
@@ -115,6 +116,8 @@
 		9D262031206CD21F00A2351B /* AllOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllOrderVC.m; sourceTree = "<group>"; };
 		9D262033206CD24500A2351B /* WillEvaluateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WillEvaluateVC.h; sourceTree = "<group>"; };
 		9D262034206CD24500A2351B /* WillEvaluateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WillEvaluateVC.m; sourceTree = "<group>"; };
+		9D3854E62079AC4200175693 /* OrderSuccessfullVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderSuccessfullVC.h; sourceTree = "<group>"; };
+		9D3854E72079AC4200175693 /* OrderSuccessfullVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderSuccessfullVC.m; sourceTree = "<group>"; };
 		9D49524A2068850D005A6BBC /* MHNetWorkTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNetWorkTask.h; sourceTree = "<group>"; };
 		9D49524B2068850D005A6BBC /* MHNetWorkTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHNetWorkTask.m; sourceTree = "<group>"; };
 		9D49524D2068944E005A6BBC /* ModelForHomeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForHomeType.h; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 				9DA022832074B47A005F7168 /* SubmitOrderVC.m */,
 				9DA022882074DBDD005F7168 /* PayOrderChooseAddressVC.h */,
 				9DA022892074DBDD005F7168 /* PayOrderChooseAddressVC.m */,
+				9D3854E62079AC4200175693 /* OrderSuccessfullVC.h */,
+				9D3854E72079AC4200175693 /* OrderSuccessfullVC.m */,
 			);
 			path = ShopDetail;
 			sourceTree = "<group>";
@@ -853,6 +858,7 @@
 				9DCF3220206E37BF0032F9B6 /* ModelForChooseSize.m in Sources */,
 				9DA0228A2074DBDD005F7168 /* PayOrderChooseAddressVC.m in Sources */,
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
+				9D3854E82079AC4200175693 /* OrderSuccessfullVC.m in Sources */,
 				9DA0227E20746DEB005F7168 /* ModelForGetAddress.m in Sources */,
 				9D98D969206A30BA0019AC0C /* UIView+CHView.m in Sources */,
 				D6C301CB2077CA85009B9B35 /* ViewForOrderListFoodsName.m in Sources */,

@@ -27,10 +27,14 @@
 "(已减￥" = "(Had Reduct $";
 "￥:" = "$:";
 "确定" = "OK";
+"提交订单成功" = "Submit order successfully";
+"提交订单失败" = "Submit order Failed";
+
 // ---------------------- 订单
 "全部订单" = "All Order";
 "待评价" = "Will evaluate";
-
+"共计" = "total of";
+"件商品" = "items goods";
 // ---------------------- 我的
 "登陆" = "Login";
 "登陆成功" = "login success";
