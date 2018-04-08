@@ -15,4 +15,5 @@
 @property (nonatomic , strong)NSString *goodsnum;
 @property (nonatomic , strong)NSString *totalpic;
 @property (nonatomic , strong)NSArray *godslist;
+@property (nonatomic , strong)NSString *cdata;
 @end

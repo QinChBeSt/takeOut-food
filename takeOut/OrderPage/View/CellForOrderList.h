@@ -21,6 +21,8 @@
 @property (nonatomic , strong)UILabel *foodsTolitLabel;
 @property (nonatomic , strong)UILabel *foodsMuch;
 @property (nonatomic , assign)int foodTypeCount;
+@property (nonatomic , strong)UILabel *orderTimeLabel;
 @property (nonatomic , strong)UIView *bottomLine;
+@property (nonatomic , strong)UIButton *toPJbtn;
 @property (nonatomic , strong)ModelForOrderList *mod;
 @end

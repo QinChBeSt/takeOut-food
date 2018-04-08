@@ -33,10 +33,13 @@
 #define AddShoppingCarUlr @"/xmfapi/addCar"
 //提交订单
 #define setOrderToPayURL  @"/xmfapi/smbmitorder"
+//商家评价
+#define getShopEvaURL @"/xmfapi/getEvaluate"
 
 //获取订单列表
 #define getOrderListURL @"/xmfapi/orderlist"
-
+//获取订单详情
+#define getOrderDetailURL @"/xmfapi/orderxq"
 
 //注册
 #define RegisUserURL @"/xmfapi/eit"

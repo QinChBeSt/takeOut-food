@@ -167,6 +167,7 @@
     f.shopId = self.shopId;
     f.upPayMoney = self.shopUpPayMoney;
     EvaluationVC *s = [[EvaluationVC alloc] init];
+    s.shopId = self.shopId;
     ShopMassageVC *f1 = [[ShopMassageVC alloc] init];
 
     NSArray *array = @[f,s,f1];

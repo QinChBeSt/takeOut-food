@@ -19,6 +19,9 @@
 		9D262032206CD21F00A2351B /* AllOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262031206CD21F00A2351B /* AllOrderVC.m */; };
 		9D262035206CD24500A2351B /* WillEvaluateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262034206CD24500A2351B /* WillEvaluateVC.m */; };
 		9D3854E82079AC4200175693 /* OrderSuccessfullVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854E72079AC4200175693 /* OrderSuccessfullVC.m */; };
+		9D3854EB2079D89E00175693 /* DetailForOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854EA2079D89E00175693 /* DetailForOrder.m */; };
+		9D3854EE207A069D00175693 /* CellForOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854ED207A069D00175693 /* CellForOrderDetail.m */; };
+		9D3854F1207A0FB400175693 /* CellForShopEva.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854F0207A0FB400175693 /* CellForShopEva.m */; };
 		9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524B2068850D005A6BBC /* MHNetWorkTask.m */; };
 		9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524E2068944E005A6BBC /* ModelForHomeType.m */; };
 		9D49525B2068A546005A6BBC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D49525A2068A546005A6BBC /* CoreLocation.framework */; };
@@ -118,6 +121,12 @@
 		9D262034206CD24500A2351B /* WillEvaluateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WillEvaluateVC.m; sourceTree = "<group>"; };
 		9D3854E62079AC4200175693 /* OrderSuccessfullVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderSuccessfullVC.h; sourceTree = "<group>"; };
 		9D3854E72079AC4200175693 /* OrderSuccessfullVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderSuccessfullVC.m; sourceTree = "<group>"; };
+		9D3854E92079D89E00175693 /* DetailForOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailForOrder.h; sourceTree = "<group>"; };
+		9D3854EA2079D89E00175693 /* DetailForOrder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailForOrder.m; sourceTree = "<group>"; };
+		9D3854EC207A069D00175693 /* CellForOrderDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForOrderDetail.h; sourceTree = "<group>"; };
+		9D3854ED207A069D00175693 /* CellForOrderDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForOrderDetail.m; sourceTree = "<group>"; };
+		9D3854EF207A0FB400175693 /* CellForShopEva.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForShopEva.h; sourceTree = "<group>"; };
+		9D3854F0207A0FB400175693 /* CellForShopEva.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForShopEva.m; sourceTree = "<group>"; };
 		9D49524A2068850D005A6BBC /* MHNetWorkTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNetWorkTask.h; sourceTree = "<group>"; };
 		9D49524B2068850D005A6BBC /* MHNetWorkTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHNetWorkTask.m; sourceTree = "<group>"; };
 		9D49524D2068944E005A6BBC /* ModelForHomeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForHomeType.h; sourceTree = "<group>"; };
@@ -511,6 +520,8 @@
 				9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */,
 				9DA022852074C5B3005F7168 /* CellForSubmitOrder.h */,
 				9DA022862074C5B3005F7168 /* CellForSubmitOrder.m */,
+				9D3854EF207A0FB400175693 /* CellForShopEva.h */,
+				9D3854F0207A0FB400175693 /* CellForShopEva.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -534,6 +545,8 @@
 				9D262031206CD21F00A2351B /* AllOrderVC.m */,
 				9D262033206CD24500A2351B /* WillEvaluateVC.h */,
 				9D262034206CD24500A2351B /* WillEvaluateVC.m */,
+				9D3854E92079D89E00175693 /* DetailForOrder.h */,
+				9D3854EA2079D89E00175693 /* DetailForOrder.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -620,6 +633,8 @@
 				D6C301C32077BD24009B9B35 /* CellForOrderList.m */,
 				D6C301C92077CA85009B9B35 /* ViewForOrderListFoodsName.h */,
 				D6C301CA2077CA85009B9B35 /* ViewForOrderListFoodsName.m */,
+				9D3854EC207A069D00175693 /* CellForOrderDetail.h */,
+				9D3854ED207A069D00175693 /* CellForOrderDetail.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -852,6 +867,7 @@
 				D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */,
 				9DFF11DC206B6DB30084D63F /* UUID.m in Sources */,
 				9D92577D2065F90C00A6E262 /* SortButton.m in Sources */,
+				9D3854EB2079D89E00175693 /* DetailForOrder.m in Sources */,
 				9DFF11E3206B93DE0084D63F /* MD5encryption.m in Sources */,
 				9DA022842074B47A005F7168 /* SubmitOrderVC.m in Sources */,
 				9D98D965206A14C30019AC0C /* CellForChooseSize.m in Sources */,
@@ -868,8 +884,10 @@
 				D6C301C42077BD24009B9B35 /* CellForOrderList.m in Sources */,
 				9DA022872074C5B3005F7168 /* CellForSubmitOrder.m in Sources */,
 				9D72E2B7206B25E200CEE3B0 /* RegisterVC.m in Sources */,
+				9D3854F1207A0FB400175693 /* CellForShopEva.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
 				9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */,
+				9D3854EE207A069D00175693 /* CellForOrderDetail.m in Sources */,
 				9D49526A2068CD95005A6BBC /* ZWMSegmentController.m in Sources */,
 				9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */,
 				9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */,

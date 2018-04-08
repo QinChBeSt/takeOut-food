@@ -9,6 +9,7 @@
 #import "AllOrderVC.h"
 #import "CellForOrderList.h"
 #import "ModelForOrderList.h"
+#import "DetailForOrder.h"
 @interface AllOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
@@ -22,6 +23,7 @@
     return _arrForOrerList;
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
      [self getNetwork];
 }
 - (void)viewDidLoad {
@@ -52,6 +54,7 @@
             Mod.goodsnum = dic11[@"goodsnum"];
             Mod.totalpic = dic11[@"totalpic"];
             Mod.godslist = dic11[@"godslist"];
+            Mod.cdata = dic11[@"cdata"];
             [self.arrForOrerList addObject:Mod];
         }
         [self.tableView reloadData];
@@ -62,13 +65,13 @@
 #pragma mark - 创建tableView
 -(void)createTableView{
   
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0 , self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaTopHeight - 66 - SafeAreaTabbarHeight) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0 , self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaTopHeight - 45 - 49 - SafeAreaTabbarHeight) style:UITableViewStylePlain];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
      self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     /** 注册cell. */
-    [self.tableView registerClass:[CellForOrderList class] forCellReuseIdentifier:@"pool1"];
+   [self.tableView registerClass:[CellForOrderList class] forCellReuseIdentifier:@"pool1"];
     
     [self.view addSubview:self.tableView];
     
@@ -86,30 +89,36 @@
 {
     ModelForOrderList *mod = [[ModelForOrderList alloc]init];
     mod = [self.arrForOrerList objectAtIndex:indexPath.row];
-    if ([mod.shopstart isEqualToString:@"2"]) {
-        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-        if (!cell) {
-            
-            cell = [[CellForOrderList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            
-        }
+  //  if ([mod.shopstart isEqualToString:@"2"]) {
+        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.mod = mod;
-    }
-    return nil;
+        return cell;
+        
+    //}
+    //return nil;
 }
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return [self cellHeightForIndexPath:indexPath cellContentViewWidth:SCREEN_WIDTH tableView:self.tableView];
     
+    ModelForOrderList *mod = [[ModelForOrderList alloc]init];
+    mod = [self.arrForOrerList objectAtIndex:indexPath.row];
+    /* model 为模型实例， keyPath 为 model 的属性名，通过 kvc 统一赋值接口 */
+    return [tableView cellHeightForIndexPath:indexPath model:mod keyPath:@"model" cellClass:[CellForOrderList class] contentViewWidth:self.view.frame.size.width];
+
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    DetailForOrder *detailvc = [[DetailForOrder alloc]init];
+    detailvc.hidesBottomBarWhenPushed = YES;
+    ModelForOrderList *mod = [[ModelForOrderList alloc]init];
+    mod = [self.arrForOrerList objectAtIndex:indexPath.row];
+    detailvc.orderID = mod.ordenum;
+    [self.navigationController pushViewController:detailvc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

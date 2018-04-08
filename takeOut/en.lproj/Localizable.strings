@@ -29,12 +29,32 @@
 "确定" = "OK";
 "提交订单成功" = "Submit order successfully";
 "提交订单失败" = "Submit order Failed";
+"全部" = "all";
+"差评" = "Bad";
+"商家评分" = "Shop score";
+"满意" = "good";
+"不满意" = "not good";
+"一般" = "mid";
+
 
 // ---------------------- 订单
 "全部订单" = "All Order";
 "待评价" = "Will evaluate";
 "共计" = "total of";
 "件商品" = "items goods";
+"订单时间" = "Order time";
+"订单详情" = "Detail Order";
+"感谢您的支持，欢迎下次光临！" = "Thank you for your support. Welcome next time!";
+"小计: ￥" = "total: $";
+"商家电话" = "store phone";
+"配送地址" = "Address";
+"配送服务" = "PSFW";
+"提供商品高品质配送服务" = "TGGPZPSFW";
+"货到付款" = "Cash on delivery";
+"在线支付" = "Online payment";
+"订单日期" = "Order Data";
+"支付方式" = "payType";
+"评价" = "evaluation";
 // ---------------------- 我的
 "登陆" = "Login";
 "登陆成功" = "login success";
