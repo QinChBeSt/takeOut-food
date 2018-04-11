@@ -37,7 +37,8 @@
 "一般" = "mid";
 "营业时间" = "open Time";
 "优惠活动" = "Preferential activities";
-
+"感谢您的支持，欢迎下次光临" = "Thank you for your support. Welcome next time";
+"订单已完成" = "Order completed";
 
 // ---------------------- 订单
 "全部订单" = "All Order";
@@ -57,6 +58,10 @@
 "订单日期" = "Order Data";
 "支付方式" = "payType";
 "评价" = "evaluation";
+"最少输入八个字" = "least 8 words";
+"对菜品口味，包装服务的还满意吗？您可以在此处输入您的想法与意见~（至少输入8个字）" = "Are you satisfied with the dishes? You can enter your thoughts and comments here ~ (at least 8 words)";
+"请选择配送员评价" = "Please select the distributor evaluation";
+"请选择订单评价" = "Please select the order evaluation";
 // ---------------------- 我的
 "登陆" = "Login";
 "登陆成功" = "login success";

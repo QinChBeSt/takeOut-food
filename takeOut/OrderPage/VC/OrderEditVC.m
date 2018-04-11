@@ -7,9 +7,10 @@
 //
 
 #import "OrderEditVC.h"
-#define riderIconHeight 130
 
-@interface OrderEditVC ()
+#define riderIconHeight 130
+#define foodBZviewHeight 100
+@interface OrderEditVC ()<UITextViewDelegate>
 @property (nonatomic , strong)UIView *naviView;
 
 @property (nonatomic , strong)UIView *riderView;
@@ -26,9 +27,13 @@
 @property (nonatomic , strong)UIButton *foodGoodBtn;
 @property (nonatomic , strong)UIButton *foodMidBtn;
 @property (nonatomic , strong)UIButton *foodBadBtn;
+@property(nonatomic, strong)UITextView *textView;
+
+@property(nonatomic, strong)UILabel *placeHolder;
 
 @property (nonatomic , strong)NSString *riderSelectStr;
 @property (nonatomic , strong)NSString *foodSelectStr;
+@property (nonatomic , strong)NSString *BZStr;
 @end
 
 @implementation OrderEditVC
@@ -166,17 +171,135 @@
         make.bottom.equalTo(ws.riderView.mas_bottom).offset(-10);
     }];
     
-    
+//////////////////////////////////
     self.foodView = [[UIView alloc]init];
     self.foodView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.foodView];
+    [self.foodView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@(SCREEN_WIDTH - 20));
+        make.top.equalTo(ws.riderView.mas_bottom).offset(20);
+        make.centerX.equalTo(ws.view);
+        make.height.equalTo(@(riderIconHeight + foodBZviewHeight));
+    }];
+    
+    self.foodIcon = [[UIImageView alloc]init];
+    self.foodIcon.layer.cornerRadius=(riderIconHeight / 2 - 15 )/2;
+    self.foodIcon.clipsToBounds = YES;
+    self.foodIcon.backgroundColor = [UIColor orangeColor];
+    [self.foodView addSubview:self.foodIcon];
+    [self.foodIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.foodView.mas_left).offset(15);
+        make.top.equalTo(ws.foodView.mas_top).offset(10);
+        make.width.equalTo(ws.riderIcon.mas_width);
+        make.height.equalTo(ws.riderIcon.mas_height);
+    }];
+    
+    self.foodName = [[UILabel alloc]init];
+    self.foodName.text = @"订单名称";
+    self.foodName.textColor = [UIColor lightGrayColor];
+    [self.foodView addSubview:self.foodName];
+    [self.foodName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(ws.foodIcon.mas_centerY);
+        make.left.equalTo(ws.foodIcon.mas_right).offset(10);
+    }];
+    
+    UIView *foodmidLine = [[UIView alloc]init];
+    foodmidLine.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"];
+    [self.foodView addSubview:foodmidLine];
+    [foodmidLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.foodView);
+        make.left.equalTo(ws.foodView.mas_left).offset(15);
+        make.top.equalTo(ws.foodName.mas_bottom).offset(15);
+        make.height.equalTo(@(0.5));
+    }];
+    
+    self.foodGoodBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.foodView addSubview:self.foodGoodBtn];
+    self.foodGoodBtn.layer.cornerRadius=15;
+    self.foodGoodBtn.clipsToBounds = YES;
+    [self.foodGoodBtn setTitle:@"满意" forState:UIControlStateNormal];
+    [self.foodGoodBtn addTarget:self action:@selector(goodForFood) forControlEvents:UIControlEventTouchUpInside];
+    [self.foodGoodBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [self.foodGoodBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@((SCREEN_WIDTH - 20) / 3 - 80/3));
+        make.left.equalTo(ws.foodView.mas_left).offset(20);
+        make.top.equalTo(foodmidLine.mas_bottom).offset(10);
+        make.bottom.equalTo(ws.foodView.mas_bottom).offset(-10 - foodBZviewHeight);
+    }];
+    
+    self.foodMidBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.foodView addSubview:self.foodMidBtn];
+    self.foodMidBtn.layer.cornerRadius=15;
+    self.foodMidBtn.clipsToBounds = YES;
+    [self.foodMidBtn setTitle:@"一般" forState:UIControlStateNormal];
+    [self.foodMidBtn addTarget:self action:@selector(midForFood) forControlEvents:UIControlEventTouchUpInside];
+    [self.foodMidBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [self.foodMidBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@((SCREEN_WIDTH - 20) / 3 - 80/3));
+        make.left.equalTo(ws.foodGoodBtn.mas_right).offset(10);
+        make.top.equalTo(foodmidLine.mas_bottom).offset(10);
+        make.bottom.equalTo(ws.foodView.mas_bottom).offset(-10 - foodBZviewHeight);
+    }];
+    
+    self.foodBadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.foodView addSubview:self.foodBadBtn];
+    self.foodBadBtn.layer.cornerRadius=15;
+    self.foodBadBtn.clipsToBounds = YES;
+    [self.foodBadBtn setTitle:@"不满意" forState:UIControlStateNormal];
+    [self.foodBadBtn addTarget:self action:@selector(badForFood) forControlEvents:UIControlEventTouchUpInside];
+    [self.foodBadBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [self.foodBadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@((SCREEN_WIDTH - 20) / 3 - 80/3));
+        make.left.equalTo(ws.foodMidBtn.mas_right).offset(10);
+        make.top.equalTo(foodmidLine.mas_bottom).offset(10);
+        make.bottom.equalTo(ws.foodView.mas_bottom).offset(-10 - foodBZviewHeight);
+    }];
+    
+    self.textView = [[UITextView alloc] init];
+    self.textView.layer.borderWidth = 1;
+    self.textView.delegate = self;
+    self.textView.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
+    self.textView.font = [UIFont systemFontOfSize:14];
+    self.textView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+   [self.foodView addSubview:self.textView];
+    [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.view);
+        make.top.equalTo(ws.foodGoodBtn.mas_bottom).offset(15);
+        make.bottom.equalTo(ws.foodView.mas_bottom).offset(-10);
+        make.left.equalTo(ws.foodView.mas_left).offset(10);
+    }];
+    
+    self.placeHolder = [[UILabel alloc]init];
+    self.placeHolder.textColor = [UIColor lightGrayColor];
+    self.placeHolder.font = [UIFont systemFontOfSize:14];
+    self.placeHolder.text = NSLocalizedString(@"对菜品口味，包装服务的还满意吗？您可以在此处输入您的想法与意见~（至少输入8个字）", nil);
+    self.placeHolder.numberOfLines = 3;
+    [self.foodView addSubview:self.placeHolder];
+    [self.placeHolder mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(ws.textView.mas_top).offset(8);
+        make.left.equalTo(ws.textView.mas_left).offset(8);
+        make.right.equalTo(ws.textView.mas_right).offset(-3);
+    }];
+   
+    UIButton *toGetNetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:toGetNetBtn];
+    [toGetNetBtn setTitle:@"提交" forState:UIControlStateNormal];
+    toGetNetBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+    [toGetNetBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [toGetNetBtn addTarget:self action:@selector(getNetWork) forControlEvents:UIControlEventTouchUpInside];
+    [toGetNetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.view);
+        make.top.equalTo(ws.foodView.mas_bottom).offset(20);
+        make.left.equalTo(ws.foodView.mas_left).offset(10);
+        make.height.equalTo(@(30));
+    }];
 }
 #pragma mark - 点击事件
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)goodForRider{
-    self.riderSelectStr = @"满意";
+    self.riderSelectStr = @"1";
     [self.riderGoodBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     [self.riderGoodBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
@@ -187,7 +310,7 @@
     
 }
 -(void)midForRider{
-    self.riderSelectStr = @"一般";
+    self.riderSelectStr = @"2";
     [self.riderMidBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     [self.riderMidBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
    
@@ -198,7 +321,7 @@
     [self.riderBadBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 -(void)badForRider{
-    self.riderSelectStr = @"不满意";
+    self.riderSelectStr = @"3";
     [self.riderBadBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     [self.riderBadBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
@@ -207,6 +330,88 @@
     [self.riderMidBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.riderGoodBtn setBackgroundColor:[UIColor lightGrayColor]];
     [self.riderGoodBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+}
+////////////////
+
+-(void)goodForFood{
+    self.foodSelectStr = @"1";
+    [self.foodGoodBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+    [self.foodGoodBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [self.foodMidBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [self.foodMidBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.foodBadBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [self.foodBadBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+}
+-(void)midForFood{
+    self.foodSelectStr = @"2";
+    [self.foodMidBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+    [self.foodMidBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    
+    [self.foodGoodBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [self.foodGoodBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.foodBadBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [self.foodBadBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+}
+-(void)badForFood{
+    self.foodSelectStr = @"3";
+    [self.foodBadBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+    [self.foodBadBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    
+    [self.foodMidBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [self.foodMidBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.foodGoodBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [self.foodGoodBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    //[text isEqualToString:@""] 表示输入的是退格键
+    if (![text isEqualToString:@""])
+    {
+        self.placeHolder.hidden = YES;
+       
+    }
+    
+    //range.location == 0 && range.length == 1 表示输入的是第一个字符
+    if ([text isEqualToString:@""] && range.location == 0 && range.length == 1)
+        
+    {
+        self.placeHolder.hidden = NO;
+    }
+    return YES;
+    
+}
+-(void)textViewDidChange:(UITextView *)textView{
+    self.BZStr = textView.text;
+}
+-(void)getNetWork{
+    if (_BZStr.length < 8) {
+        [MBManager showBriefAlert:NSLocalizedString(@"最少输入八个字", nil)];
+    }else if (_riderSelectStr.length == 0 ){
+        [MBManager showBriefAlert:NSLocalizedString(@"请选择配送员评价", nil)];
+    }else if (_foodSelectStr.length == 0){
+        [MBManager showBriefAlert:NSLocalizedString(@"请选择订单评价", nil)];
+    }
+    else{
+        NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,aveOrderUrl];
+        NSDictionary *parameters = @{@"ordernum":self.orderId,
+                                     @"evatext":self.BZStr,
+                                     @"shopeva":self.foodSelectStr,
+                                     @"orevas":self.riderSelectStr
+                                     };
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        //请求的方式：POST
+        [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

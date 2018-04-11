@@ -101,6 +101,7 @@
     [cell handlerButtonAction:^(NSString *str) {
         OrderEditVC *order = [[OrderEditVC alloc]init];
         order.hidesBottomBarWhenPushed = YES;
+        order.orderId = mod.ordenum;
         [self.navigationController pushViewController:order animated:YES];
     }];
     return cell;

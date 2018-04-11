@@ -281,19 +281,21 @@
         make.width.equalTo(@(80));
     }];
     
+    
     headviewSelectLeftView = [[UIImageView alloc]init];
     [headviewSelectLeftView setImage:[UIImage imageNamed:@"left"]];
     [headviewSelectView addSubview:headviewSelectLeftView];
-    //添加手势
-    UITapGestureRecognizer * tapGestureLeft = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelectLeft)];
-    [headviewSelectLeftView addGestureRecognizer:tapGestureLeft];
+    
     [headviewSelectLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(headviewSelectView.mas_left).offset(15);
         make.top.equalTo(selectImage.mas_bottom).offset(5);
         make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-5);
         make.right.equalTo(headviewSelectView.mas_centerX).offset(-5);
     }];
-    
+    //添加手势
+    UITapGestureRecognizer * tapGestureLeft = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelectLeft)];
+    [headviewSelectLeftView addGestureRecognizer:tapGestureLeft];
+   
     headviewSelectRightView = [[UIImageView alloc]init];
     [headviewSelectRightView setImage:[UIImage imageNamed:@"right"]];
     [headviewSelectView addSubview:headviewSelectRightView];
@@ -557,10 +559,20 @@
 
 #pragma mark - 点击事件
 -(void)tapSelectLeft{
-    
+    HomeTypeVC *shop = [[HomeTypeVC alloc]init];
+    shop.typeName = NSLocalizedString(@"优惠专区", nil);
+    shop.shopTypeId = @"2";
+    shop.strlatitude = strlatitude;
+    shop.strlongitude = strlongitude;
+    [self.navigationController pushViewController:shop animated:YES];
 }
 -(void)tapSelectRight{
-    
+    HomeTypeVC *shop = [[HomeTypeVC alloc]init];
+    shop.typeName = NSLocalizedString(@"优惠专区", nil);
+    shop.shopTypeId = @"3";
+    shop.strlatitude = strlatitude;
+    shop.strlongitude = strlongitude;
+    [self.navigationController pushViewController:shop animated:YES];
 }
 //点击了对应的筛选条件按钮操作
 -(void)clickAction:(UIButton *)sender{

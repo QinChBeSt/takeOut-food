@@ -10,6 +10,7 @@
 #import "CellForOrderList.h"
 #import "ModelForOrderList.h"
 #import "DetailForOrder.h"
+#import "OrderEditVC.h"
 @interface WillEvaluateVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
@@ -56,7 +57,7 @@
             Mod.totalpic = dic11[@"totalpic"];
             Mod.godslist = dic11[@"godslist"];
             Mod.cdata = dic11[@"cdata"];
-            if ([Mod.shopstart isEqualToString:@"4"]) {
+            if ([Mod.shopstart isEqualToString:@"9"]) {
                 [self.arrForOrerList addObject:Mod];
             }
             
@@ -101,6 +102,12 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.mod = mod;
+    [cell handlerButtonAction:^(NSString *str) {
+        OrderEditVC *order = [[OrderEditVC alloc]init];
+        order.hidesBottomBarWhenPushed = YES;
+        order.orderId = mod.ordenum;
+        [self.navigationController pushViewController:order animated:YES];
+    }];
     return cell;
     
     //}

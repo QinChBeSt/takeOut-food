@@ -264,7 +264,7 @@
         make.top.equalTo(self.foodsMuch.mas_bottom).offset(5);
     }];
     //9
-    if ([shopStrat isEqualToString:@"4"]) {
+    if ([shopStrat isEqualToString:@"9"]) {
         self.bottomLine.sd_layout
         .leftSpaceToView(self.contentView, 10)
         .rightSpaceToView(self.contentView,10)

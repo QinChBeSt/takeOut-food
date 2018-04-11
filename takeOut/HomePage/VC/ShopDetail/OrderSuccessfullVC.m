@@ -7,7 +7,7 @@
 //
 
 #import "OrderSuccessfullVC.h"
-
+#import "ShopDetailVC.h"
 @interface OrderSuccessfullVC ()
 @property (nonatomic , strong)UIView *naviView;
 @end
@@ -18,6 +18,7 @@
     [super viewDidLoad];
      self.view.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     [self createNaviView];
+    [self setUpUI];
     // Do any additional setup after loading the view.
 }
 #pragma mark - ui
@@ -56,10 +57,40 @@
         make.centerY.equalTo(backImg);
     }];
 }
+-(void)setUpUI{
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT / 5 * 2)];
+    backView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:backView];
+    
+    UILabel *center = [[UILabel alloc]init];
+    center.text = NSLocalizedString(@"感谢您的支持，欢迎下次光临", nil);
+    [backView addSubview:center];
+    [center mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.centerY.equalTo(backView);
+    }];
+    UILabel *fin = [[UILabel alloc]init];
+    fin.text = NSLocalizedString(@"订单已完成", nil);
+    [backView addSubview:fin];
+    [fin mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.bottom.equalTo(center.mas_top).offset(-20);
+    }];
+}
 #pragma mark - 点击事件
 -(void)back{
+    NSArray *vcArray = self.navigationController.viewControllers;
     
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    for(UIViewController *vc in vcArray)
+    {
+        if ([vc isKindOfClass:[ShopDetailVC class]])
+        {
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
+   
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
