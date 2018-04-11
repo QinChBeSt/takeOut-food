@@ -26,6 +26,7 @@
 		9D430E0D207DEB3F00CE8F2A /* MyEvaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D430E0C207DEB3F00CE8F2A /* MyEvaVC.m */; };
 		9D430E10207DEE1D00CE8F2A /* AboutusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D430E0F207DEE1D00CE8F2A /* AboutusVC.m */; };
 		9D430E13207DF55300CE8F2A /* CellForOrderListNoPJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D430E12207DF55300CE8F2A /* CellForOrderListNoPJ.m */; };
+		9D430E16207E0A7500CE8F2A /* CellForMyAve.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D430E15207E0A7500CE8F2A /* CellForMyAve.m */; };
 		9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524B2068850D005A6BBC /* MHNetWorkTask.m */; };
 		9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524E2068944E005A6BBC /* ModelForHomeType.m */; };
 		9D49525B2068A546005A6BBC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D49525A2068A546005A6BBC /* CoreLocation.framework */; };
@@ -139,6 +140,8 @@
 		9D430E0F207DEE1D00CE8F2A /* AboutusVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutusVC.m; sourceTree = "<group>"; };
 		9D430E11207DF55300CE8F2A /* CellForOrderListNoPJ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForOrderListNoPJ.h; sourceTree = "<group>"; };
 		9D430E12207DF55300CE8F2A /* CellForOrderListNoPJ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForOrderListNoPJ.m; sourceTree = "<group>"; };
+		9D430E14207E0A7500CE8F2A /* CellForMyAve.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForMyAve.h; sourceTree = "<group>"; };
+		9D430E15207E0A7500CE8F2A /* CellForMyAve.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForMyAve.m; sourceTree = "<group>"; };
 		9D49524A2068850D005A6BBC /* MHNetWorkTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNetWorkTask.h; sourceTree = "<group>"; };
 		9D49524B2068850D005A6BBC /* MHNetWorkTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHNetWorkTask.m; sourceTree = "<group>"; };
 		9D49524D2068944E005A6BBC /* ModelForHomeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForHomeType.h; sourceTree = "<group>"; };
@@ -474,6 +477,8 @@
 			children = (
 				9DA0227F2074734F005F7168 /* CellForMyAddress.h */,
 				9DA022802074734F005F7168 /* CellForMyAddress.m */,
+				9D430E14207E0A7500CE8F2A /* CellForMyAve.h */,
+				9D430E15207E0A7500CE8F2A /* CellForMyAve.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -919,6 +924,7 @@
 				9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */,
 				9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */,
 				9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */,
+				9D430E16207E0A7500CE8F2A /* CellForMyAve.m in Sources */,
 				9D262035206CD24500A2351B /* WillEvaluateVC.m in Sources */,
 				9D4952612068C97C005A6BBC /* ShopDetailVC.m in Sources */,
 				9D262032206CD21F00A2351B /* AllOrderVC.m in Sources */,

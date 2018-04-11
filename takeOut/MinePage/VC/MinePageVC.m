@@ -191,7 +191,7 @@
                 [self.navigationController pushViewController:login animated:YES];
             }else{
                 MyEvaVC *eva = [[MyEvaVC alloc]init];
-                eva.hidesBottomBarWhenPushed=YES;
+                eva.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:eva animated:YES];
             }
         }else if (indexPath.row == 2){

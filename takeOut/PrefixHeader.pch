@@ -44,6 +44,8 @@
 #define getOrderDetailURL @"/xmfapi/orderxq"
 //评价订单
 #define aveOrderUrl @"/xmfapi/evaorder"
+//我的评价
+#define getMineEvaUrl @"/xmfapi/getUserEva"
 
 //注册
 #define RegisUserURL @"/xmfapi/eit"
