@@ -405,7 +405,13 @@
         AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
         //请求的方式：POST
         [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
+            NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
+            if ([code isEqualToString:@"1"]) {
+                [MBManager showBriefAlert:@"评价成功"];
+                [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
+            }else{
+                [MBManager showBriefAlert:@"评价失败"];
+            }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             

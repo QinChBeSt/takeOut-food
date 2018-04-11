@@ -34,8 +34,8 @@
     UILabel *headviewAddressLabel;
     UIImageView *headviewImageView;
     UIView *headviewSelectView;
-    UIImageView *headviewSelectLeftView;
-    UIImageView *headviewSelectRightView;
+    UIButton *headviewSelectLeftView;
+    UIButton *headviewSelectRightView;
     UIView *sortingView;
     SortButton *clickButton;
 }
@@ -281,9 +281,9 @@
         make.width.equalTo(@(80));
     }];
     
-    
-    headviewSelectLeftView = [[UIImageView alloc]init];
-    [headviewSelectLeftView setImage:[UIImage imageNamed:@"left"]];
+    headviewSelectLeftView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [headviewSelectLeftView setImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
+    [headviewSelectLeftView addTarget:self action:@selector(tapSelectLeft) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectLeftView];
     
     [headviewSelectLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -292,16 +292,12 @@
         make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-5);
         make.right.equalTo(headviewSelectView.mas_centerX).offset(-5);
     }];
-    //添加手势
-    UITapGestureRecognizer * tapGestureLeft = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelectLeft)];
-    [headviewSelectLeftView addGestureRecognizer:tapGestureLeft];
+
    
-    headviewSelectRightView = [[UIImageView alloc]init];
-    [headviewSelectRightView setImage:[UIImage imageNamed:@"right"]];
+    headviewSelectRightView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [headviewSelectRightView setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
+    [headviewSelectRightView addTarget:self action:@selector(tapSelectRight) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectRightView];
-    //添加手势
-    UITapGestureRecognizer * tapGestureRight = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelectRight)];
-    [headviewSelectLeftView addGestureRecognizer:tapGestureRight];
     [headviewSelectRightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(headviewSelectView.mas_right).offset(-15);
         make.top.equalTo(selectImage.mas_bottom).offset(5);

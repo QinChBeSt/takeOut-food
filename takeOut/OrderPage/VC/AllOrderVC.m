@@ -11,6 +11,7 @@
 #import "ModelForOrderList.h"
 #import "DetailForOrder.h"
 #import "OrderEditVC.h"
+#import "CellForOrderListNoPJ.h"
 @interface AllOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
@@ -72,7 +73,8 @@
     self.tableView.dataSource = self;
      self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     /** 注册cell. */
-   [self.tableView registerClass:[CellForOrderList class] forCellReuseIdentifier:@"pool1"];
+     [self.tableView registerClass:[CellForOrderList class] forCellReuseIdentifier:@"pool1"];
+    [self.tableView registerClass:[CellForOrderListNoPJ class] forCellReuseIdentifier:@"pool2"];
     
     [self.view addSubview:self.tableView];
     
@@ -90,34 +92,51 @@
 {
     ModelForOrderList *mod = [[ModelForOrderList alloc]init];
     mod = [self.arrForOrerList objectAtIndex:indexPath.row];
-    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
- 
-    CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-         cell = [[CellForOrderList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+     NSString *shopStrat = mod.shopstart;
+    if ([shopStrat isEqualToString:@"9"]) {
+        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
+//        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+//
+//        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (!cell) {
+//            cell = [[CellForOrderList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.mod = mod;
+        [cell handlerButtonAction:^(NSString *str) {
+            OrderEditVC *order = [[OrderEditVC alloc]init];
+            order.hidesBottomBarWhenPushed = YES;
+            order.orderId = mod.ordenum;
+            [self.navigationController pushViewController:order animated:YES];
+        }];
+        return cell;
+    }else{
+        CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
+//        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+//
+//        CellForOrderListNoPJ *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (!cell) {
+//            cell = [[CellForOrderListNoPJ alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//        }
+        cell2.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell2.mod = mod;
+        
+        return cell2;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.mod = mod;
-    [cell handlerButtonAction:^(NSString *str) {
-        OrderEditVC *order = [[OrderEditVC alloc]init];
-        order.hidesBottomBarWhenPushed = YES;
-        order.orderId = mod.ordenum;
-        [self.navigationController pushViewController:order animated:YES];
-    }];
-    return cell;
+    
         
     //}
-    //return nil;
+    return nil;
 }
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return [self cellHeightForIndexPath:indexPath cellContentViewWidth:SCREEN_WIDTH tableView:self.tableView];
     
-    ModelForOrderList *mod = [[ModelForOrderList alloc]init];
-    mod = [self.arrForOrerList objectAtIndex:indexPath.row];
-    /* model 为模型实例， keyPath 为 model 的属性名，通过 kvc 统一赋值接口 */
-    return [tableView cellHeightForIndexPath:indexPath model:mod keyPath:@"model" cellClass:[CellForOrderList class] contentViewWidth:self.view.frame.size.width];
+//    ModelForOrderList *mod = [[ModelForOrderList alloc]init];
+//    mod = [self.arrForOrerList objectAtIndex:indexPath.row];
+//    /* model 为模型实例， keyPath 为 model 的属性名，通过 kvc 统一赋值接口 */
+//    return [tableView cellHeightForIndexPath:indexPath model:mod keyPath:@"model" cellClass:[CellForOrderList class] contentViewWidth:self.view.frame.size.width];
 
     
 }

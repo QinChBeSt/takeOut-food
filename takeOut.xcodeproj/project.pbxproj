@@ -23,6 +23,9 @@
 		9D3854EB2079D89E00175693 /* DetailForOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854EA2079D89E00175693 /* DetailForOrder.m */; };
 		9D3854EE207A069D00175693 /* CellForOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854ED207A069D00175693 /* CellForOrderDetail.m */; };
 		9D3854F1207A0FB400175693 /* CellForShopEva.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854F0207A0FB400175693 /* CellForShopEva.m */; };
+		9D430E0D207DEB3F00CE8F2A /* MyEvaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D430E0C207DEB3F00CE8F2A /* MyEvaVC.m */; };
+		9D430E10207DEE1D00CE8F2A /* AboutusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D430E0F207DEE1D00CE8F2A /* AboutusVC.m */; };
+		9D430E13207DF55300CE8F2A /* CellForOrderListNoPJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D430E12207DF55300CE8F2A /* CellForOrderListNoPJ.m */; };
 		9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524B2068850D005A6BBC /* MHNetWorkTask.m */; };
 		9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49524E2068944E005A6BBC /* ModelForHomeType.m */; };
 		9D49525B2068A546005A6BBC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D49525A2068A546005A6BBC /* CoreLocation.framework */; };
@@ -130,6 +133,12 @@
 		9D3854ED207A069D00175693 /* CellForOrderDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForOrderDetail.m; sourceTree = "<group>"; };
 		9D3854EF207A0FB400175693 /* CellForShopEva.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForShopEva.h; sourceTree = "<group>"; };
 		9D3854F0207A0FB400175693 /* CellForShopEva.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForShopEva.m; sourceTree = "<group>"; };
+		9D430E0B207DEB3F00CE8F2A /* MyEvaVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyEvaVC.h; sourceTree = "<group>"; };
+		9D430E0C207DEB3F00CE8F2A /* MyEvaVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyEvaVC.m; sourceTree = "<group>"; };
+		9D430E0E207DEE1D00CE8F2A /* AboutusVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutusVC.h; sourceTree = "<group>"; };
+		9D430E0F207DEE1D00CE8F2A /* AboutusVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutusVC.m; sourceTree = "<group>"; };
+		9D430E11207DF55300CE8F2A /* CellForOrderListNoPJ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForOrderListNoPJ.h; sourceTree = "<group>"; };
+		9D430E12207DF55300CE8F2A /* CellForOrderListNoPJ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForOrderListNoPJ.m; sourceTree = "<group>"; };
 		9D49524A2068850D005A6BBC /* MHNetWorkTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNetWorkTask.h; sourceTree = "<group>"; };
 		9D49524B2068850D005A6BBC /* MHNetWorkTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHNetWorkTask.m; sourceTree = "<group>"; };
 		9D49524D2068944E005A6BBC /* ModelForHomeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelForHomeType.h; sourceTree = "<group>"; };
@@ -452,6 +461,10 @@
 				9D012B16207354600015322E /* AddNewAddressVC.m */,
 				9D012B1B20736C200015322E /* LocationMapVC.h */,
 				9D012B1C20736C200015322E /* LocationMapVC.m */,
+				9D430E0B207DEB3F00CE8F2A /* MyEvaVC.h */,
+				9D430E0C207DEB3F00CE8F2A /* MyEvaVC.m */,
+				9D430E0E207DEE1D00CE8F2A /* AboutusVC.h */,
+				9D430E0F207DEE1D00CE8F2A /* AboutusVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -640,6 +653,8 @@
 				D6C301CA2077CA85009B9B35 /* ViewForOrderListFoodsName.m */,
 				9D3854EC207A069D00175693 /* CellForOrderDetail.h */,
 				9D3854ED207A069D00175693 /* CellForOrderDetail.m */,
+				9D430E11207DF55300CE8F2A /* CellForOrderListNoPJ.h */,
+				9D430E12207DF55300CE8F2A /* CellForOrderListNoPJ.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -882,6 +897,7 @@
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
 				9D3854E82079AC4200175693 /* OrderSuccessfullVC.m in Sources */,
 				9DA0227E20746DEB005F7168 /* ModelForGetAddress.m in Sources */,
+				9D430E13207DF55300CE8F2A /* CellForOrderListNoPJ.m in Sources */,
 				9D98D969206A30BA0019AC0C /* UIView+CHView.m in Sources */,
 				D6C301CB2077CA85009B9B35 /* ViewForOrderListFoodsName.m in Sources */,
 				9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */,
@@ -893,6 +909,7 @@
 				9D3854F1207A0FB400175693 /* CellForShopEva.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
 				9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */,
+				9D430E0D207DEB3F00CE8F2A /* MyEvaVC.m in Sources */,
 				9D3854EE207A069D00175693 /* CellForOrderDetail.m in Sources */,
 				9D49526A2068CD95005A6BBC /* ZWMSegmentController.m in Sources */,
 				9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */,
@@ -911,6 +928,7 @@
 				9D012B2120736E440015322E /* JZLocationConverter.m in Sources */,
 				9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */,
 				9DA022812074734F005F7168 /* CellForMyAddress.m in Sources */,
+				9D430E10207DEE1D00CE8F2A /* AboutusVC.m in Sources */,
 				9D58C4932071D4CF00D49721 /* ModForHadAddShoppingCar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

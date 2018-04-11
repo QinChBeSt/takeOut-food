@@ -1,15 +1,14 @@
 //
-//  CellForOrderList.m
+//  CellForOrderListNoPJ.m
 //  takeOut
 //
-//  Created by 钱程 on 2018/4/6.
+//  Created by mac on 2018/4/11.
 //  Copyright © 2018年 QinChBeSt. All rights reserved.
 //
 
-#import "CellForOrderList.h"
+#import "CellForOrderListNoPJ.h"
 
-@implementation CellForOrderList
-
+@implementation CellForOrderListNoPJ
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     
     
@@ -35,7 +34,7 @@
     .heightIs(30);
     
     self.shopNameLabel = [[UILabel alloc]init];
-   
+    
     [self.contentView addSubview:self.shopNameLabel];
     [self.shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.shopIcon);
@@ -73,7 +72,7 @@
     
     self.foodsView = [[ViewForOrderListFoodsName alloc]init];
     [self.foodsViewBackGround addSubview:self.foodsView];
-
+    
     [self.foodsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView);
         make.top.equalTo(self.topLine.mas_bottom).offset(10);
@@ -94,7 +93,7 @@
     
     self.foodsTolitLabel = [[UILabel alloc]init];
     [self.contentView addSubview:self.foodsTolitLabel];
-   
+    
     self.orderTimeLabel = [[UILabel alloc]init];
     [self.contentView addSubview:self.orderTimeLabel];
     
@@ -102,17 +101,11 @@
     self.bottomLine.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:self.bottomLine];
     
-    self.toPJbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.contentView addSubview:_toPJbtn];
-    [self.toPJbtn setTitle:NSLocalizedString(@"评价", nil) forState:UIControlStateNormal];
-    [self.toPJbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.toPJbtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
-    self.toPJbtn.layer.cornerRadius=15;
-    self.toPJbtn.clipsToBounds = YES;
-    [self.toPJbtn addTarget:self action:@selector(buttonOnCellAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     //[self setupAutoHeightWithBottomView:self.bottomLine bottomMargin:10];
 }
+
 
 -(void)setMod:(ModelForOrderList *)mod{
     self.shopNameLabel.text = mod.shopname;
@@ -147,7 +140,7 @@
     else if ([shopStrat isEqualToString:@"11"]){
         self.haveEvaluateLabel.text = NSLocalizedString(@"已评价", nil);
     }
-
+    
     
     self.foodsMuch.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"￥", nil),mod.totalpic];
     NSString *foodsnum = [NSString stringWithFormat:@"%@",mod.goodsnum];
@@ -177,7 +170,7 @@
         self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
         NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
         self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
-       
+        
         self.foodsView2.foodsName.text = foodsArr[1][@"ordersGoodsName"];
         NSString *listFoodcount2 = foodsArr[1][@"ordersGoodsNum"];
         self.foodsView2.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount2];
@@ -194,7 +187,7 @@
             make.height.equalTo(@(0));
             make.centerX.equalTo(self.contentView);
         }];
-
+        
     }else if (foodsArr.count == 3){
         
         self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
@@ -208,7 +201,7 @@
         self.foodsView3.foodsName.text = foodsArr[2][@"ordersGoodsName"];
         NSString *listFoodcount3 = foodsArr[2][@"ordersGoodsNum"];
         self.foodsView3.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount3];
-
+        
         [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
@@ -221,7 +214,7 @@
             make.height.equalTo(@(20));
             make.centerX.equalTo(self.contentView);
         }];
-
+        
     }else if (foodsArr.count > 3){
         self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
         NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
@@ -247,7 +240,7 @@
             make.height.equalTo(@(20));
             make.centerX.equalTo(self.contentView);
         }];
-
+        
     }
     
     [self.foodsMuch mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -260,24 +253,10 @@
     }];
     
     [self.orderTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       make.right.equalTo(self.contentView.mas_right).offset(-15);
+        make.right.equalTo(self.contentView.mas_right).offset(-15);
         make.top.equalTo(self.foodsMuch.mas_bottom).offset(5);
     }];
-    //9
-    if ([shopStrat isEqualToString:@"9"]) {
-        self.bottomLine.sd_layout
-        .leftSpaceToView(self.contentView, 10)
-        .rightSpaceToView(self.contentView,10)
-        .heightIs(0.5)
-        .topSpaceToView(self.orderTimeLabel, 10);
-        
-        self.toPJbtn.sd_layout
-        .rightSpaceToView(self.contentView, 15)
-        .topSpaceToView(self.bottomLine, 10)
-        .widthIs(100)
-        .heightIs(30);
-        [self setupAutoHeightWithBottomView:self.toPJbtn bottomMargin:15];
-    }else{
+ 
         
         self.bottomLine.sd_layout
         .leftSpaceToView(self.contentView, 10)
@@ -285,24 +264,11 @@
         .heightIs(0.5)
         .topSpaceToView(self.orderTimeLabel, 10);
         [self setupAutoHeightWithBottomView:self.bottomLine bottomMargin:10];
-    }
-
+    
 }
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-}
-- (void)buttonOnCellAction:(UIButton *)sender {
-    
-    if(self.button) {
-        self.button(@"1");
-    }
-}
-//block的实现部分
-- (void)handlerButtonAction:(BlockButton)block
-{
-    self.button= block;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

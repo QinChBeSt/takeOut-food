@@ -62,6 +62,11 @@
 "对菜品口味，包装服务的还满意吗？您可以在此处输入您的想法与意见~（至少输入8个字）" = "Are you satisfied with the dishes? You can enter your thoughts and comments here ~ (at least 8 words)";
 "请选择配送员评价" = "Please select the distributor evaluation";
 "请选择订单评价" = "Please select the order evaluation";
+"评价成功" = "Evaluation success";
+"评价失败" = "Evaluation failure";
+
+
+
 // ---------------------- 我的
 "登陆" = "Login";
 "登陆成功" = "login success";

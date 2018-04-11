@@ -10,11 +10,14 @@
 #import "LoginByPhoneVC.h"
 #import "FileTool.h"
 #import "MineAddressVC.h"
+#import "MyEvaVC.h"
+#import "AboutusVC.h"
 @interface MinePageVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong) UITableView *tableView;
 @property (nonatomic , strong) UIView *headView;
 @property (nonatomic , strong) UIImageView *headIamge;
 @property (nonatomic , strong) UILabel *userName;
+@property (nonatomic , strong) UILabel *userPhone;
 //判断是否登录，Cell行数
 @property (nonatomic , assign) NSInteger isLoginOut;
 //清理缓存
@@ -29,11 +32,14 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userName = [defaults objectForKey:UD_USERNAME];
     NSString *userID = [defaults objectForKey:UD_USERID];
+    NSString *userPhine = [defaults objectForKey:UD_USERPHONE];
     if (userID == nil || [userID isEqualToString:@""]) {
-        self.userName.text = @"登陆";
+        self.userName.text = NSLocalizedString(@"登陆", nil);
+        self.userPhone.text = @"";
         _isLoginOut = 1;
     }else{
     self.userName.text = userName;
+    self.userPhone.text = userPhine;
         _isLoginOut = 2;
     }
     [self.tableView reloadData];
@@ -71,12 +77,19 @@
     }];
     
     self.userName = [[UILabel alloc]init];
-    
     self.userName.font = [UIFont systemFontOfSize:20];
     [self.headView addSubview:self.userName];
     [self.userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.headIamge);
         make.top.equalTo(ws.headIamge.mas_bottom).offset(15);
+    }];
+    
+    self.userPhone = [[UILabel alloc]init];
+    self.userPhone.font = [UIFont systemFontOfSize:18];
+    [self.headView addSubview:self.userPhone];
+    [self.userPhone mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.headIamge);
+        make.top.equalTo(ws.userName.mas_bottom).offset(10);
     }];
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -177,8 +190,14 @@
                 LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
                 [self.navigationController pushViewController:login animated:YES];
             }else{
-                
+                MyEvaVC *eva = [[MyEvaVC alloc]init];
+                eva.hidesBottomBarWhenPushed=YES;
+                [self.navigationController pushViewController:eva animated:YES];
             }
+        }else if (indexPath.row == 2){
+            AboutusVC *about = [[AboutusVC alloc]init];
+            about.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:about animated:YES];
         }
     }
     else if (indexPath.section == 1) {
@@ -219,6 +238,7 @@
             [defaults synchronize];
             
             self.userName.text = NSLocalizedString(@"登陆", nil);
+            self.userPhone.text = @"";
             _isLoginOut = 1;
             
             [self.tableView reloadData];
