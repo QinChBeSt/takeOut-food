@@ -11,10 +11,25 @@
 @interface ShopMassageVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSString *openTime;
+
+@property (nonatomic , strong)UIView *headView;
+@property (nonatomic , strong)UILabel *addressLab;
+@property (nonatomic , strong)UIImageView *shopIcon;
+@property (nonatomic , strong)NSString *shopPhoneNo;
+
+@property (nonatomic , strong)UIView *footView;
+@property (nonatomic , strong)UIImageView *yhIcon;
+@property (nonatomic , strong)NSMutableArray *arrForSAVE;
+
 @end
 
 @implementation ShopMassageVC
-
+-(NSMutableArray *)arrForSAVE{
+    if (_arrForSAVE == nil) {
+        _arrForSAVE = [NSMutableArray array];
+    }
+    return _arrForSAVE;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createTableView];
@@ -28,11 +43,115 @@
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         NSMutableDictionary *resDic = result[@"value"];
         self.openTime = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"营业时间", nil),resDic[@"opentime"]];
-       
+        self.addressLab.text = resDic[@"shopad"];
+        self.shopPhoneNo = resDic[@"shopphone"];
         [self.tableView reloadData];
     } withFail:^(NSError *error) {
         
     }];
+}
+-(void)CreateheadView{
+    __weak typeof(self) ws = self;
+    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 130)];
+    [self.view addSubview:self.headView];
+    UIImageView *addIcon =[[UIImageView alloc]init];
+    [addIcon setImage:[UIImage imageNamed:@"ic_point"]];
+    [self.headView addSubview:addIcon];
+    [addIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(ws.headView.mas_top).offset(25);
+        make.left.equalTo(ws.headView.mas_left).offset(15);
+        make.width.equalTo(@(10));
+        make.height.equalTo(@(15));
+    }];
+    
+    self.addressLab = [[UILabel alloc]init];
+    self.addressLab.numberOfLines = 2;
+    self.addressLab.font = [UIFont systemFontOfSize:14];
+    [self.headView addSubview:self.addressLab];
+    [self.addressLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(addIcon.mas_right).offset(15);
+        make.centerY.equalTo(addIcon);
+        make.right.equalTo(ws.headView.mas_right).offset(-SCREEN_WIDTH / 5);
+    }];
+    
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"];
+    [self.headView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.addressLab.mas_right).offset(15);
+        make.centerY.equalTo(ws.addressLab);
+        make.width.equalTo(@(1));
+        make.top.equalTo(ws.headView.mas_top).offset(10);
+    }];
+    
+    UIButton *telBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.headView addSubview:telBtn];
+    [telBtn addTarget:self action:@selector(callAction) forControlEvents:UIControlEventTouchUpInside];
+    [telBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(line);
+        make.left.equalTo(line.mas_right);
+        make.top.equalTo(ws.headView);
+        make.right.equalTo(ws.headView);
+    }];
+    
+    UIImageView *phoneIcon = [[UIImageView alloc]init];
+    phoneIcon.backgroundColor = [UIColor orangeColor];
+    [self.headView addSubview:phoneIcon];
+    [phoneIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(telBtn);
+        make.centerY.equalTo(telBtn);
+        make.width.and.height.equalTo(@(30));
+    }];
+    
+    self.shopIcon = [[UIImageView alloc]init];
+    self.shopIcon.backgroundColor = [UIColor orangeColor];
+    [self.headView addSubview:self.shopIcon];
+    [self.shopIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.headView.mas_left).offset(15);
+        make.top.equalTo(ws.addressLab.mas_bottom).offset(20);
+        make.bottom.equalTo(ws.headView.mas_bottom).offset(-15);
+        make.width.equalTo(ws.shopIcon.mas_height);
+    }];
+}
+-(void)createFootView{
+    __weak typeof(self) ws = self;
+    NSInteger coount = self.arrForSAVE.count;
+    self.footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, coount *30 + 60)];
+    [self.view addSubview:self.footView];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+    line.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"];
+    [self.footView addSubview:line];
+    UIImageView *saveTitIocn = [[UIImageView alloc]init];
+    saveTitIocn.backgroundColor = [UIColor orangeColor];
+    [self.footView addSubview:saveTitIocn];
+    [saveTitIocn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.footView.mas_left).offset(15);
+        make.centerY.equalTo(ws.footView.mas_top).offset(30);
+        make.width.and.height.equalTo(@(20));
+    }];
+    UILabel *saveTit = [[UILabel alloc]init];
+    saveTit.text = NSLocalizedString(@"优惠活动", nil);
+    [self.footView addSubview:saveTit];
+    [saveTit mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(saveTitIocn);
+        make.left.equalTo(saveTitIocn.mas_right).offset(20);
+    }];
+    
+    if (self.arrForSAVE.count != 0) {
+        for (int i = 0 ; i < self.arrForSAVE.count; i++) {
+            UIImageView *saveIcon = [[UIImageView alloc]initWithFrame:CGRectMake(30, 60 +  i * 30, 15, 15)];
+            NSString *shopSaveStr = [NSString stringWithFormat:@"%@/%@",BASEURL,self.arrForSAVE[i][@"img"]];
+            [saveIcon sd_setImageWithURL:[NSURL URLWithString:shopSaveStr]];
+            [self.footView addSubview:saveIcon];
+            
+            
+            UILabel *saveLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 60 +  i * 30, 150, 15)];
+            saveLabel.font = [UIFont systemFontOfSize:14];
+            saveLabel.text = [NSString stringWithFormat:@"%@",self.arrForSAVE[i][@"content"]];
+            [self.footView addSubview:saveLabel];
+            
+        }
+    }
 }
 #pragma mark - 创建tableView
 -(void)createTableView{
@@ -40,10 +159,13 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+    [self CreateheadView];
+    [self createFootView];
+    self.tableView.tableHeaderView = self.headView;
+    self.tableView.tableFooterView = self.footView;
     /** 注册cell. */
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"pool1"];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.view);
@@ -64,12 +186,22 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UIView *topLine = [[UIView alloc]init];
+    topLine.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    [cell addSubview:topLine];
+    [topLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(cell);
+        make.top.equalTo(cell);
+        make.centerX.equalTo(cell);
+        make.height.equalTo(@(10));
+    }];
     UIImageView *icon = [[UIImageView alloc]init];
     icon.backgroundColor = [UIColor orangeColor];
     [cell addSubview:icon];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(cell.mas_left).offset(10);
-        make.centerY.equalTo(cell);
+        make.centerY.equalTo(cell.mas_centerY).offset(5);
         make.width.and.height.equalTo(@(20));
     }];
     
@@ -78,7 +210,7 @@
     text.font = [UIFont systemFontOfSize:14];
     [text mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(icon.mas_right).offset(20);
-        make.centerY.equalTo(cell);
+       make.centerY.equalTo(cell.mas_centerY).offset(5);
     }];
     if (indexPath.row == 0) {
         
@@ -95,8 +227,19 @@
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 100;
+    return 60;
     
+    
+}
+-(void)setSaveArr:(NSMutableArray *)saveArr{
+    self.arrForSAVE = saveArr;
+}
+-(void)callAction{
+    NSLog(@"打电话：%@",self.shopPhoneNo);
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.shopPhoneNo];
+    UIWebView * webview = [[UIWebView alloc] init];
+    [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [self.view addSubview:webview];
     
 }
 - (void)didReceiveMemoryWarning {

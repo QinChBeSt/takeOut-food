@@ -109,6 +109,7 @@
     [self.toPJbtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     self.toPJbtn.layer.cornerRadius=15;
     self.toPJbtn.clipsToBounds = YES;
+    [self.toPJbtn addTarget:self action:@selector(buttonOnCellAction:) forControlEvents:UIControlEventTouchUpInside];
     
     //[self setupAutoHeightWithBottomView:self.bottomLine bottomMargin:10];
 }
@@ -262,8 +263,8 @@
        make.right.equalTo(self.contentView.mas_right).offset(-15);
         make.top.equalTo(self.foodsMuch.mas_bottom).offset(5);
     }];
-    
-    if ([shopStrat isEqualToString:@"10"]) {
+    //9
+    if ([shopStrat isEqualToString:@"4"]) {
         self.bottomLine.sd_layout
         .leftSpaceToView(self.contentView, 10)
         .rightSpaceToView(self.contentView,10)
@@ -290,6 +291,17 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+}
+- (void)buttonOnCellAction:(UIButton *)sender {
+    
+    if(self.button) {
+        self.button(@"1");
+    }
+}
+//block的实现部分
+- (void)handlerButtonAction:(BlockButton)block
+{
+    self.button= block;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

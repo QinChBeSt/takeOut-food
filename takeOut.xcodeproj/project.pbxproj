@@ -12,6 +12,7 @@
 		9D012B1D20736C200015322E /* LocationMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B1C20736C200015322E /* LocationMapVC.m */; };
 		9D012B2120736E440015322E /* JZLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B2020736E440015322E /* JZLocationConverter.m */; };
 		9D012B23207371AC0015322E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D012B22207371AC0015322E /* MapKit.framework */; };
+		9D2338DF207B130200302F76 /* OrderEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2338DE207B130200302F76 /* OrderEditVC.m */; };
 		9D26201E206C877200A2351B /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D26201D206C877200A2351B /* FileTool.m */; };
 		9D262021206CB50000A2351B /* HomeTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262020206CB50000A2351B /* HomeTypeVC.m */; };
 		9D262026206CC93A00A2351B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D262028206CC93A00A2351B /* InfoPlist.strings */; };
@@ -105,6 +106,8 @@
 		9D012B1F20736E440015322E /* JZLocationConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZLocationConverter.h; sourceTree = "<group>"; };
 		9D012B2020736E440015322E /* JZLocationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZLocationConverter.m; sourceTree = "<group>"; };
 		9D012B22207371AC0015322E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9D2338DD207B130200302F76 /* OrderEditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderEditVC.h; sourceTree = "<group>"; };
+		9D2338DE207B130200302F76 /* OrderEditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderEditVC.m; sourceTree = "<group>"; };
 		9D26201C206C877200A2351B /* FileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileTool.h; sourceTree = "<group>"; };
 		9D26201D206C877200A2351B /* FileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileTool.m; sourceTree = "<group>"; };
 		9D26201F206CB50000A2351B /* HomeTypeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTypeVC.h; sourceTree = "<group>"; };
@@ -547,6 +550,8 @@
 				9D262034206CD24500A2351B /* WillEvaluateVC.m */,
 				9D3854E92079D89E00175693 /* DetailForOrder.h */,
 				9D3854EA2079D89E00175693 /* DetailForOrder.m */,
+				9D2338DD207B130200302F76 /* OrderEditVC.h */,
+				9D2338DE207B130200302F76 /* OrderEditVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -872,6 +877,7 @@
 				9DA022842074B47A005F7168 /* SubmitOrderVC.m in Sources */,
 				9D98D965206A14C30019AC0C /* CellForChooseSize.m in Sources */,
 				9DCF3220206E37BF0032F9B6 /* ModelForChooseSize.m in Sources */,
+				9D2338DF207B130200302F76 /* OrderEditVC.m in Sources */,
 				9DA0228A2074DBDD005F7168 /* PayOrderChooseAddressVC.m in Sources */,
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
 				9D3854E82079AC4200175693 /* OrderSuccessfullVC.m in Sources */,

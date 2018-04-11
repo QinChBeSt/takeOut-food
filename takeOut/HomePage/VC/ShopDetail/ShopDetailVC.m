@@ -170,6 +170,7 @@
     s.shopId = self.shopId;
     ShopMassageVC *f1 = [[ShopMassageVC alloc] init];
     f1.shopId = self.shopId;
+    f1.saveArr = self.saveListArr;
     NSArray *array = @[f,s,f1];
     
     self.segmentVC = [[ZWMSegmentController alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight + 100, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -100) titles:@[@"点菜",@"评价",@"商家"]];
@@ -209,13 +210,18 @@
         numForSaveCount = [NSString stringWithFormat:@"%lu%@",(unsigned long)self.saveListArr.count,NSLocalizedString(@"个活动", nil)];
          NSString *imgUrl =  self.saveListArr[0][@"img"];
          shopSaveIconUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,imgUrl] ;
+        int count = 0;
         for (NSMutableDictionary *dic in self.saveListArr) {
             
             if (shopSaveStr == nil) {
                 shopSaveStr = dic[@"content"];
             }else{
-            shopSaveStr = [NSString stringWithFormat:@"%@,%@",shopSaveStr,dic[@"content"]];
+                if (count < 2) {
+                     shopSaveStr = [NSString stringWithFormat:@"%@,%@",shopSaveStr,dic[@"content"]];
+                }
+           
            }
+            count++;
         }
     }
     

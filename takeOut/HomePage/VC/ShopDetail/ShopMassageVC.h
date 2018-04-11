@@ -10,4 +10,5 @@
 
 @interface ShopMassageVC : UIViewController
 @property (nonatomic , copy) NSString *shopId;
+@property (nonatomic , strong)NSMutableArray *saveArr;
 @end

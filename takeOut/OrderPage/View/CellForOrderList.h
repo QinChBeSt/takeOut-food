@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ViewForOrderListFoodsName.h"
 #import "ModelForOrderList.h"
+
+typedef void(^BlockButton)(NSString *str);
+
 @interface CellForOrderList : UITableViewCell
 @property (nonatomic , strong)UIImageView *shopIcon;
 @property (nonatomic , strong)UILabel *shopNameLabel;
@@ -25,4 +28,8 @@
 @property (nonatomic , strong)UIView *bottomLine;
 @property (nonatomic , strong)UIButton *toPJbtn;
 @property (nonatomic , strong)ModelForOrderList *mod;
+
+@property (nonatomic, copy) BlockButton button;
+- (void)handlerButtonAction:(BlockButton)block;
+
 @end

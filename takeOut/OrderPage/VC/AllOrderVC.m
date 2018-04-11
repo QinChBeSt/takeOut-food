@@ -10,6 +10,7 @@
 #import "CellForOrderList.h"
 #import "ModelForOrderList.h"
 #import "DetailForOrder.h"
+#import "OrderEditVC.h"
 @interface AllOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
@@ -43,7 +44,7 @@
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
     [self.arrForOrerList removeAllObjects];
     [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
+        
         NSMutableDictionary *dic = responseObject;
         NSMutableArray *arr = dic[@"value"];
         for (NSMutableDictionary *dic11 in arr) {
@@ -89,11 +90,20 @@
 {
     ModelForOrderList *mod = [[ModelForOrderList alloc]init];
     mod = [self.arrForOrerList objectAtIndex:indexPath.row];
-  //  if ([mod.shopstart isEqualToString:@"2"]) {
-        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.mod = mod;
-        return cell;
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+ 
+    CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+         cell = [[CellForOrderList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.mod = mod;
+    [cell handlerButtonAction:^(NSString *str) {
+        OrderEditVC *order = [[OrderEditVC alloc]init];
+        order.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:order animated:YES];
+    }];
+    return cell;
         
     //}
     //return nil;
