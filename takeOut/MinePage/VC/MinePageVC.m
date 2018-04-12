@@ -28,7 +28,7 @@
 @implementation MinePageVC
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
-    [self.tabBarController.tabBar setHidden:NO];
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userName = [defaults objectForKey:UD_USERNAME];
     NSString *userID = [defaults objectForKey:UD_USERID];
@@ -179,7 +179,7 @@
                 [self.navigationController pushViewController:login animated:YES];
             }else{
             MineAddressVC *myaddress = [[MineAddressVC alloc]init];
-            self.hidesBottomBarWhenPushed=YES;
+            myaddress.hidesBottomBarWhenPushed=YES;
             [self.navigationController pushViewController:myaddress animated:YES];
             }
         }

@@ -12,9 +12,11 @@
 #import "DetailForOrder.h"
 #import "OrderEditVC.h"
 #import "CellForOrderListNoPJ.h"
+#import "LoginByPhoneVC.h"
 @interface AllOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
+@property (nonatomic , strong)UIButton *toLOginBtn;
 @end
 
 @implementation AllOrderVC
@@ -26,11 +28,35 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    if (userID == nil || [userID isEqualToString:@""]) {
+        self.tableView.hidden = YES;
+        self.toLOginBtn.hidden = NO;
+    }else{
+        self.tableView.hidden = NO;
+        self.toLOginBtn.hidden = YES;
      [self getNetwork];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createTableView];
+    __weak typeof (self)ws = self;
+    self.toLOginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.toLOginBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+    [self.toLOginBtn setTitle:NSLocalizedString(@"请登录", nil) forState:UIControlStateNormal];
+    [self.toLOginBtn addTarget:self action:@selector(toLogin) forControlEvents:UIControlEventTouchUpInside];
+    [self.toLOginBtn setTintColor:[UIColor blackColor]];
+    [self.view addSubview:_toLOginBtn];
+    self.toLOginBtn.hidden = YES;
+    [_toLOginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.view);
+        make.centerY.equalTo(ws.view.mas_centerY).offset(0);
+        make.height.equalTo(@(30));
+        make.width.equalTo(@(SCREEN_WIDTH - 50));
+    }];
     
     // Do any additional setup after loading the view.
 }
@@ -94,13 +120,13 @@
     mod = [self.arrForOrerList objectAtIndex:indexPath.row];
      NSString *shopStrat = mod.shopstart;
     if ([shopStrat isEqualToString:@"9"]) {
-        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-//        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-//
-//        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if (!cell) {
-//            cell = [[CellForOrderList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-//        }
+//        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+
+        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[CellForOrderList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.mod = mod;
         [cell handlerButtonAction:^(NSString *str) {
@@ -111,13 +137,13 @@
         }];
         return cell;
     }else{
-        CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
-//        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-//
-//        CellForOrderListNoPJ *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if (!cell) {
-//            cell = [[CellForOrderListNoPJ alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-//        }
+//        CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+
+        CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell2) {
+            cell2 = [[CellForOrderListNoPJ alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
         cell2.selectionStyle = UITableViewCellSelectionStyleNone;
         cell2.mod = mod;
         
@@ -150,7 +176,12 @@
     detailvc.orderID = mod.ordenum;
     [self.navigationController pushViewController:detailvc animated:YES];
 }
-
+-(void)toLogin{
+    LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:login animated:YES];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

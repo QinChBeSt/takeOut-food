@@ -178,7 +178,7 @@
     int strTypeFlgid =[strTypeFlg intValue];
     NSNumber *numTypeFlg =[NSNumber numberWithInt:strTypeFlgid];
     
-    NSString * strPage =@"1";
+    NSString * strPage =@"0";
     int strPageid =[strPage intValue];
     NSNumber *numPage =[NSNumber numberWithInt:strPageid];
     [par setValue:numFlg forKey:@"flg"];
