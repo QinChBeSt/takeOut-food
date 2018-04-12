@@ -335,7 +335,7 @@
     }else{
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *userid = [defaults objectForKey:UD_USERNAME];
+        NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
             LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
             [self.navigationController pushViewController:login animated:YES];
@@ -379,10 +379,12 @@
     }else{
        
           NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *userid = [defaults objectForKey:UD_USERNAME];
+        NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
             LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
             [self.navigationController pushViewController:login animated:YES];
+        }else if(_userSex == nil){
+            _userSex = @"1";
         }else{
             NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,addAddressUrl];
             NSDictionary *parameters = @{@"uid":userid,

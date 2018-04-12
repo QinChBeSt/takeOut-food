@@ -8,28 +8,73 @@
 
 #import "AllOrderVC.h"
 #import "CellForOrderList.h"
+#import "ModelForOrderList.h"
+#import "DetailForOrder.h"
+#import "OrderEditVC.h"
+#import "CellForOrderListNoPJ.h"
 @interface AllOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
+@property (nonatomic , strong)NSMutableArray *arrForOrerList;
 @end
 
 @implementation AllOrderVC
-
+-(NSMutableArray *)arrForOrerList{
+    if (_arrForOrerList == nil) {
+        _arrForOrerList = [NSMutableArray array];
+    }
+    return _arrForOrerList;
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
+     [self getNetwork];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createTableView];
+    
     // Do any additional setup after loading the view.
+}
+-(void)getNetwork{
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getOrderListURL];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    NSDictionary *parameters = @{@"userid":userID,
+                                 @"flg":@"0",
+                                 @"page":@"1",
+                                 };
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    [self.arrForOrerList removeAllObjects];
+    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSMutableDictionary *dic = responseObject;
+        NSMutableArray *arr = dic[@"value"];
+        for (NSMutableDictionary *dic11 in arr) {
+            ModelForOrderList *Mod = [[ModelForOrderList alloc]init];
+            Mod.ordenum = dic11[@"ordenum"];
+            Mod.shopname = dic11[@"shopname"];
+            Mod.shopstart = dic11[@"shopstart"];
+            Mod.goodsnum = dic11[@"goodsnum"];
+            Mod.totalpic = dic11[@"totalpic"];
+            Mod.godslist = dic11[@"godslist"];
+            Mod.cdata = dic11[@"cdata"];
+            [self.arrForOrerList addObject:Mod];
+        }
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 #pragma mark - 创建tableView
 -(void)createTableView{
-    UITabBarController *tabBarVC = [[UITabBarController alloc] init];
-    CGFloat tabBarHeight = tabBarVC.tabBar.frame.size.height;
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0 , self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaTopHeight - 66 - SafeAreaTabbarHeight) style:UITableViewStylePlain];
+  
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0 , self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaTopHeight - 45 - 49 - SafeAreaTabbarHeight) style:UITableViewStylePlain];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     /** 注册cell. */
-    [self.tableView registerClass:[CellForOrderList class] forCellReuseIdentifier:@"pool1"];
+     [self.tableView registerClass:[CellForOrderList class] forCellReuseIdentifier:@"pool1"];
+    [self.tableView registerClass:[CellForOrderListNoPJ class] forCellReuseIdentifier:@"pool2"];
     
     [self.view addSubview:self.tableView];
     
@@ -40,25 +85,70 @@
 /**** 行数 ****/
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.arrForOrerList.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-    cell.foodTypeCount =  arc4random() % 10;
-    return cell;
+    ModelForOrderList *mod = [[ModelForOrderList alloc]init];
+    mod = [self.arrForOrerList objectAtIndex:indexPath.row];
+     NSString *shopStrat = mod.shopstart;
+    if ([shopStrat isEqualToString:@"9"]) {
+        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
+//        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+//
+//        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (!cell) {
+//            cell = [[CellForOrderList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.mod = mod;
+        [cell handlerButtonAction:^(NSString *str) {
+            OrderEditVC *order = [[OrderEditVC alloc]init];
+            order.hidesBottomBarWhenPushed = YES;
+            order.orderId = mod.ordenum;
+            [self.navigationController pushViewController:order animated:YES];
+        }];
+        return cell;
+    }else{
+        CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
+//        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+//
+//        CellForOrderListNoPJ *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (!cell) {
+//            cell = [[CellForOrderListNoPJ alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//        }
+        cell2.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell2.mod = mod;
+        
+        return cell2;
+    }
+    
+        
+    //}
+    return nil;
 }
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return [self cellHeightForIndexPath:indexPath cellContentViewWidth:SCREEN_WIDTH tableView:self.tableView];
     
+//    ModelForOrderList *mod = [[ModelForOrderList alloc]init];
+//    mod = [self.arrForOrerList objectAtIndex:indexPath.row];
+//    /* model 为模型实例， keyPath 为 model 的属性名，通过 kvc 统一赋值接口 */
+//    return [tableView cellHeightForIndexPath:indexPath model:mod keyPath:@"model" cellClass:[CellForOrderList class] contentViewWidth:self.view.frame.size.width];
+
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    DetailForOrder *detailvc = [[DetailForOrder alloc]init];
+    detailvc.hidesBottomBarWhenPushed = YES;
+    ModelForOrderList *mod = [[ModelForOrderList alloc]init];
+    mod = [self.arrForOrerList objectAtIndex:indexPath.row];
+    detailvc.orderID = mod.ordenum;
+    [self.navigationController pushViewController:detailvc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

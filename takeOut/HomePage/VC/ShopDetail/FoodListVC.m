@@ -68,6 +68,9 @@
 @implementation FoodListVC{
     NSUserDefaults *defaults;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [self cleanAllData];
+}
 -(NSMutableArray *)arrForType{
     if (_arrForType == nil ) {
         _arrForType = [NSMutableArray array];

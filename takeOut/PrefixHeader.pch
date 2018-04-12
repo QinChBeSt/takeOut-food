@@ -18,7 +18,7 @@
 #define UD_USERPHONE @"USERPHONE"
 //测试
 #define BASEURL @"http://118.24.100.177:8080/spmvc"
-
+//#define BASEURL @"http://192.168.0.148:8080"
 //bnner
 #define LUNBOURL @"/xmfapi/getCarousel"
 //首页分类
@@ -31,6 +31,21 @@
 #define shopDatailUrl @"/xmfapi/getGoodsClassification"
 //加入购物车
 #define AddShoppingCarUlr @"/xmfapi/addCar"
+//提交订单
+#define setOrderToPayURL  @"/xmfapi/smbmitorder"
+//商家评价
+#define getShopEvaURL @"/xmfapi/getEvaluate"
+//商家详情
+#define getShopShopDeatailURL @"/xmfapi/getShopxx"
+
+//获取订单列表
+#define getOrderListURL @"/xmfapi/orderlist"
+//获取订单详情
+#define getOrderDetailURL @"/xmfapi/orderxq"
+//评价订单
+#define aveOrderUrl @"/xmfapi/evaorder"
+//我的评价
+#define getMineEvaUrl @"/xmfapi/getUserEva"
 
 //注册
 #define RegisUserURL @"/xmfapi/eit"

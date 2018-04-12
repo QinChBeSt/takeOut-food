@@ -34,8 +34,8 @@
     UILabel *headviewAddressLabel;
     UIImageView *headviewImageView;
     UIView *headviewSelectView;
-    UIImageView *headviewSelectLeftView;
-    UIImageView *headviewSelectRightView;
+    UIButton *headviewSelectLeftView;
+    UIButton *headviewSelectRightView;
     UIView *sortingView;
     SortButton *clickButton;
 }
@@ -281,25 +281,23 @@
         make.width.equalTo(@(80));
     }];
     
-    headviewSelectLeftView = [[UIImageView alloc]init];
-    [headviewSelectLeftView setImage:[UIImage imageNamed:@"left"]];
+    headviewSelectLeftView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [headviewSelectLeftView setImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
+    [headviewSelectLeftView addTarget:self action:@selector(tapSelectLeft) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectLeftView];
-    //添加手势
-    UITapGestureRecognizer * tapGestureLeft = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelectLeft)];
-    [headviewSelectLeftView addGestureRecognizer:tapGestureLeft];
+    
     [headviewSelectLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(headviewSelectView.mas_left).offset(15);
         make.top.equalTo(selectImage.mas_bottom).offset(5);
         make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-5);
         make.right.equalTo(headviewSelectView.mas_centerX).offset(-5);
     }];
-    
-    headviewSelectRightView = [[UIImageView alloc]init];
-    [headviewSelectRightView setImage:[UIImage imageNamed:@"right"]];
+
+   
+    headviewSelectRightView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [headviewSelectRightView setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
+    [headviewSelectRightView addTarget:self action:@selector(tapSelectRight) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectRightView];
-    //添加手势
-    UITapGestureRecognizer * tapGestureRight = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelectRight)];
-    [headviewSelectLeftView addGestureRecognizer:tapGestureRight];
     [headviewSelectRightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(headviewSelectView.mas_right).offset(-15);
         make.top.equalTo(selectImage.mas_bottom).offset(5);
@@ -431,7 +429,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ShopDetailVC *shopDetailVC = [[ShopDetailVC alloc]init];
     shopDetailVC.modShopList = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
-    self.hidesBottomBarWhenPushed=YES;
+    shopDetailVC.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:shopDetailVC animated:YES];
     
 }
@@ -557,10 +555,20 @@
 
 #pragma mark - 点击事件
 -(void)tapSelectLeft{
-    
+    HomeTypeVC *shop = [[HomeTypeVC alloc]init];
+    shop.typeName = NSLocalizedString(@"优惠专区", nil);
+    shop.shopTypeId = @"2";
+    shop.strlatitude = strlatitude;
+    shop.strlongitude = strlongitude;
+    [self.navigationController pushViewController:shop animated:YES];
 }
 -(void)tapSelectRight{
-    
+    HomeTypeVC *shop = [[HomeTypeVC alloc]init];
+    shop.typeName = NSLocalizedString(@"优惠专区", nil);
+    shop.shopTypeId = @"3";
+    shop.strlatitude = strlatitude;
+    shop.strlongitude = strlongitude;
+    [self.navigationController pushViewController:shop animated:YES];
 }
 //点击了对应的筛选条件按钮操作
 -(void)clickAction:(UIButton *)sender{

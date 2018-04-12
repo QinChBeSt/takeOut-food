@@ -10,6 +10,7 @@
 #import "CellForSubmitOrder.h"
 #import "ModForHadAddShoppingCar.h"
 #import "PayOrderChooseAddressVC.h"
+#import "OrderSuccessfullVC.h"
 #define topHieght 100
 #define midHeight 60
 #define bottomHeight 170
@@ -17,6 +18,8 @@
 @property (nonatomic , strong)UIView *naviView;
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)UILabel *loactinonStrLabel;
+@property (nonatomic , strong)NSString *bz;
+@property (nonatomic , strong)NSString *uaddrid;
 @end
 
 @implementation SubmitOrderVC{
@@ -254,7 +257,7 @@
     return 90;
 }
 -(void)textViewDidChange:(UITextView *)textView{
-    remakeStr = textView.text;
+    self.bz = textView.text;
     
 }
 #pragma mark - 点击事件
@@ -263,17 +266,50 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)toPay{
-    
+    if (self.uaddrid == nil) {
+        [MBManager showBriefAlert:NSLocalizedString(@"选择收货地址", nil)];
+        return;
+    }else if(self.bz == nil){
+        self.bz = @"";
+    }
+    NSString *Url = [NSString stringWithFormat:@"%@%@",BASEURL,setOrderToPayURL];
+    NSDictionary *parameters = @{@"carid":self.carid,
+                                 @"uaddrid":self.uaddrid,
+                                 @"bz":self.bz,
+                                 };
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    [managers POST:Url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"提交订单：：：：%@",responseObject);
+        NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
+        if ([code isEqualToString:@"1"]) {
+            [MBManager showBriefAlert:@"提交订单成功"];
+            [self performSelector:@selector(toSusse) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
+        }else{
+            [MBManager showBriefAlert:@"提交订单失败"];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 -(void)toChooseAddress{
     PayOrderChooseAddressVC *mineAddvc = [[PayOrderChooseAddressVC alloc]init];
+    mineAddvc.blockchooseAddress = ^(ModelForGetAddress *mod) {
+        self.uaddrid = [NSString stringWithFormat:@"%@",mod.id];
+        self.loactinonStrLabel.text = [NSString stringWithFormat:@"%@ %@",mod.userAddrsAddr,mod.userAddrsAddrText];
+        self.loactinonStrLabel.textColor = [UIColor blackColor];
+    };
     [self.navigationController pushViewController:mineAddvc animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)toSusse{
+    OrderSuccessfullVC *SUCCESSVC = [[OrderSuccessfullVC alloc]init];
+    [self.navigationController pushViewController:SUCCESSVC animated:YES];
+    
+}
 /*
 #pragma mark - Navigation
 

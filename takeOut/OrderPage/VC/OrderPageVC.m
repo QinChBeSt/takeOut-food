@@ -65,6 +65,7 @@
     
     self.segmentVC = [[ZWMSegmentController alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight , SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight) titles:@[NSLocalizedString(@"全部订单", nil),NSLocalizedString(@"待评价", nil)]];
     self.segmentVC.segmentView.showSeparateLine = YES;
+    
     self.segmentVC.segmentView.segmentTintColor = [UIColor blackColor];
     self.segmentVC.viewControllers = [array copy];
     if (array.count==1) {

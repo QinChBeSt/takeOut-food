@@ -9,5 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface ModelForOrderList : NSObject
-
+@property (nonatomic , strong)NSString *ordenum;
+@property (nonatomic , strong)NSString *shopname;
+@property (nonatomic , strong)NSString *shopstart;
+@property (nonatomic , strong)NSString *goodsnum;
+@property (nonatomic , strong)NSString *totalpic;
+@property (nonatomic , strong)NSArray *godslist;
+@property (nonatomic , strong)NSString *cdata;
 @end

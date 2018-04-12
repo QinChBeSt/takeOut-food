@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface EvaluationVC : UIViewController
-
+@property (nonatomic , copy) NSString *shopId;
 @end

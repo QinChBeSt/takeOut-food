@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ModelForGetAddress.h"
+typedef void (^blockChooseAddress)(ModelForGetAddress *);
 @interface PayOrderChooseAddressVC : UIViewController
-
+@property (nonatomic , copy)blockChooseAddress blockchooseAddress;
 @end

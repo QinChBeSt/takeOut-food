@@ -1,8 +1,8 @@
 //
-//  CellForOrderList.h
+//  CellForOrderListNoPJ.h
 //  takeOut
 //
-//  Created by 钱程 on 2018/4/6.
+//  Created by mac on 2018/4/11.
 //  Copyright © 2018年 QinChBeSt. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 #import "ViewForOrderListFoodsName.h"
 #import "ModelForOrderList.h"
 
-typedef void(^BlockButton)(NSString *str);
 
-@interface CellForOrderList : UITableViewCell
+
+@interface CellForOrderListNoPJ : UITableViewCell
 @property (nonatomic , strong)UIImageView *shopIcon;
 @property (nonatomic , strong)UILabel *shopNameLabel;
 @property (nonatomic , strong)UILabel *haveEvaluateLabel;
@@ -26,10 +26,7 @@ typedef void(^BlockButton)(NSString *str);
 @property (nonatomic , assign)int foodTypeCount;
 @property (nonatomic , strong)UILabel *orderTimeLabel;
 @property (nonatomic , strong)UIView *bottomLine;
-@property (nonatomic , strong)UIButton *toPJbtn;
 @property (nonatomic , strong)ModelForOrderList *mod;
 
-@property (nonatomic, copy) BlockButton button;
-- (void)handlerButtonAction:(BlockButton)block;
 
 @end
