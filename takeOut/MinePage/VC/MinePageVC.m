@@ -28,7 +28,7 @@
 @implementation MinePageVC
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
-    [self.tabBarController.tabBar setHidden:NO];
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userName = [defaults objectForKey:UD_USERNAME];
     NSString *userID = [defaults objectForKey:UD_USERID];
@@ -158,6 +158,7 @@
     NSString *userID = [defaults objectForKey:UD_USERID];
     if (userID == nil || [userID isEqualToString:@""]) {
         LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+        login.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:login animated:YES];
     }else{
         NSLog(@"========去设置个人信息");
@@ -176,10 +177,11 @@
             NSString *userID = [defaults objectForKey:UD_USERID];
             if (userID == nil) {
                 LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+                login.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:login animated:YES];
             }else{
             MineAddressVC *myaddress = [[MineAddressVC alloc]init];
-            self.hidesBottomBarWhenPushed=YES;
+            myaddress.hidesBottomBarWhenPushed=YES;
             [self.navigationController pushViewController:myaddress animated:YES];
             }
         }
@@ -188,6 +190,7 @@
             NSString *userID = [defaults objectForKey:UD_USERID];
             if (userID == nil) {
                 LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+                login.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:login animated:YES];
             }else{
                 MyEvaVC *eva = [[MyEvaVC alloc]init];

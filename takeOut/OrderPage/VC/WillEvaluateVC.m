@@ -11,10 +11,11 @@
 #import "ModelForOrderList.h"
 #import "DetailForOrder.h"
 #import "OrderEditVC.h"
+#import "LoginByPhoneVC.h"
 @interface WillEvaluateVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
-
+@property (nonatomic , strong)UIButton *toLOginBtn;
 
 @end
 
@@ -27,11 +28,36 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
-    [self getNetwork];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    if (userID == nil || [userID isEqualToString:@""]) {
+        self.tableView.hidden = YES;
+        self.toLOginBtn.hidden = NO;
+    }else{
+        self.tableView.hidden = NO;
+        self.toLOginBtn.hidden = YES;
+        [self getNetwork];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
      [self createTableView];
+    __weak typeof (self)ws = self;
+    self.toLOginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.toLOginBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+    [self.toLOginBtn setTitle:NSLocalizedString(@"请登录", nil) forState:UIControlStateNormal];
+    [self.toLOginBtn addTarget:self action:@selector(toLogin) forControlEvents:UIControlEventTouchUpInside];
+    [self.toLOginBtn setTintColor:[UIColor blackColor]];
+    [self.view addSubview:_toLOginBtn];
+    self.toLOginBtn.hidden = YES;
+    [_toLOginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.view);
+        make.centerY.equalTo(ws.view.mas_centerY).offset(0);
+        make.height.equalTo(@(30));
+        make.width.equalTo(@(SCREEN_WIDTH - 50));
+    }];
+    
 }
 
 -(void)getNetwork{
@@ -140,7 +166,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)toLogin{
+    LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:login animated:YES];
+    
+}
 /*
 #pragma mark - Navigation
 

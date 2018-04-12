@@ -23,10 +23,10 @@
     return _arrForMineAve;
 }
 -(void)viewWillAppear:(BOOL)animated{
-    [self.tabBarController.tabBar setHidden:YES];
+    //[self.tabBarController.tabBar setHidden:YES];
 }
 -(void)viewWillDisappear:(BOOL)animated{
-    [self.tabBarController.tabBar setHidden:NO];
+   // [self.tabBarController.tabBar setHidden:NO];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

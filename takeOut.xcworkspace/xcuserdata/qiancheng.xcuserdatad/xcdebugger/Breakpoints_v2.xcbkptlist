@@ -6,17 +6,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "takeOut/OrderPage/VC/AllOrderVC.m"
-            timestampString = "544727433.7633851"
+            filePath = "takeOut/OrderPage/VC/OrderPageVC.m"
+            timestampString = "545194933.295783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "-createTableView"
-            landmarkType = "7">
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "toLOginBtn"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[OrderPageVC toLOginBtn]"
+                  moduleName = "takeOut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qiancheng/Desktop/BEE/takeOut/OrderPage/VC/OrderPageVC.m"
+                  timestampString = "545191964.284296"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[OrderPageVC setToLOginBtn:]"
+                  moduleName = "takeOut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qiancheng/Desktop/BEE/takeOut/OrderPage/VC/OrderPageVC.m"
+                  timestampString = "545191964.28633"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -1122,6 +1122,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = takeOut/takeOut.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = V2FVN6A8N7;
@@ -1131,7 +1132,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wtb.beeToC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7f25ab4c-7e41-401c-87fc-9ee33c9b1df4";
+				PROVISIONING_PROFILE = "617b5d72-63d6-4855-9989-f369f276c867";
 				PROVISIONING_PROFILE_SPECIFIER = DevBee2C;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1143,6 +1144,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = takeOut/takeOut.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = V2FVN6A8N7;
@@ -1152,7 +1154,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wtb.beeToC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7f25ab4c-7e41-401c-87fc-9ee33c9b1df4";
+				PROVISIONING_PROFILE = "617b5d72-63d6-4855-9989-f369f276c867";
 				PROVISIONING_PROFILE_SPECIFIER = DevBee2C;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

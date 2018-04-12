@@ -10,21 +10,26 @@
 #import "ZWMSegmentController.h"
 #import "AllOrderVC.h"
 #import "WillEvaluateVC.h"
+#import "LoginByPhoneVC.h"
 @interface OrderPageVC ()
 @property (nonatomic , strong)UIView *naviView;
 @property (nonatomic, strong) ZWMSegmentController *segmentVC;
+@property (nonatomic , strong)UIButton *toLOginBtn;
 @end
 
 @implementation OrderPageVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
      self.view.backgroundColor = [UIColor whiteColor];
-    [self createNaviView];
+     [self createNaviView];
+
     [self CreateSegment];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
+
 }
 #pragma mark - ui
 -(void)createNaviView{
@@ -68,16 +73,20 @@
     
     self.segmentVC.segmentView.segmentTintColor = [UIColor blackColor];
     self.segmentVC.viewControllers = [array copy];
-    if (array.count==1) {
-        self.segmentVC.segmentView.style=ZWMSegmentStyleDefault;
-    } else {
-        self.segmentVC.segmentView.style=ZWMSegmentStyleFlush;
-    }
+  
+    
+    self.segmentVC.segmentView.style=ZWMSegmentStyleFlush;
+   
     [self addSegmentController:self.segmentVC];
     [self.segmentVC  setSelectedAtIndex:0];
 }
 
+-(void)toLogin{
+LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+    self.hidesBottomBarWhenPushed = YES;
+[self.navigationController pushViewController:login animated:YES];
 
+}
 #pragma mark - 点击事件
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
