@@ -753,8 +753,14 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 [self.leftTable reloadData];
                 
                 self.ShoppingCarRedNum--;
+                if (self.ShoppingCarRedNum == 0) {
+                    self.ShoppingCarRedNum = 0;
+                    self.ShoppingCarRedLabel.hidden = YES;
+                    self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
+                }else{
                 self.ShoppingCarRedLabel.hidden = NO;
                 self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
+                }
                 if (self.arrForAddShoppingCarList.count == 0) {
                     self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
                     NSString *startPayMoney = [NSString stringWithFormat:@"%@%@",self.upPayMoney,NSLocalizedString(@"元起送", nil)];
@@ -932,7 +938,14 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             self.addMoney =  self.addMoney -[mod.g_pic floatValue] ;
             self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
             self.ShoppingCarRedNum--;
-            self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)self.ShoppingCarRedNum];
+            if (self.ShoppingCarRedNum == 0) {
+                self.ShoppingCarRedNum = 0;
+                self.ShoppingCarRedLabel.hidden = YES;
+                self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
+            }else{
+                self.ShoppingCarRedLabel.hidden = NO;
+                self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
+            }
             
         };
         cell1.selectionStyle = UITableViewCellSelectionStyleNone;
