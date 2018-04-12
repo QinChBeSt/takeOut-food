@@ -466,6 +466,7 @@
     shop.shopTypeId = mod.id;
     shop.strlatitude = strlatitude;
     shop.strlongitude = strlongitude;
+    shop.hidesBottomBarWhenPushed = YES;
    [self.navigationController pushViewController:shop animated:YES];
     NSLog(@"%@",indexPath);
     
@@ -560,6 +561,7 @@
     shop.shopTypeId = @"2";
     shop.strlatitude = strlatitude;
     shop.strlongitude = strlongitude;
+    shop.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:shop animated:YES];
 }
 -(void)tapSelectRight{
@@ -568,6 +570,7 @@
     shop.shopTypeId = @"3";
     shop.strlatitude = strlatitude;
     shop.strlongitude = strlongitude;
+    shop.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:shop animated:YES];
 }
 //点击了对应的筛选条件按钮操作
