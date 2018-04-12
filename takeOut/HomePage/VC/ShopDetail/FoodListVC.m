@@ -16,6 +16,7 @@
 #import "ModForHadAddShoppingCar.h"
 #import "SubmitOrderVC.h"
 #import "LoginByPhoneVC.h"
+#import "CellForFoodListLeft.h"
 #define shoppingCarViewHeight 50
 
 @interface FoodListVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
@@ -241,7 +242,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 
     self.leftTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:self.leftTable];
-    [self.leftTable registerClass:[UITableViewCell class] forCellReuseIdentifier:resueIdleft];
+   // [self.leftTable registerClass:[UITableViewCell class] forCellReuseIdentifier:resueIdleft];
     [self.leftTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     
     self.rightTable = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 4, 0, self.view.frame.size.width / 4 * 3, self.view.frame.size.height - SafeAreaTopHeight - 100 -36 - SafeAreaTabbarHeight - shoppingCarViewHeight) style:UITableViewStylePlain];
@@ -457,37 +458,33 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //左边========
     if (tableView == self.leftTable) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:resueIdleft];
-       NSDictionary *dic = [self.arrForType objectAtIndex:indexPath.row];
-       cell.textLabel.text = dic[@"goodsTypeEntity"][@"goodsTypeName"];
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+        
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cellleft%ld%ld",indexPath.section,indexPath.row];
+        CellForFoodListLeft *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            
+            cell = [[CellForFoodListLeft alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.selectedBackgroundView.backgroundColor = [UIColor lightGrayColor];
-        UILabel *redIcon = [[UILabel alloc]init];
-        redIcon.hidden = YES;
-        redIcon.layer.cornerRadius = 8;
-        redIcon.clipsToBounds = YES;
-        redIcon.font = [UIFont systemFontOfSize:12];
-        redIcon.textAlignment = NSTextAlignmentCenter;
-        redIcon.textColor = [UIColor whiteColor];
-        redIcon.backgroundColor = [UIColor redColor];
-        [cell addSubview:redIcon];
-        [redIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(cell.textLabel.mas_right).offset(0);
-            make.top.equalTo(cell.textLabel.mas_top).offset(5);
-            make.width.equalTo(@(16));
-            make.height.equalTo(@(16));
-        }];
+       NSDictionary *dic = [self.arrForType objectAtIndex:indexPath.row];
+        cell.typeName.text = dic[@"goodsTypeEntity"][@"goodsTypeName"];
+
         NSInteger nowRow = indexPath.row + 1;
         NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%ld",(long)indexPath.row];
          NSString *COUNT = [defaults objectForKey:value];
         if (nowRow == self.leftTableViewSelectRow && self.leftTableViewSelectRow != nil) {
             
-           
-                redIcon.hidden = NO;
+          
+
+                cell.redIcon.hidden = NO;
                 
-                redIcon.text = COUNT;
+                cell.redIcon.text = COUNT;
+
+            if ([COUNT isEqualToString:@"0"] || !COUNT) {
+                cell.redIcon.hidden = YES;
+                
+                cell.redIcon.text = @"";
+            }
 
            
         }

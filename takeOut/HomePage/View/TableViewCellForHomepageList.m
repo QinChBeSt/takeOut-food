@@ -98,7 +98,10 @@
 -(void)setMod:(ModelForShopList *)mod{
     self.shopName.text = mod.store_name;
     [self.bigImage sd_setImageWithURL:[NSURL URLWithString:mod.store_img] placeholderImage:[UIImage imageNamed:@""]];
-    NSString *dis = [NSString stringWithFormat:@"%@ | %@Km",mod.send_time,mod.send_dis];
+    int disint = [mod.send_dis intValue];
+    
+    float disFloat = (float)disint / (float)1000;
+    NSString *dis = [NSString stringWithFormat:@"%@ | %.2fKm",mod.send_time,disFloat];
     self.shopDistance.text = dis;
     NSString *msg = [NSString stringWithFormat:@"配送：¥%@ | 起送：¥%@ | 月售：%@",mod.send_pic,mod.up_pic,mod.per_mean];
     self.shopMassage.text = msg;

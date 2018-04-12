@@ -24,7 +24,7 @@
 #import "ModelForShopList.h"
 
 #define kHeadAdderssViewHeight 40
-#define kHeadSelectViewHeight 150
+#define kHeadSelectViewHeight 160
 #define kHeadImageViewHeight 100
 #define kHeadCollectionViewHeight SCREEN_WIDTH / 5 * 2
 
@@ -171,6 +171,8 @@
     [par setValue:strlongitude forKey:@"lonng"];
     [par setValue:strlatitude forKey:@"lat"];
     
+    
+    
     NSInteger strFlgid =tag + 1;
     NSNumber *numFlg =[NSNumber numberWithInteger:strFlgid];
     
@@ -267,9 +269,9 @@
         make.height.equalTo(@(kHeadSelectViewHeight));
     }];
     
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
-    line.backgroundColor = [UIColor grayColor];
-    [self.headView addSubview:line];
+//    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+//    line.backgroundColor = [UIColor grayColor];
+//    [self.headView addSubview:line];
     
     UIImageView *selectImage = [[UIImageView alloc]init];
     [selectImage setImage:[UIImage imageNamed:@"yhhd"]];
@@ -288,7 +290,7 @@
     
     [headviewSelectLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(headviewSelectView.mas_left).offset(15);
-        make.top.equalTo(selectImage.mas_bottom).offset(5);
+        make.top.equalTo(selectImage.mas_bottom).offset(15);
         make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-5);
         make.right.equalTo(headviewSelectView.mas_centerX).offset(-5);
     }];
@@ -300,7 +302,7 @@
     [headviewSelectView addSubview:headviewSelectRightView];
     [headviewSelectRightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(headviewSelectView.mas_right).offset(-15);
-        make.top.equalTo(selectImage.mas_bottom).offset(5);
+        make.top.equalTo(selectImage.mas_bottom).offset(15);
         make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-5);
         make.left.equalTo(headviewSelectView.mas_centerX).offset(5);
     }];
@@ -348,7 +350,7 @@
         [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
         [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        [clickButton setImage:[UIImage imageNamed:@"ic_pulldown"] forState:UIControlStateSelected];
+        [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
         [clickButton setTitle:arrButtonTitle[i] forState:UIControlStateNormal];
         [clickButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -520,15 +522,21 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     [locationmanager stopUpdatingHeading];
-    if (!strlatitude) {
-        [self netWorkForShopList:0];
-    }
+   
     //旧址
     CLLocation *currentLocation = [locations lastObject];
     CLGeocoder *geoCoder = [[CLGeocoder alloc]init];
     //打印当前的经度与纬度
     NSLog(@"%f,%f",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude);
     //反地理编码
+    if (!strlatitude) {
+        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5/*延迟执行时间*/ * NSEC_PER_SEC));
+        
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+             [self netWorkForShopList:0];
+        });
+   
+    }
     strlatitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
     strlongitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
    

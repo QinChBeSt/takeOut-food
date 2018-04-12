@@ -97,6 +97,7 @@
     self.codeTextField = [[UITextField alloc]init];
     self.codeTextField.delegate = self;
     self.codeTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    self.codeTextField.secureTextEntry = YES;
     self.codeTextField.placeholder = @"请输入密码";
     self.codeTextField.keyboardType = UIKeyboardTypeDefault;
     self.codeTextField.returnKeyType =  UIReturnKeyNext;
@@ -120,6 +121,7 @@
     self.sureCodeTextField = [[UITextField alloc]init];
     self.sureCodeTextField.delegate = self;
     self.sureCodeTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    self.sureCodeTextField.secureTextEntry = YES;
     self.sureCodeTextField.placeholder = @"请确认密码";
     self.sureCodeTextField.keyboardType = UIKeyboardTypeDefault;
     self.sureCodeTextField.returnKeyType =  UIReturnKeyDone;

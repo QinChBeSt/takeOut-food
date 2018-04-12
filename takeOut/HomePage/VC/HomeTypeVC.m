@@ -148,7 +148,7 @@
         [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
         [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        [clickButton setImage:[UIImage imageNamed:@"ic_pulldown"] forState:UIControlStateSelected];
+        [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
         [clickButton setTitle:arrButtonTitle[i] forState:UIControlStateNormal];
         [clickButton addTarget:self action:@selector(clickAction:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -161,7 +161,7 @@
 #pragma mark - 创建tableView
 -(void)createTableView{
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight , self.view.frame.size.width, self.view.frame.size.height - SafeAreaTopHeight - SafeAreaTabbarHeight) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight , self.view.frame.size.width, self.view.frame.size.height - SafeAreaTopHeight - SafeAreaTabbarHeight - 49) style:UITableViewStylePlain];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

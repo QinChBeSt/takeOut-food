@@ -97,6 +97,7 @@
     self.codeTextField.delegate = self;
     self.codeTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.codeTextField.placeholder = @"请输入密码";
+    self.codeTextField.secureTextEntry = YES;
     self.codeTextField.keyboardType = UIKeyboardTypeDefault;
     self.codeTextField.returnKeyType =  UIReturnKeyNext;
     [self.codeTextField addTarget:self action:@selector(codeTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];

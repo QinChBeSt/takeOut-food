@@ -260,6 +260,11 @@
     self.bz = textView.text;
     
 }
+
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent *)event{
+    
+    [self.view endEditing:YES];
+}
 #pragma mark - 点击事件
 -(void)back{
    

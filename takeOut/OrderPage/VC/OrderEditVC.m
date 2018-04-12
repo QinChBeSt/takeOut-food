@@ -310,7 +310,7 @@
     
 }
 -(void)midForRider{
-    self.riderSelectStr = @"2";
+    self.riderSelectStr = @"3";
     [self.riderMidBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     [self.riderMidBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
    
@@ -321,7 +321,7 @@
     [self.riderBadBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 -(void)badForRider{
-    self.riderSelectStr = @"3";
+    self.riderSelectStr = @"2";
     [self.riderBadBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     [self.riderBadBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
@@ -345,7 +345,7 @@
     
 }
 -(void)midForFood{
-    self.foodSelectStr = @"2";
+    self.foodSelectStr = @"3";
     [self.foodMidBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     [self.foodMidBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
@@ -356,7 +356,7 @@
     [self.foodBadBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 -(void)badForFood{
-    self.foodSelectStr = @"3";
+    self.foodSelectStr = @"2";
     [self.foodBadBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     [self.foodBadBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
@@ -423,7 +423,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent *)event{
+    
+    [self.view endEditing:YES];
+    
+}
 /*
 #pragma mark - Navigation
 

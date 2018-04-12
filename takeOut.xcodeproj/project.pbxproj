@@ -40,6 +40,7 @@
 		9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952742068D491005A6BBC /* ShopMassageVC.m */; };
 		9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952772068EDD8005A6BBC /* ModelForFoodList.m */; };
 		9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49527A2068F1EA005A6BBC /* CellForShopFood.m */; };
+		9D4FBC80207F37A700B7B5E6 /* CellForFoodListLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4FBC7F207F37A700B7B5E6 /* CellForFoodListLeft.m */; };
 		9D58C4902071D26D00D49721 /* CellForHadAddShopingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */; };
 		9D58C4932071D4CF00D49721 /* ModForHadAddShoppingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D58C4922071D4CF00D49721 /* ModForHadAddShoppingCar.m */; };
 		9D6143922073268F00187232 /* ShopDetailMassageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6143912073268F00187232 /* ShopDetailMassageVC.m */; };
@@ -167,6 +168,8 @@
 		9D4952772068EDD8005A6BBC /* ModelForFoodList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForFoodList.m; sourceTree = "<group>"; };
 		9D4952792068F1EA005A6BBC /* CellForShopFood.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForShopFood.h; sourceTree = "<group>"; };
 		9D49527A2068F1EA005A6BBC /* CellForShopFood.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForShopFood.m; sourceTree = "<group>"; };
+		9D4FBC7E207F37A700B7B5E6 /* CellForFoodListLeft.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForFoodListLeft.h; sourceTree = "<group>"; };
+		9D4FBC7F207F37A700B7B5E6 /* CellForFoodListLeft.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForFoodListLeft.m; sourceTree = "<group>"; };
 		9D58C48E2071D26D00D49721 /* CellForHadAddShopingCar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForHadAddShopingCar.h; sourceTree = "<group>"; };
 		9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForHadAddShopingCar.m; sourceTree = "<group>"; };
 		9D58C4912071D4CF00D49721 /* ModForHadAddShoppingCar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModForHadAddShoppingCar.h; sourceTree = "<group>"; };
@@ -543,6 +546,8 @@
 				9DA022862074C5B3005F7168 /* CellForSubmitOrder.m */,
 				9D3854EF207A0FB400175693 /* CellForShopEva.h */,
 				9D3854F0207A0FB400175693 /* CellForShopEva.m */,
+				9D4FBC7E207F37A700B7B5E6 /* CellForFoodListLeft.h */,
+				9D4FBC7F207F37A700B7B5E6 /* CellForFoodListLeft.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -882,6 +887,7 @@
 				9D26201E206C877200A2351B /* FileTool.m in Sources */,
 				9DFF11DF206B6DEE0084D63F /* KeyChainStore.m in Sources */,
 				9D4952722068D462005A6BBC /* EvaluationVC.m in Sources */,
+				9D4FBC80207F37A700B7B5E6 /* CellForFoodListLeft.m in Sources */,
 				D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */,
 				9D49526B2068CD95005A6BBC /* ZWMSegmentView.m in Sources */,
 				9D49526F2068D444005A6BBC /* FoodListVC.m in Sources */,
