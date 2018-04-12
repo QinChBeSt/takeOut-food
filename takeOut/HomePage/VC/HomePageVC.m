@@ -25,7 +25,7 @@
 
 #define kHeadAdderssViewHeight 40
 #define kHeadSelectViewHeight 160
-#define kHeadImageViewHeight 100
+#define kHeadImageViewHeight 130
 #define kHeadCollectionViewHeight SCREEN_WIDTH / 5 * 2
 
 @interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate,SDCycleScrollViewDelegate>
@@ -318,7 +318,7 @@
         make.top.equalTo(headviewSelectView.mas_bottom);
         make.width.equalTo(headviewImageView);
         make.centerX.equalTo(headviewImageView);
-        make.height.equalTo(@(65));
+        make.height.equalTo(@(70));
     }];
     
      UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
@@ -331,7 +331,7 @@
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(line.mas_bottom).offset(5);
         make.left.equalTo(sortingView.mas_left).offset(20);
-        make.height.equalTo(@(20));
+        make.height.equalTo(@(25));
         make.width.equalTo(@(80));
     }];
 
@@ -392,7 +392,7 @@
 #pragma mark - 创建tableView
 -(void)createTableView{
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaStatsBarHeight, self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaStatsBarHeight - SafeAreaTabbarHeight) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaStatsBarHeight, self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaStatsBarHeight - SafeAreaTabbarHeight - 49) style:UITableViewStylePlain];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

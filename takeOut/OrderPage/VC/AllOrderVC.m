@@ -13,6 +13,7 @@
 #import "OrderEditVC.h"
 #import "CellForOrderListNoPJ.h"
 #import "LoginByPhoneVC.h"
+#import "MJRefresh.h"
 @interface AllOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
@@ -85,6 +86,7 @@
             Mod.cdata = dic11[@"cdata"];
             [self.arrForOrerList addObject:Mod];
         }
+        
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -97,11 +99,9 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+
      self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    /** 注册cell. */
-     [self.tableView registerClass:[CellForOrderList class] forCellReuseIdentifier:@"pool1"];
-    [self.tableView registerClass:[CellForOrderListNoPJ class] forCellReuseIdentifier:@"pool2"];
-    
+
     [self.view addSubview:self.tableView];
     
     

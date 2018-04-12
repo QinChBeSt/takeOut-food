@@ -26,8 +26,8 @@
     [self.bigImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(10));
         make.top.equalTo(@(10));
-        make.width.equalTo(@(50));
-        make.height.equalTo(@(50));
+        make.width.equalTo(@(80));
+        make.height.equalTo(@(80));
     }];
     
     self.shopName = [[UILabel alloc]init];
