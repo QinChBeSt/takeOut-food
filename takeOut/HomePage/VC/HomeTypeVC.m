@@ -133,7 +133,7 @@
     [sortingView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:sortingView];
     
-    NSArray *arrButtonTitle = @[@"综合排序",@"销量最高",@"距离最近"];
+    NSArray *arrButtonTitle = @[NSLocalizedString(@"综合排序", nil),NSLocalizedString(@"销量最高", nil),NSLocalizedString(@"距离最近", nil)];
     CGFloat buttonW = SCREEN_WIDTH / arrButtonTitle.count; //按钮的宽度和高度
     CGFloat buttonH = 30;
     for (int i=0; i<arrButtonTitle.count; i++) {  // 循环创建3个按钮

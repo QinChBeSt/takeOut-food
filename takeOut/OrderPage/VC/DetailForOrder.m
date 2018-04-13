@@ -201,7 +201,7 @@
     UIView *moneyView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , moneyViewHeight)];
     [backView addSubview:moneyView];
     UILabel *psPictit = [[UILabel alloc]init];
-    psPictit.text = @"配送费";
+    psPictit.text =[NSString stringWithFormat:@"%@",NSLocalizedString(@"配送费", nil)];
     psPictit.font = [UIFont systemFontOfSize:14];
     psPictit.textColor = [UIColor lightGrayColor];
     [moneyView addSubview:psPictit];
@@ -221,7 +221,7 @@
     
  
     UILabel *yhPictit = [[UILabel alloc]init];
-    yhPictit.text = @"优惠金额";
+    yhPictit.text =[NSString stringWithFormat:@"%@",NSLocalizedString(@"优惠金额", nil)];
     yhPictit.font = [UIFont systemFontOfSize:14];
     yhPictit.textColor = [UIColor lightGrayColor];
     [moneyView addSubview:yhPictit];
@@ -331,12 +331,13 @@
     }];
     
     self.userAddress = [[UILabel alloc]init];
-    self.userAddress.numberOfLines = 2;
+    self.userAddress.numberOfLines = 3;
     [addressbackview addSubview: self.userAddress];
     self.userAddress.font = [UIFont systemFontOfSize:14];
     self.userAddress.textColor = [UIColor lightGrayColor];
     [ self.userAddress mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(psAddressTitle.mas_right).offset(20);
+        make.right.equalTo(addressbackview.mas_right).offset(-10);
         make.centerY.equalTo(addressbackview.mas_top).offset((addressViewHeight - 20) / 8 * 3);
     }];
     
@@ -361,7 +362,7 @@
     }];
     UILabel *compStr = [[UILabel alloc]init];
     [addressbackview addSubview:compStr];
-    compStr.text = @"提供商品高品质配送服务";
+    compStr.text =[NSString stringWithFormat:@"%@",NSLocalizedString(@"提供商品高品质配送服务", nil)];
     compStr.font = [UIFont systemFontOfSize:14];
     compStr.textColor = [UIColor lightGrayColor];
     [compStr mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -435,7 +436,7 @@
     
 }
 -(void)createTabview{
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight)];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight - 10)];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -455,11 +456,13 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
-    CellForOrderDetail *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.dic = [self.arrForOrerList objectAtIndex:indexPath.row];
-    return cell;
+    if (self.arrForOrerList.count > 0) {
+        CellForOrderDetail *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.dic = [self.arrForOrerList objectAtIndex:indexPath.row];
+        return cell;
+    }
+    return nil;
     
 }
 /* 行高 **/

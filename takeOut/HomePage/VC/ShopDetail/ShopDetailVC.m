@@ -75,7 +75,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = @"商家详情";
+    titleLabel.text = NSLocalizedString(@"商家详情", nil);
     titleLabel.textColor = [UIColor whiteColor];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -173,7 +173,7 @@
     f1.saveArr = self.saveListArr;
     NSArray *array = @[f,s,f1];
     
-    self.segmentVC = [[ZWMSegmentController alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight + 100, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -100) titles:@[@"点菜",@"评价",@"商家"]];
+    self.segmentVC = [[ZWMSegmentController alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight + 100, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -100) titles:@[NSLocalizedString(@"点菜", nil),NSLocalizedString(@"评价", nil),NSLocalizedString(@"商家", nil)]];
     self.segmentVC.segmentView.showSeparateLine = YES;
     self.segmentVC.segmentView.segmentTintColor = [UIColor blackColor];
     self.segmentVC.viewControllers = [array copy];

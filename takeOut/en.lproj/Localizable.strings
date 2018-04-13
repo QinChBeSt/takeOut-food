@@ -39,20 +39,34 @@
 "优惠活动" = "Preferential activities";
 "感谢您的支持，欢迎下次光临" = "Thank you for your support. Welcome next time";
 "订单已完成" = "Order completed";
-
+"综合排序" = "comprehensive";
+"销量最高" = "Highest sales";
+"距离最近" = "The closest";
+"配送：￥" = "Distribution: $";
+"起送：￥" = "Up to send : $";
+"月售：" = "On sale";
+"点菜" = "To order";
+"商家" = "Shop";
+"商家详情" = "Business details";
+"加入购物车" = "Add to cart";
+"元起送" = "$ upSend";
+"清空" = "clean";
+"购物车" = "shopping cart";
+"选规格" = "specifications";
+"查看食品安全档案" = "Check the food safety profile";
 // ---------------------- 订单
 "全部订单" = "All Order";
 "待评价" = "Will evaluate";
-"共计" = "total of";
-"件商品" = "items goods";
+"共计" = "total of ";
+"件商品" = " items goods";
 "订单时间" = "Order time";
 "订单详情" = "Detail Order";
 "感谢您的支持，欢迎下次光临！" = "Thank you for your support. Welcome next time!";
 "小计: ￥" = "total: $";
 "商家电话" = "store phone";
 "配送地址" = "Address";
-"配送服务" = "PSFW";
-"提供商品高品质配送服务" = "TGGPZPSFW";
+"配送服务" = "Delivery";
+"提供商品高品质配送服务" = "Provide high quality delivery service";
 "货到付款" = "Cash on delivery";
 "在线支付" = "Online payment";
 "订单日期" = "Order Data";
@@ -64,16 +78,39 @@
 "请选择订单评价" = "Please select the order evaluation";
 "评价成功" = "Evaluation success";
 "评价失败" = "Evaluation failure";
-
-
-
+"商家未接单" = "No orders";
+"商家已接单" ="The merchant has received the order";
+"骑手未接单" = "Rider not received";
+"骑手已接单" ="The rider has received the order";
+"骑手到店" = "Riders to the store";
+"骑手拿到东西" ="The rider gets the thing.";
+"订单完成" = "Order completed";
+"未评价" = "Not evaluated";
+"已评价" = "Evaluated";
+"优惠金额" = "Preferential";
+"订单号码" = "Order number";
 // ---------------------- 我的
-"登陆" = "Login";
-"登陆成功" = "login success";
-"登陆失败" = "login failed";
+
+"登录" = "Login";
+"登录成功" = "login success";
+"登录失败" = "login failed";
 "我的地址" = "My address";
 " + 新增收货地址" = "+ Add Shipping Address";
 "新增收货地址" = "Add Shipping Address";
+"请输入手机号" = "Please enter your phone number";
+"请确认密码" = "Please confirm the password";
+"请输入验证码" = "Please enter code";
+"获取验证码" = "Get code";
+"其他登录" = "Other Login";
+"注册" = "register";
+"注册成功" = "register success";
+"注册失败" = "register failed";
+"请输入密码" = "Please enter your password";
+"重新获取" = "Reacquire";
+"请输入正确的手机号" = "Please enter the correct phone number";
+"获取验证码失败，请检查网络" = "Get the verification code failed, please check the network";
+"两次密码不相同，请检查输入的密码" = "Two passwords are different. Please check the password";
+
 "保存" = "Save";
 "收货人" = "Consignee";
 "先生" = "Gentlemen";
@@ -95,6 +132,8 @@
 "我的评价" = "My evaluation";
 "关于我们" = "About us";
 "清除缓存" = "Clean cache";
+"没有缓存" = "no cache";
+"成功" = "success";
 "退出登录" = "Log out";
 "是否删除" = "Do you want to delete";
 "取消" = "cancel";

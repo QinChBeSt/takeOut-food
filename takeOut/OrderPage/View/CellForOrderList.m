@@ -130,7 +130,7 @@
         self.haveEvaluateLabel.text = NSLocalizedString(@"骑手未接单", nil);
     }
     else if ([shopStrat isEqualToString:@"6"]){
-        self.haveEvaluateLabel.text =NSLocalizedString(@"商家已接单", nil);
+        self.haveEvaluateLabel.text =NSLocalizedString(@"骑手已接单", nil);
     }
     else if ([shopStrat isEqualToString:@"7"]){
         self.haveEvaluateLabel.text = NSLocalizedString(@"骑手到店", nil);

@@ -214,7 +214,7 @@
     }];
     if (indexPath.row == 0) {
         
-        text.text = @"查看食品安全档案";
+        text.text =NSLocalizedString(@"查看食品安全档案", nil) ;
     }else if (indexPath.row == 1){
        
         text.text = self.openTime;

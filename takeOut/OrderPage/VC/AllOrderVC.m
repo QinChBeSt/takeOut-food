@@ -13,11 +13,16 @@
 #import "OrderEditVC.h"
 #import "CellForOrderListNoPJ.h"
 #import "LoginByPhoneVC.h"
-#import "MJRefresh.h"
+
 @interface AllOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
 @property (nonatomic , strong)UIButton *toLOginBtn;
+
+/**
+ *   页数
+ */
+@property (nonatomic,assign) int pageIndex;
 @end
 
 @implementation AllOrderVC
@@ -62,12 +67,14 @@
     // Do any additional setup after loading the view.
 }
 -(void)getNetwork{
+    self.pageIndex = 1;
+    NSString *page = [NSString stringWithFormat:@"%d",self.pageIndex];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getOrderListURL];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userID = [defaults objectForKey:UD_USERID];
     NSDictionary *parameters = @{@"userid":userID,
                                  @"flg":@"0",
-                                 @"page":@"1",
+                                 @"page":page
                                  };
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
     [self.arrForOrerList removeAllObjects];
@@ -86,12 +93,17 @@
             Mod.cdata = dic11[@"cdata"];
             [self.arrForOrerList addObject:Mod];
         }
-        
+        [self.tableView.mj_header endRefreshing];
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
 }
+
+-(void)loadMoreBills{
+    
+}
+
 #pragma mark - 创建tableView
 -(void)createTableView{
   
@@ -99,9 +111,10 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-
-     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getNetwork];
+    }];
     [self.view addSubview:self.tableView];
     
     
@@ -116,42 +129,43 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ModelForOrderList *mod = [[ModelForOrderList alloc]init];
-    mod = [self.arrForOrerList objectAtIndex:indexPath.row];
-     NSString *shopStrat = mod.shopstart;
-    if ([shopStrat isEqualToString:@"9"]) {
-//        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-
-        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[CellForOrderList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    if (self.arrForOrerList.count > 0) {
+        ModelForOrderList *mod = [[ModelForOrderList alloc]init];
+        mod = [self.arrForOrerList objectAtIndex:indexPath.row];
+        NSString *shopStrat = mod.shopstart;
+        if ([shopStrat isEqualToString:@"9"]) {
+            //        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
+            NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+            
+            CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (!cell) {
+                cell = [[CellForOrderList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.mod = mod;
+            [cell handlerButtonAction:^(NSString *str) {
+                OrderEditVC *order = [[OrderEditVC alloc]init];
+                order.hidesBottomBarWhenPushed = YES;
+                order.orderId = mod.ordenum;
+                [self.navigationController pushViewController:order animated:YES];
+            }];
+            return cell;
+        }else{
+            //        CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
+            NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+            
+            CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (!cell2) {
+                cell2 = [[CellForOrderListNoPJ alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            cell2.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell2.mod = mod;
+            
+            return cell2;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.mod = mod;
-        [cell handlerButtonAction:^(NSString *str) {
-            OrderEditVC *order = [[OrderEditVC alloc]init];
-            order.hidesBottomBarWhenPushed = YES;
-            order.orderId = mod.ordenum;
-            [self.navigationController pushViewController:order animated:YES];
-        }];
-        return cell;
-    }else{
-//        CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
-        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-
-        CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell2) {
-            cell2 = [[CellForOrderListNoPJ alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        }
-        cell2.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell2.mod = mod;
         
-        return cell2;
     }
-    
-        
-    //}
+   
     return nil;
 }
 /* 行高 **/

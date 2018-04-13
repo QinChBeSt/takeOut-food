@@ -142,7 +142,7 @@
     NSString *userID = [defaults objectForKey:UD_USERID];
     
     if (userID == nil) {
-        NSLog(@"去登陆！！！");
+        NSLog(@"去登录！！！");
         LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
         [self.navigationController pushViewController:login animated:YES];
         return;
@@ -338,7 +338,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     self.addBuyCarBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.addBuyCarBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     self.addBuyCarBtn.layer.cornerRadius = 5;
-    [self.addBuyCarBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
+    [self.addBuyCarBtn setTitle:NSLocalizedString(@"加入购物车", nil) forState:UIControlStateNormal];
     [self.addBuyCarBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.addBuyCarBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
     [self.addBuyCarBtn addTarget:self action:@selector(addBuyCar) forControlEvents:UIControlEventTouchUpInside];
@@ -850,7 +850,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             
             //底部数据
             self.addMoney = [mod.g_pic floatValue] + self.addMoney;
-            self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
+            self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",NSLocalizedString(@"¥", nil),self.addMoney];
             self.ShoppingCarRedNum++;
             self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)self.ShoppingCarRedNum];
             
@@ -936,7 +936,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             
             //底部数据
             self.addMoney =  self.addMoney -[mod.g_pic floatValue] ;
-            self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
+            self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",NSLocalizedString(@"¥", nil),self.addMoney];
             self.ShoppingCarRedNum--;
             if (self.ShoppingCarRedNum == 0) {
                 self.ShoppingCarRedNum = 0;
@@ -1053,7 +1053,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     NSLog(@"%@,%f",self.selectbuyCarMoncy,self.addMoney);
     [self removewChooseView];
     self.addMoney = [self.selectbuyCarMoncy floatValue] + self.addMoney;
-    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
+    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",NSLocalizedString(@"¥", nil),self.addMoney];
     NSInteger row = self.leftTableViewSelectRow - 1;
     NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%ld",(long)row];
     NSString *countStr = [defaults objectForKey:value];
@@ -1150,12 +1150,12 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 -(void)addBuyCarNoSize{
     NSLog(@"当前购物车%@,加上新的%f",self.selectbuyCarMoncy,self.addMoney);
     self.addMoney = [self.selectbuyCarMoncy floatValue] + self.addMoney;
-    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
+    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",NSLocalizedString(@"¥", nil),self.addMoney];
 }
 -(void)delectBuyCarNoSize{
     NSLog(@"当前购物车%@,减去取消的%f",self.selectbuyCarMoncy,self.addMoney);
     self.addMoney =   self.addMoney  - [self.selectbuyCarMoncy floatValue];
-    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%.2f 元",self.addMoney];
+    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",NSLocalizedString(@"¥", nil),self.addMoney];
 }
 - (UIWindow *)lastWindow
 {
@@ -1186,11 +1186,11 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     haveBuyToolBar.backgroundColor = [UIColor lightGrayColor];
     
     UILabel *toolBatTitle = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 150, 40)];
-    toolBatTitle.text = @"购物车";
+    toolBatTitle.text =NSLocalizedString(@"购物车", nil);
     [haveBuyToolBar addSubview:toolBatTitle];
     
     UIButton *CleanBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    [CleanBtn setTitle:@"清空" forState:UIControlStateNormal];
+    [CleanBtn setTitle:NSLocalizedString(@"清空", nil) forState:UIControlStateNormal];
     [CleanBtn addTarget:self action:@selector(cleanAllData) forControlEvents:UIControlEventTouchUpInside];
     [haveBuyToolBar addSubview:CleanBtn];
     [CleanBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -1261,7 +1261,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 -(void)addShoppongCarNetWord{
     if (self.arrForAddShoppingCarList.count == 0) {
     self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
-    [self.addBuyCarViewAddBtn setTitle:NSLocalizedString(@"三元起送", nil) forState:UIControlStateNormal];
+    //[self.addBuyCarViewAddBtn setTitle:NSLocalizedString(@"元起送", nil) forState:UIControlStateNormal];
     }else{
     [self getNetWorkForAddShoppingCar];
     }

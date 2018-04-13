@@ -34,7 +34,7 @@
     NSString *userID = [defaults objectForKey:UD_USERID];
     NSString *userPhine = [defaults objectForKey:UD_USERPHONE];
     if (userID == nil || [userID isEqualToString:@""]) {
-        self.userName.text = NSLocalizedString(@"登陆", nil);
+        self.userName.text = NSLocalizedString(@"登录", nil);
         self.userPhone.text = @"";
         _isLoginOut = 1;
     }else{
@@ -207,12 +207,12 @@
     //清除缓存
         if (indexPath.row == 0) {
             if (_totalSize == 0) {
-                [MBManager showBriefAlert:@"没有缓存"];
+                [MBManager showBriefAlert:NSLocalizedString(@"没有缓存", nil)];
                 return;
             }
             [FileTool removeDirectoryPath:CachePath];
             NSInteger totalSize = _totalSize;
-            NSString *sizeStr = @"清除缓存";
+            NSString *sizeStr = NSLocalizedString(@"清除缓存", nil);
             // MB KB B
             if (totalSize > 1000 * 1000) {
                 // MB
@@ -226,7 +226,7 @@
                 // B
                 sizeStr = [NSString stringWithFormat:@"%@%.ldB",sizeStr,totalSize];
             }
-            NSString *cleanSize = [NSString stringWithFormat:@"%@成功",sizeStr];
+            NSString *cleanSize = [NSString stringWithFormat:@"%@%@",sizeStr,NSLocalizedString(@"成功", nil)];
             [MBManager showBriefAlert:cleanSize];
             _totalSize = 0;
             [self.tableView reloadData];
@@ -240,7 +240,7 @@
             
             [defaults synchronize];
             
-            self.userName.text = NSLocalizedString(@"登陆", nil);
+            self.userName.text = NSLocalizedString(@"登录", nil);
             self.userPhone.text = @"";
             _isLoginOut = 1;
             

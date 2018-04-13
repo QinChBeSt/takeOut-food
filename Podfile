@@ -4,7 +4,7 @@ pod 'AFNetworking'
 pod 'Masonry'
 pod 'SDWebImage'
 pod 'SDAutoLayout'
-pod 'MJRefresh'
+
 pod 'MBProgressHUD'
 pod 'SDCycleScrollView'
 
