@@ -93,6 +93,7 @@
             Mod.cdata = dic11[@"cdata"];
             [self.arrForOrerList addObject:Mod];
         }
+        [self.tableView.mj_footer resetNoMoreData];
         [self.tableView.mj_header endRefreshing];
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -101,7 +102,41 @@
 }
 
 -(void)loadMoreBills{
-    
+    self.pageIndex ++;
+    NSString *page = [NSString stringWithFormat:@"%d",self.pageIndex];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getOrderListURL];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    NSDictionary *parameters = @{@"userid":userID,
+                                 @"flg":@"0",
+                                 @"page":page
+                                 };
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+   // [self.arrForOrerList removeAllObjects];
+    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSMutableDictionary *dic = responseObject;
+        NSMutableArray *arr = dic[@"value"];
+        if (arr.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+        for (NSMutableDictionary *dic11 in arr) {
+            ModelForOrderList *Mod = [[ModelForOrderList alloc]init];
+            Mod.ordenum = dic11[@"ordenum"];
+            Mod.shopname = dic11[@"shopname"];
+            Mod.shopstart = dic11[@"shopstart"];
+            Mod.goodsnum = dic11[@"goodsnum"];
+            Mod.totalpic = dic11[@"totalpic"];
+            Mod.godslist = dic11[@"godslist"];
+            Mod.cdata = dic11[@"cdata"];
+            [self.arrForOrerList addObject:Mod];
+        }
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView reloadData];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 
 #pragma mark - 创建tableView
@@ -115,6 +150,10 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getNetwork];
     }];
+    MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self loadMoreBills];
+    }];
+    self.tableView.mj_footer = footer;
     [self.view addSubview:self.tableView];
     
     

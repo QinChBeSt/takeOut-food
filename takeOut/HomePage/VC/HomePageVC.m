@@ -48,6 +48,12 @@
 
 @property (nonatomic , strong)NSMutableArray *arrForHomePageTypeName;
 @property (nonatomic , strong)NSMutableArray *arrForHomePageShopList;
+
+/**
+ *   页数
+ */
+@property (nonatomic,assign) int pageIndex;
+@property (nonatomic ,assign) int chooseType;
 @end
 
 @implementation HomePageVC{
@@ -158,6 +164,61 @@
         
     }];
 }
+-(void)loadMoreBills:(NSInteger)tag{
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,homeshopRecommendList];
+    NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
+    if (!strlongitude) {
+        strlongitude = @"0";
+    }
+    if (!strlatitude) {
+        strlatitude = @"0";
+    }
+    [par setValue:strlongitude forKey:@"lonng"];
+    [par setValue:strlatitude forKey:@"lat"];
+    
+    
+    
+    NSInteger strFlgid =self.chooseType + 1;
+    NSNumber *numFlg =[NSNumber numberWithInteger:strFlgid];
+    
+    NSString * strTypeFlg =@"1";
+    int strTypeFlgid =[strTypeFlg intValue];
+    NSNumber *numTypeFlg =[NSNumber numberWithInt:strTypeFlgid];
+    _pageIndex++;
+
+    NSNumber *numPage =[NSNumber numberWithInt:_pageIndex];
+    [par setValue:numFlg forKey:@"flg"];
+    [par setValue:numTypeFlg forKey:@"typeflg"];
+    [par setValue:numPage forKey:@"page"];
+
+    [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+        
+        NSArray *arr = result[@"value"];
+        if (arr.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+        for (NSDictionary *dic in arr) {
+            ModelForShopList *mod = [[ModelForShopList alloc]init];
+            mod.per_mean = dic[@"per_mean"];
+            mod.send_dis = dic[@"send_dis"];
+            mod.send_time = dic[@"send_time"];
+            mod.send_pic = dic[@"send_pic"];
+            mod.store_id = dic[@"store_id"];
+            mod.store_img = dic[@"store_img"];
+            mod.store_name = dic[@"store_name"];
+            mod.up_pic = dic[@"up_pic"];
+            mod.act_list = dic[@"act_list"];
+            mod.opentime = dic[@"opentime"];
+            [self.arrForHomePageShopList addObject:mod];
+        }
+            [self.tableView.mj_footer endRefreshing];
+            [self.tableView reloadData];
+        }
+        
+    } withFail:^(NSError *error) {
+        
+    }];
+}
 //推荐列表
 -(void)netWorkForShopList:(NSInteger )tag{
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,homeshopRecommendList];
@@ -173,14 +234,14 @@
     
     
     
-    NSInteger strFlgid =tag + 1;
+    NSInteger strFlgid =self.chooseType + 1;
     NSNumber *numFlg =[NSNumber numberWithInteger:strFlgid];
     
     NSString * strTypeFlg =@"1";
     int strTypeFlgid =[strTypeFlg intValue];
     NSNumber *numTypeFlg =[NSNumber numberWithInt:strTypeFlgid];
-    
-    NSString * strPage =@"0";
+    _pageIndex = 1;
+    NSString * strPage =@"1";
     int strPageid =[strPage intValue];
     NSNumber *numPage =[NSNumber numberWithInt:strPageid];
     [par setValue:numFlg forKey:@"flg"];
@@ -204,6 +265,8 @@
             mod.opentime = dic[@"opentime"];
             [self.arrForHomePageShopList addObject:mod];
         }
+        [self.tableView.mj_footer resetNoMoreData];
+        [self.tableView.mj_header endRefreshing];
         [self.tableView reloadData];
     } withFail:^(NSError *error) {
         
@@ -399,6 +462,15 @@
     [self createHeadView];
     self.tableView.tableHeaderView = self.headView;
    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self netWorkForShopList:self.chooseType];
+    }];
+    
+    MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self loadMoreBills:self.chooseType];
+    }];
+    self.tableView.mj_footer = footer;
+    
     /** 注册cell. */
     [self.tableView registerClass:[TableViewCellForHomepageList class] forCellReuseIdentifier:@"pool1"];
     [self.view addSubview:self.tableView];
@@ -547,12 +619,19 @@
             CLPlacemark *placeMark = placemarks[0];
             currentCity = placeMark.locality;
             if (!currentCity) {
-                currentCity = @"无法定位当前城市";
+                currentCity = NSLocalizedString(@"未知城市", nil);;
             }
             
-            
+            NSString *subLoc = placeMark.subLocality;
+            NSString *locName = placeMark.name;
+            if (subLoc == nil) {
+                subLoc = @"";
+            }
+            if (locName == nil) {
+                locName = @"";
+            }
+             NSString *locStr = [NSString stringWithFormat:@"%@ %@%@",currentCity,subLoc,locName];
            
-            NSString *locStr = [NSString stringWithFormat:@"%@%@%@",currentCity,placeMark.subLocality,placeMark.name];
              NSLog(@"%@",locStr);//具体地址
             headviewAddressLabel.text = locStr;
             
@@ -584,6 +663,7 @@
 //点击了对应的筛选条件按钮操作
 -(void)clickAction:(UIButton *)sender{
     NSLog(@"%ld",(long)sender.tag);
+    self.chooseType = (int)sender.tag;
     self.replaceButton.selected=NO;  // 改变箭头的方向
     sender.selected=YES;
     self.replaceButton=sender;

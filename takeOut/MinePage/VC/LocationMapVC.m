@@ -155,10 +155,20 @@
             CLPlacemark *placeMark = placemarks[0];
             currentCity = placeMark.locality;
             if (!currentCity) {
-                currentCity = @"未知城市";
+                currentCity = NSLocalizedString(@"未知城市", nil);
             }
     
-            locationStr = [NSString stringWithFormat:@"%@%@%@",currentCity,placeMark.subLocality,placeMark.name];
+            NSString *subLoc = placeMark.subLocality;
+            NSString *locName = placeMark.name;
+            if (subLoc == nil) {
+                subLoc = @"";
+            }
+            if (locName == nil) {
+                locName = @"";
+            }
+//            NSString *locStr = [NSString stringWithFormat:@"%@%@%@",currentCity,placeMark.subLocality,placeMark.name];
+
+            locationStr = [NSString stringWithFormat:@"%@ %@%@",currentCity,subLoc,locName];
             NSLog(@"%@",locationStr);//具体地址
             cityName.text = currentCity;
             loactionLabel.text = locationStr;
