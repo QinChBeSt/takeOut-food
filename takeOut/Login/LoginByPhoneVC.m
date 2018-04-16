@@ -41,12 +41,12 @@
     
     __weak typeof(self) ws = self;
     UIImageView *backImg = [[UIImageView alloc]init];
-    backImg.backgroundColor = [UIColor orangeColor];
+    [backImg setImage:[UIImage imageNamed:@"back_black"]];
     [self.niveView addSubview:backImg];
     [backImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.niveView.mas_top).offset(SafeAreaStatsBarHeight + 5);
         make.left.equalTo(ws.niveView.mas_left).offset(15);
-        make.width.equalTo(@(25));
+        make.width.equalTo(@(30));
         make.height.equalTo(@(30));
     }];
     

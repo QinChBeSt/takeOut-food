@@ -204,6 +204,10 @@
 		9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginByPasswordVC.m; sourceTree = "<group>"; };
 		9D72E2BF206B4B3900CEE3B0 /* MBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBManager.h; sourceTree = "<group>"; };
 		9D72E2C0206B4B3900CEE3B0 /* MBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBManager.m; sourceTree = "<group>"; };
+		9D775A0F20847B7900765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Main.strings; sourceTree = "<group>"; };
+		9D775A1020847B7A00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		9D775A1120847B7B00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9D775A1220847B7C00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9D92577B2065F90C00A6E262 /* SortButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortButton.h; sourceTree = "<group>"; };
 		9D92577C2065F90C00A6E262 /* SortButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortButton.m; sourceTree = "<group>"; };
 		9D92577E2066015D00A6E262 /* CollectionViewCellForHomePageChoose.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewCellForHomePageChoose.h; sourceTree = "<group>"; };
@@ -935,6 +939,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				th,
 			);
 			mainGroup = 9DDFD2682064EC7100393DE5;
 			productRefGroup = 9DDFD2722064EC7100393DE5 /* Products */;
@@ -1159,6 +1164,7 @@
 			children = (
 				9D262027206CC93A00A2351B /* en */,
 				9D262029206CC94B00A2351B /* zh-Hans */,
+				9D775A1220847B7C00765E9A /* th */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1168,6 +1174,7 @@
 			children = (
 				9D26202D206CCA8700A2351B /* en */,
 				9D26202F206CCA8900A2351B /* zh-Hans */,
+				9D775A1120847B7B00765E9A /* th */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1177,6 +1184,7 @@
 			children = (
 				9DDFD27B2064EC7100393DE5 /* Base */,
 				9D262022206CC89E00A2351B /* zh-Hans */,
+				9D775A0F20847B7900765E9A /* th */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1186,6 +1194,7 @@
 			children = (
 				9DDFD2802064EC7100393DE5 /* Base */,
 				9D262023206CC89E00A2351B /* zh-Hans */,
+				9D775A1020847B7A00765E9A /* th */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

@@ -455,7 +455,7 @@
 #pragma mark - 创建tableView
 -(void)createTableView{
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaStatsBarHeight, self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaStatsBarHeight - SafeAreaTabbarHeight - 49) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaStatsBarHeight, self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaStatsBarHeight - SafeAreaTabbarHeight - 34) style:UITableViewStylePlain];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
