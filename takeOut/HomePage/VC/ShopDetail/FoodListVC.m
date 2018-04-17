@@ -365,7 +365,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     }];
     
     UIImageView *imgShoppingCar = [[UIImageView alloc]init];
-    imgShoppingCar.backgroundColor = [UIColor orangeColor];
+    [imgShoppingCar setImage:[UIImage imageNamed:@"购物车"]];
     [self.buyCarView addSubview:imgShoppingCar];
     [imgShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(20));

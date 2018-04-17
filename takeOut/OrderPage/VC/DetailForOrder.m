@@ -286,7 +286,7 @@
         make.centerY.equalTo(shopPhoneView);
     }];
     UIImageView *phoneICon = [[UIImageView alloc]init];
-    phoneICon.backgroundColor = [UIColor orangeColor];
+    [phoneICon setImage:[UIImage imageNamed:@"电话"]];
     [btnView addSubview:phoneICon];
     [phoneICon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(btnView);

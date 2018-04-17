@@ -38,7 +38,7 @@
 
     
     self.addToShoppingCar = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.addToShoppingCar.backgroundColor = [UIColor orangeColor];
+    [self.addToShoppingCar setImage:[UIImage imageNamed:@"加"] forState:UIControlStateNormal];
     [self.addToShoppingCar addTarget:self action:@selector(addToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.addToShoppingCar];
     [self.addToShoppingCar setHidden:NO];
@@ -71,7 +71,7 @@
              make.right.equalTo(ws.addToShoppingCar.mas_left).offset(-5);
         }];
         self.delectToShoppingCar = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.delectToShoppingCar.backgroundColor = [UIColor orangeColor];
+        [self.delectToShoppingCar setImage:[UIImage imageNamed:@"减"] forState:UIControlStateNormal];
         [self.delectToShoppingCar addTarget:self action:@selector(delectToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.delectToShoppingCar];
         [self.delectToShoppingCar setHidden:NO];

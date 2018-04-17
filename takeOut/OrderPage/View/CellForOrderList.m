@@ -26,7 +26,7 @@
 }
 -(void)setUpUI{
     self.shopIcon = [[UIImageView alloc]init];
-    self.shopIcon.backgroundColor = [UIColor orangeColor];
+    [self.shopIcon setImage:[UIImage imageNamed:@"店铺"]];
     [self.contentView addSubview:self.shopIcon];
     self.shopIcon.sd_layout
     .leftSpaceToView(self.contentView, 10)

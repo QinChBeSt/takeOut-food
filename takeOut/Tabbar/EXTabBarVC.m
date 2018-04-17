@@ -98,6 +98,9 @@ DEF_SINGLETON(EXTabBarVC);
     [mArray addObject:naviUsercenter];
     
     self.viewControllers  = mArray;
+    
+    
+    
 }
 
 - (UIImage *)configureImage:(NSString *)imageName

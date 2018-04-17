@@ -84,7 +84,7 @@
     }];
     
     self.shipIcon = [[UIImageView alloc]init];
-    [self.shipIcon setBackgroundColor:[UIColor orangeColor]];
+    [self.shipIcon setImage:[UIImage imageNamed:@"logo"]];
     [self.niveView addSubview:self.shipIcon];
     [self.shipIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.niveView.mas_left).offset(10);
@@ -123,7 +123,7 @@
     }];
     
     UIImageView *rightIcon = [[UIImageView alloc]init];
-    rightIcon.backgroundColor = [UIColor orangeColor];
+    [rightIcon setImage:[UIImage imageNamed:@"右箭头"]];
     [self.niveView addSubview:rightIcon];
     [rightIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.niveView.mas_right).offset(-15);

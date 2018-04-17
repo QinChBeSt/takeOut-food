@@ -95,7 +95,7 @@
     }];
     
     UIImageView *phoneIcon = [[UIImageView alloc]init];
-    phoneIcon.backgroundColor = [UIColor orangeColor];
+    [phoneIcon setImage:[UIImage imageNamed:@"电话"]];
     [self.headView addSubview:phoneIcon];
     [phoneIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(telBtn);
@@ -104,11 +104,11 @@
     }];
     
     self.shopIcon = [[UIImageView alloc]init];
-    self.shopIcon.backgroundColor = [UIColor orangeColor];
+    [self.shopIcon setImage:[UIImage imageNamed:@"logo"]];
     [self.headView addSubview:self.shopIcon];
     [self.shopIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.headView.mas_left).offset(15);
-        make.top.equalTo(ws.addressLab.mas_bottom).offset(20);
+        make.top.equalTo(ws.headView.mas_top).offset(50);
         make.bottom.equalTo(ws.headView.mas_bottom).offset(-15);
         make.width.equalTo(ws.shopIcon.mas_height);
     }];
@@ -122,10 +122,10 @@
     line.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"];
     [self.footView addSubview:line];
     UIImageView *saveTitIocn = [[UIImageView alloc]init];
-    saveTitIocn.backgroundColor = [UIColor orangeColor];
+    [saveTitIocn setImage:[UIImage imageNamed:@"活动"]];
     [self.footView addSubview:saveTitIocn];
     [saveTitIocn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(ws.footView.mas_left).offset(15);
+        make.left.equalTo(ws.footView.mas_left).offset(10);
         make.centerY.equalTo(ws.footView.mas_top).offset(30);
         make.width.and.height.equalTo(@(20));
     }];
@@ -197,7 +197,7 @@
         make.height.equalTo(@(10));
     }];
     UIImageView *icon = [[UIImageView alloc]init];
-    icon.backgroundColor = [UIColor orangeColor];
+    
     [cell addSubview:icon];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(cell.mas_left).offset(10);
@@ -213,10 +213,10 @@
        make.centerY.equalTo(cell.mas_centerY).offset(5);
     }];
     if (indexPath.row == 0) {
-        
+        [icon setImage:[UIImage imageNamed:@"店铺"]];
         text.text =NSLocalizedString(@"查看食品安全档案", nil) ;
     }else if (indexPath.row == 1){
-       
+        [icon setImage:[UIImage imageNamed:@"闹钟"]];
         text.text = self.openTime;
     }
     

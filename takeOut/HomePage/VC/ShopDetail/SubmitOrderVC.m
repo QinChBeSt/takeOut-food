@@ -80,7 +80,7 @@
     [addBanckgroundView addSubview:addView];
     
     UIImageView *addIcon = [[UIImageView alloc]init];
-    addIcon.backgroundColor = [UIColor orangeColor];
+    [addIcon setImage:[UIImage imageNamed:@"加"]];
     [addView addSubview:addIcon];
     [addIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(addBanckgroundView);
