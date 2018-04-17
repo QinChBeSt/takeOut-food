@@ -19,6 +19,8 @@
 		9D26202C206CCA8700A2351B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D26202E206CCA8700A2351B /* Localizable.strings */; };
 		9D262032206CD21F00A2351B /* AllOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262031206CD21F00A2351B /* AllOrderVC.m */; };
 		9D262035206CD24500A2351B /* WillEvaluateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262034206CD24500A2351B /* WillEvaluateVC.m */; };
+		9D33AFC92085AA420086DC93 /* ZBLocalized.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D33AFC82085AA420086DC93 /* ZBLocalized.m */; };
+		9D33AFCC2085B02E0086DC93 /* ChangelanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D33AFCB2085B02E0086DC93 /* ChangelanguageVC.m */; };
 		9D3854E82079AC4200175693 /* OrderSuccessfullVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854E72079AC4200175693 /* OrderSuccessfullVC.m */; };
 		9D3854EB2079D89E00175693 /* DetailForOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854EA2079D89E00175693 /* DetailForOrder.m */; };
 		9D3854EE207A069D00175693 /* CellForOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854ED207A069D00175693 /* CellForOrderDetail.m */; };
@@ -147,6 +149,10 @@
 		9D262031206CD21F00A2351B /* AllOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllOrderVC.m; sourceTree = "<group>"; };
 		9D262033206CD24500A2351B /* WillEvaluateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WillEvaluateVC.h; sourceTree = "<group>"; };
 		9D262034206CD24500A2351B /* WillEvaluateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WillEvaluateVC.m; sourceTree = "<group>"; };
+		9D33AFC72085AA420086DC93 /* ZBLocalized.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBLocalized.h; sourceTree = "<group>"; };
+		9D33AFC82085AA420086DC93 /* ZBLocalized.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZBLocalized.m; sourceTree = "<group>"; };
+		9D33AFCA2085B02E0086DC93 /* ChangelanguageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangelanguageVC.h; sourceTree = "<group>"; };
+		9D33AFCB2085B02E0086DC93 /* ChangelanguageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangelanguageVC.m; sourceTree = "<group>"; };
 		9D3854E62079AC4200175693 /* OrderSuccessfullVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderSuccessfullVC.h; sourceTree = "<group>"; };
 		9D3854E72079AC4200175693 /* OrderSuccessfullVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderSuccessfullVC.m; sourceTree = "<group>"; };
 		9D3854E92079D89E00175693 /* DetailForOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailForOrder.h; sourceTree = "<group>"; };
@@ -359,6 +365,15 @@
 				9D26201D206C877200A2351B /* FileTool.m */,
 			);
 			path = CleanCache;
+			sourceTree = "<group>";
+		};
+		9D33AFC32085A2D90086DC93 /* GDLocalizableController */ = {
+			isa = PBXGroup;
+			children = (
+				9D33AFC72085AA420086DC93 /* ZBLocalized.h */,
+				9D33AFC82085AA420086DC93 /* ZBLocalized.m */,
+			);
+			path = GDLocalizableController;
 			sourceTree = "<group>";
 		};
 		9D4952492068850D005A6BBC /* MHNetwork */ = {
@@ -631,6 +646,8 @@
 				9D430E0C207DEB3F00CE8F2A /* MyEvaVC.m */,
 				9D430E0E207DEE1D00CE8F2A /* AboutusVC.h */,
 				9D430E0F207DEE1D00CE8F2A /* AboutusVC.m */,
+				9D33AFCA2085B02E0086DC93 /* ChangelanguageVC.h */,
+				9D33AFCB2085B02E0086DC93 /* ChangelanguageVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -781,6 +798,7 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9D33AFC32085A2D90086DC93 /* GDLocalizableController */,
 				9DAE1F4D20804D870090CF5D /* MJRefresh */,
 				9D012B1E20736E440015322E /* JZLocationConverter */,
 				9D26201B206C875E00A2351B /* CleanCache */,
@@ -1107,8 +1125,10 @@
 				9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */,
 				9DAE1F7E20804D880090CF5D /* MJRefreshComponent.m in Sources */,
 				9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */,
+				9D33AFC92085AA420086DC93 /* ZBLocalized.m in Sources */,
 				9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */,
 				9D430E16207E0A7500CE8F2A /* CellForMyAve.m in Sources */,
+				9D33AFCC2085B02E0086DC93 /* ChangelanguageVC.m in Sources */,
 				9DAE1F7D20804D880090CF5D /* MJRefreshBackFooter.m in Sources */,
 				9D262035206CD24500A2351B /* WillEvaluateVC.m in Sources */,
 				9DAE1F8120804D880090CF5D /* MJRefreshAutoGifFooter.m in Sources */,

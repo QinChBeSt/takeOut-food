@@ -101,7 +101,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"我的地址", nil);
+    titleLabel.text = ZBLocalized(@"我的地址", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -116,7 +116,7 @@
 -(void)createTableView{
     UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, SafeAreaTopHeight, SCREEN_WIDTH - 60, 30)];
     tipLabel.font = [UIFont systemFontOfSize:12];
-    tipLabel.text = NSLocalizedString(@"温馨提示，点击可以编辑地址，长按可以删除", nil);
+    tipLabel.text = ZBLocalized(@"温馨提示，点击可以编辑地址，长按可以删除", nil);
     [self.view addSubview:tipLabel];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight + 30, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -SafeAreaTabbarHeight - 50 - 30) style:UITableViewStylePlain];
     self.tableView.delegate = self;
@@ -166,7 +166,7 @@
     addnewVC.userSex = mod.userAddrsUsex;
     addnewVC.userPhoneStr = mod.userAddrsUsex;
     addnewVC.userHouseNoStr = mod.userAddrsAddrText;
-    addnewVC.naviTitle = NSLocalizedString(@"修改收货地址", nil);
+    addnewVC.naviTitle = ZBLocalized(@"修改收货地址", nil);
     addnewVC.addressId = mod.id;
     addnewVC.userId = mod.userId;
     addnewVC.getLong = mod.userAddrsLong;
@@ -182,7 +182,7 @@
     
     UIButton *addNewADD = [UIButton buttonWithType:UIButtonTypeCustom];
     addNewADD.frame = CGRectMake(0, 0, SCREEN_WIDTH, 50);
-    [addNewADD setTitle:NSLocalizedString(@" + 新增收货地址", nil) forState:UIControlStateNormal];
+    [addNewADD setTitle:ZBLocalized(@" + 新增收货地址", nil) forState:UIControlStateNormal];
     [addNewADD setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [addNewADD addTarget:self action:@selector(addAddress) forControlEvents:UIControlEventTouchUpInside];
     addNewADD.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -216,7 +216,7 @@
     [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
         if ([code isEqualToString:@"1"]) {
-            [MBManager showBriefAlert:NSLocalizedString(@"地址修改成功", nil)];
+            [MBManager showBriefAlert:ZBLocalized(@"地址修改成功", nil)];
             [self.arrForGetAddress removeObjectAtIndex:self.indexNum];
             [self.tableView reloadData];
         }
@@ -245,12 +245,12 @@
         
     {
        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"是否删除", nil) message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:ZBLocalized(@"是否删除", nil) message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:ZBLocalized(@"取消", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             NSLog(@"取消执行");
         }];
         
-        UIAlertAction *otherAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定删除", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        UIAlertAction *otherAction = [UIAlertAction actionWithTitle:ZBLocalized(@"确定删除", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             NSLog(@"确定执行");
             [self deleteAddress];
         }];

@@ -65,7 +65,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"我的评价", nil);
+    titleLabel.text = ZBLocalized(@"我的评价", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -87,7 +87,7 @@
         if ([code isEqualToString:@"1"]) {
           NSDictionary *dicRes = responseObject[@"value"];
             NSString *avecount = [NSString stringWithFormat:@"%@",dicRes[@"toals"]];
-            self.aveCountLab.text = [NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"已评价", nil),avecount,NSLocalizedString(@"条", nil)];
+            self.aveCountLab.text = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"已评价", nil),avecount,ZBLocalized(@"条", nil)];
             NSMutableArray *arr  = dicRes[@"eva"];
             for (NSMutableDictionary *dic in arr) {
                 [self.arrForMineAve addObject:dic];

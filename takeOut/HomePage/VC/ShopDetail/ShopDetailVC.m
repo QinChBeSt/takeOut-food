@@ -75,7 +75,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"商家详情", nil);
+    titleLabel.text = ZBLocalized(@"商家详情", nil);
     titleLabel.textColor = [UIColor whiteColor];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -173,7 +173,7 @@
     f1.saveArr = self.saveListArr;
     NSArray *array = @[f,s,f1];
     
-    self.segmentVC = [[ZWMSegmentController alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight + 100, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -100) titles:@[NSLocalizedString(@"点菜", nil),NSLocalizedString(@"评价", nil),NSLocalizedString(@"商家", nil)]];
+    self.segmentVC = [[ZWMSegmentController alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight + 100, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -100) titles:@[ZBLocalized(@"点菜", nil),ZBLocalized(@"评价", nil),ZBLocalized(@"商家", nil)]];
     self.segmentVC.segmentView.showSeparateLine = YES;
     self.segmentVC.segmentView.segmentTintColor = [UIColor blackColor];
     self.segmentVC.viewControllers = [array copy];
@@ -207,7 +207,7 @@
     shopNameStr = modShopList.store_name;
     if (modShopList.act_list.count != 0) {
         self.saveListArr = modShopList.act_list;
-        numForSaveCount = [NSString stringWithFormat:@"%lu%@",(unsigned long)self.saveListArr.count,NSLocalizedString(@"个活动", nil)];
+        numForSaveCount = [NSString stringWithFormat:@"%lu%@",(unsigned long)self.saveListArr.count,ZBLocalized(@"个活动", nil)];
          NSString *imgUrl =  self.saveListArr[0][@"img"];
          shopSaveIconUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,imgUrl] ;
         int count = 0;

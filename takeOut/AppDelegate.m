@@ -20,6 +20,7 @@
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    [[ZBLocalized sharedInstance]initLanguage];//放在tabbar前初始化
     EXTabBarVC *tabbar = [EXTabBarVC sharedInstance];
     UIViewController * viewconrtoller = [[EXNavigationVC alloc]initWithRootViewController:tabbar];
     [self.window setRootViewController:viewconrtoller];

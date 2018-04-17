@@ -49,7 +49,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"提交订单成功", nil);
+    titleLabel.text = ZBLocalized(@"提交订单成功", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,14 +63,14 @@
     [self.view addSubview:backView];
     
     UILabel *center = [[UILabel alloc]init];
-    center.text = NSLocalizedString(@"感谢您的支持，欢迎下次光临", nil);
+    center.text = ZBLocalized(@"感谢您的支持，欢迎下次光临", nil);
     [backView addSubview:center];
     [center mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.centerY.equalTo(backView);
     }];
     UILabel *fin = [[UILabel alloc]init];
-    fin.text = NSLocalizedString(@"订单已完成", nil);
+    fin.text = ZBLocalized(@"订单已完成", nil);
     [backView addSubview:fin];
     [fin mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);

@@ -61,7 +61,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"登录", nil);
+    titleLabel.text = ZBLocalized(@"登录", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -84,7 +84,7 @@
     self.phoneNumTextField = [[UITextField alloc]init];
     self.phoneNumTextField.delegate = self;
     self.phoneNumTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    self.phoneNumTextField.placeholder = NSLocalizedString(@"请输入手机号", nil);
+    self.phoneNumTextField.placeholder = ZBLocalized(@"请输入手机号", nil);
     self.phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.phoneNumTextField.returnKeyType = UIReturnKeyNext;
     [self.phoneNumTextField addTarget:self action:@selector(phoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -108,7 +108,7 @@
     self.codeTextField = [[UITextField alloc]init];
     self.codeTextField.delegate = self;
     self.codeTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    self.codeTextField.placeholder = NSLocalizedString(@"请输入验证码", nil);
+    self.codeTextField.placeholder = ZBLocalized(@"请输入验证码", nil);
     self.codeTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.codeTextField.returnKeyType =  UIReturnKeyDone;
     [self.codeTextField addTarget:self action:@selector(codeTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -121,7 +121,7 @@
     
     self.codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.codeButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
-    [self.codeButton setTitle:NSLocalizedString(@"获取验证码", nil) forState:UIControlStateNormal];
+    [self.codeButton setTitle:ZBLocalized(@"获取验证码", nil) forState:UIControlStateNormal];
     [self.codeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.codeButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [self.view addSubview:self.codeButton];
@@ -145,7 +145,7 @@
     }];
     
     UIButton *loginByOthr = [UIButton buttonWithType:UIButtonTypeCustom];
-    [loginByOthr setTitle:NSLocalizedString(@"其他登录", nil) forState:UIControlStateNormal];
+    [loginByOthr setTitle:ZBLocalized(@"其他登录", nil) forState:UIControlStateNormal];
     [loginByOthr addTarget:self action:@selector(loginByOther) forControlEvents:UIControlEventTouchUpInside];
     [loginByOthr setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:loginByOthr];
@@ -157,7 +157,7 @@
     }];
     
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [registerBtn setTitle:NSLocalizedString(@"注册", nil) forState:UIControlStateNormal];
+    [registerBtn setTitle:ZBLocalized(@"注册", nil) forState:UIControlStateNormal];
     [registerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(registerUser) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registerBtn];
@@ -173,7 +173,7 @@
     self.toLoginButton.layer.cornerRadius=10;
     self.toLoginButton.clipsToBounds = YES;
     self.toLoginButton.enabled = NO;
-    [self.toLoginButton setTitle:NSLocalizedString(@"登录", nil) forState:UIControlStateNormal];
+    [self.toLoginButton setTitle:ZBLocalized(@"登录", nil) forState:UIControlStateNormal];
     [self.toLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.toLoginButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
     [self.view addSubview:self.toLoginButton];
@@ -250,7 +250,7 @@
     {
         _codeButton.selected=YES;
         _codeButton.userInteractionEnabled=YES;
-        [_codeButton setTitle:NSLocalizedString(@"重新获取", nil) forState:(UIControlStateNormal)];
+        [_codeButton setTitle:ZBLocalized(@"重新获取", nil) forState:(UIControlStateNormal)];
         [_codeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_codeButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     }
@@ -271,7 +271,7 @@
 - (void)verifyEvent
 {
     if (self.phoneNumStr.length != 11 ) {
-        [MBManager showBriefAlert:NSLocalizedString(@"请输入正确的手机号", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
         return;
     }
     NSString * uuidStr= [UUID getUUID];
@@ -297,10 +297,10 @@
 }
 -(void)login{
     if (_phoneNumStr.length == 0) {
-        [MBManager showBriefAlert:NSLocalizedString(@"请输入手机号", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请输入手机号", nil)];
         return;
     }else if (_codeNumStr.length == 0) {
-        [MBManager showBriefAlert:NSLocalizedString(@"请输入验证码", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请输入验证码", nil)];
         return;
     }
     NSString * uuidStr= [UUID getUUID];
@@ -329,10 +329,10 @@
         
             [defaults synchronize];
             
-            [MBManager showBriefAlert:NSLocalizedString(@"登录成功", nil)];
+            [MBManager showBriefAlert:ZBLocalized(@"登录成功", nil)];
             [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
         }else{
-            [MBManager showBriefAlert:NSLocalizedString(@"登录失败", nil)];
+            [MBManager showBriefAlert:ZBLocalized(@"登录失败", nil)];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

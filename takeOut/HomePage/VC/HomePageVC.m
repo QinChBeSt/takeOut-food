@@ -297,7 +297,7 @@
     
     //地址
     headviewAddressLabel = [[UILabel alloc]init];
-    headviewAddressLabel.text = NSLocalizedString(@"获取位置中....", nil);
+    headviewAddressLabel.text = ZBLocalized(@"获取位置中....", nil);
     [headviewAddressView addSubview:headviewAddressLabel];
     [headviewAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(locationIcon.mas_right).offset(5);
@@ -398,7 +398,7 @@
         make.width.equalTo(@(80));
     }];
 
-     NSArray *arrButtonTitle = @[NSLocalizedString(@"综合排序", nil),NSLocalizedString(@"销量最高", nil),NSLocalizedString(@"距离最近", nil)];
+     NSArray *arrButtonTitle = @[ZBLocalized(@"综合排序", nil),ZBLocalized(@"销量最高", nil),ZBLocalized(@"距离最近", nil)];
     CGFloat buttonW = SCREEN_WIDTH / arrButtonTitle.count; //按钮的宽度和高度
     CGFloat buttonH = 30;
     for (int i=0; i<arrButtonTitle.count; i++) {  // 循环创建3个按钮
@@ -619,7 +619,7 @@
             CLPlacemark *placeMark = placemarks[0];
             currentCity = placeMark.locality;
             if (!currentCity) {
-                currentCity = NSLocalizedString(@"未知城市", nil);;
+                currentCity = ZBLocalized(@"未知城市", nil);;
             }
             
             NSString *subLoc = placeMark.subLocality;
@@ -644,7 +644,7 @@
 #pragma mark - 点击事件
 -(void)tapSelectLeft{
     HomeTypeVC *shop = [[HomeTypeVC alloc]init];
-    shop.typeName = NSLocalizedString(@"优惠专区", nil);
+    shop.typeName = ZBLocalized(@"优惠专区", nil);
     shop.shopTypeId = @"2";
     shop.strlatitude = strlatitude;
     shop.strlongitude = strlongitude;
@@ -653,7 +653,7 @@
 }
 -(void)tapSelectRight{
     HomeTypeVC *shop = [[HomeTypeVC alloc]init];
-    shop.typeName = NSLocalizedString(@"优惠专区", nil);
+    shop.typeName = ZBLocalized(@"优惠专区", nil);
     shop.shopTypeId = @"3";
     shop.strlatitude = strlatitude;
     shop.strlongitude = strlongitude;

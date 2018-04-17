@@ -104,7 +104,7 @@
     }];
     
     UIButton *SureBTN = [UIButton buttonWithType:UIButtonTypeCustom];
-    [SureBTN setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
+    [SureBTN setTitle:ZBLocalized(@"确定", nil) forState:UIControlStateNormal];
     [SureBTN addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     [SureBTN setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.naviView addSubview:SureBTN];
@@ -116,7 +116,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"选择收货地址", nil);
+    titleLabel.text = ZBLocalized(@"选择收货地址", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -187,7 +187,7 @@
     
     UIButton *addNewADD = [UIButton buttonWithType:UIButtonTypeCustom];
     addNewADD.frame = CGRectMake(0, 0, SCREEN_WIDTH, 50);
-    [addNewADD setTitle:NSLocalizedString(@" + 新增收货地址", nil) forState:UIControlStateNormal];
+    [addNewADD setTitle:ZBLocalized(@" + 新增收货地址", nil) forState:UIControlStateNormal];
     [addNewADD setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [addNewADD addTarget:self action:@selector(addAddress) forControlEvents:UIControlEventTouchUpInside];
     addNewADD.titleLabel.font = [UIFont systemFontOfSize:14];

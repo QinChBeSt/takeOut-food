@@ -50,7 +50,7 @@
    
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"订单", nil);
+    titleLabel.text = ZBLocalized(@"订单", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -68,7 +68,7 @@
    
     NSArray *array = @[f,s];
     
-    self.segmentVC = [[ZWMSegmentController alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight , SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight) titles:@[NSLocalizedString(@"全部订单", nil),NSLocalizedString(@"待评价", nil)]];
+    self.segmentVC = [[ZWMSegmentController alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight , SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight) titles:@[ZBLocalized(@"全部订单", nil),ZBLocalized(@"待评价", nil)]];
     self.segmentVC.segmentView.showSeparateLine = YES;
     
     self.segmentVC.segmentView.segmentTintColor = [UIColor blackColor];

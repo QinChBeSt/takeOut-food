@@ -54,7 +54,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"我的评价", nil);
+    titleLabel.text = ZBLocalized(@"我的评价", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -76,7 +76,7 @@
     NSString *app_build = [infoDictionary objectForKey:@"CFBundleVersion"];
     UILabel *vison = [[UILabel alloc]init];
     [self.view addSubview:vison];
-    vison.text = [NSString stringWithFormat:@"%@v%@",NSLocalizedString(@"当前版本：", nil),app_build];
+    vison.text = [NSString stringWithFormat:@"%@v%@",ZBLocalized(@"当前版本：", nil),app_build];
     [vison mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.view);
         make.top.equalTo(ICON.mas_bottom).offset(10);

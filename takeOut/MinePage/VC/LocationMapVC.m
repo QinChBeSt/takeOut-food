@@ -59,7 +59,7 @@
     }];
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBtn setTitle:NSLocalizedString(@"保存", nil) forState:UIControlStateNormal];
+    [rightBtn setTitle:ZBLocalized(@"保存", nil) forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     [self.naviView addSubview:rightBtn];
@@ -148,14 +148,14 @@
         //判断是否有错误或者placemarks是否为空
         if (error !=nil || placemarks.count==0) {
             NSLog(@"%@",error);
-            [MBManager showBriefAlert:NSLocalizedString(@"定位失败", nil)];
+            [MBManager showBriefAlert:ZBLocalized(@"定位失败", nil)];
             return ;
         }
         if (placemarks.count > 0) {
             CLPlacemark *placeMark = placemarks[0];
             currentCity = placeMark.locality;
             if (!currentCity) {
-                currentCity = NSLocalizedString(@"未知城市", nil);
+                currentCity = ZBLocalized(@"未知城市", nil);
             }
     
             NSString *subLoc = placeMark.subLocality;

@@ -42,7 +42,7 @@
     [par setValue:self.shopId forKey:@"shopid"];
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         NSMutableDictionary *resDic = result[@"value"];
-        self.openTime = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"营业时间", nil),resDic[@"opentime"]];
+        self.openTime = [NSString stringWithFormat:@"%@:%@",ZBLocalized(@"营业时间", nil),resDic[@"opentime"]];
         self.addressLab.text = resDic[@"shopad"];
         self.shopPhoneNo = resDic[@"shopphone"];
         [self.tableView reloadData];
@@ -130,7 +130,7 @@
         make.width.and.height.equalTo(@(20));
     }];
     UILabel *saveTit = [[UILabel alloc]init];
-    saveTit.text = NSLocalizedString(@"优惠活动", nil);
+    saveTit.text = ZBLocalized(@"优惠活动", nil);
     [self.footView addSubview:saveTit];
     [saveTit mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(saveTitIocn);
@@ -214,7 +214,7 @@
     }];
     if (indexPath.row == 0) {
         [icon setImage:[UIImage imageNamed:@"店铺"]];
-        text.text =NSLocalizedString(@"查看食品安全档案", nil) ;
+        text.text =ZBLocalized(@"查看食品安全档案", nil) ;
     }else if (indexPath.row == 1){
         [icon setImage:[UIImage imageNamed:@"闹钟"]];
         text.text = self.openTime;

@@ -12,6 +12,8 @@
 #import "MineAddressVC.h"
 #import "MyEvaVC.h"
 #import "AboutusVC.h"
+#import "ChangelanguageVC.h"
+
 @interface MinePageVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong) UITableView *tableView;
 @property (nonatomic , strong) UIView *headView;
@@ -34,13 +36,13 @@
     NSString *userID = [defaults objectForKey:UD_USERID];
     NSString *userPhine = [defaults objectForKey:UD_USERPHONE];
     if (userID == nil || [userID isEqualToString:@""]) {
-        self.userName.text = NSLocalizedString(@"登录", nil);
+        self.userName.text = ZBLocalized(@"登录", nil);
         self.userPhone.text = @"";
-        _isLoginOut = 1;
+        _isLoginOut = 2;
     }else{
     self.userName.text = userName;
     self.userPhone.text = userPhine;
-        _isLoginOut = 2;
+        _isLoginOut = 3;
     }
     [self.tableView reloadData];
 }
@@ -136,17 +138,21 @@
     }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"我的地址", nil);
+            cell.textLabel.text = ZBLocalized(@"我的地址", nil);
         }else if (indexPath.row == 1){
-            cell.textLabel.text = NSLocalizedString(@"我的评价", nil);
+            cell.textLabel.text = ZBLocalized(@"我的评价", nil);
         }else if (indexPath.row == 2){
-            cell.textLabel.text = NSLocalizedString(@"关于我们", nil);
+            cell.textLabel.text = ZBLocalized(@"关于我们", nil);
         }
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"清除缓存", nil);
-        }else if (indexPath.row == 1){
-            cell.textLabel.text = NSLocalizedString(@"退出登录", nil);
+            cell.textLabel.text = ZBLocalized(@"清除缓存", nil);
+        }
+        else if (indexPath.row == 1){
+            cell.textLabel.text = ZBLocalized(@"切换语言", nil);
+        }
+        else if (indexPath.row == 2){
+            cell.textLabel.text = ZBLocalized(@"退出登录", nil);
         }
     }
     return cell;
@@ -207,12 +213,12 @@
     //清除缓存
         if (indexPath.row == 0) {
             if (_totalSize == 0) {
-                [MBManager showBriefAlert:NSLocalizedString(@"没有缓存", nil)];
+                [MBManager showBriefAlert:ZBLocalized(@"没有缓存", nil)];
                 return;
             }
             [FileTool removeDirectoryPath:CachePath];
             NSInteger totalSize = _totalSize;
-            NSString *sizeStr = NSLocalizedString(@"清除缓存", nil);
+            NSString *sizeStr = ZBLocalized(@"清除缓存", nil);
             // MB KB B
             if (totalSize > 1000 * 1000) {
                 // MB
@@ -226,13 +232,17 @@
                 // B
                 sizeStr = [NSString stringWithFormat:@"%@%.ldB",sizeStr,totalSize];
             }
-            NSString *cleanSize = [NSString stringWithFormat:@"%@%@",sizeStr,NSLocalizedString(@"成功", nil)];
+            NSString *cleanSize = [NSString stringWithFormat:@"%@%@",sizeStr,ZBLocalized(@"成功", nil)];
             [MBManager showBriefAlert:cleanSize];
             _totalSize = 0;
             [self.tableView reloadData];
+        }else if (indexPath.row == 1){
+            ChangelanguageVC *vc= [[ChangelanguageVC alloc]init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController presentViewController:vc animated:YES completion:nil];
         }
         
-        else if (indexPath.row == 1) {
+        else if (indexPath.row == 2) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:nil forKey:UD_USERID];
             [defaults setObject:nil forKey:UD_USERNAME];
@@ -240,9 +250,9 @@
             
             [defaults synchronize];
             
-            self.userName.text = NSLocalizedString(@"登录", nil);
+            self.userName.text = ZBLocalized(@"登录", nil);
             self.userPhone.text = @"";
-            _isLoginOut = 1;
+            _isLoginOut = 2;
             
             [self.tableView reloadData];
         }

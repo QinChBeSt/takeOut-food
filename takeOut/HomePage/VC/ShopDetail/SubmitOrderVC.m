@@ -60,7 +60,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"提交订单", nil);
+    titleLabel.text = ZBLocalized(@"提交订单", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,7 +89,7 @@
     }];
     self.loactinonStrLabel = [[UILabel alloc]init];
     self.loactinonStrLabel.textColor = [UIColor redColor];
-    self.loactinonStrLabel.text = NSLocalizedString(@"选择收货地址", nil);
+    self.loactinonStrLabel.text = ZBLocalized(@"选择收货地址", nil);
     [addView addSubview:self.loactinonStrLabel];
     [self.loactinonStrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(addIcon);
@@ -109,7 +109,7 @@
     [bottomView addSubview:line1];
     
     UILabel *psMoney = [[UILabel alloc]init];
-    psMoney.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"￥", nil),self.pspic];
+    psMoney.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),self.pspic];
     psMoney.textColor = [UIColor grayColor];
     [bottomView addSubview:psMoney];
     [psMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,7 +118,7 @@
     }];
     
     UILabel *psMoneyTitle = [[UILabel alloc]init];
-    psMoneyTitle.text = NSLocalizedString(@"配送费", nil);
+    psMoneyTitle.text = ZBLocalized(@"配送费", nil);
     psMoneyTitle.textColor = [UIColor grayColor];
     [bottomView addSubview:psMoneyTitle];
     [psMoneyTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,7 +127,7 @@
     }];
     
     UILabel *ADDMoneyTitle = [[UILabel alloc]init];
-    ADDMoneyTitle.text = NSLocalizedString(@"原价", nil);
+    ADDMoneyTitle.text = ZBLocalized(@"原价", nil);
     ADDMoneyTitle.textColor = [UIColor grayColor];
     [bottomView addSubview:ADDMoneyTitle];
     [ADDMoneyTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -135,7 +135,7 @@
         make.centerY.equalTo(bottomView.mas_top).offset(midHeight / 4 * 3);
     }];
     UILabel *ADDMoney = [[UILabel alloc]init];
-    ADDMoney.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"￥", nil),self.yhpic];
+    ADDMoney.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),self.yhpic];
     ADDMoney.textColor = [UIColor grayColor];
     [bottomView addSubview:ADDMoney];
     [ADDMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -148,7 +148,7 @@
     [bottomView addSubview:line2];
     
     UILabel *payMoney = [[UILabel alloc]init];
-    payMoney.text = [NSString stringWithFormat:@"%@  %@%@",NSLocalizedString(@"小计", nil),NSLocalizedString(@"￥", nil),self.ypic];
+    payMoney.text = [NSString stringWithFormat:@"%@  %@%@",ZBLocalized(@"小计", nil),ZBLocalized(@"￥", nil),self.ypic];
     payMoney.textColor = [UIColor grayColor];
     [bottomView addSubview:payMoney];
     [payMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -157,7 +157,7 @@
     }];
     
     UILabel *tipeTitle = [[UILabel alloc]init];
-    tipeTitle.text = NSLocalizedString(@"备注", nil);
+    tipeTitle.text = ZBLocalized(@"备注", nil);
     tipeTitle.textColor = [UIColor grayColor];
     [bottomView addSubview:tipeTitle];
     [tipeTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -194,7 +194,7 @@
     [totalMoneyBackgrounView addSubview:totalMoneyView];
     
     UILabel *toPayTitle = [[UILabel alloc]init];
-    toPayTitle.text = NSLocalizedString(@"合计:", nil);
+    toPayTitle.text = ZBLocalized(@"合计:", nil);
     toPayTitle.textColor = [UIColor grayColor];
     [totalMoneyView addSubview:toPayTitle];
     [toPayTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -203,7 +203,7 @@
     }];
     
     UILabel *toPayMoney = [[UILabel alloc]init];
-    toPayMoney.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"￥:", nil),self.ypic];
+    toPayMoney.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥:", nil),self.ypic];
     toPayMoney.textColor = [UIColor redColor];
     [totalMoneyView addSubview:toPayMoney];
     [toPayMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -212,7 +212,7 @@
     }];
     
     UILabel *toPaySaveMoney = [[UILabel alloc]init];
-    toPaySaveMoney.text = [NSString stringWithFormat:@"%@%@)",NSLocalizedString(@"(已减￥", nil),self.yhpic];
+    toPaySaveMoney.text = [NSString stringWithFormat:@"%@%@)",ZBLocalized(@"(已减￥", nil),self.yhpic];
     toPaySaveMoney.font = [UIFont systemFontOfSize:14];
     toPaySaveMoney.textColor = [UIColor grayColor];
     [totalMoneyView addSubview:toPaySaveMoney];
@@ -226,7 +226,7 @@
     toPay.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [toPay setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [toPay addTarget:self action:@selector(toPay) forControlEvents:UIControlEventTouchUpInside];
-    [toPay setTitle:NSLocalizedString(@"提交订单", nil) forState:UIControlStateNormal];
+    [toPay setTitle:ZBLocalized(@"提交订单", nil) forState:UIControlStateNormal];
     toPay.titleLabel.font = [UIFont systemFontOfSize:14];
     [totalMoneyBackgrounView addSubview:toPay];
     
@@ -248,7 +248,7 @@
    
     NSDictionary *dic = [self.arrForOrder objectAtIndex:indexPath.row];
     cell.foodsName.text = dic[@"g_name"];;
-    cell.foodsMoney.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"￥", nil),dic[@"g_pic"]];
+    cell.foodsMoney.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),dic[@"g_pic"]];
     cell.foodsCount.text = [NSString stringWithFormat:@"× %@",dic[@"count"]];
    
     return cell;
@@ -272,7 +272,7 @@
 }
 -(void)toPay{
     if (self.uaddrid == nil) {
-        [MBManager showBriefAlert:NSLocalizedString(@"选择收货地址", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"选择收货地址", nil)];
         return;
     }else if(self.bz == nil){
         self.bz = @"";

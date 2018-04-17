@@ -66,9 +66,9 @@
     NSString *nameStr ;
     NSString *SexStr = [NSString stringWithFormat:@"%@",Mod.userAddrsUsex];
     if ([SexStr isEqualToString:@"1"]) {
-        nameStr = [NSString stringWithFormat:@"%@  %@",Mod.userAddrsUname,NSLocalizedString(@"先生", nil)];
+        nameStr = [NSString stringWithFormat:@"%@  %@",Mod.userAddrsUname,ZBLocalized(@"先生", nil)];
     }else{
-         nameStr = [NSString stringWithFormat:@"%@  %@",Mod.userAddrsUname,NSLocalizedString(@"女士", nil)];
+         nameStr = [NSString stringWithFormat:@"%@  %@",Mod.userAddrsUname,ZBLocalized(@"女士", nil)];
     }
     self.name.text = nameStr;
     self.phone.text = Mod.userAddrsUphone;

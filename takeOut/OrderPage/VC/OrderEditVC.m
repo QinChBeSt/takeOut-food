@@ -74,7 +74,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"评价", nil);
+    titleLabel.text = ZBLocalized(@"评价", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -272,7 +272,7 @@
     self.placeHolder = [[UILabel alloc]init];
     self.placeHolder.textColor = [UIColor lightGrayColor];
     self.placeHolder.font = [UIFont systemFontOfSize:14];
-    self.placeHolder.text = NSLocalizedString(@"对菜品口味，包装服务的还满意吗？您可以在此处输入您的想法与意见~（至少输入8个字）", nil);
+    self.placeHolder.text = ZBLocalized(@"对菜品口味，包装服务的还满意吗？您可以在此处输入您的想法与意见~（至少输入8个字）", nil);
     self.placeHolder.numberOfLines = 3;
     [self.foodView addSubview:self.placeHolder];
     [self.placeHolder mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -389,11 +389,11 @@
 }
 -(void)getNetWork{
     if (_BZStr.length < 8) {
-        [MBManager showBriefAlert:NSLocalizedString(@"最少输入八个字", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"最少输入八个字", nil)];
     }else if (_riderSelectStr.length == 0 ){
-        [MBManager showBriefAlert:NSLocalizedString(@"请选择配送员评价", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请选择配送员评价", nil)];
     }else if (_foodSelectStr.length == 0){
-        [MBManager showBriefAlert:NSLocalizedString(@"请选择订单评价", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请选择订单评价", nil)];
     }
     else{
         NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,aveOrderUrl];

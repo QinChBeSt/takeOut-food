@@ -104,7 +104,7 @@
     
     self.toPJbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:_toPJbtn];
-    [self.toPJbtn setTitle:NSLocalizedString(@"评价", nil) forState:UIControlStateNormal];
+    [self.toPJbtn setTitle:ZBLocalized(@"评价", nil) forState:UIControlStateNormal];
     [self.toPJbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.toPJbtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     self.toPJbtn.layer.cornerRadius=15;
@@ -118,41 +118,41 @@
     self.shopNameLabel.text = mod.shopname;
     NSString *shopStrat = mod.shopstart;
     if ([shopStrat isEqualToString:@"2"]) {
-        self.haveEvaluateLabel.text = NSLocalizedString(@"商家未接单", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"商家未接单", nil);
     }
     else if ([shopStrat isEqualToString:@"3"]){
-        self.haveEvaluateLabel.text = NSLocalizedString(@"商家未接单", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"商家未接单", nil);
     }
     else if ([shopStrat isEqualToString:@"4"]){
-        self.haveEvaluateLabel.text = NSLocalizedString(@"商家已接单", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"商家已接单", nil);
     }
     else if ([shopStrat isEqualToString:@"5"]){
-        self.haveEvaluateLabel.text = NSLocalizedString(@"骑手未接单", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"骑手未接单", nil);
     }
     else if ([shopStrat isEqualToString:@"6"]){
-        self.haveEvaluateLabel.text =NSLocalizedString(@"骑手已接单", nil);
+        self.haveEvaluateLabel.text =ZBLocalized(@"骑手已接单", nil);
     }
     else if ([shopStrat isEqualToString:@"7"]){
-        self.haveEvaluateLabel.text = NSLocalizedString(@"骑手到店", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"骑手到店", nil);
     }
     else if ([shopStrat isEqualToString:@"8"]){
-        self.haveEvaluateLabel.text = NSLocalizedString(@"骑手拿到东西", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"骑手拿到东西", nil);
     }
     else if ([shopStrat isEqualToString:@"9"]){
-        self.haveEvaluateLabel.text = NSLocalizedString(@"订单完成", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"订单完成", nil);
     }
     else if ([shopStrat isEqualToString:@"10"]){
-        self.haveEvaluateLabel.text = NSLocalizedString(@"未评价", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"未评价", nil);
     }
     else if ([shopStrat isEqualToString:@"11"]){
-        self.haveEvaluateLabel.text = NSLocalizedString(@"已评价", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"已评价", nil);
     }
 
     
-    self.foodsMuch.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"￥", nil),mod.totalpic];
+    self.foodsMuch.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),mod.totalpic];
     NSString *foodsnum = [NSString stringWithFormat:@"%@",mod.goodsnum];
-    self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",NSLocalizedString(@"共计", nil),foodsnum,NSLocalizedString(@"件商品", nil)];
-    self.orderTimeLabel.text = [NSString stringWithFormat:@"%@  %@",NSLocalizedString(@"订单时间", nil),mod.cdata];
+    self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"共计", nil),foodsnum,ZBLocalized(@"件商品", nil)];
+    self.orderTimeLabel.text = [NSString stringWithFormat:@"%@  %@",ZBLocalized(@"订单时间", nil),mod.cdata];
     NSArray *foodsArr = mod.godslist;
     if (foodsArr.count == 1) {
         self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];

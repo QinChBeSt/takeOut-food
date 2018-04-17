@@ -58,7 +58,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"注册", nil);
+    titleLabel.text = ZBLocalized(@"注册", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,7 +72,7 @@
     self.phoneNumTextField = [[UITextField alloc]init];
     self.phoneNumTextField.delegate = self;
     self.phoneNumTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    self.phoneNumTextField.placeholder = NSLocalizedString(@"请输入手机号", nil);
+    self.phoneNumTextField.placeholder = ZBLocalized(@"请输入手机号", nil);
     self.phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.phoneNumTextField.returnKeyType = UIReturnKeyNext;
     [self.phoneNumTextField addTarget:self action:@selector(phoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -98,7 +98,7 @@
     self.codeTextField.delegate = self;
     self.codeTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.codeTextField.secureTextEntry = YES;
-    self.codeTextField.placeholder = NSLocalizedString(@"请输入密码", nil);
+    self.codeTextField.placeholder = ZBLocalized(@"请输入密码", nil);
     self.codeTextField.keyboardType = UIKeyboardTypeDefault;
     self.codeTextField.returnKeyType =  UIReturnKeyNext;
     [self.codeTextField addTarget:self action:@selector(codeTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -122,7 +122,7 @@
     self.sureCodeTextField.delegate = self;
     self.sureCodeTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.sureCodeTextField.secureTextEntry = YES;
-    self.sureCodeTextField.placeholder = NSLocalizedString(@"请确认密码", nil);
+    self.sureCodeTextField.placeholder = ZBLocalized(@"请确认密码", nil);
     self.sureCodeTextField.keyboardType = UIKeyboardTypeDefault;
     self.sureCodeTextField.returnKeyType =  UIReturnKeyDone;
     [self.sureCodeTextField addTarget:self action:@selector(sureCodeTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -147,7 +147,7 @@
     self.regisBtn.layer.cornerRadius=10;
     self.regisBtn.clipsToBounds = YES;
     self.regisBtn.enabled = NO;
-    [self.regisBtn setTitle:NSLocalizedString(@"注册", nil) forState:UIControlStateNormal];
+    [self.regisBtn setTitle:ZBLocalized(@"注册", nil) forState:UIControlStateNormal];
     [self.regisBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.regisBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
     [self.view addSubview:self.regisBtn];
@@ -199,7 +199,7 @@
 -(void)regisAction{
     
     if (![self.codeNumStr isEqualToString:self.sureCodeNumStr]) {
-        [MBManager showBriefAlert: NSLocalizedString(@"两次密码不相同，请检查输入的密码", nil)];
+        [MBManager showBriefAlert: ZBLocalized(@"两次密码不相同，请检查输入的密码", nil)];
         return;
     }
     
@@ -212,10 +212,10 @@
     [managers POST:url11 parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
                 if ([code isEqualToString:@"1"]) {
-                    [MBManager showBriefAlert:NSLocalizedString(@"注册成功", nil)];
+                    [MBManager showBriefAlert:ZBLocalized(@"注册成功", nil)];
                     [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
                 }else{
-                    [MBManager showBriefAlert:NSLocalizedString(@"注册失败", nil)];
+                    [MBManager showBriefAlert:ZBLocalized(@"注册失败", nil)];
                 }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

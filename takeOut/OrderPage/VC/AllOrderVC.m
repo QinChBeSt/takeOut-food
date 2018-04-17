@@ -52,7 +52,7 @@
     __weak typeof (self)ws = self;
     self.toLOginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.toLOginBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
-    [self.toLOginBtn setTitle:NSLocalizedString(@"登录/注册", nil) forState:UIControlStateNormal];
+    [self.toLOginBtn setTitle:ZBLocalized(@"登录/注册", nil) forState:UIControlStateNormal];
     [self.toLOginBtn addTarget:self action:@selector(toLogin) forControlEvents:UIControlEventTouchUpInside];
     [self.toLOginBtn setTintColor:[UIColor blackColor]];
     [self.view addSubview:_toLOginBtn];

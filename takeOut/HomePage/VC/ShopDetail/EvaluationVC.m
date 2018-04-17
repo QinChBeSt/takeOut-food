@@ -60,7 +60,7 @@
     self.AllEva = [UIButton buttonWithType:UIButtonTypeCustom];
     [headView addSubview:self.AllEva];
      self.AllEva.titleLabel.font = [UIFont systemFontOfSize:14];
-    [self.AllEva setTitle:NSLocalizedString(@"全部", nil) forState:UIControlStateNormal];
+    [self.AllEva setTitle:ZBLocalized(@"全部", nil) forState:UIControlStateNormal];
     [self.AllEva setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.AllEva setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     self.AllEva.layer.cornerRadius=20;
@@ -77,7 +77,7 @@
     self.badEva = [UIButton buttonWithType:UIButtonTypeCustom];
     [headView addSubview:self.badEva];
     self.badEva.titleLabel.font = [UIFont systemFontOfSize:14];
-    [self.badEva setTitle:NSLocalizedString(@"差评", nil) forState:UIControlStateNormal];
+    [self.badEva setTitle:ZBLocalized(@"差评", nil) forState:UIControlStateNormal];
     [self.badEva setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.badEva setBackgroundColor:[UIColor lightGrayColor]];
     self.badEva.layer.cornerRadius=20;
@@ -100,7 +100,7 @@
         make.centerX.equalTo(headView.mas_right).offset(-SCREEN_WIDTH / 6 );
     }];
     UILabel *csiTitle = [[UILabel alloc]init];
-    csiTitle.text = NSLocalizedString(@"商家评分", nil);
+    csiTitle.text = ZBLocalized(@"商家评分", nil);
     csiTitle.textColor = [UIColor lightGrayColor];
     [headView addSubview:csiTitle];
     [csiTitle mas_makeConstraints:^(MASConstraintMaker *make) {

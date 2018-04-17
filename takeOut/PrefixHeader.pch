@@ -12,6 +12,7 @@
 //KeyChain
 #define  KEY_UUID @"com.wtb.app.UUID"
 
+
 //NSUserDefaults
 #define UD_USERID @"USERID"
 #define UD_USERNAME @"USERNAME"
@@ -80,6 +81,7 @@
 
 #endif /* PrefixHeader_pch */
 #ifdef __OBJC__
+#import "ZBLocalized.h"
 #import "UIColor+Hex.h"
 #import "MHNetWorkTask.h"
 #import <Masonry.h>
@@ -90,4 +92,8 @@
 #import "UIView+SDAutoLayout.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "MJRefresh.h"
+
+
+
+
 #endif

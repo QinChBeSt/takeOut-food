@@ -119,8 +119,8 @@
     NSString *send_Start = modShopList.up_pic;
     NSString *yueShou = modShopList.per_mean;
     NSString *time = modShopList.opentime;
-    shopMassage1 = [NSString stringWithFormat:@"%@：%@ | %@：%@ | %@：%@",NSLocalizedString(@"配送", nil),send_pay,NSLocalizedString(@"起送", nil),send_Start,NSLocalizedString(@"月售", nil),yueShou];
-    shopMassage2 = [NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"配送时间", nil),time];
+    shopMassage1 = [NSString stringWithFormat:@"%@：%@ | %@：%@ | %@：%@",ZBLocalized(@"配送", nil),send_pay,ZBLocalized(@"起送", nil),send_Start,ZBLocalized(@"月售", nil),yueShou];
+    shopMassage2 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"配送时间", nil),time];
     if (modShopList.act_list.count != 0) {
         self.saveListArr = modShopList.act_list;
     }

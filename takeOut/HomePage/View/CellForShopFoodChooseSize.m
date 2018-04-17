@@ -41,7 +41,7 @@
     [self.chooseSizeBtn addTarget:self action:@selector(chooseSize:) forControlEvents:UIControlEventTouchUpInside];
     
     self.chooseSizeBtn.layer.cornerRadius = 5;
-    [self.chooseSizeBtn setTitle:NSLocalizedString(@"选规格", nil) forState:UIControlStateNormal];
+    [self.chooseSizeBtn setTitle:ZBLocalized(@"选规格", nil) forState:UIControlStateNormal];
     self.chooseSizeBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.chooseSizeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.contentView addSubview:self.chooseSizeBtn];
@@ -56,7 +56,7 @@
 -(void)setMod:(ModelForFoodList *)mod{
     self.chooseMod = mod;
     self.shopName.text = mod.godsname;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.2f",NSLocalizedString(@"¥", nil),mod.pic];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"¥", nil),mod.pic];
     
 }
 

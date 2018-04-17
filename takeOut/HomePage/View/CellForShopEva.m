@@ -68,12 +68,12 @@
 -(void)setDic:(NSMutableDictionary *)dic{
     NSString *evaTypeStr = dic[@"csi"];
     if ([evaTypeStr isEqualToString:@"1"]) {
-        self.evaType.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"评价", nil),NSLocalizedString(@"满意", nil)];
+        self.evaType.text = [NSString stringWithFormat:@"%@ %@",ZBLocalized(@"评价", nil),ZBLocalized(@"满意", nil)];
     }else if ([evaTypeStr isEqualToString:@"2"]){
-         self.evaType.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"评价", nil),NSLocalizedString(@"不满意", nil)];
+         self.evaType.text = [NSString stringWithFormat:@"%@ %@",ZBLocalized(@"评价", nil),ZBLocalized(@"不满意", nil)];
         
     }else if ([evaTypeStr isEqualToString:@"3"]){
-        self.evaType.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"评价", nil),NSLocalizedString(@"一般", nil)];
+        self.evaType.text = [NSString stringWithFormat:@"%@ %@",ZBLocalized(@"评价", nil),ZBLocalized(@"一般", nil)];
     }
     
     self.userName.text = dic[@"holder"];

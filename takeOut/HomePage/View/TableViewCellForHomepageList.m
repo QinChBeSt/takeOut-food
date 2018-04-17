@@ -103,7 +103,7 @@
     float disFloat = (float)disint / (float)1000;
     NSString *dis = [NSString stringWithFormat:@"%@ | %.2fKm",mod.send_time,disFloat];
     self.shopDistance.text = dis;
-    NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@ | %@%@",NSLocalizedString(@"配送：￥", nil),mod.send_pic,NSLocalizedString(@"起送：￥", nil),mod.up_pic,NSLocalizedString(@"月售：", nil),mod.per_mean];
+    NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@ | %@%@",ZBLocalized(@"配送：￥", nil),mod.send_pic,ZBLocalized(@"起送：￥", nil),mod.up_pic,ZBLocalized(@"月售：", nil),mod.per_mean];
     self.shopMassage.text = msg;
     
     if (mod.act_list.count == 1) {

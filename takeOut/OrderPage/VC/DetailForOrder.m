@@ -66,40 +66,40 @@
         
         NSString *orderNowType = [NSString stringWithFormat:@"%@",dic[@"ordertyppe"]];
         if ([orderNowType isEqualToString:@"2"]) {
-            self.orderNowType.text = NSLocalizedString(@"商家未接单", nil);
+            self.orderNowType.text = ZBLocalized(@"商家未接单", nil);
         }
         else if ([orderNowType isEqualToString:@"3"]){
-            self.orderNowType.text = NSLocalizedString(@"商家未接单", nil);
+            self.orderNowType.text = ZBLocalized(@"商家未接单", nil);
         }
         else if ([orderNowType isEqualToString:@"4"]){
-            self.orderNowType.text = NSLocalizedString(@"商家已接单", nil);
+            self.orderNowType.text = ZBLocalized(@"商家已接单", nil);
         }
         else if ([orderNowType isEqualToString:@"5"]){
-            self.orderNowType.text = NSLocalizedString(@"骑手未接单", nil);
+            self.orderNowType.text = ZBLocalized(@"骑手未接单", nil);
         }
         else if ([orderNowType isEqualToString:@"6"]){
-            self.orderNowType.text =NSLocalizedString(@"商家已接单", nil);
+            self.orderNowType.text =ZBLocalized(@"商家已接单", nil);
         }
         else if ([orderNowType isEqualToString:@"7"]){
-            self.orderNowType.text = NSLocalizedString(@"骑手到店", nil);
+            self.orderNowType.text = ZBLocalized(@"骑手到店", nil);
         }
         else if ([orderNowType isEqualToString:@"8"]){
-            self.orderNowType.text = NSLocalizedString(@"骑手拿到东西", nil);
+            self.orderNowType.text = ZBLocalized(@"骑手拿到东西", nil);
         }
         else if ([orderNowType isEqualToString:@"9"]){
-            self.orderNowType.text = NSLocalizedString(@"订单完成", nil);
+            self.orderNowType.text = ZBLocalized(@"订单完成", nil);
         }
         else if ([orderNowType isEqualToString:@"10"]){
-            self.orderNowType.text = NSLocalizedString(@"未评价", nil);
+            self.orderNowType.text = ZBLocalized(@"未评价", nil);
         }
         else if ([orderNowType isEqualToString:@"11"]){
-            self.orderNowType.text = NSLocalizedString(@"已评价", nil);
+            self.orderNowType.text = ZBLocalized(@"已评价", nil);
         }
        
         
-        self.psPicStr.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"￥", nil),dic[@"orderpspic"]];
-        self.yhPicStr.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"￥", nil),dic[@"yhpic"]];
-        self.totleStr.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"小计: ￥", nil),dic[@"totals"]];
+        self.psPicStr.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),dic[@"orderpspic"]];
+        self.yhPicStr.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),dic[@"yhpic"]];
+        self.totleStr.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"小计: ￥", nil),dic[@"totals"]];
         self.shopPhoneNo = [NSString stringWithFormat:@"%@",dic[@"shopphone"]];
         self.userName.text = [NSString stringWithFormat:@"%@  %@",dic[@"uname"],dic[@"uphone"]] ;
         self.userAddress.text = dic[@"uaddr"];
@@ -107,9 +107,9 @@
         self.orderDateLabel.text = dic[@"orderdt"];
         NSString *orderPAY = dic[@"orderpay"];
         if ([orderPAY isEqualToString:@"1"]) {
-            self.orderPayType.text = NSLocalizedString(@"货到付款", nil);
+            self.orderPayType.text = ZBLocalized(@"货到付款", nil);
         }else{
-             self.orderPayType.text = NSLocalizedString(@"在线支付", nil);
+             self.orderPayType.text = ZBLocalized(@"在线支付", nil);
         }
         
         for (NSMutableDictionary *dicArr in Arr) {
@@ -149,7 +149,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = NSLocalizedString(@"订单详情", nil);
+    titleLabel.text = ZBLocalized(@"订单详情", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -175,7 +175,7 @@
     }];
     
     UILabel *WelcomeLabel = [[UILabel alloc]init];
-    WelcomeLabel.text = NSLocalizedString(@"感谢您的支持，欢迎下次光临！", nil);
+    WelcomeLabel.text = ZBLocalized(@"感谢您的支持，欢迎下次光临！", nil);
     [backview addSubview:WelcomeLabel];
     [WelcomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(backview);
@@ -201,7 +201,7 @@
     UIView *moneyView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , moneyViewHeight)];
     [backView addSubview:moneyView];
     UILabel *psPictit = [[UILabel alloc]init];
-    psPictit.text =[NSString stringWithFormat:@"%@",NSLocalizedString(@"配送费", nil)];
+    psPictit.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"配送费", nil)];
     psPictit.font = [UIFont systemFontOfSize:14];
     psPictit.textColor = [UIColor lightGrayColor];
     [moneyView addSubview:psPictit];
@@ -221,7 +221,7 @@
     
  
     UILabel *yhPictit = [[UILabel alloc]init];
-    yhPictit.text =[NSString stringWithFormat:@"%@",NSLocalizedString(@"优惠金额", nil)];
+    yhPictit.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"优惠金额", nil)];
     yhPictit.font = [UIFont systemFontOfSize:14];
     yhPictit.textColor = [UIColor lightGrayColor];
     [moneyView addSubview:yhPictit];
@@ -294,7 +294,7 @@
         make.width.and.height.equalTo(@(callToShopViewHeight / 2));
     }];
     UILabel *callShop = [[UILabel alloc]init];
-    callShop.text = NSLocalizedString(@"商家电话", nil);
+    callShop.text = ZBLocalized(@"商家电话", nil);
     callShop.font = [UIFont systemFontOfSize:14];
     callShop.textColor = [UIColor lightGrayColor];
     [btnView addSubview:callShop];
@@ -313,7 +313,7 @@
     
     UILabel *psAddressTitle = [[UILabel alloc]init];
     [addressbackview addSubview:psAddressTitle];
-    psAddressTitle.text = NSLocalizedString(@"配送地址", nil);
+    psAddressTitle.text = ZBLocalized(@"配送地址", nil);
     psAddressTitle.font = [UIFont systemFontOfSize:14];
     psAddressTitle.textColor = [UIColor lightGrayColor];
     [psAddressTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -343,7 +343,7 @@
     
     UILabel *pscomp = [[UILabel alloc]init];
     [addressbackview addSubview:pscomp];
-    pscomp.text = NSLocalizedString(@"配送服务", nil);
+    pscomp.text = ZBLocalized(@"配送服务", nil);
     pscomp.font = [UIFont systemFontOfSize:14];
     pscomp.textColor = [UIColor lightGrayColor];
     [pscomp mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -362,7 +362,7 @@
     }];
     UILabel *compStr = [[UILabel alloc]init];
     [addressbackview addSubview:compStr];
-    compStr.text =[NSString stringWithFormat:@"%@",NSLocalizedString(@"提供商品高品质配送服务", nil)];
+    compStr.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"提供商品高品质配送服务", nil)];
     compStr.font = [UIFont systemFontOfSize:14];
     compStr.textColor = [UIColor lightGrayColor];
     [compStr mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -376,7 +376,7 @@
     
     UILabel *orderNumTitle = [[UILabel alloc]init];
     [orderMassageView addSubview:orderNumTitle];
-    orderNumTitle.text = NSLocalizedString(@"订单号码", nil);
+    orderNumTitle.text = ZBLocalized(@"订单号码", nil);
     orderNumTitle.font = [UIFont systemFontOfSize:14];
     orderNumTitle.textColor = [UIColor lightGrayColor];
     [orderNumTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -396,7 +396,7 @@
     
     UILabel *orderdateTitle = [[UILabel alloc]init];
     [orderMassageView addSubview:orderdateTitle];
-    orderdateTitle.text = NSLocalizedString(@"订单日期", nil);
+    orderdateTitle.text = ZBLocalized(@"订单日期", nil);
     orderdateTitle.font = [UIFont systemFontOfSize:14];
     orderdateTitle.textColor = [UIColor lightGrayColor];
     [orderdateTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -416,7 +416,7 @@
     
     UILabel *orderPayTypeTitle = [[UILabel alloc]init];
     [orderMassageView addSubview:orderPayTypeTitle];
-    orderPayTypeTitle.text = NSLocalizedString(@"支付方式", nil);
+    orderPayTypeTitle.text = ZBLocalized(@"支付方式", nil);
     orderPayTypeTitle.font = [UIFont systemFontOfSize:14];
     orderPayTypeTitle.textColor = [UIColor lightGrayColor];
     [orderPayTypeTitle mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -80,7 +80,7 @@
     price = price * goodscount;
     NSString *priceStr = [NSString stringWithFormat:@"%ld",(long)price];
     self.goodsName.text = Mod.g_name;
-    self.goodsMoney.text =NSLocalizedString(priceStr, nil);
+    self.goodsMoney.text =ZBLocalized(priceStr, nil);
     self.goodsCount.text = [NSString stringWithFormat:@"%@",Mod.count];
     
     if (Mod.g_chooseType == nil) {

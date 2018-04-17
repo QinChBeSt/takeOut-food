@@ -65,7 +65,7 @@
     
     UILabel *titleLabel = [[UILabel alloc]init];
     if (_naviTitle == nil) {
-        titleLabel.text = NSLocalizedString(@"新增收货地址", nil);
+        titleLabel.text = ZBLocalized(@"新增收货地址", nil);
     }
     else{
         titleLabel.text = _naviTitle;
@@ -78,7 +78,7 @@
     }];
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBtn setTitle:NSLocalizedString(@"保存", nil) forState:UIControlStateNormal];
+    [rightBtn setTitle:ZBLocalized(@"保存", nil) forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(saveToChoose) forControlEvents:UIControlEventTouchUpInside];
     [self.naviView addSubview:rightBtn];
@@ -100,7 +100,7 @@
     }];
    //收货人
     UILabel *userNameLabel = [[UILabel alloc]init];
-    userNameLabel.text = NSLocalizedString(@"收货人", nil);
+    userNameLabel.text = ZBLocalized(@"收货人", nil);
     userNameLabel.font = [UIFont systemFontOfSize:16];
     [topBackgroundView addSubview:userNameLabel];
     [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -137,7 +137,7 @@
     }];
     
     UILabel *manStr = [[UILabel alloc]init];
-    manStr.text = NSLocalizedString(@"先生", nil);
+    manStr.text = ZBLocalized(@"先生", nil);
     manStr.font = [UIFont systemFontOfSize:14];
     [topBackgroundView addSubview:manStr];
     [manStr mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -166,7 +166,7 @@
     }];
     
     UILabel *womanStr = [[UILabel alloc]init];
-    womanStr.text = NSLocalizedString(@"女士", nil);
+    womanStr.text = ZBLocalized(@"女士", nil);
     womanStr.font = [UIFont systemFontOfSize:14];
     [topBackgroundView addSubview:womanStr];
     [womanStr mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -201,7 +201,7 @@
 //电话
     //收货人
     UILabel *userPhoneLabel = [[UILabel alloc]init];
-    userPhoneLabel.text = NSLocalizedString(@"电话", nil);
+    userPhoneLabel.text = ZBLocalized(@"电话", nil);
     userPhoneLabel.font = [UIFont systemFontOfSize:16];
     [topBackgroundView addSubview:userPhoneLabel];
     [userPhoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -237,7 +237,7 @@
     }];
     
     UILabel *addressLabel = [[UILabel alloc]init];
-    addressLabel.text = NSLocalizedString(@"收货地址", nil);
+    addressLabel.text = ZBLocalized(@"收货地址", nil);
     addressLabel.font = [UIFont systemFontOfSize:16];
     [bottomBackgroundView addSubview:addressLabel];
     [addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -259,7 +259,7 @@
     tapToLoactionLabel = [[UILabel alloc]init];
     tapToLoactionLabel.font = [UIFont systemFontOfSize:16];
     tapToLoactionLabel.numberOfLines = 2;
-    tapToLoactionLabel.text = NSLocalizedString(@"点击选择", nil);
+    tapToLoactionLabel.text = ZBLocalized(@"点击选择", nil);
     tapToLoactionLabel.textColor = [UIColor colorWithHexString:@"B5B5B5"];
     [bottomBackgroundView addSubview:tapToLoactionLabel];
     [tapToLoactionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -276,7 +276,7 @@
     }
     
     UILabel *houseNoLabel = [[UILabel alloc]init];
-    houseNoLabel.text = NSLocalizedString(@"楼号/门牌号", nil);
+    houseNoLabel.text = ZBLocalized(@"楼号/门牌号", nil);
     houseNoLabel.font = [UIFont systemFontOfSize:16];
     [bottomBackgroundView addSubview:houseNoLabel];
     [houseNoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -286,7 +286,7 @@
     }];
     self.houseAdd = [[UITextField alloc]init];
     self.houseAdd.delegate = self;
-    self.houseAdd.placeholder = NSLocalizedString(@"例3号楼3001", nil);
+    self.houseAdd.placeholder = ZBLocalized(@"例3号楼3001", nil);
     self.houseAdd.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.houseAdd addTarget:self action:@selector(houseTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [bottomBackgroundView addSubview:self.houseAdd];
@@ -325,13 +325,13 @@
 }
 -(void)edit{
     if (_locationStr == nil ) {
-        [MBManager showBriefAlert:NSLocalizedString(@"请获取地理位置", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请获取地理位置", nil)];
     }else if (_userNameStr == nil){
-        [MBManager showBriefAlert:NSLocalizedString(@"请填写收货人姓名", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请填写收货人姓名", nil)];
     }else if (_userPhoneStr == nil){
-        [MBManager showBriefAlert:NSLocalizedString(@"请填写收货人电话", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请填写收货人电话", nil)];
     }else if (_userHouseNoStr == nil){
-        [MBManager showBriefAlert:NSLocalizedString(@"请获填写具体位置", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请获填写具体位置", nil)];
     }else{
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -355,13 +355,13 @@
             [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
                 if ([code isEqualToString:@"1"]) {
-                    [MBManager showBriefAlert:NSLocalizedString(@"地址修改成功", nil)];
+                    [MBManager showBriefAlert:ZBLocalized(@"地址修改成功", nil)];
                     [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
                 }
                 
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                [MBManager showBriefAlert:NSLocalizedString(@"地址修改失败", nil)];
+                [MBManager showBriefAlert:ZBLocalized(@"地址修改失败", nil)];
             }];
         }
         
@@ -369,13 +369,13 @@
 }
 -(void)save{
     if (_locationStr == nil ) {
-        [MBManager showBriefAlert:NSLocalizedString(@"请获取地理位置", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请获取地理位置", nil)];
     }else if (_userNameStr == nil){
-        [MBManager showBriefAlert:NSLocalizedString(@"请填写收货人姓名", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请填写收货人姓名", nil)];
     }else if (_userPhoneStr == nil){
-        [MBManager showBriefAlert:NSLocalizedString(@"请填写收货人电话", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请填写收货人电话", nil)];
     }else if (_userHouseNoStr == nil){
-        [MBManager showBriefAlert:NSLocalizedString(@"请获填写具体位置", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请获填写具体位置", nil)];
     }else{
        
           NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -401,13 +401,13 @@
             [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
                 if ([code isEqualToString:@"1"]) {
-                     [MBManager showBriefAlert:NSLocalizedString(@"地址添加成功", nil)];
+                     [MBManager showBriefAlert:ZBLocalized(@"地址添加成功", nil)];
                      [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
                 }
                 
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [MBManager showBriefAlert:NSLocalizedString(@"地址添加失败", nil)];
+            [MBManager showBriefAlert:ZBLocalized(@"地址添加失败", nil)];
             }];
         }
      
