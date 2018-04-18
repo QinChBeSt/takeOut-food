@@ -94,6 +94,8 @@
         }
         else if ([orderNowType isEqualToString:@"11"]){
             self.orderNowType.text = ZBLocalized(@"已评价", nil);
+        } else if ([orderNowType isEqualToString:@"12"]){
+            self.orderNowType.text = ZBLocalized(@"商家已取消", nil);
         }
        
         

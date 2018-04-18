@@ -165,8 +165,9 @@
 //    NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
 //    [par setValue:self.codeNumStr forKey:@"pwd"];
 //    [par setValue:self.phoneNumStr forKey:@"name"];
+    NSString * md5Code = [MD5encryption MD5ForLower32Bate:self.codeNumStr];
     NSDictionary *parameters = @{@"name":self.phoneNumStr,
-                                 @"pwd":self.codeNumStr,
+                                 @"pwd":md5Code,
                                  };
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
     //请求的方式：POST

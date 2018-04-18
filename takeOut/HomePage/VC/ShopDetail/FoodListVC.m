@@ -280,7 +280,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     }];
     
     UIButton *exti = [UIButton buttonWithType:UIButtonTypeCustom];
-    exti.backgroundColor = [UIColor orangeColor];
+    [exti setTitle:@"X" forState:UIControlStateNormal];
+    [exti setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [exti addTarget:self action:@selector(removewChooseView) forControlEvents:UIControlEventTouchUpInside];
     [self.chooseSizeView addSubview:exti];
     [exti mas_makeConstraints:^(MASConstraintMaker *make) {

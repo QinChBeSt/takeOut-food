@@ -38,7 +38,7 @@
     [self.contentView addSubview:self.shopNameLabel];
     [self.shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.shopIcon);
-        make.left.equalTo(self.shopIcon.mas_right).offset(5);
+        make.left.equalTo(self.shopIcon.mas_right).offset(15);
     }];
     
     self.haveEvaluateLabel = [[UILabel alloc]init];
@@ -67,7 +67,7 @@
         make.width.equalTo(self.contentView);
         make.top.equalTo(_topLine.mas_bottom).offset(5);
         make.centerX.equalTo(self.contentView);
-        make.height.equalTo(@(60));
+        make.height.equalTo(@(40));
     }];
     
     self.foodsView = [[ViewForOrderListFoodsName alloc]init];
@@ -76,7 +76,7 @@
     [self.foodsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView);
         make.top.equalTo(self.topLine.mas_bottom).offset(10);
-        make.height.equalTo(@(20));
+        make.height.equalTo(@(40));
         make.centerX.equalTo(self.contentView);
     }];
     self.foodsView2 = [[ViewForOrderListFoodsName alloc]init];
@@ -85,16 +85,20 @@
     
     self.foodsView3 = [[ViewForOrderListFoodsName alloc]init];
     [self.foodsViewBackGround addSubview:self.foodsView3];
-    
-    
+    self.foodsView.foodsName.font = [UIFont systemFontOfSize:15];
+     self.foodsView2.foodsName.font = [UIFont systemFontOfSize:15];
+     self.foodsView3.foodsName.font = [UIFont systemFontOfSize:15];
     
     self.foodsMuch = [[UILabel alloc]init];
+    self.foodsMuch.font = [UIFont systemFontOfSize:20];
     [self.contentView addSubview:self.foodsMuch];
     
     self.foodsTolitLabel = [[UILabel alloc]init];
+    self.foodsTolitLabel.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:self.foodsTolitLabel];
     
     self.orderTimeLabel = [[UILabel alloc]init];
+    self.orderTimeLabel.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:self.orderTimeLabel];
     
     self.bottomLine = [[UIView alloc]init];
@@ -139,6 +143,8 @@
     }
     else if ([shopStrat isEqualToString:@"11"]){
         self.haveEvaluateLabel.text = ZBLocalized(@"已评价", nil);
+    } else if ([shopStrat isEqualToString:@"12"]){
+        self.haveEvaluateLabel.text = ZBLocalized(@"商家已取消", nil);
     }
     
     
@@ -178,7 +184,7 @@
         [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
-            make.height.equalTo(@(20));
+            make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
         [self.foodsView3 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -205,13 +211,13 @@
         [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
-            make.height.equalTo(@(20));
+            make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
         [self.foodsView3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
-            make.height.equalTo(@(20));
+            make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
         
@@ -231,22 +237,23 @@
         [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
-            make.height.equalTo(@(20));
+            make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
         [self.foodsView3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
-            make.height.equalTo(@(20));
+            make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
         
     }
-    
+    self.foodsMuch.textColor = [UIColor redColor];
     [self.foodsMuch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-15);
         make.top.equalTo(self.foodsView3.mas_bottom).offset(15);
     }];
+    
     [self.foodsTolitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.foodsMuch.mas_left).offset(0);
         make.centerY.equalTo(self.foodsMuch);
@@ -254,7 +261,7 @@
     
     [self.orderTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-15);
-        make.top.equalTo(self.foodsMuch.mas_bottom).offset(5);
+        make.top.equalTo(self.foodsMuch.mas_bottom).offset(15);
     }];
  
         

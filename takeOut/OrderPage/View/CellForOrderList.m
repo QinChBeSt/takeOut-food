@@ -77,7 +77,7 @@
     [self.foodsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView);
         make.top.equalTo(self.topLine.mas_bottom).offset(10);
-        make.height.equalTo(@(20));
+        make.height.equalTo(@(40));
         make.centerX.equalTo(self.contentView);
     }];
     self.foodsView2 = [[ViewForOrderListFoodsName alloc]init];
@@ -90,6 +90,7 @@
     
     
     self.foodsMuch = [[UILabel alloc]init];
+    self.foodsMuch.textColor = [UIColor redColor];
     [self.contentView addSubview:self.foodsMuch];
     
     self.foodsTolitLabel = [[UILabel alloc]init];
@@ -97,6 +98,13 @@
    
     self.orderTimeLabel = [[UILabel alloc]init];
     [self.contentView addSubview:self.orderTimeLabel];
+    
+    self.foodsView.foodsName.font = [UIFont systemFontOfSize:15];
+    self.foodsView2.foodsName.font = [UIFont systemFontOfSize:15];
+    self.foodsView3.foodsName.font = [UIFont systemFontOfSize:15];
+    self.foodsMuch.font = [UIFont systemFontOfSize:20];
+    self.foodsTolitLabel.font = [UIFont systemFontOfSize:15];
+    self.orderTimeLabel.font = [UIFont systemFontOfSize:15];
     
     self.bottomLine = [[UIView alloc]init];
     self.bottomLine.backgroundColor = [UIColor grayColor];
@@ -147,6 +155,9 @@
     else if ([shopStrat isEqualToString:@"11"]){
         self.haveEvaluateLabel.text = ZBLocalized(@"已评价", nil);
     }
+    else if ([shopStrat isEqualToString:@"12"]){
+        self.haveEvaluateLabel.text = ZBLocalized(@"商家已取消", nil);
+    }
 
     
     self.foodsMuch.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),mod.totalpic];
@@ -185,7 +196,7 @@
         [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
-            make.height.equalTo(@(20));
+            make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
         [self.foodsView3 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -212,13 +223,13 @@
         [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
-            make.height.equalTo(@(20));
+            make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
         [self.foodsView3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
-            make.height.equalTo(@(20));
+            make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
 
@@ -238,13 +249,13 @@
         [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
-            make.height.equalTo(@(20));
+            make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
         [self.foodsView3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
-            make.height.equalTo(@(20));
+            make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
 
