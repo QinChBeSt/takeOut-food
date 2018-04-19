@@ -7,7 +7,8 @@
 //
 
 #import "ShopMassageVC.h"
-
+#import "ShopMapLoactionView.h"
+#import "FoodSafeVC.h"
 @interface ShopMassageVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSString *openTime;
@@ -21,6 +22,10 @@
 @property (nonatomic , strong)UIImageView *yhIcon;
 @property (nonatomic , strong)NSMutableArray *arrForSAVE;
 
+@property (nonatomic , strong)NSString *latStr;
+@property (nonatomic , strong)NSString *longStr;
+@property (nonatomic , strong)NSString *shopName;
+@property (nonatomic , strong)NSString *shopADD;
 @end
 
 @implementation ShopMassageVC
@@ -43,8 +48,13 @@
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         NSMutableDictionary *resDic = result[@"value"];
         self.openTime = [NSString stringWithFormat:@"%@:%@",ZBLocalized(@"营业时间", nil),resDic[@"opentime"]];
+        self.shopName =resDic[@"shopname"];
+        self.shopADD =resDic[@"shopad"];
+
         self.addressLab.text = resDic[@"shopad"];
         self.shopPhoneNo = resDic[@"shopphone"];
+        self.latStr = resDic[@"lat"];
+        self.longStr = resDic[@"lang"];
         [self.tableView reloadData];
     } withFail:^(NSError *error) {
         
@@ -73,6 +83,11 @@
         make.centerY.equalTo(addIcon);
         make.right.equalTo(ws.headView.mas_right).offset(-SCREEN_WIDTH / 5);
     }];
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelClick)];
+    // 2. 将点击事件添加到label上
+    [self.addressLab  addGestureRecognizer:labelTapGestureRecognizer];
+    self.addressLab .userInteractionEnabled = YES; // 可以理解为设置label可被点击
+
     
     UIView *line = [[UIView alloc]init];
     line.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"];
@@ -224,6 +239,10 @@
     
     
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    FoodSafeVC *food = [[FoodSafeVC alloc]init];
+    [self.navigationController pushViewController:food animated:YES];
+}
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -241,6 +260,14 @@
     [webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
     [self.view addSubview:webview];
     
+}
+- (void)labelClick {
+    ShopMapLoactionView *shop = [[ShopMapLoactionView alloc]init];
+    shop.latStr = self.latStr;
+    shop.langStr = self.longStr;
+    shop.name  = self.shopName;
+    shop.add = self.shopADD;
+    [self.navigationController pushViewController:shop animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

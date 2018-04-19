@@ -1,28 +1,26 @@
 //
-//  OrderSuccessfullVC.m
+//  FoodSafeVC.m
 //  takeOut
 //
-//  Created by mac on 2018/4/8.
+//  Created by mac on 2018/4/19.
 //  Copyright © 2018年 QinChBeSt. All rights reserved.
 //
 
-#import "OrderSuccessfullVC.h"
-#import "ShopDetailVC.h"
-@interface OrderSuccessfullVC ()
+#import "FoodSafeVC.h"
+
+@interface FoodSafeVC ()
 @property (nonatomic , strong)UIView *naviView;
 @end
 
-@implementation OrderSuccessfullVC
+@implementation FoodSafeVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.view.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     [self createNaviView];
-    [self setUpUI];
-    // Do any additional setup after loading the view.
 }
 #pragma mark - ui
 -(void)createNaviView{
+    self.view.backgroundColor = [UIColor whiteColor];
     self.naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaTopHeight )];
     self.naviView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.view addSubview:self.naviView];
@@ -49,7 +47,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = ZBLocalized(@"提交订单成功", nil);
+    titleLabel.text = NSLocalizedString(@"查看食品安全档案", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,40 +55,9 @@
         make.centerY.equalTo(backImg);
     }];
 }
--(void)setUpUI{
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT / 5 * 2)];
-    backView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:backView];
-    
-    UILabel *center = [[UILabel alloc]init];
-    center.text = ZBLocalized(@"感谢您的支持，欢迎下次光临", nil);
-    [backView addSubview:center];
-    [center mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.centerY.equalTo(backView);
-    }];
-    UILabel *fin = [[UILabel alloc]init];
-    fin.text = ZBLocalized(@"等待商家接单", nil);
-    [backView addSubview:fin];
-    [fin mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.bottom.equalTo(center.mas_top).offset(-20);
-    }];
-}
 #pragma mark - 点击事件
 -(void)back{
-    NSArray *vcArray = self.navigationController.viewControllers;
-    
-    
-    for(UIViewController *vc in vcArray)
-    {
-        if ([vc isKindOfClass:[ShopDetailVC class]])
-        {
-            [self.navigationController popToViewController:vc animated:YES];
-        }
-    }
-   
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

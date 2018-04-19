@@ -1,28 +1,46 @@
 //
-//  OrderSuccessfullVC.m
+//  ShopMapLoactionView.m
 //  takeOut
 //
-//  Created by mac on 2018/4/8.
+//  Created by mac on 2018/4/19.
 //  Copyright © 2018年 QinChBeSt. All rights reserved.
 //
 
-#import "OrderSuccessfullVC.h"
-#import "ShopDetailVC.h"
-@interface OrderSuccessfullVC ()
+#import "ShopMapLoactionView.h"
+#import <MapKit/MapKit.h>
+@interface ShopMapLoactionView ()<MKMapViewDelegate>
 @property (nonatomic , strong)UIView *naviView;
 @end
 
-@implementation OrderSuccessfullVC
+@implementation ShopMapLoactionView{
+    MKMapView *mapView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.view.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     [self createNaviView];
-    [self setUpUI];
-    // Do any additional setup after loading the view.
+    
+    mapView =[[MKMapView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight)];
+    //设置代理
+    mapView.delegate=self;
+    //设置位置
+    double lo = [self.langStr doubleValue];
+    double la = [self.latStr doubleValue];
+    mapView.region=MKCoordinateRegionMake(CLLocationCoordinate2DMake(la, lo), MKCoordinateSpanMake(0.01, 0.01));
+    mapView.mapType=MKMapTypeStandard;
+
+    //初始化一个大头针类
+    MKPointAnnotation * ann = [[MKPointAnnotation alloc]init];
+    //设置大头针坐标
+    ann.coordinate=CLLocationCoordinate2DMake(la, lo);
+    ann.title=self.name;
+    ann.subtitle=self.add;
+    [mapView addAnnotation:ann];
+    [self.view addSubview:mapView];
 }
 #pragma mark - ui
 -(void)createNaviView{
+    self.view.backgroundColor = [UIColor whiteColor];
     self.naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaTopHeight )];
     self.naviView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.view addSubview:self.naviView];
@@ -37,7 +55,6 @@
         make.width.equalTo(@(30));
         make.height.equalTo(@(30));
     }];
-    
     UIButton *backBTN = [UIButton buttonWithType:UIButtonTypeCustom];
     [backBTN addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [self.naviView addSubview:backBTN];
@@ -49,7 +66,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = ZBLocalized(@"提交订单成功", nil);
+    titleLabel.text = NSLocalizedString(@"地址", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,40 +74,9 @@
         make.centerY.equalTo(backImg);
     }];
 }
--(void)setUpUI{
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT / 5 * 2)];
-    backView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:backView];
-    
-    UILabel *center = [[UILabel alloc]init];
-    center.text = ZBLocalized(@"感谢您的支持，欢迎下次光临", nil);
-    [backView addSubview:center];
-    [center mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.centerY.equalTo(backView);
-    }];
-    UILabel *fin = [[UILabel alloc]init];
-    fin.text = ZBLocalized(@"等待商家接单", nil);
-    [backView addSubview:fin];
-    [fin mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.bottom.equalTo(center.mas_top).offset(-20);
-    }];
-}
 #pragma mark - 点击事件
 -(void)back{
-    NSArray *vcArray = self.navigationController.viewControllers;
-    
-    
-    for(UIViewController *vc in vcArray)
-    {
-        if ([vc isKindOfClass:[ShopDetailVC class]])
-        {
-            [self.navigationController popToViewController:vc animated:YES];
-        }
-    }
-   
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

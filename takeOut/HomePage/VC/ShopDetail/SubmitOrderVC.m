@@ -20,6 +20,7 @@
 @property (nonatomic , strong)UILabel *loactinonStrLabel;
 @property (nonatomic , strong)NSString *bz;
 @property (nonatomic , strong)NSString *uaddrid;
+@property (nonatomic , strong) UITextView *textView;
 @end
 
 @implementation SubmitOrderVC{
@@ -31,6 +32,70 @@
     self.view.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     [self createNaviView];
     [self setUpUI];
+    [self addNoticeForKeyboard];
+}
+- (void)addNoticeForKeyboard {
+    
+    //注册键盘出现的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    //注册键盘消失的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    UITapGestureRecognizer *singleTapGR =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(tapAnywhereToDismissKeyboard:)];
+    NSOperationQueue *mainQuene =[NSOperationQueue mainQueue];
+    [nc addObserverForName:UIKeyboardWillShowNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [self.view addGestureRecognizer:singleTapGR];
+                }];
+    [nc addObserverForName:UIKeyboardWillHideNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [self.view removeGestureRecognizer:singleTapGR];
+                }];
+}
+- (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
+    //此method会将self.view里所有的subview的first responder都resign掉
+    [self.view endEditing:YES];
+}
+
+///键盘显示事件
+- (void) keyboardWillShow:(NSNotification *)notification {
+    //获取键盘高度，在不同设备上，以及中英文下是不同的
+   // CGFloat kbHeight = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+    
+    //计算出键盘顶端到inputTextView panel底端的距离(加上自定义的缓冲距离INTERVAL_KEYBOARD)
+    CGFloat offset = 100;
+    
+    // 取得键盘的动画时间，这样可以在视图上移的时候更连贯
+    double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    //将视图上移计算好的偏移
+    if(offset > 0) {
+        [UIView animateWithDuration:duration animations:^{
+            self.view.frame = CGRectMake(0.0f, -offset, self.view.frame.size.width, self.view.frame.size.height);
+        }];
+    }
+}
+
+///键盘消失事件
+- (void) keyboardWillHide:(NSNotification *)notify {
+    // 键盘动画时间
+    double duration = [[notify.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    //视图下沉恢复原状
+    [UIView animateWithDuration:duration animations:^{
+        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }];
 }
 #pragma mark - ui
 -(void)createNaviView{
@@ -164,11 +229,11 @@
         make.left.equalTo(bottomView.mas_left).offset(30);
         make.top.equalTo(payMoney.mas_bottom).offset(20);
     }];
-    UITextView *textView = [[UITextView alloc]init];
-    textView.delegate = self;
-    textView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
-    [bottomView addSubview:textView];
-    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+   self.textView = [[UITextView alloc]init];
+    self.textView.delegate = self;
+    self.textView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    [bottomView addSubview:self.textView];
+    [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(bottomView);
         make.left.equalTo(bottomView.mas_left).offset(20);
         make.top.equalTo(tipeTitle.mas_bottom).offset(10);
@@ -265,6 +330,8 @@
     
     [self.view endEditing:YES];
 }
+
+
 #pragma mark - 点击事件
 -(void)back{
    
@@ -315,6 +382,7 @@
     [self.navigationController pushViewController:SUCCESSVC animated:YES];
     
 }
+
 /*
 #pragma mark - Navigation
 

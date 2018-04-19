@@ -12,6 +12,8 @@
 		9D012B1D20736C200015322E /* LocationMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B1C20736C200015322E /* LocationMapVC.m */; };
 		9D012B2120736E440015322E /* JZLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B2020736E440015322E /* JZLocationConverter.m */; };
 		9D012B23207371AC0015322E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D012B22207371AC0015322E /* MapKit.framework */; };
+		9D0E761A20887B7600BD2378 /* ShopMapLoactionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E761920887B7600BD2378 /* ShopMapLoactionView.m */; };
+		9D0E761D208881EA00BD2378 /* FoodSafeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E761C208881EA00BD2378 /* FoodSafeVC.m */; };
 		9D2338DF207B130200302F76 /* OrderEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2338DE207B130200302F76 /* OrderEditVC.m */; };
 		9D26201E206C877200A2351B /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D26201D206C877200A2351B /* FileTool.m */; };
 		9D262021206CB50000A2351B /* HomeTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262020206CB50000A2351B /* HomeTypeVC.m */; };
@@ -133,6 +135,10 @@
 		9D012B1F20736E440015322E /* JZLocationConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZLocationConverter.h; sourceTree = "<group>"; };
 		9D012B2020736E440015322E /* JZLocationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZLocationConverter.m; sourceTree = "<group>"; };
 		9D012B22207371AC0015322E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9D0E761820887B7600BD2378 /* ShopMapLoactionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopMapLoactionView.h; sourceTree = "<group>"; };
+		9D0E761920887B7600BD2378 /* ShopMapLoactionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopMapLoactionView.m; sourceTree = "<group>"; };
+		9D0E761B208881EA00BD2378 /* FoodSafeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodSafeVC.h; sourceTree = "<group>"; };
+		9D0E761C208881EA00BD2378 /* FoodSafeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodSafeVC.m; sourceTree = "<group>"; };
 		9D2338DD207B130200302F76 /* OrderEditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderEditVC.h; sourceTree = "<group>"; };
 		9D2338DE207B130200302F76 /* OrderEditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderEditVC.m; sourceTree = "<group>"; };
 		9D26201C206C877200A2351B /* FileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileTool.h; sourceTree = "<group>"; };
@@ -512,6 +518,10 @@
 				9DA022892074DBDD005F7168 /* PayOrderChooseAddressVC.m */,
 				9D3854E62079AC4200175693 /* OrderSuccessfullVC.h */,
 				9D3854E72079AC4200175693 /* OrderSuccessfullVC.m */,
+				9D0E761820887B7600BD2378 /* ShopMapLoactionView.h */,
+				9D0E761920887B7600BD2378 /* ShopMapLoactionView.m */,
+				9D0E761B208881EA00BD2378 /* FoodSafeVC.h */,
+				9D0E761C208881EA00BD2378 /* FoodSafeVC.m */,
 			);
 			path = ShopDetail;
 			sourceTree = "<group>";
@@ -1104,6 +1114,7 @@
 				D6C301CB2077CA85009B9B35 /* ViewForOrderListFoodsName.m in Sources */,
 				9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */,
 				9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */,
+				9D0E761D208881EA00BD2378 /* FoodSafeVC.m in Sources */,
 				9D262021206CB50000A2351B /* HomeTypeVC.m in Sources */,
 				D6C301C42077BD24009B9B35 /* CellForOrderList.m in Sources */,
 				9D33B0082085C0CB0086DC93 /* MJRefreshNormalHeader.m in Sources */,
@@ -1122,6 +1133,7 @@
 				9D49524C2068850D005A6BBC /* MHNetWorkTask.m in Sources */,
 				9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */,
 				9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */,
+				9D0E761A20887B7600BD2378 /* ShopMapLoactionView.m in Sources */,
 				9D6143922073268F00187232 /* ShopDetailMassageVC.m in Sources */,
 				9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */,
 				9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */,

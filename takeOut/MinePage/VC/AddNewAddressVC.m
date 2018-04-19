@@ -324,13 +324,13 @@
     }
 }
 -(void)edit{
-    if (_locationStr == nil ) {
+    if (_locationStr == nil) {
         [MBManager showBriefAlert:ZBLocalized(@"请获取地理位置", nil)];
-    }else if (_userNameStr == nil){
+    }else if (_userNameTextField.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人姓名", nil)];
-    }else if (_userPhoneStr == nil){
+    }else if (_userPhoneNum.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人电话", nil)];
-    }else if (_userHouseNoStr == nil){
+    }else if (_houseAdd.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请获填写具体位置", nil)];
     }else{
         
@@ -368,16 +368,15 @@
     }
 }
 -(void)save{
-    if (_locationStr == nil ) {
+    if (_locationStr == nil) {
         [MBManager showBriefAlert:ZBLocalized(@"请获取地理位置", nil)];
-    }else if (_userNameStr == nil){
+    }else if (_userNameTextField.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人姓名", nil)];
-    }else if (_userPhoneStr == nil){
+    }else if (_userPhoneNum.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人电话", nil)];
-    }else if (_userHouseNoStr == nil){
+    }else if (_houseAdd.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请获填写具体位置", nil)];
     }else{
-       
           NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
