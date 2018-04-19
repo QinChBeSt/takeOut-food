@@ -21,6 +21,10 @@
 @property (nonatomic , strong)NSString *bz;
 @property (nonatomic , strong)NSString *uaddrid;
 @property (nonatomic , strong) UITextView *textView;
+@property (nonatomic , assign)float FallPIC;
+@property (nonatomic , assign)float FsavePic;
+@property (nonatomic , assign)float FpsPic;
+@property (nonatomic , assign)float FpayMoney;
 @end
 
 @implementation SubmitOrderVC{
@@ -29,6 +33,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.FallPIC = [self.ypic floatValue];
+    self.FpsPic = [self.pspic floatValue];
+    self.FsavePic = [self.yhpic floatValue];
+    
     self.view.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     [self createNaviView];
     [self setUpUI];
@@ -145,7 +153,7 @@
     [addBanckgroundView addSubview:addView];
     
     UIImageView *addIcon = [[UIImageView alloc]init];
-    [addIcon setImage:[UIImage imageNamed:@"加"]];
+    [addIcon setImage:[UIImage imageNamed:@"加号"]];
     [addView addSubview:addIcon];
     [addIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(addBanckgroundView);
@@ -173,8 +181,9 @@
     line1.backgroundColor = [UIColor lightGrayColor];
     [bottomView addSubview:line1];
     
+    
     UILabel *psMoney = [[UILabel alloc]init];
-    psMoney.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),self.pspic];
+    psMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),self.FpsPic];
     psMoney.textColor = [UIColor grayColor];
     [bottomView addSubview:psMoney];
     [psMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -199,8 +208,10 @@
         make.left.equalTo(bottomView.mas_left).offset(20);
         make.centerY.equalTo(bottomView.mas_top).offset(midHeight / 4 * 3);
     }];
+    
+    
     UILabel *ADDMoney = [[UILabel alloc]init];
-    ADDMoney.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),self.yhpic];
+    ADDMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),self.FallPIC];
     ADDMoney.textColor = [UIColor grayColor];
     [bottomView addSubview:ADDMoney];
     [ADDMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -212,8 +223,9 @@
     line2.backgroundColor = [UIColor lightGrayColor];
     [bottomView addSubview:line2];
     
+    self.FpayMoney = self.FallPIC - self.FsavePic + self.FpsPic;
     UILabel *payMoney = [[UILabel alloc]init];
-    payMoney.text = [NSString stringWithFormat:@"%@  %@%@",ZBLocalized(@"小计", nil),ZBLocalized(@"￥", nil),self.ypic];
+    payMoney.text = [NSString stringWithFormat:@"%@  %@%.2f",ZBLocalized(@"小计", nil),ZBLocalized(@"￥", nil),self.FpayMoney];
     payMoney.textColor = [UIColor grayColor];
     [bottomView addSubview:payMoney];
     [payMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -268,7 +280,7 @@
     }];
     
     UILabel *toPayMoney = [[UILabel alloc]init];
-    toPayMoney.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥:", nil),self.ypic];
+    toPayMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥:", nil),self.FpayMoney];
     toPayMoney.textColor = [UIColor redColor];
     [totalMoneyView addSubview:toPayMoney];
     [toPayMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -312,8 +324,9 @@
     }
    
     NSDictionary *dic = [self.arrForOrder objectAtIndex:indexPath.row];
-    cell.foodsName.text = dic[@"g_name"];;
-    cell.foodsMoney.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),dic[@"g_pic"]];
+    cell.foodsName.text = dic[@"g_name"];
+    float g_picF = [dic[@"g_pic"] floatValue];
+    cell.foodsMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),g_picF];
     cell.foodsCount.text = [NSString stringWithFormat:@"× %@",dic[@"count"]];
    
     return cell;

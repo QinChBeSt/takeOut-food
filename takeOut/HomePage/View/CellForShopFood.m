@@ -39,14 +39,17 @@
     
     self.addToShoppingCar = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.addToShoppingCar setImage:[UIImage imageNamed:@"加"] forState:UIControlStateNormal];
+    self.addToShoppingCar.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+    self.addToShoppingCar.layer.cornerRadius=10;
+    self.addToShoppingCar.clipsToBounds = YES;
     [self.addToShoppingCar addTarget:self action:@selector(addToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.addToShoppingCar];
     [self.addToShoppingCar setHidden:NO];
     [self.addToShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView.mas_right).offset(-15);
         make.centerY.equalTo(ws.priceLabel);
-        make.width.equalTo(@(25));
-        make.height.equalTo(@(25));
+        make.width.equalTo(@(20));
+        make.height.equalTo(@(20));
     }];
     
     
@@ -64,13 +67,16 @@
         __weak typeof(self) ws = self;
         
         self.chooseCountLabel = [[UILabel alloc]init];
-        self.chooseCountLabel.text = [NSString stringWithFormat:@"-%ld-",(long)self.ChooseCount];
+        self.chooseCountLabel.text = [NSString stringWithFormat:@" %ld ",(long)self.ChooseCount];
         [self.contentView addSubview:self.chooseCountLabel];
         [self.chooseCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
              make.centerY.equalTo(ws.priceLabel);
              make.right.equalTo(ws.addToShoppingCar.mas_left).offset(-5);
         }];
         self.delectToShoppingCar = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.delectToShoppingCar.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+        self.delectToShoppingCar.layer.cornerRadius=10;
+        self.delectToShoppingCar.clipsToBounds = YES;
         [self.delectToShoppingCar setImage:[UIImage imageNamed:@"减"] forState:UIControlStateNormal];
         [self.delectToShoppingCar addTarget:self action:@selector(delectToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.delectToShoppingCar];
@@ -78,8 +84,8 @@
         [self.delectToShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(ws.chooseCountLabel.mas_left).offset(-5);
             make.centerY.equalTo(ws.priceLabel);
-            make.width.equalTo(@(25));
-            make.height.equalTo(@(25));
+            make.width.equalTo(@(20));
+            make.height.equalTo(@(20));
         }];
     }
     if (self.blockAddShopingCar) {

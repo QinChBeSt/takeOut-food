@@ -171,7 +171,7 @@
     [self.arrForHaveBuyList removeAllObjects];
     for (int i = 0 ; i < self.arrForAddShoppingCarList.count; i++) {
         NSMutableDictionary *dic = [self.arrForAddShoppingCarList objectAtIndex:i];
-        [dic removeObjectForKey:@"selectIndex"];
+       // [dic removeObjectForKey:@"selectIndex"];
         [self.arrForHaveBuyList addObject:dic];
     }
     
@@ -556,7 +556,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 [cell2.chooseCountLabel setHidden:NO];
                 [cell2.delectToShoppingCar setHidden:NO];
                 cell2.ChooseCount = rightCellCount;
-                cell2.chooseCountLabel.text = [NSString stringWithFormat:@"-%ld-",(long)rightCellCount];
+                cell2.chooseCountLabel.text = [NSString stringWithFormat:@" %ld ",(long)rightCellCount];
             }else{
                 [cell2.chooseCountLabel setHidden:YES];
                 [cell2.delectToShoppingCar setHidden:YES];
@@ -646,7 +646,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                     [cell2.delectToShoppingCar setHidden:NO];
                 }
                 cell2.ChooseCount = rightCellCount;
-                cell2.chooseCountLabel.text = [NSString stringWithFormat:@"-%ld-",(long)rightCellCount];
+                cell2.chooseCountLabel.text = [NSString stringWithFormat:@" %ld ",(long)rightCellCount];
                 rightCellCountStr = [NSString stringWithFormat:@"%ld",(long)rightCellCount];
                 [defaults setObject:rightCellCountStr forKey:cellValue];
                 [defaults setObject:countStr forKey:value];
@@ -741,7 +741,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 }
                 
                 cell2.ChooseCount = rightCellCount;
-                cell2.chooseCountLabel.text = [NSString stringWithFormat:@"-%ld-",(long)rightCellCount];
+                cell2.chooseCountLabel.text = [NSString stringWithFormat:@" %ld ",(long)rightCellCount];
                 rightCellCountStr = [NSString stringWithFormat:@"%ld",(long)rightCellCount];
                 if (rightCellCount == 0) {
                     [cell2.chooseCountLabel setHidden:YES];
