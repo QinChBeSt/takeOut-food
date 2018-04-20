@@ -172,7 +172,7 @@
         ModelForOrderList *mod = [[ModelForOrderList alloc]init];
         mod = [self.arrForOrerList objectAtIndex:indexPath.row];
         NSString *shopStrat = mod.shopstart;
-        if ([shopStrat isEqualToString:@"9"]) {
+      //  if ([shopStrat isEqualToString:@"9"]) {
             //        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
             NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
             
@@ -189,20 +189,20 @@
                 [self.navigationController pushViewController:order animated:YES];
             }];
             return cell;
-        }else{
-            //        CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
-            NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-            
-            CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (!cell2) {
-                cell2 = [[CellForOrderListNoPJ alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            }
-            cell2.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell2.mod = mod;
-            
-            return cell2;
-        }
-        
+//        }else{
+//            //        CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
+//            NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+//
+//            CellForOrderListNoPJ *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//            if (!cell2) {
+//                cell2 = [[CellForOrderListNoPJ alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//            }
+//            cell2.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell2.mod = mod;
+//
+//            return cell2;
+//        }
+//
     }
    
     return nil;
