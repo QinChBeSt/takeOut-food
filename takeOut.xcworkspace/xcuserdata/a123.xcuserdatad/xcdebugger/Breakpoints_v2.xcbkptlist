@@ -73,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "takeOut/AppDelegate.m"
-            timestampString = "545907204.1733969"
+            filePath = "takeOut/HomePage/View/TableViewCellForHomepageList.m"
+            timestampString = "545906165.1370879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "-jpushNotificationCenter:willPresentNotification:withCompletionHandler:"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-setMod:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "takeOut/HomePage/View/TableViewCellForHomepageList.m"
-            timestampString = "545906165.1370879"
+            filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
+            timestampString = "545912229.9278359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "-setMod:"
+            startingLineNumber = "1304"
+            endingLineNumber = "1304"
+            landmarkName = "-cleanAllData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

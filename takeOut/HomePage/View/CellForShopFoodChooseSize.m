@@ -48,7 +48,7 @@
     [self.chooseSizeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView.mas_right).offset(-10);
         make.centerY.equalTo(ws.priceLabel);
-        make.width.equalTo(@(105));
+        make.width.equalTo(@(60));
         make.height.equalTo(@(25));
     }];
     

@@ -178,7 +178,10 @@
     [self.arrForHaveBuyList removeAllObjects];
     for (int i = 0 ; i < self.arrForAddShoppingCarList.count; i++) {
         NSMutableDictionary *dic = [self.arrForAddShoppingCarList objectAtIndex:i];
-        [self.arrForDelShoppingCar addObject:dic[@"selectIndex"]];
+        NSIndexPath *del = dic[@"selectIndex"];
+        NSMutableDictionary *deleDic  =[NSMutableDictionary dictionary];
+        [deleDic setObject:del forKey:@"selectIndex"];
+        [self.arrForDelShoppingCar addObject:deleDic];
         [dic removeObjectForKey:@"selectIndex"];
         [self.arrForHaveBuyList addObject:dic];
     }
@@ -497,7 +500,11 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 
            
         }
-       
+        if (COUNT.length == 0) {
+            cell.redIcon.hidden = YES;
+            
+            cell.redIcon.text = @"";
+        }
         return cell;
     }
 //右边==============
@@ -626,8 +633,12 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                     [self.arrForAddShoppingCarList addObject:dicForChoose];
                 }
                 if (self.arrForAddShoppingCarList.count != 0) {
-                    self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"#00CD00"];
-                    [self.addBuyCarViewAddBtn setTitle:ZBLocalized(@"去结算", nil) forState:UIControlStateNormal];
+                    CGFloat upPayF = [self.upPayMoney floatValue];
+                    if (_addMoney >= upPayF) {
+                        self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"#00CD00"];
+                        [self.addBuyCarViewAddBtn setTitle:ZBLocalized(@"去结算", nil) forState:UIControlStateNormal];
+                    }
+                    
                 }
             //左边小红点
                 self.leftTableViewSelectRow = indexPath.section + 1;
@@ -770,12 +781,14 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 self.ShoppingCarRedLabel.hidden = NO;
                 self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
                 }
-                if (self.arrForAddShoppingCarList.count == 0) {
+                CGFloat upPayF = [self.upPayMoney floatValue];
+                if (_addMoney < upPayF) {
                     self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
                     NSString *startPayMoney = [NSString stringWithFormat:@"%@%@",self.upPayMoney,ZBLocalized(@"元起送", nil)];
                     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
                 }
-                
+            
+    
                 
             };
            
@@ -907,6 +920,13 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                     make.bottom.equalTo(self.buyCarView.mas_top);
                     make.height.equalTo(@(self.arrForAddShoppingCarList.count * 50 + 40));
                 }];
+                CGFloat upPayF = [self.upPayMoney floatValue];
+                if (_addMoney < upPayF) {
+                    self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
+                    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@",self.upPayMoney,ZBLocalized(@"元起送", nil)];
+                    [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
+                }
+                
                 if (self.arrForAddShoppingCarList.count == 0) {
                      [self.haveBuyBackView  removeFromSuperview];
                     self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
@@ -1074,6 +1094,13 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     [self.leftTable reloadData];
     
     self.ShoppingCarRedNum++;
+
+    CGFloat upPayF = [self.upPayMoney floatValue];
+    if (_addMoney >= upPayF) {
+        
+    }
+    
+    
     self.ShoppingCarRedLabel.hidden = NO;
     self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
    
@@ -1148,8 +1175,11 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     
     }
     if (self.arrForAddShoppingCarList.count != 0) {
-        self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"#00CD00"];
-        [self.addBuyCarViewAddBtn setTitle:ZBLocalized(@"去结算", nil) forState:UIControlStateNormal];
+        CGFloat upPayF = [self.upPayMoney floatValue];
+        if (_addMoney >= upPayF) {
+            self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"#00CD00"];
+            [self.addBuyCarViewAddBtn setTitle:ZBLocalized(@"去结算", nil) forState:UIControlStateNormal];
+        }
     }
     
 }
@@ -1236,9 +1266,9 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     }
     NSInteger removeIndex = 0;
     NSIndexPath *chooseIndex ;
-    for (int i = 0; i < self.arrForAddShoppingCarList.count; i++) {
+    for (int i = 0; i < self.arrForDelShoppingCar.count; i++) {
         NSMutableDictionary *dicForChoose = [NSMutableDictionary dictionary];
-        dicForChoose = [self.arrForAddShoppingCarList objectAtIndex:i];
+        dicForChoose = [self.arrForDelShoppingCar objectAtIndex:i];
             removeIndex = i;
             chooseIndex = dicForChoose[@"selectIndex"];
         //左边小红点
@@ -1251,7 +1281,14 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         
         [defaults setObject:nil forKey:cellValue];
         [defaults setObject:nil forKey:value];
+        
+        for (int i = 0 ; i < 99; i++) {
+            NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%d",i];
+             [defaults setObject:nil forKey:value];
+        }
+        
         [self.arrForAddShoppingCarList removeAllObjects];
+        [self.arrForDelShoppingCar removeAllObjects];
         [defaults synchronize];
     }
     
