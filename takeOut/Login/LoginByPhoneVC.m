@@ -10,6 +10,7 @@
 #import "LoginByPasswordVC.h"
 #import "RegisterVC.h"
 
+
 @interface LoginByPhoneVC ()<UITextFieldDelegate>
 @property (nonatomic , strong) UITextField *phoneNumTextField;
 @property (nonatomic , copy) NSString *phoneNumStr;
@@ -322,6 +323,15 @@
             NSString *userPhone =[NSString stringWithFormat:@"%@",dic[@"userPhone"]];
             NSString *userName =[NSString stringWithFormat:@"%@",dic[@"userName"]];
             
+        
+            [JPUSHService setAlias:@"bee" completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                NSLog(@"注册Alias==%ld",(long)iResCode);
+            } seq:0];
+            NSString *strTag = [NSString stringWithFormat:@"bee%@",userid];
+            NSSet *set = [[NSSet alloc] initWithObjects:strTag,nil];
+            [JPUSHService setTags:set completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+                 NSLog(@"注册Tag===%ld",(long)iResCode);
+            } seq:0];
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:userid forKey:UD_USERID];
             [defaults setObject:userName forKey:UD_USERNAME];

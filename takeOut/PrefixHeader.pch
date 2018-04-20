@@ -17,6 +17,9 @@
 #define UD_USERID @"USERID"
 #define UD_USERNAME @"USERNAME"
 #define UD_USERPHONE @"USERPHONE"
+
+#define JPushKey @"e322341773c5527c69d87501"
+#define JPushIsProduction 0   //0 (默认值)表示采用的是开发证书，1 表示采用生产证书发布应用
 //测试
 #define BASEURL @"http://118.24.100.177:8080/spmvc"
 //#define BASEURL @"http://192.168.0.148:8080"
@@ -92,7 +95,8 @@
 #import "UIView+SDAutoLayout.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "MJRefresh.h"
-
+// 引入JPush功能所需头文件
+#import "JPUSHService.h"
 
 
 

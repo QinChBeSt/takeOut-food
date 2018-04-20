@@ -181,6 +181,14 @@
             NSString *userPhone =[NSString stringWithFormat:@"%@",dic[@"userPhone"]];
             NSString *userName =[NSString stringWithFormat:@"%@",dic[@"userName"]];
             
+            [JPUSHService setAlias:userid completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                NSLog(@"%ld",(long)seq);
+            } seq:0];
+            NSString *strTag = [NSString stringWithFormat:@"bee%@",userid];
+            [JPUSHService setTags:strTag completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+                NSLog(@"%ld",(long)seq);
+            } seq:0];
+            
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:userid forKey:UD_USERID];
             [defaults setObject:userName forKey:UD_USERNAME];

@@ -44,6 +44,7 @@
 @property (nonatomic , strong)UILabel *startToBuyLabel;
 @property (nonatomic , strong)UIButton *addBuyCarViewAddBtn;
 @property (nonatomic , strong)NSMutableArray *arrForAddShoppingCarList;
+@property (nonatomic , strong)NSMutableArray *arrForDelShoppingCar;
 @property (nonatomic , copy)NSString *isDeleArr;
 @property (nonatomic , copy)NSString *isAddArr;
 
@@ -95,6 +96,12 @@
         _arrForAddShoppingCarList = [NSMutableArray array];
     }
     return _arrForAddShoppingCarList;
+}
+-(NSMutableArray *)arrForDelShoppingCar{
+    if (_arrForDelShoppingCar == nil) {
+        _arrForDelShoppingCar = [NSMutableArray array];
+    }
+    return _arrForDelShoppingCar;
 }
 -(NSMutableArray *)arrForHaveBuyList{
     if (_arrForHaveBuyList == nil) {
@@ -171,7 +178,8 @@
     [self.arrForHaveBuyList removeAllObjects];
     for (int i = 0 ; i < self.arrForAddShoppingCarList.count; i++) {
         NSMutableDictionary *dic = [self.arrForAddShoppingCarList objectAtIndex:i];
-       // [dic removeObjectForKey:@"selectIndex"];
+        [self.arrForDelShoppingCar addObject:dic[@"selectIndex"]];
+        [dic removeObjectForKey:@"selectIndex"];
         [self.arrForHaveBuyList addObject:dic];
     }
     
