@@ -116,13 +116,15 @@
         
         _netImages = @[
                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg",
-                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg"
+                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg",
+                       @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg",
                       
                        ];
         /** 测试本地图片数据*/
         self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"PlacehoderImage.png"]];
          self.cycleScrollView.imageURLStringsGroup = self.netImages;
         //设置图片视图显示类型
+        self.cycleScrollView.autoScrollTimeInterval = 5;
         self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
         //设置轮播视图的分页控件的显示
         self.cycleScrollView.showPageControl = YES;
@@ -133,7 +135,7 @@
         //其他分页控件小圆标图片
         self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
         
-        [headviewImageView addSubview:self.cycleScrollView];
+        [self.tableView addSubview:self.cycleScrollView];
         [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(headviewAddressView.mas_bottom);
             make.width.equalTo(headviewAddressView);
@@ -274,7 +276,7 @@
 }
 #pragma mark - 创建透视图
 -(void)createHeadView{
-    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeadAdderssViewHeight + kHeadImageViewHeight + kHeadCollectionViewHeight + kHeadSelectViewHeight + 65)];
+    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeadAdderssViewHeight + kHeadImageViewHeight + kHeadCollectionViewHeight + kHeadSelectViewHeight + 65 + SafeAreaStatsBarHeight)];
     self.headView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.headView];
     [self createHeadViewAddressView];
@@ -285,7 +287,10 @@
 }
 //地址栏
 -(void)createHeadViewAddressView{
-    headviewAddressView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeadAdderssViewHeight)];
+    UIView *safeTop = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaStatsBarHeight)];
+    safeTop.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+    [self.headView addSubview:safeTop];
+    headviewAddressView = [[UIView alloc]initWithFrame:CGRectMake(0, SafeAreaStatsBarHeight, SCREEN_WIDTH, kHeadAdderssViewHeight)];
     headviewAddressView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.headView addSubview:headviewAddressView];
     
@@ -455,7 +460,7 @@
 #pragma mark - 创建tableView
 -(void)createTableView{
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaStatsBarHeight, self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaStatsBarHeight - SafeAreaTabbarHeight - 34) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,-SafeAreaStatsBarHeight , self.view.frame.size.width, SCREENH_HEIGHT - 29  ) style:UITableViewStylePlain];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -550,13 +555,13 @@
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
-    //NSLog(@"%ld",index);
+    NSLog(@"%ld",index);
 }
 
 /** 图片滚动回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
     
-    //NSLog(@"%ld",index);
+    NSLog(@"%ld",index);
 }
 
 #pragma mark - 定位

@@ -38,15 +38,21 @@
     [par setValue:type forKey:@"flg"];
     [par setValue:@"0" forKey:@"page"];
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
-        NSMutableDictionary *resDic = result[@"value"];
-         self.csiLabel.text = resDic[@"csi"];
-        NSMutableArray *arr = resDic[@"dat2"];
-        for (NSMutableDictionary *dic in arr) {
-            [self.eavArr addObject:dic];
+       NSString *code =[NSString stringWithFormat:@"%@",result[@"code"]];
+        if ([code isEqualToString:@"1"]) {
+            NSMutableDictionary *resDic = result[@"value"];
+            self.csiLabel.text = resDic[@"csi"];
+            NSMutableArray *arr = resDic[@"dat2"];
+            for (NSMutableDictionary *dic in arr) {
+                [self.eavArr addObject:dic];
+            }
+            [self.tableView reloadData];
+            NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
+            [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        }else{
+            [MBManager showBriefAlert:ZBLocalized(@"没有数据", nil)];
         }
-        [self.tableView reloadData];
-        NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+       
     } withFail:^(NSError *error) {
         
     }];
