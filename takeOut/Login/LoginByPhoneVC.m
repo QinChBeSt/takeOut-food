@@ -314,6 +314,7 @@
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
     //请求的方式：POST
     [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
         NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
         if ([code isEqualToString:@"1"]) {
            

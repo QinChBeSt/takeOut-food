@@ -97,11 +97,17 @@
         } else if ([orderNowType isEqualToString:@"12"]){
             self.orderNowType.text = ZBLocalized(@"商家已取消", nil);
         }
-       
-        
-        self.psPicStr.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),dic[@"orderpspic"]];
-        self.yhPicStr.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),dic[@"yhpic"]];
-        self.totleStr.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"小计: ￥", nil),dic[@"totals"]];
+        NSString *psStr = dic[@"orderpspic"];
+        CGFloat psF = [psStr floatValue];
+        NSString *yhStr = dic[@"yhpic"];
+        CGFloat yhF = [yhStr floatValue];
+        NSString *toStr = dic[@"totals"];
+        CGFloat toF = [toStr floatValue];
+        toF = toF - yhF;
+        self.psPicStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),psF];
+        self.yhPicStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"-￥", nil),yhF];
+        self.totleStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"小计: ￥", nil),toF];
+        self.totleStr.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
         self.shopPhoneNo = [NSString stringWithFormat:@"%@",dic[@"shopphone"]];
         self.userName.text = [NSString stringWithFormat:@"%@  %@",dic[@"uname"],dic[@"uphone"]] ;
         self.userAddress.text = dic[@"uaddr"];
@@ -233,7 +239,7 @@
     }];
     self.yhPicStr = [[UILabel alloc]init];
     self.yhPicStr.font = [UIFont systemFontOfSize:14];
-    self.yhPicStr.textColor = [UIColor lightGrayColor];
+    self.yhPicStr.textColor = [UIColor redColor];
     [moneyView addSubview:self.yhPicStr];
     [self.yhPicStr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(moneyView.mas_right).offset(-40);

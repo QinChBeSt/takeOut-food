@@ -244,6 +244,7 @@
         make.top.equalTo(payMoney.mas_bottom).offset(20);
     }];
    self.textView = [[UITextView alloc]init];
+    self.textView.font = [UIFont systemFontOfSize:16];
     self.textView.delegate = self;
     self.textView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     [bottomView addSubview:self.textView];
@@ -284,6 +285,7 @@
     UILabel *toPayMoney = [[UILabel alloc]init];
     toPayMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥:", nil),self.FpayMoney];
     toPayMoney.textColor = [UIColor redColor];
+    toPayMoney.font = [UIFont systemFontOfSize:22];
     [totalMoneyView addSubview:toPayMoney];
     [toPayMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(toPayTitle.mas_right).offset(5);
@@ -338,7 +340,24 @@
 }
 -(void)textViewDidChange:(UITextView *)textView{
     self.bz = textView.text;
+    if (textView.text.length > 0) {
+        // 禁止系统表情的输入
+        NSString *text = [self disable_emoji:[textView text]];
+        if (![text isEqualToString:textView.text]) {
+            NSRange textRange = [textView selectedRange];
+            textView.text = text;
+            [textView setSelectedRange:textRange];
+        }
+    }
     
+}
+- (NSString *)disable_emoji:(NSString *)text{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f\r\n]"options:NSRegularExpressionCaseInsensitive error:nil];
+    NSString *modifiedString = [regex stringByReplacingMatchesInString:text
+                                                               options:0
+                                                                 range:NSMakeRange(0, [text length])
+                                                          withTemplate:@""];
+    return modifiedString;
 }
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent *)event{

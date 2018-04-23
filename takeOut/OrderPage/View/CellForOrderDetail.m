@@ -59,7 +59,9 @@
 -(void)setDic:(NSMutableDictionary *)dic{
     self.foodName.text = dic[@"ordersGoodsName"];
     self.foodCount.text = [NSString stringWithFormat:@"x %@",dic[@"ordersGoodsNum"]];
-    self.foodPic.text = [NSString stringWithFormat:@"%@ %@",ZBLocalized(@"￥", nil),dic[@"ordersGoodsPic"]];
+    NSString *picStr = dic[@"ordersGoodsPic"];
+    CGFloat picF  = [picStr floatValue];
+    self.foodPic.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"￥", nil),picF];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

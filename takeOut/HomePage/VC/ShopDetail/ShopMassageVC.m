@@ -240,8 +240,11 @@
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    FoodSafeVC *food = [[FoodSafeVC alloc]init];
-    [self.navigationController pushViewController:food animated:YES];
+    if (indexPath.row == 0) {
+        FoodSafeVC *food = [[FoodSafeVC alloc]init];
+        [self.navigationController pushViewController:food animated:YES];
+    }
+    
 }
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

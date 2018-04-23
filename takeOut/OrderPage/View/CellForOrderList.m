@@ -170,13 +170,17 @@
         NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
         self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
         
-        [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.foodsView2.foodsName.text =@"";
+        self.foodsView2.foodsCount.text =@"";
+        [self.foodsView2 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
             make.height.equalTo(@(0));
             make.centerX.equalTo(self.contentView);
         }];
-        [self.foodsView3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.foodsView3.foodsName.text =@"";
+        self.foodsView3.foodsCount.text =@"";
+        [self.foodsView3 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
             make.height.equalTo(@(0));
@@ -193,13 +197,15 @@
         NSString *listFoodcount2 = foodsArr[1][@"ordersGoodsNum"];
         self.foodsView2.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount2];
         
-        [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.foodsView2 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
             make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
-        [self.foodsView3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.foodsView3.foodsName.text =@"";
+        self.foodsView3.foodsCount.text =@"";
+        [self.foodsView3 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
             make.height.equalTo(@(0));
@@ -220,13 +226,13 @@
         NSString *listFoodcount3 = foodsArr[2][@"ordersGoodsNum"];
         self.foodsView3.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount3];
 
-        [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.foodsView2 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
             make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
-        [self.foodsView3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.foodsView3 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
             make.height.equalTo(@(40));
@@ -246,13 +252,13 @@
         NSString *listFoodcount3 = foodsArr[2][@"ordersGoodsNum"];
         self.foodsView3.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount3];
         
-        [self.foodsView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.foodsView2 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView.mas_bottom).offset(0);
             make.height.equalTo(@(40));
             make.centerX.equalTo(self.contentView);
         }];
-        [self.foodsView3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.foodsView3 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView);
             make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
             make.height.equalTo(@(40));

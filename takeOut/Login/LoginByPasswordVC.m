@@ -185,7 +185,8 @@
                 NSLog(@"%ld",(long)seq);
             } seq:0];
             NSString *strTag = [NSString stringWithFormat:@"bee%@",userid];
-            [JPUSHService setTags:strTag completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+            NSSet *set = [[NSSet alloc] initWithObjects:strTag,nil];
+            [JPUSHService setTags:set completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
                 NSLog(@"%ld",(long)seq);
             } seq:0];
             

@@ -101,8 +101,13 @@
     int disint = [mod.send_dis intValue];
     
     float disFloat = (float)disint / (float)1000;
-    NSString *dis = [NSString stringWithFormat:@"%@ | %.2fKm",mod.send_time,disFloat];
+    NSString *time =mod.send_time;
+    NSArray *array = [time componentsSeparatedByString:@"m"];
+    CGFloat timeInt = [array[0] floatValue];
+    
+    NSString *dis = [NSString stringWithFormat:@"%.fmin | %.2fKm",timeInt,disFloat];
     self.shopDistance.text = dis;
+    
     NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@ | %@%@",ZBLocalized(@"配送：￥", nil),mod.send_pic,ZBLocalized(@"起送：￥", nil),mod.up_pic,ZBLocalized(@"月售：", nil),mod.per_mean];
     self.shopMassage.text = msg;
     
