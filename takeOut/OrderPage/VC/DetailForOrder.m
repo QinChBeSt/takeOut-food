@@ -22,7 +22,7 @@
 
 @property (nonatomic , strong)UIView *headBackView;
 @property (nonatomic , strong)UILabel *orderNowType;
-
+@property (nonatomic , strong)UILabel *shopNameLabel;
 @property (nonatomic , strong)UIView *bottomView;
 @property (nonatomic , strong)UILabel *psPicStr;
 @property (nonatomic , strong)UILabel *yhPicStr;
@@ -63,7 +63,7 @@
         NSMutableDictionary *dicRes = responseObject;
         NSMutableDictionary *dic = dicRes[@"value"];
         NSArray *Arr = dic[@"oge"];
-        
+
         NSString *orderNowType = [NSString stringWithFormat:@"%@",dic[@"ordertyppe"]];
         if ([orderNowType isEqualToString:@"2"]) {
             self.orderNowType.text = ZBLocalized(@"商家未接单", nil);
@@ -97,6 +97,8 @@
         } else if ([orderNowType isEqualToString:@"12"]){
             self.orderNowType.text = ZBLocalized(@"商家已取消", nil);
         }
+        NSString *shopNameStr =[NSString stringWithFormat:@"  %@",dic[@"shopname"]];
+        self.shopNameLabel.text = shopNameStr;
         NSString *psStr = dic[@"orderpspic"];
         CGFloat psF = [psStr floatValue];
         NSString *yhStr = dic[@"yhpic"];
@@ -166,7 +168,7 @@
     }];
 }
 -(void)createHeadView{
-    self.headBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headViewHeight + 20)];
+    self.headBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headViewHeight + 30 + 30)];
     self.headBackView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     [self.view addSubview:self.headBackView];
     
@@ -188,6 +190,17 @@
     [WelcomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(backview);
         make.centerY.equalTo(backview.mas_centerY).offset(headViewHeight/4);
+    }];
+    
+    self.shopNameLabel = [[UILabel alloc]init];
+    self.shopNameLabel.backgroundColor = [UIColor whiteColor];
+    self.shopNameLabel.textColor = [UIColor grayColor];
+    [self.headBackView addSubview:self.shopNameLabel];
+    [self.shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(self.headBackView);
+        make.bottom.equalTo(self.headBackView.mas_bottom);
+        make.height.equalTo(@(35));
+        make.centerX.equalTo(self.headBackView);
     }];
    
     
@@ -396,7 +409,7 @@
     self.orderNumLabel = [[UILabel alloc]init];
     [orderMassageView addSubview: self.orderNumLabel];
     self.orderNumLabel.font = [UIFont systemFontOfSize:14];
-    self.orderNumLabel.textColor = [UIColor lightGrayColor];
+    self.orderNumLabel.textColor = [UIColor blackColor];
     [ self.orderNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(psAddressTitle.mas_right).offset(20);
         make.centerY.equalTo(orderMassageView.mas_top).offset(orderMassageViewHeight / 6);
@@ -416,7 +429,7 @@
     self.orderDateLabel = [[UILabel alloc]init];
     [orderMassageView addSubview: self.orderDateLabel];
     self.orderDateLabel.font = [UIFont systemFontOfSize:14];
-    self.orderDateLabel.textColor = [UIColor lightGrayColor];
+    self.orderDateLabel.textColor = [UIColor blackColor];
     [ self.orderDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(psAddressTitle.mas_right).offset(20);
         make.centerY.equalTo(orderMassageView.mas_top).offset(orderMassageViewHeight / 6 * 3);
@@ -436,11 +449,13 @@
     self.orderPayType = [[UILabel alloc]init];
     [orderMassageView addSubview: self.orderPayType];
     self.orderPayType.font = [UIFont systemFontOfSize:14];
-    self.orderPayType.textColor = [UIColor lightGrayColor];
+    self.orderPayType.textColor = [UIColor blackColor];
     [ self.orderPayType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(psAddressTitle.mas_right).offset(20);
         make.centerY.equalTo(orderMassageView.mas_top).offset(orderMassageViewHeight / 6 * 5);
     }];
+    
+    
     
 }
 -(void)createTabview{

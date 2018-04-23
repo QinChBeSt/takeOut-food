@@ -162,7 +162,7 @@
     
     self.foodsMuch.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"￥", nil),mod.totalpic];
     NSString *foodsnum = [NSString stringWithFormat:@"%@",mod.goodsnum];
-    self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"共计", nil),foodsnum,ZBLocalized(@"件商品", nil)];
+    self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"共计", nil),foodsnum,ZBLocalized(@"件商品,实付", nil)];
     self.orderTimeLabel.text = [NSString stringWithFormat:@"%@  %@",ZBLocalized(@"订单时间", nil),mod.cdata];
     NSArray *foodsArr = mod.godslist;
     if (foodsArr.count == 1) {

@@ -47,8 +47,11 @@
                 [self.eavArr addObject:dic];
             }
             [self.tableView reloadData];
-            NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            if (self.eavArr.count != 0) {
+                NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
+                [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            }
+           
         }else{
             [MBManager showBriefAlert:ZBLocalized(@"没有数据", nil)];
         }

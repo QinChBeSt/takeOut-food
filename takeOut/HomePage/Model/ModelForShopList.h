@@ -19,4 +19,5 @@
 @property (nonatomic , copy) NSString *up_pic;
 @property (nonatomic , strong)NSArray *act_list;
 @property (nonatomic , copy)NSString *opentime;
+@property (nonatomic ,copy)NSString *acTypeStr;
 @end

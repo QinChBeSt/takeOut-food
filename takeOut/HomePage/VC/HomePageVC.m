@@ -25,7 +25,7 @@
 
 #define kHeadAdderssViewHeight 40
 #define kHeadSelectViewHeight 160
-#define kHeadImageViewHeight 130
+#define kHeadImageViewHeight 120
 #define kHeadCollectionViewHeight SCREEN_WIDTH / 5 * 2
 
 @interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate,SDCycleScrollViewDelegate>
@@ -265,7 +265,58 @@
             mod.up_pic = dic[@"up_pic"];
             mod.act_list = dic[@"act_list"];
             mod.opentime = dic[@"opentime"];
-            [self.arrForHomePageShopList addObject:mod];
+            mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
+            NSInteger acType = dic[@"shop_ac_type"];
+            
+            
+            if (acType == 2) {
+               
+        
+            }else{
+                
+                 NSLog(@"打烊了");
+            }
+            
+            NSArray *arrayTime = [dic[@"opentime"] componentsSeparatedByString:@"-"];
+            NSString *openTime = arrayTime[0];
+            NSArray *openTimeArr = [openTime componentsSeparatedByString:@":"];
+            NSInteger openTimeHour = [openTimeArr[0] integerValue];
+            NSInteger openTimeMin =[openTimeArr[1] integerValue];
+            
+            NSString *closeTime = arrayTime[1];
+            NSArray *closeTimeArr = [closeTime componentsSeparatedByString:@":"];
+            NSInteger closeTimeHour = [closeTimeArr[0] integerValue];;
+            NSInteger closeTimeMin =[closeTimeArr[1] integerValue];
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"HH:mm"];
+            NSDate *data =[NSDate date];
+            NSString *nowDate = [dateFormatter stringFromDate:data];
+            NSArray *nowTimeArr = [nowDate componentsSeparatedByString:@":"];
+            NSInteger nowTimeHour = [nowTimeArr[0] integerValue];;
+            NSInteger nowTimeMin =[nowTimeArr[1] integerValue];
+            
+            if (nowTimeHour > openTimeHour) {
+                if (nowTimeHour < closeTimeHour) {
+                    //小时 分钟 都符合
+                    [self.arrForHomePageShopList addObject:mod];
+                }
+                
+            }
+            //开门小时一样 分钟符合
+            else if (nowTimeHour == openTimeHour && nowTimeMin >openTimeMin){
+                //关门小时符合
+                if (nowTimeHour < closeTimeHour) {
+                    [self.arrForHomePageShopList addObject:mod];
+                }
+                //关门小时不符合 但是分钟符合了
+                else if (nowTimeHour == closeTimeHour && nowTimeMin <= closeTimeMin){
+                    [self.arrForHomePageShopList addObject:mod];
+                }
+                
+            }
+            
+            
         }
         [self.tableView.mj_footer resetNoMoreData];
         [self.tableView.mj_header endRefreshing];
@@ -477,7 +528,7 @@
     self.tableView.mj_footer = footer;
     
     /** 注册cell. */
-    [self.tableView registerClass:[TableViewCellForHomepageList class] forCellReuseIdentifier:@"pool1"];
+//    [self.tableView registerClass:[TableViewCellForHomepageList class] forCellReuseIdentifier:@"pool1"];
     [self.view addSubview:self.tableView];
 }
 
@@ -490,9 +541,14 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
-    TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-    cell.mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
+ 
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+    
+    TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[TableViewCellForHomepageList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+     cell.mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
         
@@ -680,4 +736,6 @@
 -(void)loadData:(NSInteger)tagNum{
     [self netWorkForShopList:tagNum];
 }
+
+
 @end

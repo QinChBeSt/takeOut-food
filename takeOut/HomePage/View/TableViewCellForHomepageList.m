@@ -29,6 +29,18 @@
         make.width.equalTo(@(80));
         make.height.equalTo(@(80));
     }];
+    _dyLabel = [[UILabel alloc]init];
+    _dyLabel.backgroundColor = [UIColor lightGrayColor];
+    _dyLabel.text = @"打烊";
+    _dyLabel.textAlignment = NSTextAlignmentCenter;
+    _dyLabel.textColor = [UIColor redColor];
+    [self.bigImage addSubview:_dyLabel];
+    [_dyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.bigImage);
+        make.centerY.equalTo(self.bigImage);
+        make.width.equalTo(self.bigImage);
+        make.height.equalTo(self.bigImage);
+    }];
     
     self.shopName = [[UILabel alloc]init];
     self.shopName.font = [UIFont systemFontOfSize:14];
@@ -97,7 +109,14 @@
 }
 -(void)setMod:(ModelForShopList *)mod{
     self.shopName.text = mod.store_name;
-    [self.bigImage sd_setImageWithURL:[NSURL URLWithString:mod.store_img] placeholderImage:[UIImage imageNamed:@""]];
+    if ([mod.acTypeStr isEqualToString:@"2"]) {
+        self.dyLabel.hidden = YES;
+         [self.bigImage sd_setImageWithURL:[NSURL URLWithString:mod.store_img] placeholderImage:[UIImage imageNamed:@""]];
+        
+    }else{
+        self.dyLabel.hidden = NO;
+    }
+   
     int disint = [mod.send_dis intValue];
     
     float disFloat = (float)disint / (float)1000;

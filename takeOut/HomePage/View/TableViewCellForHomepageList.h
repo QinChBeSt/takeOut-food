@@ -17,6 +17,6 @@
 @property (nonatomic , strong) UILabel *shopPreferential1;
 @property (nonatomic , strong) UIImageView *shopPreferentImg2;
 @property (nonatomic , strong) UILabel *shopPreferential2;
-
+@property (nonatomic , strong) UILabel *dyLabel;
 @property (nonatomic , strong) ModelForShopList *mod;
 @end
