@@ -117,6 +117,7 @@
     NSNumber *numShopId =[NSNumber numberWithInt:strid];
     [par setValue:numShopId forKey:@"shopid"];
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+              
         self.arrForType = result[@"value"];
         for (int i = 0; i < self.arrForType.count; i++) {
             NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%d",i];
@@ -511,7 +512,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     else if (tableView == self.rightTable) {
         
         ModelForFoodList *modArr = [self.arrForDetal objectAtIndex:indexPath.row];
-     //需要选大小尺码==================
+        
+//需要选大小尺码==================
         if (modArr.goodspic.count > 1) {
           NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
             CellForShopFoodChooseSize *cell1 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -579,7 +581,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             }
             
             
-    //添加购物车+++++++++++++++++++++++++++++++++
+//添加购物车+++++++++++++++++++++++++++++++++
             cell2.blockAddShopingCar = ^(ModelForFoodList *mod2) {
                 NSArray *arr = mod2.goodspic;
                 NSDictionary *dic = arr[0];

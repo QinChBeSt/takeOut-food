@@ -133,6 +133,8 @@
     if (mod.act_list.count == 1) {
         [self.shopPreferentImg1 setHidden:NO];
         [self.shopPreferential1 setHidden:NO];
+        [self.shopPreferential2 setHidden:YES];
+        [self.shopPreferentImg2 setHidden:YES];
         NSString *imgUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,mod.act_list[0][@"img"]] ;
         [self.shopPreferentImg1 sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
         
