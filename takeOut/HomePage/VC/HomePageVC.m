@@ -39,7 +39,7 @@
     UIView *sortingView;
     SortButton *clickButton;
 }
-@property (strong,nonatomic)NSArray *netImages;  //网络图片
+@property (strong,nonatomic)NSMutableArray *netImages;  //网络图片
 @property (strong,nonatomic)SDCycleScrollView *cycleScrollView;//轮播器
 @property (nonatomic , strong)UIView *headView;
 @property (nonatomic , strong)UITableView *tableView;
@@ -65,10 +65,10 @@
 /**
  *  懒加载网络图片数据
  */
--(NSArray *)netImages{
+-(NSMutableArray *)netImages{
     
     if (!_netImages) {
-        _netImages = [NSArray array];
+        _netImages = [NSMutableArray array];
     }
     return _netImages;
 }
@@ -112,16 +112,13 @@
     [MHNetWorkTask getWithURL:url withParameter:nil withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         
         NSArray *dic = result[@"value"];
-        NSString *bannerImg = dic[0][@"img"];
-        
-        _netImages = @[
-                       @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg",
-                        @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg",
-                       @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522041362507&di=a89e4dd6395100b8e799271448685c35&imgtype=0&src=http%3A%2F%2Fpic36.nipic.com%2F20131203%2F3822951_101052690000_2.jpg",
-                      
-                       ];
+        for (NSMutableDictionary *dicRes in dic) {
+            NSString *urlS = [NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
+          [self.netImages addObject:urlS];
+        }
+       
         /** 测试本地图片数据*/
-        self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"PlacehoderImage.png"]];
+        self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
          self.cycleScrollView.imageURLStringsGroup = self.netImages;
         //设置图片视图显示类型
         self.cycleScrollView.autoScrollTimeInterval = 5;
@@ -260,7 +257,7 @@
             mod.send_time = dic[@"send_time"];
             mod.send_pic = dic[@"send_pic"];
             mod.store_id = dic[@"store_id"];
-            mod.store_img = dic[@"store_img"];
+            mod.store_img =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dic[@"store_img"]];
             mod.store_name = dic[@"store_name"];
             mod.up_pic = dic[@"up_pic"];
             mod.act_list = dic[@"act_list"];

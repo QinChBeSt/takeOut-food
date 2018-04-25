@@ -69,7 +69,7 @@
     self.headIamge.clipsToBounds = YES;
     self.headIamge.layer.borderWidth = 0.5;
     self.headIamge.layer.borderColor = [[UIColor blackColor] CGColor];
-    self.headIamge.backgroundColor = [UIColor orangeColor];
+    [self.headIamge setImage:[UIImage imageNamed:@"logo"]];
     [self.headView addSubview:self.headIamge];
     [self.headIamge mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.headView);

@@ -79,6 +79,8 @@
     self.userName.text = dic[@"holder"];
     self.evaTime.text = dic[@"time"];
     self.evaSub.text = dic[@"content"];
+    NSString *imgUrl = [NSString stringWithFormat:@"%@%@",IMGBaesURL,dic[@"log"]];
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"logo"]];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

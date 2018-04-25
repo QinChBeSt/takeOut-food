@@ -11,4 +11,5 @@
 typedef void (^blockChooseAddress)(ModelForGetAddress *);
 @interface PayOrderChooseAddressVC : UIViewController
 @property (nonatomic , copy)blockChooseAddress blockchooseAddress;
+@property (nonatomic , strong)NSString *shopId;
 @end

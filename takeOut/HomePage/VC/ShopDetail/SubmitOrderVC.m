@@ -332,7 +332,7 @@
     float g_picF = [dic[@"g_pic"] floatValue];
     cell.foodsMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),g_picF];
     cell.foodsCount.text = [NSString stringWithFormat:@"× %@",dic[@"count"]];
-   
+    [cell.shopIcon sd_setImageWithURL:[NSURL URLWithString:dic[@"g_log"]] placeholderImage:[UIImage imageNamed:@"logo"]];
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -400,6 +400,7 @@
 }
 -(void)toChooseAddress{
     PayOrderChooseAddressVC *mineAddvc = [[PayOrderChooseAddressVC alloc]init];
+    mineAddvc.shopId = self.shopId;
     mineAddvc.blockchooseAddress = ^(ModelForGetAddress *mod) {
         self.uaddrid = [NSString stringWithFormat:@"%@",mod.id];
         self.loactinonStrLabel.text = [NSString stringWithFormat:@"%@ %@",mod.userAddrsAddr,mod.userAddrsAddrText];

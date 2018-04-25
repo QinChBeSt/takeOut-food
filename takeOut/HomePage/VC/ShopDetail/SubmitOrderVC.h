@@ -14,5 +14,5 @@
 @property (nonatomic , strong)NSString *yhpic;
 @property (nonatomic , strong)NSString *ypic;
 @property (nonatomic , strong)NSMutableArray *arrForOrder;
-
+@property (nonatomic , strong)NSString *shopId;
 @end

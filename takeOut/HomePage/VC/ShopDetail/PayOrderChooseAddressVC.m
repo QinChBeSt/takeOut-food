@@ -21,6 +21,9 @@
 @property (nonatomic , strong)NSIndexPath *lastIndexPath;
 @property (nonatomic , assign)NSInteger indexNum;
 @property (nonatomic , strong)ModelForGetAddress *modForChoose;
+
+@property (nonatomic , strong)NSString *chooseLat;
+@property (nonatomic , strong)NSString *chooseLang;
 @end
 
 @implementation PayOrderChooseAddressVC
@@ -105,7 +108,7 @@
     
     UIButton *SureBTN = [UIButton buttonWithType:UIButtonTypeCustom];
     [SureBTN setTitle:ZBLocalized(@"确定", nil) forState:UIControlStateNormal];
-    [SureBTN addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+    [SureBTN addTarget:self action:@selector(cheakAdd) forControlEvents:UIControlEventTouchUpInside];
     [SureBTN setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.naviView addSubview:SureBTN];
     [SureBTN mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -176,6 +179,8 @@
     self.modForChoose = [[ModelForGetAddress alloc]init];
     self.modForChoose = [self.arrForGetAddress objectAtIndex:indexPath.row];
     NSLog(@"地址ID%@",self.modForChoose.id);
+    self.chooseLat = self.modForChoose.userAddrsLat;
+    self.chooseLang = self.modForChoose.userAddrsLong;
     
 }
 -(void)createButtonBtn{
@@ -199,10 +204,34 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)save{
+    
+    
+    
     if (self.blockchooseAddress) {
         self.blockchooseAddress(self.modForChoose);
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)cheakAdd{
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,checkUserAdd];
+    NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
+    
+    [par setValue:self.chooseLang forKey:@"lonng"];
+    [par setValue:self.chooseLat forKey:@"lat"];
+    [par setValue:self.shopId forKey:@"shopid"];
+    [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+        NSString *code = [NSString stringWithFormat:@"%@",result[@"code"]];
+        if ([code isEqualToString:@"1"]) {
+            [self save];
+        }else{
+            [MBManager showBriefAlert:ZBLocalized(@"选择失败，地址不在店铺覆盖范围", nil)];
+        }
+        
+    } withFail:^(NSError *error) {
+        
+    }];
+    
 }
 -(void)addAddress{
     AddNewAddressVC *ADD = [[AddNewAddressVC alloc]init];

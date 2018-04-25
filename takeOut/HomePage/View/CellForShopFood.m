@@ -19,7 +19,7 @@
 }
 -(void)setupUI{
     self.bigImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 50, 50)];
-    [self.bigImage setBackgroundColor:[UIColor orangeColor]];
+    
     [self.contentView addSubview:self.bigImage];
     __weak typeof(self) ws = self;
     self.shopName = [[UILabel alloc]init];
@@ -59,6 +59,7 @@
     self.chooseMod = mod;
     self.shopName.text = mod.godsname;
      self.priceLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"¥", nil),mod.pic];
+    [self.bigImage sd_setImageWithURL:[NSURL URLWithString:mod.godslog] placeholderImage:[UIImage imageNamed:@"logo"]];
 }
 
 -(void)addToShopingCarAction:(UIButton *)btn{

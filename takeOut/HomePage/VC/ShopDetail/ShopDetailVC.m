@@ -25,6 +25,7 @@
 @property (nonatomic , strong)UIImageView *shopSaveImg;
 @property (nonatomic , strong)UILabel *shopSaveNumLabel;
 @property (nonatomic , strong)ModelForShopList *toNextMod;
+@property (nonatomic , strong)NSString *shopIcomURL;
 @end
 
 @implementation ShopDetailVC{
@@ -84,7 +85,7 @@
     }];
     
     self.shipIcon = [[UIImageView alloc]init];
-    [self.shipIcon setImage:[UIImage imageNamed:@"logo"]];
+    [self.shipIcon sd_setImageWithURL:[NSURL URLWithString:self.shopIcomURL] placeholderImage:[UIImage imageNamed:@"logo"]];
     [self.niveView addSubview:self.shipIcon];
     [self.shipIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.niveView.mas_left).offset(10);
@@ -204,6 +205,7 @@
     self.toNextMod = modShopList;
     self.shopId = modShopList.store_id;
     self.shopUpPayMoney = modShopList.up_pic;
+    self.shopIcomURL = modShopList.store_img;
     shopNameStr = modShopList.store_name;
     if (modShopList.act_list.count != 0) {
         self.saveListArr = modShopList.act_list;

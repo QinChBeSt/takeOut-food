@@ -42,6 +42,8 @@
 #define getShopEvaURL @"/xmfapi/getEvaluate"
 //商家详情
 #define getShopShopDeatailURL @"/xmfapi/getShopxx"
+//查看地址
+#define checkUserAdd @"/xmfapi/isAddrOrShopDis"
 
 //获取订单列表
 #define getOrderListURL @"/xmfapi/orderlist"

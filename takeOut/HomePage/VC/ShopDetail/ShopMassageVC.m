@@ -26,6 +26,9 @@
 @property (nonatomic , strong)NSString *longStr;
 @property (nonatomic , strong)NSString *shopName;
 @property (nonatomic , strong)NSString *shopADD;
+
+@property (nonatomic , strong)NSMutableArray *shopPhotoArr;
+@property (nonatomic , strong)NSMutableArray *shopSafePhotoArr;
 @end
 
 @implementation ShopMassageVC
@@ -35,6 +38,20 @@
     }
     return _arrForSAVE;
 }
+-(NSMutableArray *)shopPhotoArr{
+    if (_shopPhotoArr == nil) {
+        _shopPhotoArr = [NSMutableArray array];
+    }
+    return _shopPhotoArr;
+}
+-(NSMutableArray *)shopSafePhotoArr{
+    if (_shopSafePhotoArr == nil) {
+        _shopSafePhotoArr = [NSMutableArray array];
+    }
+    return _shopSafePhotoArr;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createTableView];
@@ -47,14 +64,31 @@
     [par setValue:self.shopId forKey:@"shopid"];
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         NSMutableDictionary *resDic = result[@"value"];
+        NSString *shopLOGURL = [NSString stringWithFormat:@"%@%@",IMGBaesURL,resDic[@"shoplog"]];
+        [self.shopIcon sd_setImageWithURL:[NSURL URLWithString:shopLOGURL]];
         self.openTime = [NSString stringWithFormat:@"%@:%@",ZBLocalized(@"营业时间", nil),resDic[@"opentime"]];
         self.shopName =resDic[@"shopname"];
         self.shopADD =resDic[@"shopad"];
-
+        self.shopPhotoArr = resDic[@"shopphoto"];
+        self.shopSafePhotoArr = resDic[@"safephoto"];
         self.addressLab.text = resDic[@"shopad"];
         self.shopPhoneNo = resDic[@"shopphone"];
         self.latStr = resDic[@"lat"];
         self.longStr = resDic[@"lang"];
+        __weak typeof(self) ws = self;
+        for (int i = 0 ; i < self.shopPhotoArr.count;i++ ) {
+            NSString *urlShopArr = self.shopPhotoArr[i];
+            self.shopIcon = [[UIImageView alloc]init];
+            [self.shopIcon sd_setImageWithURL:[NSURL URLWithString:urlShopArr] placeholderImage:[UIImage imageNamed:@"logo"]];
+            [self.headView addSubview:self.shopIcon];
+            [self.shopIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(ws.headView.mas_left).offset(15 + i * 75);
+                make.top.equalTo(ws.headView.mas_top).offset(50);
+                make.bottom.equalTo(ws.headView.mas_bottom).offset(-15);
+                make.width.equalTo(ws.shopIcon.mas_height);
+            }];
+        }
+        
         [self.tableView reloadData];
     } withFail:^(NSError *error) {
         
@@ -118,15 +152,8 @@
         make.width.and.height.equalTo(@(30));
     }];
     
-    self.shopIcon = [[UIImageView alloc]init];
-    [self.shopIcon setImage:[UIImage imageNamed:@"logo"]];
-    [self.headView addSubview:self.shopIcon];
-    [self.shopIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(ws.headView.mas_left).offset(15);
-        make.top.equalTo(ws.headView.mas_top).offset(50);
-        make.bottom.equalTo(ws.headView.mas_bottom).offset(-15);
-        make.width.equalTo(ws.shopIcon.mas_height);
-    }];
+   
+    
 }
 -(void)createFootView{
     __weak typeof(self) ws = self;
@@ -242,6 +269,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         FoodSafeVC *food = [[FoodSafeVC alloc]init];
+        food.arrForPhoto = self.shopSafePhotoArr;
         [self.navigationController pushViewController:food animated:YES];
     }
     

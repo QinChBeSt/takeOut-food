@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FoodSafeVC : UIViewController
-
+@property (nonatomic , strong)NSMutableArray *arrForPhoto;
 @end

@@ -130,7 +130,7 @@
                 ModelForFoodList *mod = [[ModelForFoodList alloc]init];
                 mod.id = [dic1[@"id"] intValue];
                 mod.godsname = dic1[@"godsname"];
-                mod.godslog = dic1[@"godslog"];
+                mod.godslog = [NSString stringWithFormat:@"%@%@",IMGBaesURL,dic1[@"godslog"]];
                 mod.ys = dic1[@"ys"];
                 mod.pic = [dic1[@"pic"] floatValue];
                 mod.goodspic = dic1[@"goodspic"];
@@ -228,6 +228,7 @@
     order.pspic = pspic;
     order.yhpic = yhpic;
     order.ypic =ypic;
+    order.shopId = self.shopId;
     order.arrForOrder = self.arrForAddShoppingCarList;
     [self.navigationController pushViewController:order animated:YES];
 }

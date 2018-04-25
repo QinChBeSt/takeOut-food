@@ -21,7 +21,7 @@
 -(void)setupUI{
     __weak typeof(self) ws = self;
     self.bigImage = [[UIImageView alloc]init];
-    self.bigImage.backgroundColor = [UIColor orangeColor];
+
     [self.contentView addSubview:self.bigImage];
     [self.bigImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(10));
@@ -111,8 +111,11 @@
     self.shopName.text = mod.store_name;
     if ([mod.acTypeStr isEqualToString:@"2"]) {
         self.dyLabel.hidden = YES;
-         [self.bigImage sd_setImageWithURL:[NSURL URLWithString:mod.store_img] placeholderImage:[UIImage imageNamed:@""]];
+        NSString *url = mod.store_img;
         
+        [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
+        
+        //[self.bigImage sd_setImageWithURL:photourl];
     }else{
         self.dyLabel.hidden = NO;
     }

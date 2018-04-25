@@ -55,6 +55,14 @@
         make.centerY.equalTo(backImg);
     }];
 }
+-(void)setArrForPhoto:(NSMutableArray *)arrForPhoto{
+    for (int i = 0 ; i < arrForPhoto.count; i++) {
+        NSString *url =[NSString stringWithFormat:@"%@%@",IMGBaesURL,arrForPhoto[i]];
+        UIImageView *safePhoto = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 50, SafeAreaTopHeight + 20 + 120 * i, 100, 100)];
+        [safePhoto sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
+        [self.view addSubview:safePhoto];
+    }
+}
 #pragma mark - 点击事件
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
