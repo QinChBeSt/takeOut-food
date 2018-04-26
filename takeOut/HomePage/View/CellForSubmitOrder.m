@@ -20,7 +20,6 @@
 -(void)setupUI{
     __weak typeof(self) ws = self;
     self.shopIcon = [[UIImageView alloc]init];
-    self.shopIcon.backgroundColor = [UIColor orangeColor];
     [self.contentView addSubview:self.shopIcon];
     [self.shopIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.contentView.mas_left).offset(20);
