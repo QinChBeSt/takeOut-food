@@ -133,8 +133,14 @@
                 mod.godslog = [NSString stringWithFormat:@"%@%@",IMGBaesURL,dic1[@"godslog"]];
                 mod.ys = dic1[@"ys"];
                 mod.pic = [dic1[@"pic"] floatValue];
-                mod.goodspic = dic1[@"goodspic"];
-                [self.arrForDetal addObject:mod];
+                NSArray *array = dic1[@"goodspic"];
+                if (array != nil && ![array isKindOfClass:[NSNull class]] && array.count != 0){
+
+                    mod.goodspic = dic1[@"goodspic"];
+                    [self.arrForDetal addObject:mod];
+                }
+                
+               
                 
             }
         }

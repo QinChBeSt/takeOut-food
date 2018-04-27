@@ -90,12 +90,12 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "546414446.697077"
+                  timestampString = "546503861.985487"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "213"
                   endingLineNumber = "213"
-                  offsetFromSymbolStart = "1090">
+                  offsetFromSymbolStart = "1076">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -105,12 +105,12 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "546414446.699587"
+                  timestampString = "546503861.988098"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "214"
                   endingLineNumber = "214"
-                  offsetFromSymbolStart = "79">
+                  offsetFromSymbolStart = "100">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -120,12 +120,12 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "546414446.701984"
+                  timestampString = "546503861.990631"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "213"
                   endingLineNumber = "213"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -153,12 +153,12 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/LoginByPasswordVC.m"
-                  timestampString = "546414446.709715"
+                  timestampString = "546503861.999402"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "174"
                   endingLineNumber = "174"
-                  offsetFromSymbolStart = "435">
+                  offsetFromSymbolStart = "456">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -168,12 +168,12 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/LoginByPasswordVC.m"
-                  timestampString = "546414446.712307"
+                  timestampString = "546503862.002102"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "175"
                   endingLineNumber = "175"
-                  offsetFromSymbolStart = "79">
+                  offsetFromSymbolStart = "100">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -183,12 +183,12 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/LoginByPasswordVC.m"
-                  timestampString = "546414446.714877"
+                  timestampString = "546503862.0049289"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "174"
                   endingLineNumber = "174"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
