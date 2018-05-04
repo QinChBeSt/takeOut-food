@@ -66,7 +66,7 @@
     __weak typeof(self) ws = self;
     UIImageView *ICON = [[UIImageView alloc]init];
     [self.view addSubview:ICON];
-    ICON.backgroundColor = [UIColor orangeColor];
+    [ICON setImage:[UIImage imageNamed:@"AppIcon"]];
     [ICON mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.view);
         make.top.equalTo(ws.naviView.mas_bottom).offset(40);
