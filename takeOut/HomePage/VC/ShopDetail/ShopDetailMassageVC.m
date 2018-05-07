@@ -15,6 +15,7 @@
 @property (nonatomic , strong)UILabel *shopMassageLabelLine1;
 @property (nonatomic , strong)UILabel *shopMassageLabelLine2;
 @property (nonatomic , strong)NSArray *saveListArr;
+@property (nonatomic , strong)NSString *shopIcomURL;
 @end
 
 @implementation ShopDetailMassageVC{
@@ -22,6 +23,7 @@
     NSString *shopSaveIconUrl;
     NSString *shopMassage1;
     NSString *shopMassage2;
+    
 }
 
 - (void)viewDidLoad {
@@ -59,7 +61,7 @@
     
     
     self.shipIcon = [[UIImageView alloc]init];
-    [self.shipIcon setBackgroundColor:[UIColor orangeColor]];
+    [self.shipIcon sd_setImageWithURL:[NSURL URLWithString:self.shopIcomURL] placeholderImage:[UIImage imageNamed:@"logo"]];
     [self.niveView addSubview:self.shipIcon];
     [self.shipIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.niveView);
@@ -100,7 +102,7 @@
     if (self.saveListArr.count != 0) {
         for (int i = 0 ; i < self.saveListArr.count; i++) {
             UIImageView *saveIcon = [[UIImageView alloc]initWithFrame:CGRectMake(60, SafeAreaTopHeight + 160 + i * 30, 20, 20)];
-            NSString *shopSaveStr = [NSString stringWithFormat:@"%@,%@",BASEURL,self.saveListArr[i][@"img"]];
+            NSString *shopSaveStr = [NSString stringWithFormat:@"%@/%@",BASEURL,self.saveListArr[i][@"img"]];
             [saveIcon sd_setImageWithURL:[NSURL URLWithString:shopSaveStr]];
             saveIcon.backgroundColor = [UIColor orangeColor];
             [self.view addSubview:saveIcon];
@@ -119,6 +121,7 @@
     NSString *send_Start = modShopList.up_pic;
     NSString *yueShou = modShopList.per_mean;
     NSString *time = modShopList.opentime;
+    self.shopIcomURL = modShopList.store_img;
     shopMassage1 = [NSString stringWithFormat:@"%@：%@ | %@：%@ | %@：%@",ZBLocalized(@"配送", nil),send_pay,ZBLocalized(@"起送", nil),send_Start,ZBLocalized(@"月售", nil),yueShou];
     shopMassage2 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"配送时间", nil),time];
     if (modShopList.act_list.count != 0) {
