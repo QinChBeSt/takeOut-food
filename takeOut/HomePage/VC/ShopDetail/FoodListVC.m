@@ -130,7 +130,7 @@
                 ModelForFoodList *mod = [[ModelForFoodList alloc]init];
                 mod.id = [dic1[@"id"] intValue];
                 mod.godsname = dic1[@"godsname"];
-                mod.godslog = [NSString stringWithFormat:@"%@%@",IMGBaesURL,dic1[@"godslog"]];
+                mod.godslog = [NSString stringWithFormat:@"%@",dic1[@"godslog"]];
                 mod.ys = dic1[@"ys"];
                 mod.pic = [dic1[@"pic"] floatValue];
                 NSArray *array = dic1[@"goodspic"];
@@ -196,6 +196,36 @@
     NSDictionary* orderInfo = @{@"s_id":self.shopId,
                                 @"u_id":userID,
                                 @"goods":self.arrForHaveBuyList};
+//     NSError *error;
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:orderInfo options:NSJSONWritingPrettyPrinted error:&error];
+//
+//    NSString *jsonString;
+//
+//    if (!jsonData) {
+//
+//
+//
+//    }else{
+//
+//        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+//
+//    }
+//
+//    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+//
+//    NSRange range = {0,jsonString.length};
+//
+//    //去掉字符串中的空格
+//
+//    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+//
+//    NSRange range2 = {0,mutStr.length};
+//
+//    //去掉字符串中的换行符
+//
+//    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    
+    
     // OC对象转JSON
     NSData* json = [NSJSONSerialization dataWithJSONObject:orderInfo options:NSJSONWritingPrettyPrinted error:nil];
     // 设置请求头

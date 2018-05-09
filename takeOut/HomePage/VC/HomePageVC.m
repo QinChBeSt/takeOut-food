@@ -352,9 +352,11 @@
     headviewAddressLabel = [[UILabel alloc]init];
     headviewAddressLabel.text = ZBLocalized(@"获取位置中....", nil);
     [headviewAddressView addSubview:headviewAddressLabel];
+    headviewAddressLabel.numberOfLines = 2;
     [headviewAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(locationIcon.mas_right).offset(5);
         make.centerY.equalTo(locationIcon);
+        make.right.equalTo(safeTop.mas_right).offset(-10);
     }];
  
 }

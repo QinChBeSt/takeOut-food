@@ -127,7 +127,7 @@
     [rightIcon setImage:[UIImage imageNamed:@"右箭头"]];
     [self.niveView addSubview:rightIcon];
     [rightIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(ws.niveView.mas_right).offset(-15);
+        make.right.equalTo(ws.niveView.mas_right).offset(-10);
         make.centerY.equalTo(ws.shopSaveImg);
         make.width.equalTo(@(8));
         make.height.equalTo(@(12));

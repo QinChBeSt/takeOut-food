@@ -125,6 +125,7 @@
     [self.codeButton setTitle:ZBLocalized(@"获取验证码", nil) forState:UIControlStateNormal];
     [self.codeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.codeButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    self.codeButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.view addSubview:self.codeButton];
     [self.codeButton addTarget:self action:@selector(verifyEvent) forControlEvents:UIControlEventTouchUpInside];
     [self.codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,16 +147,22 @@
     }];
     
     UIButton *loginByOthr = [UIButton buttonWithType:UIButtonTypeCustom];
-    [loginByOthr setTitle:ZBLocalized(@"其他登录", nil) forState:UIControlStateNormal];
+    NSString *str = ZBLocalized(@"其他登录", nil);
+    [loginByOthr setTitle:str forState:UIControlStateNormal];
     [loginByOthr addTarget:self action:@selector(loginByOther) forControlEvents:UIControlEventTouchUpInside];
     [loginByOthr setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    CGSize titleSize = [str sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:loginByOthr.titleLabel.font.fontName size:loginByOthr.titleLabel.font.pointSize]}];
+    
+    titleSize.height = 20;
+    titleSize.width += 20;
     [self.view addSubview:loginByOthr];
     [loginByOthr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(codeLine.mas_left).offset(5);
         make.top.equalTo(codeLine.mas_bottom).offset(30);
         make.height.equalTo(@(30));
-        make.width.equalTo(@(SCREEN_WIDTH / 4));
+        make.width.equalTo(@(titleSize.width));
     }];
+    
     
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [registerBtn setTitle:ZBLocalized(@"注册", nil) forState:UIControlStateNormal];
@@ -343,10 +350,13 @@
             [MBManager showBriefAlert:ZBLocalized(@"登录成功", nil)];
             [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
         }else{
-            [MBManager showBriefAlert:ZBLocalized(@"登录失败", nil)];
+            NSString *msg =[NSString stringWithFormat:@"%@",responseObject[@"msg"]];
+            NSString *error = [NSString stringWithFormat:@"%@,code=%@,%@",ZBLocalized(@"登录失败", nil),code,msg];
+            [MBManager showBriefAlert:error];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSString *errorStr = [NSString stringWithFormat:@"%@ ",ZBLocalized(@"登录失败", nil)];
+        [MBManager showBriefAlert:errorStr];
     }];
     
 }

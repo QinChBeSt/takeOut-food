@@ -226,6 +226,9 @@
     [bottomView addSubview:line2];
     
     self.FpayMoney = self.FallPIC - self.FsavePic + self.FpsPic;
+    if (self.FpayMoney < 0) {
+        self.FpayMoney = 0.01;
+    }
     UILabel *payMoney = [[UILabel alloc]init];
     payMoney.text = [NSString stringWithFormat:@"%@  %@%.2f",ZBLocalized(@"小计", nil),ZBLocalized(@"￥", nil),self.FpayMoney];
     payMoney.textColor = [UIColor grayColor];
@@ -292,16 +295,7 @@
         make.centerY.equalTo(totalMoneyView.mas_centerY);
     }];
     
-    UILabel *toPaySaveMoney = [[UILabel alloc]init];
-    toPaySaveMoney.text = [NSString stringWithFormat:@"%@%@)",ZBLocalized(@"(已减￥", nil),self.yhpic];
-    toPaySaveMoney.font = [UIFont systemFontOfSize:14];
-    toPaySaveMoney.textColor = [UIColor grayColor];
-    [totalMoneyView addSubview:toPaySaveMoney];
-    [toPaySaveMoney mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(toPayMoney.mas_right).offset(5);
-        make.centerY.equalTo(totalMoneyView.mas_centerY);
-    }];
-    
+   
     UIButton *toPay = [UIButton buttonWithType:UIButtonTypeCustom];
     toPay.frame = CGRectMake(SCREEN_WIDTH /3 *2, 0, SCREEN_WIDTH /3, 40);
     toPay.backgroundColor = [UIColor colorWithHexString:BaseYellow];
@@ -310,6 +304,19 @@
     [toPay setTitle:ZBLocalized(@"提交订单", nil) forState:UIControlStateNormal];
     toPay.titleLabel.font = [UIFont systemFontOfSize:14];
     [totalMoneyBackgrounView addSubview:toPay];
+    
+    UILabel *toPaySaveMoney = [[UILabel alloc]init];
+    toPaySaveMoney.text = [NSString stringWithFormat:@"%@%@)",ZBLocalized(@"(已减￥", nil),self.yhpic];
+    
+    toPaySaveMoney.font = [UIFont systemFontOfSize:14];
+    toPaySaveMoney.adjustsFontSizeToFitWidth = YES;
+    toPaySaveMoney.textColor = [UIColor grayColor];
+    [totalMoneyView addSubview:toPaySaveMoney];
+    [toPaySaveMoney mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(toPayMoney.mas_right).offset(5);
+        make.centerY.equalTo(totalMoneyView.mas_centerY);
+        make.right.equalTo(toPay.mas_left).offset(-3);
+    }];
     
   
 }
