@@ -282,6 +282,8 @@
         [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
         return;
     }
+    //启动倒计时
+    [self performSelector:@selector(reflashGetKeyBt:)withObject:[NSNumber numberWithInt:60] afterDelay:0];
     NSString * uuidStr= [UUID getUUID];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getsmsMsg];
     NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
@@ -292,8 +294,7 @@
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         NSString *code =[NSString stringWithFormat:@"%@",result[@"code"]];
         if ([code isEqualToString:@"1"]) {
-            //启动倒计时
-            [self performSelector:@selector(reflashGetKeyBt:)withObject:[NSNumber numberWithInt:60] afterDelay:0];
+            
         }else{
             NSString *mag = result[@"msg"];
             [MBManager showBriefAlert:mag];
