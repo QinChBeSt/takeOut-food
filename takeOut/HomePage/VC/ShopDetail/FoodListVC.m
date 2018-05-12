@@ -501,7 +501,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         return self.arrForType.count;
     }else if (tableView == self.haveBuyListTableview ){
         return self.arrForAddShoppingCarList.count;
-    }
+    
+    }else
     return self.arrForDetal.count;
 }
 
@@ -1251,13 +1252,14 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 -(void)showHaveBuyList{
     if (self.arrForAddShoppingCarList.count == 0) {
         return;
-    }
+    }else{
     self.haveBuyBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , SCREENH_HEIGHT)];
+        self.haveBuyBackView.backgroundColor = [UIColor colorWithHexString:@"1C1C1C" alpha:0.6];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeHaveBuy)];
     [self.haveBuyBackView addGestureRecognizer:tapGesture];
      self.haveBuyBackView.backgroundColor = [UIColor colorWithHexString:@"9C9C9C" alpha:0.5];
      self.haveBuyBackView.backgroundColor = [UIColor clearColor];
-    [self.lastWindow addSubview: self.haveBuyBackView];
+    [self.view addSubview: self.haveBuyBackView];
 
     UIView *haveBuyToolBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     [self.view addSubview:haveBuyToolBar];
@@ -1289,6 +1291,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         make.bottom.equalTo(self.buyCarView.mas_top);
         make.height.equalTo(@(self.arrForAddShoppingCarList.count * 50 + 40));
     }];
+    }
 }
 -(void)removeHaveBuy{
     [self.haveBuyBackView  removeFromSuperview];

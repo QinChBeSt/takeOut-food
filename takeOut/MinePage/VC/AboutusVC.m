@@ -73,7 +73,7 @@
         make.width.and.height.equalTo(@(50));
     }];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *app_build = [infoDictionary objectForKey:@"CFBundleVersion"];
+    NSString *app_build = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     UILabel *vison = [[UILabel alloc]init];
     [self.view addSubview:vison];
     vison.text = [NSString stringWithFormat:@"%@v%@",ZBLocalized(@"当前版本：", nil),app_build];
