@@ -25,6 +25,7 @@
 @property (nonatomic , assign)float FsavePic;
 @property (nonatomic , assign)float FpsPic;
 @property (nonatomic , assign)float FpayMoney;
+@property (nonatomic , strong)UIView *SwipeView;
 @end
 
 @implementation SubmitOrderVC{
@@ -95,8 +96,37 @@
             self.view.frame = CGRectMake(0.0f, -offset, self.view.frame.size.width, self.view.frame.size.height);
         }];
     }
-}
+    UIWindow*keyWindow = [[UIApplication sharedApplication].windows lastObject];
+    
+   
+    self.SwipeView = [[UIView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight - offset - 40)];
+     [keyWindow addSubview:self.SwipeView];
+    UISwipeGestureRecognizer *recognizer;
+    
+    
+    
+    recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    
+    
+    
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
+    
+    
+    
+    [self.SwipeView addGestureRecognizer:recognizer];
 
+  
+}
+-(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer{
+    // 键盘动画时间
+    [self.view endEditing:YES];
+    [self.SwipeView removeFromSuperview];
+    //视图下沉恢复原状
+    [UIView animateWithDuration:0.5 animations:^{
+        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        [self.SwipeView removeFromSuperview];
+    }];
+}
 ///键盘消失事件
 - (void) keyboardWillHide:(NSNotification *)notify {
     // 键盘动画时间

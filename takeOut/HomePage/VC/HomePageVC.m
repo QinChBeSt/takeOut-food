@@ -630,10 +630,19 @@
         currentCity = [NSString new];
         [locationmanager requestWhenInUseAuthorization];
         
+        // 设置定位的精确度，误差不超过10米,定位越精确，越耗电
+        locationmanager.desiredAccuracy = 10;
+
         //设置寻址精度
         locationmanager.desiredAccuracy = kCLLocationAccuracyBest;
         locationmanager.distanceFilter = 5.0;
         [locationmanager startUpdatingLocation];
+        
+        // ios8要定位，要请求定位的权限
+        if ([[UIDevice  currentDevice].systemVersion doubleValue] >= 8.0) {
+            [locationmanager requestWhenInUseAuthorization];
+        }
+        
     }
 }
 #pragma mark CoreLocation delegate (定位失败)
@@ -653,7 +662,7 @@
 #pragma mark 定位成功后则执行此代理方法
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
-    [locationmanager stopUpdatingHeading];
+   
    
     //旧址
     CLLocation *currentLocation = [locations lastObject];
@@ -696,9 +705,12 @@
             headviewAddressLabel.text = locStr;
             
         }
+        else{
+           currentCity = ZBLocalized(@"未知城市", nil);;
+        }
     }];
     
-    
+     [locationmanager stopUpdatingHeading];
 }
 
 #pragma mark - 点击事件

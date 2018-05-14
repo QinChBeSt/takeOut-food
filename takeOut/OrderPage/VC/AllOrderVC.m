@@ -174,7 +174,7 @@
         NSString *shopStrat = mod.shopstart;
       //  if ([shopStrat isEqualToString:@"9"]) {
             //        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-            NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+            NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld%@",indexPath.section,indexPath.row,shopStrat];
             
             CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (!cell) {

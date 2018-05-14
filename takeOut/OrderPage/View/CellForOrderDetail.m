@@ -20,7 +20,7 @@
 -(void)setupUI{
     __weak typeof(self) ws = self;
     self.bigImage = [[UIImageView alloc]init];
-    self.bigImage.backgroundColor = [UIColor orangeColor];
+    
     [self.contentView addSubview:self.bigImage];
     [self.bigImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.contentView.mas_top).offset(10);
@@ -62,6 +62,9 @@
     NSString *picStr = dic[@"ordersGoodsPic"];
     CGFloat picF  = [picStr floatValue];
     self.foodPic.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"￥", nil),picF];
+    NSString *imgUrl = [NSString stringWithFormat:@"%@/%@",IMGBaesURL,dic[@"ordersGoodsLog"]];
+    [self.bigImage sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"logo"]];
+    
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

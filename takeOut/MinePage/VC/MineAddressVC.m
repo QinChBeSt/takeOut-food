@@ -164,7 +164,7 @@
     addnewVC.userNameStr = mod.userAddrsUname;
     addnewVC.locationStr = mod.userAddrsAddr;
     addnewVC.userSex = mod.userAddrsUsex;
-    addnewVC.userPhoneStr = mod.userAddrsUsex;
+    addnewVC.userPhoneStr = mod.userAddrsUphone;
     addnewVC.userHouseNoStr = mod.userAddrsAddrText;
     addnewVC.naviTitle = ZBLocalized(@"修改收货地址", nil);
     addnewVC.addressId = mod.id;

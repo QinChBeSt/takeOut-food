@@ -206,7 +206,7 @@
     
 }
 -(void)createBottonView{
-    self.bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,  moneyViewHeight + totitViewHeight + callToShopViewHeight + addressViewHeight + orderMassageViewHeight)];
+    self.bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,  moneyViewHeight + totitViewHeight + callToShopViewHeight + addressViewHeight + orderMassageViewHeight + 10)];
     self.bottomView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     [self.view addSubview:self.bottomView];
     __weak typeof(self) ws = self;
@@ -459,7 +459,7 @@
     
 }
 -(void)createTabview{
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight - 10)];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight )];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

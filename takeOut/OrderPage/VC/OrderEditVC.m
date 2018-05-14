@@ -91,7 +91,7 @@
     self.riderIcon = [[UIImageView alloc]init];
     self.riderIcon.layer.cornerRadius=(riderIconHeight / 2 - 15 )/2;
     self.riderIcon.clipsToBounds = YES;
-    self.riderIcon.backgroundColor = [UIColor orangeColor];
+    [self.riderIcon setImage:[UIImage imageNamed:@"logo"]];
     [self.riderView addSubview:self.riderIcon];
     [self.riderIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.riderView.mas_left).offset(15);
@@ -185,7 +185,7 @@
     self.foodIcon = [[UIImageView alloc]init];
     self.foodIcon.layer.cornerRadius=(riderIconHeight / 2 - 15 )/2;
     self.foodIcon.clipsToBounds = YES;
-    self.foodIcon.backgroundColor = [UIColor orangeColor];
+    [self.foodIcon setImage:[UIImage imageNamed:@"logo"]];
     [self.foodView addSubview:self.foodIcon];
     [self.foodIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.foodView.mas_left).offset(15);
@@ -195,7 +195,7 @@
     }];
     
     self.foodName = [[UILabel alloc]init];
-    self.foodName.text = @"订单名称";
+    self.foodName.text = @"订单";
     self.foodName.textColor = [UIColor lightGrayColor];
     [self.foodView addSubview:self.foodName];
     [self.foodName mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -111,7 +111,7 @@
     self.shopName.text = mod.store_name;
     if ([mod.acTypeStr isEqualToString:@"2"]) {
         self.dyLabel.hidden = YES;
-        NSString *url = mod.store_img;
+        NSString *url = [NSString stringWithFormat:@"%@/%@",IMGBaesURL,mod.store_img];
         
         [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
         
