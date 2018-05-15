@@ -59,12 +59,14 @@
     }];
     
     self.shopMassage = [[UILabel alloc]init];
+    self.shopMassage.numberOfLines = 2;
     self.shopMassage.textColor = [UIColor lightGrayColor];
     self.shopMassage.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:self.shopMassage];
     [self.shopMassage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(15);
         make.top.equalTo(ws.shopName.mas_bottom).offset(10);
+        make.right.equalTo(ws.contentView.mas_right).offset(5);
     }];
     
     self.shopPreferentImg1 = [[UIImageView alloc]init];
