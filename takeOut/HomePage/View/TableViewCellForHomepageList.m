@@ -26,8 +26,8 @@
     [self.bigImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(10));
         make.top.equalTo(@(10));
-        make.width.equalTo(@(80));
-        make.height.equalTo(@(80));
+        make.width.equalTo(@(SCREEN_WIDTH / 4.5));
+        make.height.equalTo(@(SCREEN_WIDTH / 4.5));
     }];
     _dyLabel = [[UILabel alloc]init];
     _dyLabel.backgroundColor = [UIColor lightGrayColor];
@@ -51,22 +51,24 @@
     }];
 
     self.shopDistance = [[UILabel alloc]init];
-    self.shopDistance.font = [UIFont systemFontOfSize:14];
+    self.shopDistance.font = [UIFont systemFontOfSize:10];
+    self.shopDistance.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:self.shopDistance];
     [self.shopDistance mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView.mas_right).offset(-10);
-        make.top.equalTo(ws.shopName);
+        make.top.equalTo(ws.shopName.mas_bottom).offset(10);
     }];
-    
+    [self.shopDistance setContentCompressionResistancePriority:UILayoutPriorityRequired
+                                                      forAxis:UILayoutConstraintAxisHorizontal];
     self.shopMassage = [[UILabel alloc]init];
     self.shopMassage.numberOfLines = 2;
     self.shopMassage.textColor = [UIColor lightGrayColor];
-    self.shopMassage.font = [UIFont systemFontOfSize:12];
+    self.shopMassage.font = [UIFont systemFontOfSize:10];
     [self.contentView addSubview:self.shopMassage];
     [self.shopMassage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(15);
         make.top.equalTo(ws.shopName.mas_bottom).offset(10);
-        make.right.equalTo(ws.contentView.mas_right).offset(5);
+        make.right.equalTo(ws.shopDistance.mas_left).offset(-20);
     }];
     
     self.shopPreferentImg1 = [[UIImageView alloc]init];

@@ -391,8 +391,9 @@
 //    line.backgroundColor = [UIColor grayColor];
 //    [self.headView addSubview:line];
     
-    UIImageView *selectImage = [[UIImageView alloc]init];
-    [selectImage setImage:[UIImage imageNamed:@"yhhd"]];
+    UILabel *selectImage = [[UILabel alloc]init];
+    //[selectImage setImage:[UIImage imageNamed:@"yhhd"]];
+    selectImage.text = ZBLocalized(@"优惠专区", nil);
     [headviewSelectView addSubview:selectImage];
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(headviewSelectView.mas_top).offset(10);
@@ -443,8 +444,9 @@
     line.backgroundColor = [UIColor lightGrayColor];
     [sortingView addSubview:line];
     
-    UIImageView *selectImage = [[UIImageView alloc]init];
-    [selectImage setImage:[UIImage imageNamed:@"tjsj"]];
+    UILabel *selectImage = [[UILabel alloc]init];
+    //[selectImage setImage:[UIImage imageNamed:@"tjsj"]];
+    selectImage.text = ZBLocalized(@"附近商家", nil);
     [sortingView addSubview:selectImage];
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(line.mas_bottom).offset(5);
@@ -684,6 +686,13 @@
     
     
     [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        if (error !=nil || placemarks.count==0) {
+            NSLog(@"%@",error);
+            currentCity = ZBLocalized(@"未知城市", nil);
+            headviewAddressLabel.text =currentCity;
+            return ;
+        }
         if (placemarks.count > 0) {
             CLPlacemark *placeMark = placemarks[0];
             currentCity = placeMark.locality;
@@ -707,6 +716,7 @@
         }
         else{
            currentCity = ZBLocalized(@"未知城市", nil);;
+             headviewAddressLabel.text =currentCity;
         }
     }];
     

@@ -9,7 +9,7 @@
 #import "LoginByPhoneVC.h"
 #import "LoginByPasswordVC.h"
 #import "RegisterVC.h"
-
+#import "UserProtoVC.h"
 
 @interface LoginByPhoneVC ()<UITextFieldDelegate>
 @property (nonatomic , strong) UITextField *phoneNumTextField;

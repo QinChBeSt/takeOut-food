@@ -13,8 +13,9 @@
 #import "MyEvaVC.h"
 #import "AboutusVC.h"
 #import "ChangelanguageVC.h"
+#import "CollectionViewCellForHomePageChoose.h"
 
-@interface MinePageVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface MinePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic , strong) UITableView *tableView;
 @property (nonatomic , strong) UIView *headView;
 @property (nonatomic , strong) UIImageView *headIamge;
@@ -24,6 +25,8 @@
 @property (nonatomic , assign) NSInteger isLoginOut;
 //清理缓存
 @property (nonatomic, assign) NSInteger totalSize;
+@property (nonatomic , strong)UICollectionView *collectionView;
+@property (nonatomic , strong)UICollectionView *BUttomcollectionView;
 #define CachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 @end
 
@@ -44,19 +47,23 @@
     self.userPhone.text = userPhine;
         _isLoginOut = 3;
     }
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
     [FileTool getFileSize:CachePath completion:^(NSInteger totalSize) {
         
         _totalSize = totalSize;
         
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
         
     }];
-    [self createTableView];
+    [self createHeadView];
+    
+    [self createMidView];
+    [self createButtomTools];
+    //[self createTableView];
     // Do any additional setup after loading the view.
 }
 -(void)createHeadView{
@@ -73,25 +80,25 @@
     [self.headView addSubview:self.headIamge];
     [self.headIamge mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.headView);
-        make.centerY.equalTo(ws.headView);
+        make.centerY.equalTo(ws.headView.mas_centerY).offset(-10);
         make.width.equalTo(@(70));
         make.height.equalTo(@(70));
     }];
     
     self.userName = [[UILabel alloc]init];
-    self.userName.font = [UIFont systemFontOfSize:20];
+    self.userName.font = [UIFont systemFontOfSize:18];
     [self.headView addSubview:self.userName];
     [self.userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.headIamge);
-        make.top.equalTo(ws.headIamge.mas_bottom).offset(15);
+        make.top.equalTo(ws.headIamge.mas_bottom).offset(10);
     }];
     
     self.userPhone = [[UILabel alloc]init];
-    self.userPhone.font = [UIFont systemFontOfSize:18];
+    self.userPhone.font = [UIFont systemFontOfSize:16];
     [self.headView addSubview:self.userPhone];
     [self.userPhone mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.headIamge);
-        make.top.equalTo(ws.userName.mas_bottom).offset(10);
+        make.top.equalTo(ws.userName.mas_bottom).offset(5);
     }];
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -104,15 +111,137 @@
         make.bottom.equalTo(ws.headView.mas_bottom);
     }];
 }
+-(void)createMidView{
+    __weak typeof(self) ws = self;
+    UIView *topLine = [[UIView alloc]init];
+    [self.view addSubview:topLine];
+    topLine.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
+    [topLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.view);
+        make.width.equalTo(ws.view);
+        make.top.equalTo(ws.headView.mas_bottom);
+        make.height.equalTo(@(10));
+    }];
+    CGFloat itemWidth = (SCREEN_WIDTH - 3 )/ 3;
+    CGFloat itemHeight = (SCREEN_WIDTH - 3 ) / 3;
+    UICollectionViewFlowLayout *shareflowLayout = [[UICollectionViewFlowLayout alloc] init];
+    shareflowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    shareflowLayout.sectionInset = UIEdgeInsetsMake(1, 1, 1,1);
+    shareflowLayout.itemSize =CGSizeMake(itemWidth, itemHeight);
+    // 1.设置列间距
+    shareflowLayout.minimumInteritemSpacing = 0;
+    // 2.设置行间距
+    shareflowLayout.minimumLineSpacing = 0;
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:shareflowLayout];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.collectionView];
+    [self.collectionView registerClass:[CollectionViewCellForHomePageChoose class] forCellWithReuseIdentifier:@"cell"];
+    self.collectionView.delaysContentTouches = NO;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.scrollEnabled = NO;
+    self.collectionView.showsHorizontalScrollIndicator = NO;
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(topLine.mas_bottom);
+        make.width.equalTo(ws.view);
+        make.centerX.equalTo(ws.view);
+        make.height.equalTo(@(100));
+    }];
+    
+}
+-(void)createButtomTools{
+    __weak typeof(self) ws = self;
+    UIView *topLine = [[UIView alloc]init];
+    [self.view addSubview:topLine];
+    topLine.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
+    [topLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.view);
+        make.width.equalTo(ws.view);
+        make.top.equalTo(ws.collectionView.mas_bottom);
+        make.height.equalTo(@(10));
+    }];
+    UILabel *buttomTit = [[UILabel alloc]init];
+    [self.view addSubview:buttomTit];
+    buttomTit.text = ZBLocalized(@"更多推荐", nil);
+    [buttomTit mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.view.mas_left).offset(20);
+        make.top.equalTo(topLine.mas_bottom);
+        make.height.equalTo(@(30));
+        
+    }];
+    UIView *line = [[UIView alloc]init];
+    [self.view addSubview:line];
+    line.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.view);
+        make.left.equalTo(ws.view.mas_left).offset(20);
+        make.height.equalTo(@(0.5));
+        make.top.equalTo(buttomTit.mas_bottom);
+    }];
+    
+    CGFloat itemWidth = (SCREEN_WIDTH - 4 )/ 4;
+    CGFloat itemHeight = (SCREEN_WIDTH - 4 ) / 4;
+    UICollectionViewFlowLayout *shareflowLayout = [[UICollectionViewFlowLayout alloc] init];
+    shareflowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    shareflowLayout.sectionInset = UIEdgeInsetsMake(1, 1, 1,1);
+    shareflowLayout.itemSize =CGSizeMake(itemWidth, itemHeight);
+    // 1.设置列间距
+    shareflowLayout.minimumInteritemSpacing = 0;
+    // 2.设置行间距
+    shareflowLayout.minimumLineSpacing = 0;
+    self.BUttomcollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:shareflowLayout];
+    self.BUttomcollectionView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.BUttomcollectionView];
+    [self.BUttomcollectionView registerClass:[CollectionViewCellForHomePageChoose class] forCellWithReuseIdentifier:@"cell"];
+    self.BUttomcollectionView.delaysContentTouches = NO;
+    self.BUttomcollectionView.delegate = self;
+    self.BUttomcollectionView.dataSource = self;
+    self.BUttomcollectionView.scrollEnabled = NO;
+    self.BUttomcollectionView.showsHorizontalScrollIndicator = NO;
+    [self.BUttomcollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(line.mas_bottom);
+        make.width.equalTo(ws.view);
+        make.centerX.equalTo(ws.view);
+        make.height.equalTo(@(100));
+    }];
+}
+#pragma mark collectionView代理方法
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    if (collectionView == self.collectionView) {
+        return 3;
+    }else if (collectionView == self.BUttomcollectionView){
+        return 4;
+    }
+    return 0;
+    
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CollectionViewCellForHomePageChoose *cell = (CollectionViewCellForHomePageChoose *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    //设置数据
+    //cell.mod = [self.arrForHomePageTypeName objectAtIndex:indexPath.row];
+    cell.iconImg.backgroundColor = [UIColor orangeColor];
+    cell.titleLable.backgroundColor = [UIColor orangeColor];
+    
+    return cell;
+}
 -(void)createTableView{
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -SafeAreaStatsBarHeight, SCREEN_WIDTH, SCREENH_HEIGHT) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.scrollEnabled = NO;
     [self createHeadView];
-    self.tableView.tableHeaderView = self.headView;
+   // self.tableView.tableHeaderView = self.headView;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    [self.view addSubview:self.tableView];
+    //[self.view addSubview:self.tableView];
     
 }
 #pragma mark- UITabelViewDataSource/delegat

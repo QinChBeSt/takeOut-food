@@ -73,7 +73,9 @@
 #define deleteAddressURL @"/xmfapi/delAddr"
 
 #define ssRGBAlpha(r, g, b, a) [UIColor colorWithRed:(254 / 255.0) green:(214 / 255.0) blue:(49 / 255.0) alpha:1]
-#define BaseYellow @"#FED631"
+#define BaseYellow @"#ffc235"
+#define BaseBackgroundGray @"#f5f5f5"
+
 #define MainScreenScale [[UIScreen mainScreen]scale] //屏幕的分辨率 当结果为1时，显示的是普通屏幕，结果为2时，显示的是Retian屏幕
 // App Frame Height&Width
 #define Application_Frame  [[UIScreen mainScreen] applicationFrame] //除去信号区的屏幕的frame

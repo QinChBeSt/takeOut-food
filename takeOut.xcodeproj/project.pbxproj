@@ -21,6 +21,7 @@
 		9D26202C206CCA8700A2351B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D26202E206CCA8700A2351B /* Localizable.strings */; };
 		9D262032206CD21F00A2351B /* AllOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262031206CD21F00A2351B /* AllOrderVC.m */; };
 		9D262035206CD24500A2351B /* WillEvaluateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262034206CD24500A2351B /* WillEvaluateVC.m */; };
+		9D2F370720AACBD000A916E6 /* UserProtoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2F370620AACBD000A916E6 /* UserProtoVC.m */; };
 		9D33AFC92085AA420086DC93 /* ZBLocalized.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D33AFC82085AA420086DC93 /* ZBLocalized.m */; };
 		9D33AFCC2085B02E0086DC93 /* ChangelanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D33AFCB2085B02E0086DC93 /* ChangelanguageVC.m */; };
 		9D33AFFC2085C0CB0086DC93 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D33AFD02085C0CB0086DC93 /* MJRefreshAutoFooter.m */; };
@@ -155,6 +156,8 @@
 		9D262031206CD21F00A2351B /* AllOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllOrderVC.m; sourceTree = "<group>"; };
 		9D262033206CD24500A2351B /* WillEvaluateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WillEvaluateVC.h; sourceTree = "<group>"; };
 		9D262034206CD24500A2351B /* WillEvaluateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WillEvaluateVC.m; sourceTree = "<group>"; };
+		9D2F370520AACBD000A916E6 /* UserProtoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserProtoVC.h; sourceTree = "<group>"; };
+		9D2F370620AACBD000A916E6 /* UserProtoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserProtoVC.m; sourceTree = "<group>"; };
 		9D33AFC72085AA420086DC93 /* ZBLocalized.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZBLocalized.h; sourceTree = "<group>"; };
 		9D33AFC82085AA420086DC93 /* ZBLocalized.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZBLocalized.m; sourceTree = "<group>"; };
 		9D33AFCA2085B02E0086DC93 /* ChangelanguageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangelanguageVC.h; sourceTree = "<group>"; };
@@ -535,6 +538,8 @@
 				9D72E2B9206B262300CEE3B0 /* LoginByPhoneVC.m */,
 				9D72E2BB206B263F00CEE3B0 /* LoginByPasswordVC.h */,
 				9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */,
+				9D2F370520AACBD000A916E6 /* UserProtoVC.h */,
+				9D2F370620AACBD000A916E6 /* UserProtoVC.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1152,6 +1157,7 @@
 				9D33B0062085C0CB0086DC93 /* MJRefreshBackStateFooter.m in Sources */,
 				9D33B0092085C0CB0086DC93 /* MJRefreshStateHeader.m in Sources */,
 				D6C301C82077C0BA009B9B35 /* ModelForOrderList.m in Sources */,
+				9D2F370720AACBD000A916E6 /* UserProtoVC.m in Sources */,
 				9D49525E2068B25A005A6BBC /* ModelForShopList.m in Sources */,
 				9D012B2120736E440015322E /* JZLocationConverter.m in Sources */,
 				9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */,
