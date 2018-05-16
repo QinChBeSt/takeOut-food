@@ -171,10 +171,13 @@
     if (self.arrForOrerList.count > 0) {
         ModelForOrderList *mod = [[ModelForOrderList alloc]init];
         mod = [self.arrForOrerList objectAtIndex:indexPath.row];
+        NSArray *arrForGoodsCount = [[NSArray alloc]init];
+        arrForGoodsCount = mod.godslist;
+        
         NSString *shopStrat = mod.shopstart;
       //  if ([shopStrat isEqualToString:@"9"]) {
             //        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-            NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld%@",indexPath.section,indexPath.row,shopStrat];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld-%ld-%@-%lu",indexPath.section,indexPath.row,shopStrat,(unsigned long)arrForGoodsCount.count];
             
             CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (!cell) {

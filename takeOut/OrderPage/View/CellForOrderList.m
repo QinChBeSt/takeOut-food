@@ -25,6 +25,7 @@
     
 }
 -(void)setUpUI{
+    __weak typeof(self) ws = self;
     self.shopIcon = [[UIImageView alloc]init];
     [self.shopIcon setImage:[UIImage imageNamed:@"店铺"]];
     [self.contentView addSubview:self.shopIcon];
@@ -35,20 +36,33 @@
     .heightIs(30);
     
     self.shopNameLabel = [[UILabel alloc]init];
-   
+    self.shopNameLabel.textColor = [UIColor colorWithHexString:BaseTextGrayColor];
     [self.contentView addSubview:self.shopNameLabel];
     [self.shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.shopIcon);
         make.left.equalTo(self.shopIcon.mas_right).offset(5);
     }];
+    [self.shopNameLabel setContentCompressionResistancePriority:UILayoutPriorityRequired
+                                                      forAxis:UILayoutConstraintAxisHorizontal];
+    
+    UIImageView *rightIcon = [[UIImageView alloc]init];
+    [rightIcon setImage:[UIImage imageNamed:@"右箭头黑"]];
+    [self.contentView addSubview:rightIcon];
+    [rightIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(ws.shopNameLabel);
+        make.left.equalTo(ws.shopNameLabel.mas_right).offset(3);
+        make.width.and.height.equalTo(@(15));
+    }];
     
     self.haveEvaluateLabel = [[UILabel alloc]init];
-    self.haveEvaluateLabel.textColor = [UIColor lightGrayColor];
-    
+    self.haveEvaluateLabel.textColor = [UIColor colorWithHexString:BaseTextGrayColor];
+    self.haveEvaluateLabel.numberOfLines = 2;
+    self.haveEvaluateLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:self.haveEvaluateLabel];
     [self.haveEvaluateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-10);
         make.centerY.equalTo(self.shopIcon);
+        make.left.equalTo(rightIcon.mas_right).offset(5);
     }];
     
     

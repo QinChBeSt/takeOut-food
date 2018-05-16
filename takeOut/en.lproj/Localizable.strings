@@ -148,6 +148,7 @@
 "登录/注册" = "Login/registration";
 
 
+
 "未知城市" = "Unknown city";
 "切换语言" = "Change language";
 "商家已取消" = "The merchant has cancelled";
@@ -155,3 +156,7 @@
 "没有数据" = "No data";
 "选择失败，地址不在店铺覆盖范围" = "The selection failed, and the address was not covered by the store.";
 "更多推荐" = "more";
+"语言切换" = "Language switch";
+"骑手招募" = "Rider recruitment";
+"我要合作" = "Join us";
+"确定要退出么？" = "Are you sure you want to quit?";

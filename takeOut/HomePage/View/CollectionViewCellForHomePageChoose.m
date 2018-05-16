@@ -34,10 +34,13 @@
     
     self.titleLable = [[UILabel alloc]init];
     self.titleLable.font = [UIFont systemFontOfSize:12];
+    self.titleLable.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.titleLable];
     [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.iconImg);
         make.top.equalTo(ws.iconImg.mas_bottom).offset(5);
+        make.right.equalTo(ws.contentView);
+        make.left.equalTo(ws.contentView);
     }];
 }
 -(void)setMod:(ModelForHomeType *)mod{
