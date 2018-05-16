@@ -10,6 +10,7 @@
 #import "SortButton.h"
 #import "TableViewCellForHomepageList.h"
 #import "ShopDetailVC.h"
+#import "CellForHomeType.h"
 @interface HomeTypeVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)UIView *naviView;
@@ -170,7 +171,7 @@
     self.tableView.tableHeaderView = sortingView;
     
     /** 注册cell. */
-    [self.tableView registerClass:[TableViewCellForHomepageList class] forCellReuseIdentifier:@"pool1"];
+    [self.tableView registerClass:[CellForHomeType class] forCellReuseIdentifier:@"pool2"];
     [self.view addSubview:self.tableView];
 }
 
@@ -184,7 +185,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
+    CellForHomeType *cell = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
     cell.mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -194,7 +195,7 @@
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 110;
+    return 120;
     
 }
 

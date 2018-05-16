@@ -76,30 +76,6 @@
         make.height.equalTo(@(0.5));
     }];
     
-    self.foodsViewBackGround = [[UIView alloc]init];
-    [self.contentView addSubview:self.foodsViewBackGround];
-    [self.foodsViewBackGround mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.contentView);
-        make.top.equalTo(_topLine.mas_bottom).offset(5);
-        make.centerX.equalTo(self.contentView);
-        make.height.equalTo(@(60));
-    }];
-    
-    self.foodsView = [[ViewForOrderListFoodsName alloc]init];
-    [self.foodsViewBackGround addSubview:self.foodsView];
-
-    [self.foodsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView);
-        make.top.equalTo(self.topLine.mas_bottom).offset(10);
-        make.height.equalTo(@(40));
-        make.centerX.equalTo(self.contentView);
-    }];
-    self.foodsView2 = [[ViewForOrderListFoodsName alloc]init];
-    [self.foodsViewBackGround addSubview:self.foodsView2];
-    
-    
-    self.foodsView3 = [[ViewForOrderListFoodsName alloc]init];
-    [self.foodsViewBackGround addSubview:self.foodsView3];
     
     
     
@@ -108,9 +84,11 @@
     [self.contentView addSubview:self.foodsMuch];
     
     self.foodsTolitLabel = [[UILabel alloc]init];
+    self.foodsTolitLabel.textColor = [UIColor colorWithHexString:BaseTextGrayColor];
     [self.contentView addSubview:self.foodsTolitLabel];
    
     self.orderTimeLabel = [[UILabel alloc]init];
+    self.orderTimeLabel.textColor = [UIColor colorWithHexString:BaseTextGrayColor];
     [self.contentView addSubview:self.orderTimeLabel];
     
     self.foodsView.foodsName.font = [UIFont systemFontOfSize:15];
@@ -121,15 +99,15 @@
     self.orderTimeLabel.font = [UIFont systemFontOfSize:15];
     
     self.bottomLine = [[UIView alloc]init];
-    self.bottomLine.backgroundColor = [UIColor grayColor];
+    self.bottomLine.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
     [self.contentView addSubview:self.bottomLine];
     
     self.toPJbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:_toPJbtn];
     [self.toPJbtn setTitle:ZBLocalized(@"评价", nil) forState:UIControlStateNormal];
-    [self.toPJbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.toPJbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.toPJbtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
-    self.toPJbtn.layer.cornerRadius=15;
+    self.toPJbtn.layer.cornerRadius=5;
     self.toPJbtn.clipsToBounds = YES;
     [self.toPJbtn addTarget:self action:@selector(buttonOnCellAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -179,111 +157,26 @@
     self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"共计", nil),foodsnum,ZBLocalized(@"件商品,实付", nil)];
     self.orderTimeLabel.text = [NSString stringWithFormat:@"%@  %@",ZBLocalized(@"订单时间", nil),mod.cdata];
     NSArray *foodsArr = mod.godslist;
-    if (foodsArr.count == 1) {
-        self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
-        NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
+    
+    for (int i = 0; i < mod.godslist.count; i++) {
+        self.foodsView = [[ViewForOrderListFoodsName alloc]init];
+        self.foodsView.foodsName.text = foodsArr[i][@"ordersGoodsName"];
+        NSString *listFoodcount = foodsArr[i][@"ordersGoodsNum"];
         self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
-        
-        self.foodsView2.foodsName.text =@"";
-        self.foodsView2.foodsCount.text =@"";
-        [self.foodsView2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView);
-            make.top.equalTo(self.foodsView.mas_bottom).offset(0);
-            make.height.equalTo(@(0));
-            make.centerX.equalTo(self.contentView);
-        }];
-        self.foodsView3.foodsName.text =@"";
-        self.foodsView3.foodsCount.text =@"";
-        [self.foodsView3 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView);
-            make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
-            make.height.equalTo(@(0));
-            make.centerX.equalTo(self.contentView);
+        [self.contentView addSubview:self.foodsView];
+        __weak typeof(self) ws = self;
+        [self.foodsView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(ws.contentView);
+            make.width.equalTo(ws.contentView);
+            make.height.equalTo(@(35));
+            make.top.equalTo(ws.shopIcon.mas_bottom).offset(10 + 35 * i);
         }];
         
-    }
-    else if (foodsArr.count == 2){
-        self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
-        NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
-        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
-       
-        self.foodsView2.foodsName.text = foodsArr[1][@"ordersGoodsName"];
-        NSString *listFoodcount2 = foodsArr[1][@"ordersGoodsNum"];
-        self.foodsView2.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount2];
-        
-        [self.foodsView2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView);
-            make.top.equalTo(self.foodsView.mas_bottom).offset(0);
-            make.height.equalTo(@(40));
-            make.centerX.equalTo(self.contentView);
-        }];
-        self.foodsView3.foodsName.text =@"";
-        self.foodsView3.foodsCount.text =@"";
-        [self.foodsView3 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView);
-            make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
-            make.height.equalTo(@(0));
-            make.centerX.equalTo(self.contentView);
-        }];
-
-    }else if (foodsArr.count == 3){
-        
-        self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
-        NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
-        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
-        
-        self.foodsView2.foodsName.text = foodsArr[1][@"ordersGoodsName"];
-        NSString *listFoodcount2 = foodsArr[1][@"ordersGoodsNum"];
-        self.foodsView2.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount2];
-        
-        self.foodsView3.foodsName.text = foodsArr[2][@"ordersGoodsName"];
-        NSString *listFoodcount3 = foodsArr[2][@"ordersGoodsNum"];
-        self.foodsView3.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount3];
-
-        [self.foodsView2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView);
-            make.top.equalTo(self.foodsView.mas_bottom).offset(0);
-            make.height.equalTo(@(40));
-            make.centerX.equalTo(self.contentView);
-        }];
-        [self.foodsView3 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView);
-            make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
-            make.height.equalTo(@(40));
-            make.centerX.equalTo(self.contentView);
-        }];
-
-    }else if (foodsArr.count > 3){
-        self.foodsView.foodsName.text = foodsArr[0][@"ordersGoodsName"];
-        NSString *listFoodcount = foodsArr[0][@"ordersGoodsNum"];
-        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
-        
-        self.foodsView2.foodsName.text = foodsArr[1][@"ordersGoodsName"];
-        NSString *listFoodcount2 = foodsArr[1][@"ordersGoodsNum"];
-        self.foodsView2.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount2];
-        
-        self.foodsView3.foodsName.text = foodsArr[2][@"ordersGoodsName"];
-        NSString *listFoodcount3 = foodsArr[2][@"ordersGoodsNum"];
-        self.foodsView3.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount3];
-        
-        [self.foodsView2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView);
-            make.top.equalTo(self.foodsView.mas_bottom).offset(0);
-            make.height.equalTo(@(40));
-            make.centerX.equalTo(self.contentView);
-        }];
-        [self.foodsView3 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView);
-            make.top.equalTo(self.foodsView2.mas_bottom).offset(0);
-            make.height.equalTo(@(40));
-            make.centerX.equalTo(self.contentView);
-        }];
-
     }
     
     [self.foodsMuch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-15);
-        make.top.equalTo(self.foodsView3.mas_bottom).offset(15);
+        make.top.equalTo(self.foodsView.mas_bottom).offset(15);
     }];
     [self.foodsTolitLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.foodsMuch.mas_left).offset(0);
@@ -292,28 +185,30 @@
     
     [self.orderTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        make.right.equalTo(self.contentView.mas_right).offset(-15);
-        make.top.equalTo(self.foodsMuch.mas_bottom).offset(5);
+        make.top.equalTo(self.foodsMuch.mas_bottom).offset(10);
     }];
     //9
     if ([shopStrat isEqualToString:@"9"]) {
         self.bottomLine.sd_layout
-        .leftSpaceToView(self.contentView, 10)
-        .rightSpaceToView(self.contentView,10)
-        .heightIs(0.5)
+        .leftSpaceToView(self.contentView, 0)
+        .rightSpaceToView(self.contentView,0)
+        .heightIs(50)
         .topSpaceToView(self.orderTimeLabel, 10);
         
-        self.toPJbtn.sd_layout
-        .rightSpaceToView(self.contentView, 15)
-        .topSpaceToView(self.bottomLine, 10)
-        .widthIs(100)
-        .heightIs(30);
-        [self setupAutoHeightWithBottomView:self.toPJbtn bottomMargin:15];
+        [self.toPJbtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.bottomLine).offset(-20) ;
+            make.centerY.equalTo(self.bottomLine);
+            make.height.equalTo(@(40));
+            make.width.equalTo(@(100));
+        }];
+       
+        [self setupAutoHeightWithBottomView:self.bottomLine bottomMargin:15];
     }else{
         
         self.bottomLine.sd_layout
-        .leftSpaceToView(self.contentView, 10)
-        .rightSpaceToView(self.contentView,10)
-        .heightIs(0.5)
+        .leftSpaceToView(self.contentView, 0)
+        .rightSpaceToView(self.contentView,0)
+        .heightIs(10)
         .topSpaceToView(self.orderTimeLabel, 10);
         [self setupAutoHeightWithBottomView:self.bottomLine bottomMargin:10];
     }

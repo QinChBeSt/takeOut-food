@@ -74,6 +74,7 @@
 		9D72E2BD206B263F00CEE3B0 /* LoginByPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */; };
 		9D72E2C1206B4B3A00CEE3B0 /* MBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2C0206B4B3900CEE3B0 /* MBManager.m */; };
 		9D923F0D20ABE2C80057540B /* CellForChooseLag.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D923F0C20ABE2C80057540B /* CellForChooseLag.m */; };
+		9D923F1020AC35ED0057540B /* CellForHomeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D923F0F20AC35ED0057540B /* CellForHomeType.m */; };
 		9D92577D2065F90C00A6E262 /* SortButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577C2065F90C00A6E262 /* SortButton.m */; };
 		9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577F2066015D00A6E262 /* CollectionViewCellForHomePageChoose.m */; };
 		9D9257832066146B00A6E262 /* TableViewCellForHomepageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9257822066146B00A6E262 /* TableViewCellForHomepageList.m */; };
@@ -266,6 +267,8 @@
 		9D775A1220847B7C00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9D923F0B20ABE2C80057540B /* CellForChooseLag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForChooseLag.h; sourceTree = "<group>"; };
 		9D923F0C20ABE2C80057540B /* CellForChooseLag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForChooseLag.m; sourceTree = "<group>"; };
+		9D923F0E20AC35ED0057540B /* CellForHomeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForHomeType.h; sourceTree = "<group>"; };
+		9D923F0F20AC35ED0057540B /* CellForHomeType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForHomeType.m; sourceTree = "<group>"; };
 		9D92577B2065F90C00A6E262 /* SortButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortButton.h; sourceTree = "<group>"; };
 		9D92577C2065F90C00A6E262 /* SortButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortButton.m; sourceTree = "<group>"; };
 		9D92577E2066015D00A6E262 /* CollectionViewCellForHomePageChoose.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewCellForHomePageChoose.h; sourceTree = "<group>"; };
@@ -744,6 +747,8 @@
 				9D3854F0207A0FB400175693 /* CellForShopEva.m */,
 				9D4FBC7E207F37A700B7B5E6 /* CellForFoodListLeft.h */,
 				9D4FBC7F207F37A700B7B5E6 /* CellForFoodListLeft.m */,
+				9D923F0E20AC35ED0057540B /* CellForHomeType.h */,
+				9D923F0F20AC35ED0057540B /* CellForHomeType.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1086,6 +1091,7 @@
 				9D33B0032085C0CB0086DC93 /* MJRefreshAutoStateFooter.m in Sources */,
 				9D012B1420734FDF0015322E /* MineAddressVC.m in Sources */,
 				9DDFD2842064EC7100393DE5 /* main.m in Sources */,
+				9D923F1020AC35ED0057540B /* CellForHomeType.m in Sources */,
 				9D4952692068CD95005A6BBC /* UIView+ZWMBadge.m in Sources */,
 				9D58C4902071D26D00D49721 /* CellForHadAddShopingCar.m in Sources */,
 				9D33B0022085C0CB0086DC93 /* MJRefreshAutoNormalFooter.m in Sources */,
