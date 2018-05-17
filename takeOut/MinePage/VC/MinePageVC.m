@@ -18,7 +18,7 @@
 #import "CellForChooseLag.h"
 @interface MinePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic , strong) UITableView *tableView;
-@property (nonatomic , strong) UIView *headView;
+@property (nonatomic , strong) UIImageView *headView;
 @property (nonatomic , strong) UIImageView *headIamge;
 @property (nonatomic , strong) UILabel *userName;
 @property (nonatomic , strong) UILabel *userPhone;
@@ -88,8 +88,8 @@
     // Do any additional setup after loading the view.
 }
 -(void)createHeadView{
-    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaStatsBarHeight + SCREENH_HEIGHT/3)];
-    self.headView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+    self.headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaStatsBarHeight + SCREENH_HEIGHT/3)];
+    [self.headView setImage:[UIImage imageNamed:@"bg_gerenzhongxin"]];
     [self.view addSubview:self.headView];
     __weak typeof(self) ws = self;
     self.headIamge = [[UIImageView alloc]init];
@@ -97,7 +97,7 @@
     self.headIamge.clipsToBounds = YES;
     self.headIamge.layer.borderWidth = 0.5;
     self.headIamge.layer.borderColor = [[UIColor blackColor] CGColor];
-    [self.headIamge setImage:[UIImage imageNamed:@"logo"]];
+    [self.headIamge setImage:[UIImage imageNamed:@"icon_touxiang"]];
     [self.headView addSubview:self.headIamge];
     [self.headIamge mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.headView);
@@ -124,7 +124,7 @@
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [loginBtn addTarget:self action:@selector(toLogin) forControlEvents:UIControlEventTouchUpInside];
-    [self.headView addSubview:loginBtn];
+    [self.view addSubview:loginBtn];
     [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.headIamge);
         make.width.equalTo(ws.headView);
@@ -266,31 +266,35 @@
     if (collectionView == self.collectionView) {
         if (indexPath.row == 0) {
            cell.titleLable.text = ZBLocalized(@"语言切换", nil);
+            [cell.iconImg setImage:[UIImage imageNamed:@"icon_shangyongyuyan"]];
         }else if (indexPath.row == 1){
             cell.titleLable.text = ZBLocalized(@"我的地址", nil);
-            
+            [cell.iconImg setImage:[UIImage imageNamed:@"icon_shangyongdizhi"]];
         }else if (indexPath.row == 2){
             cell.titleLable.text = ZBLocalized(@"我的评价", nil);
-            
+            [cell.iconImg setImage:[UIImage imageNamed:@"icon_shangyongxiaoxi"]];
         }
     }
     else if (collectionView == self.BUttomcollectionView){
         if (indexPath.row == 0) {
             cell.titleLable.text = ZBLocalized(@"关于我们", nil);
+            [cell.iconImg setImage:[UIImage imageNamed:@"icon_tuijianguanyuwom"]];
         }else if (indexPath.row == 1){
             cell.titleLable.text = ZBLocalized(@"清除缓存", nil);
+            [cell.iconImg setImage:[UIImage imageNamed:@"icon_tuijianbangzhufankui"]];
             
         }else if (indexPath.row == 2){
              cell.titleLable.text = ZBLocalized(@"骑手招募", nil);
+            [cell.iconImg setImage:[UIImage imageNamed:@"icon_tuijianqishizhaoma"]];
             
         }else if (indexPath.row == 3){
             cell.titleLable.text = ZBLocalized(@"我要合作", nil);
+            [cell.iconImg setImage:[UIImage imageNamed:@"icon_tuijianwoyaohezuo"]];
             
         }
         
     }
     
-    cell.iconImg.backgroundColor = [UIColor orangeColor];
    
     
     return cell;
@@ -375,8 +379,12 @@
         make.left.equalTo(ws.view.mas_left).offset(30);
         make.height.equalTo(@(185));
     }];
+    
+    
+    [self createTableView];
     UIButton *backBtn =[UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.layer.cornerRadius=15;
+    [backBtn setImage:[UIImage imageNamed:@"icon_guanbianniu"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(closeWindow) forControlEvents:UIControlEventTouchUpInside];
     backBtn.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
     backBtn.clipsToBounds = YES;
@@ -386,9 +394,6 @@
         make.centerY.equalTo(ws.changeLagView.mas_top).offset(5);
         make.width.and.height.equalTo(@(30));
     }];
-    
-    [self createTableView];
-    
     NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
     NSLog(@"切换后的语言:%@",language);
     if ([language isEqualToString:@"th"]) {
@@ -454,6 +459,7 @@
     }];
     UIButton *backBtn =[UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.layer.cornerRadius=15;
+     [backBtn setImage:[UIImage imageNamed:@"icon_guanbianniu"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(closeWindow) forControlEvents:UIControlEventTouchUpInside];
     backBtn.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
     backBtn.clipsToBounds = YES;
@@ -579,9 +585,9 @@
     
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     if (indexPath == self.lastIndexPath) {
-        cell.img.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+        [cell.img setImage:[UIImage imageNamed:@"icon_xuankuang_down"]];
     }else{
-        cell.img.backgroundColor = [UIColor blackColor];
+        [cell.img setImage:[UIImage imageNamed:@"icon_xuankuang"]];
     }
     if (indexPath.section == 0) {
         if (indexPath.row == 0){

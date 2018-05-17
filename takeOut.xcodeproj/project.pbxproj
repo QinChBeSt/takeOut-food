@@ -73,6 +73,8 @@
 		9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B9206B262300CEE3B0 /* LoginByPhoneVC.m */; };
 		9D72E2BD206B263F00CEE3B0 /* LoginByPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */; };
 		9D72E2C1206B4B3A00CEE3B0 /* MBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2C0206B4B3900CEE3B0 /* MBManager.m */; };
+		9D84190120AD2C28005F7B6A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D84190020AD2C28005F7B6A /* Images.xcassets */; };
+		9D84190420AD5833005F7B6A /* CellForChooseCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D84190320AD5833005F7B6A /* CellForChooseCountry.m */; };
 		9D923F0D20ABE2C80057540B /* CellForChooseLag.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D923F0C20ABE2C80057540B /* CellForChooseLag.m */; };
 		9D923F1020AC35ED0057540B /* CellForHomeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D923F0F20AC35ED0057540B /* CellForHomeType.m */; };
 		9D92577D2065F90C00A6E262 /* SortButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D92577C2065F90C00A6E262 /* SortButton.m */; };
@@ -265,6 +267,9 @@
 		9D775A1020847B7A00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9D775A1120847B7B00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9D775A1220847B7C00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9D84190020AD2C28005F7B6A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9D84190220AD5833005F7B6A /* CellForChooseCountry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForChooseCountry.h; sourceTree = "<group>"; };
+		9D84190320AD5833005F7B6A /* CellForChooseCountry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForChooseCountry.m; sourceTree = "<group>"; };
 		9D923F0B20ABE2C80057540B /* CellForChooseLag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForChooseLag.h; sourceTree = "<group>"; };
 		9D923F0C20ABE2C80057540B /* CellForChooseLag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForChooseLag.m; sourceTree = "<group>"; };
 		9D923F0E20AC35ED0057540B /* CellForHomeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForHomeType.h; sourceTree = "<group>"; };
@@ -546,6 +551,8 @@
 				9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */,
 				9D2F370520AACBD000A916E6 /* UserProtoVC.h */,
 				9D2F370620AACBD000A916E6 /* UserProtoVC.m */,
+				9D84190220AD5833005F7B6A /* CellForChooseCountry.h */,
+				9D84190320AD5833005F7B6A /* CellForChooseCountry.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -610,6 +617,7 @@
 				9D262028206CC93A00A2351B /* InfoPlist.strings */,
 				9DDFD2832064EC7100393DE5 /* main.m */,
 				9DDFD2A62064EFDE00393DE5 /* PrefixHeader.pch */,
+				9D84190020AD2C28005F7B6A /* Images.xcassets */,
 			);
 			path = takeOut;
 			sourceTree = "<group>";
@@ -1005,6 +1013,7 @@
 			files = (
 				9D26202C206CCA8700A2351B /* Localizable.strings in Resources */,
 				9DDFD2812064EC7100393DE5 /* LaunchScreen.storyboard in Resources */,
+				9D84190120AD2C28005F7B6A /* Images.xcassets in Resources */,
 				9D33B00A2085C0CB0086DC93 /* MJRefresh.bundle in Resources */,
 				9D262026206CC93A00A2351B /* InfoPlist.strings in Resources */,
 				9DDFD27E2064EC7100393DE5 /* Assets.xcassets in Resources */,
@@ -1170,6 +1179,7 @@
 				D6C301C82077C0BA009B9B35 /* ModelForOrderList.m in Sources */,
 				9D2F370720AACBD000A916E6 /* UserProtoVC.m in Sources */,
 				9D923F0D20ABE2C80057540B /* CellForChooseLag.m in Sources */,
+				9D84190420AD5833005F7B6A /* CellForChooseCountry.m in Sources */,
 				9D49525E2068B25A005A6BBC /* ModelForShopList.m in Sources */,
 				9D012B2120736E440015322E /* JZLocationConverter.m in Sources */,
 				9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */,
@@ -1365,6 +1375,7 @@
 			baseConfigurationReference = 3EA3BA8955BAFE3DE06D4D6D /* Pods-takeOut.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = takeOut/takeOut.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1373,12 +1384,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/takeOut/PrefixHeader.pch";
 				INFOPLIST_FILE = takeOut/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wtb.beeToC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1387,6 +1399,7 @@
 			baseConfigurationReference = 67F0F2F3FDC863D6E0A4FDAF /* Pods-takeOut.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = takeOut/takeOut.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1395,12 +1408,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/takeOut/PrefixHeader.pch";
 				INFOPLIST_FILE = takeOut/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wtb.beeToC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

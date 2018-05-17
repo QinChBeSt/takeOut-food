@@ -345,7 +345,7 @@
     //icon
     UIImageView *locationIcon = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 15, 20)];
     
-    [locationIcon setImage:[UIImage imageNamed:@"ic_point"]];
+    [locationIcon setImage:[UIImage imageNamed:@"icon_dizhi"]];
     [headviewAddressView addSubview:locationIcon];
     
     //地址

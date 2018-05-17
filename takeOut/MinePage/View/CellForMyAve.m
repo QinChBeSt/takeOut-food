@@ -23,12 +23,12 @@
     [self.contentView addSubview:grayView];
     __weak typeof(self) ws = self;
     self.shopIcon = [[UIImageView alloc]init];
-    self.shopIcon.backgroundColor = [UIColor orangeColor];
+    [self.shopIcon setImage:[UIImage imageNamed:@"icon_pinglongdianpu"]];
     [self.contentView addSubview:self.shopIcon];
     [self.shopIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(grayView.mas_bottom).offset(10);
         make.left.equalTo(grayView.mas_left).offset(10);
-        make.width.and.height.equalTo(@(10));
+        make.width.and.height.equalTo(@(20));
     }];
     
     self.shopName = [[UILabel alloc]init];
@@ -52,7 +52,7 @@
     self.shopBigImage = [[UIImageView alloc]init];
      self.shopBigImage.layer.cornerRadius=20;
      self.shopBigImage.clipsToBounds = YES;
-    self.shopBigImage.backgroundColor = [UIColor orangeColor];
+    [self.shopBigImage setImage:[UIImage imageNamed:@"icon_touxiang"]];
     [self.contentView addSubview:self.shopBigImage];
     [self.shopBigImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(topLine.mas_bottom).offset(10);
@@ -69,7 +69,7 @@
     
     self.aveType = [[UILabel alloc]init];
     self.aveType.font = [UIFont systemFontOfSize:15];
-    self.aveType.textColor = [UIColor lightGrayColor];
+    self.aveType.textColor = [UIColor colorWithHexString:BaseYellow];
     [self.contentView addSubview:_aveType];
     [self.aveType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(ws.shopBigImage.mas_centerY).offset(10);
@@ -81,13 +81,24 @@
     self.aveDate.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:_aveDate];
     [self.aveDate mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(ws.shopBigImage.mas_centerY);
+        make.centerY.equalTo(ws.userName.mas_centerY);
         make.right.equalTo(ws.contentView.mas_right).offset(-20);
     }];
     
+    UILabel *beeOrder = [[UILabel alloc]init];
+    beeOrder.text = ZBLocalized(@"BeeOrder配送", nil);
+    [self.contentView addSubview:beeOrder];
+   beeOrder.font = [UIFont systemFontOfSize:14];
+    beeOrder.textColor = [UIColor lightGrayColor];
+    [beeOrder mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(ws.aveType.mas_centerY);
+        make.right.equalTo(ws.contentView.mas_right).offset(-20);
+    }];
+    
+    
     self.aveText = [[UILabel alloc]init];
     self.aveText.font = [UIFont systemFontOfSize:15];
-    
+  
     [self.contentView addSubview:_aveText];
     [self.aveText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.shopBigImage.mas_bottom).offset(10);

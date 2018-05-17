@@ -8,6 +8,7 @@
 
 #import "MyEvaVC.h"
 #import "CellForMyAve.h"
+#define headViewHeight 180
 @interface MyEvaVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)UIView *naviView;
@@ -43,10 +44,15 @@
     self.naviView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.view addSubview:self.naviView];
     
+    UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, SafeAreaStatsBarHeight, SCREEN_WIDTH, headViewHeight)];
+    
+    [headView setImage:[UIImage imageNamed:@"bg_wodepingjianbeijing"]];
+    [self.view addSubview:headView];
+    
     __weak typeof(self) ws = self;
     UIImageView *backImg = [[UIImageView alloc]init];
-    backImg.backgroundColor = [UIColor orangeColor];
-    [self.naviView addSubview:backImg];
+    [backImg setImage:[UIImage imageNamed:@"back_black"]];
+    [headView addSubview:backImg];
     [backImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.naviView.mas_top).offset(SafeAreaStatsBarHeight + 5);
         make.left.equalTo(ws.naviView.mas_left).offset(15);
@@ -56,7 +62,7 @@
     
     UIButton *backBTN = [UIButton buttonWithType:UIButtonTypeCustom];
     [backBTN addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [self.naviView addSubview:backBTN];
+    [headView addSubview:backBTN];
     [backBTN mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.naviView.mas_top).offset(SafeAreaStatsBarHeight);
         make.left.equalTo(ws.naviView.mas_left).offset(10);
@@ -65,12 +71,41 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = ZBLocalized(@"我的评价", nil);
+    //titleLabel.text = ZBLocalized(@"我的评价", nil);
     titleLabel.textColor = [UIColor blackColor];
-    [self.naviView addSubview:titleLabel];
+    [headView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.view);
         make.centerY.equalTo(backImg);
+    }];
+    
+   
+    
+    UIImageView *icon = [[UIImageView alloc]init];
+    icon.image = [UIImage imageNamed:@"icon_touxiang"];
+    icon.layer.cornerRadius=30;
+    icon.clipsToBounds = YES;
+    [headView addSubview:icon];
+    [icon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(headView);
+        make.top.equalTo(headView).offset(20);
+        make.width.and.height.equalTo(@(60));
+    }];
+    UILabel *userName = [[UILabel alloc]init];
+    [headView addSubview:userName];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *username = [defaults objectForKey:UD_USERNAME];
+    userName.text = username;
+    [userName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(icon);
+        make.top.equalTo(icon.mas_bottom).offset(15);
+    }];
+    
+    self.aveCountLab = [[UILabel alloc]init];
+    [headView addSubview:self.aveCountLab];
+    [self.aveCountLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(icon);
+        make.top.equalTo(userName.mas_bottom).offset(10);
     }];
 }
 -(void)getNetWork{
@@ -100,40 +135,10 @@
 }
 -(void)createTableView{
 
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
-    headView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
-    [self.view addSubview:headView];
    
-    UIImageView *icon = [[UIImageView alloc]init];
-    icon.backgroundColor = [UIColor orangeColor];
-    icon.layer.cornerRadius=25;
-    icon.clipsToBounds = YES;
-    [headView addSubview:icon];
-    [icon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(headView);
-        make.top.equalTo(@(20));
-        make.width.and.height.equalTo(@(50));
-    }];
-    UILabel *userName = [[UILabel alloc]init];
-    [headView addSubview:userName];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *username = [defaults objectForKey:UD_USERNAME];
-    userName.text = username;
-    [userName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(icon);
-        make.top.equalTo(icon.mas_bottom).offset(15);
-    }];
-    
-    self.aveCountLab = [[UILabel alloc]init];
-    [headView addSubview:self.aveCountLab];
-    [self.aveCountLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(icon);
-        make.top.equalTo(userName.mas_bottom).offset(10);
-    }];
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight , SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaStatsBarHeight + headViewHeight , SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaStatsBarHeight - headViewHeight) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.tableHeaderView = headView;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     self.tableView.tableFooterView=[[UIView alloc]init];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;

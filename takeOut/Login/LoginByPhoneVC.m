@@ -10,8 +10,8 @@
 #import "LoginByPasswordVC.h"
 #import "RegisterVC.h"
 #import "UserProtoVC.h"
-
-@interface LoginByPhoneVC ()<UITextFieldDelegate>
+#import "CellForChooseCountry.h"
+@interface LoginByPhoneVC ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong) UITextField *phoneNumTextField;
 @property (nonatomic , copy) NSString *phoneNumStr;
 @property (nonatomic , strong) UITextField *codeTextField;
@@ -19,6 +19,13 @@
 @property (nonatomic , strong) UIView *niveView;
 @property (nonatomic , strong) UIButton *codeButton;
 @property (nonatomic , strong) UIButton *toLoginButton;
+@property (nonatomic , strong) UIButton *countyBtn;
+@property (nonatomic , strong) UILabel *CNLabel;
+@property (nonatomic , strong)UIView *windowBackView;
+@property (nonatomic , strong)UIView *changeLagView;
+@property (nonatomic , strong)UITableView *tableView;
+@property (nonatomic , strong)NSIndexPath *lastIndexPath;
+
 @end
 
 @implementation LoginByPhoneVC
@@ -28,9 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
     [self.view addSubview:view];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[UIColor colorWithHexString:BaseBackgroundGray]];
     [self createNaviView];
     [self setupUI];
 }
@@ -72,17 +79,55 @@
 }
 -(void)setupUI{
     __weak typeof(self) ws = self;
-    UILabel *CNLabel = [[UILabel alloc]init];
-    CNLabel.text = @" +86 ";
-    CNLabel.textColor = [UIColor lightGrayColor];
-    [self.view addSubview:CNLabel];
-    [CNLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+   
+    self.countyBtn = [UIButton  buttonWithType:UIButtonTypeCustom];
+    NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+    NSLog(@"切换后的语言:%@",language);
+    [self.countyBtn addTarget:self action:@selector(tochooseCoun) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.countyBtn];
+    [self.countyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.niveView.mas_bottom).offset(50);
-        make.left.equalTo(ws.view.mas_left).offset(30);
-        make.width.equalTo(@(SCREEN_WIDTH /5));
+        make.left.equalTo(ws.view.mas_left).offset(25);
+        make.height.equalTo(@(25));
+        make.width.equalTo(@(37.7));
+        
     }];
+    
+    self.CNLabel = [[UILabel alloc]init];
+    
+    self.CNLabel.textColor = [UIColor lightGrayColor];
+    [self.view addSubview:self.CNLabel];
+    [self.CNLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.countyBtn.mas_right).offset(5);
+        make.centerY.equalTo(ws.countyBtn);
+    }];
+    [self.CNLabel setContentCompressionResistancePriority:UILayoutPriorityRequired
+                                                      forAxis:UILayoutConstraintAxisHorizontal];
+    if ([language isEqualToString:@"zh-Hans"]) {
+        [self.countyBtn setImage:[UIImage imageNamed:@"中国"] forState:UIControlStateNormal];
+        self.CNLabel.text = @"+86";
+        self.lastIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    }else{
+        [self.countyBtn setImage:[UIImage imageNamed:@"泰国"] forState:UIControlStateNormal];
+        self.CNLabel.text = @"+66";
+        self.lastIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    }
+    UIView *phoneBackView = [[UIView alloc]init];
+    phoneBackView.layer.cornerRadius=5;
+    phoneBackView.clipsToBounds = YES;
+    phoneBackView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:phoneBackView];
+    [phoneBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(ws.countyBtn);
+        make.right.equalTo(ws.view.mas_right).offset(-25);
+        make.left.equalTo(ws.CNLabel.mas_right).offset(0);
+        make.height.equalTo(@(45));
+    }];
+    
 //手机号
     self.phoneNumTextField = [[UITextField alloc]init];
+    
     self.phoneNumTextField.delegate = self;
     self.phoneNumTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.phoneNumTextField.placeholder = ZBLocalized(@"请输入手机号", nil);
@@ -91,21 +136,46 @@
     [self.phoneNumTextField addTarget:self action:@selector(phoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.phoneNumTextField];
     [self.phoneNumTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(CNLabel);
-        make.right.equalTo(ws.view.mas_right).offset(-30);
-        make.left.equalTo(CNLabel.mas_right).offset(0);
+        make.centerY.equalTo(phoneBackView);
+        make.right.equalTo(phoneBackView.mas_right).offset(-5);
+        make.left.equalTo(phoneBackView.mas_left).offset(5);
     }];
-    UIView *phoneLine = [[UIView alloc]init];
-    phoneLine.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:phoneLine];
-    [phoneLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(ws.view);
-        make.left.equalTo(CNLabel);
-        make.height.equalTo(@(0.5));
-    make.top.equalTo(ws.phoneNumTextField.mas_bottom).offset(10);
-    }];
+    
+    
+
+    
 //验证码
   
+   
+    
+    self.codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.codeButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+    [self.codeButton setTitle:ZBLocalized(@"获取验证码", nil) forState:UIControlStateNormal];
+    [self.codeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.codeButton.layer.cornerRadius=5;
+    
+    self.codeButton.clipsToBounds = YES;
+    [self.codeButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    self.codeButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    [self.view addSubview:self.codeButton];
+    [self.codeButton addTarget:self action:@selector(verifyEvent) forControlEvents:UIControlEventTouchUpInside];
+    [self.codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(ws.view.mas_right).offset(-30);
+        make.top.equalTo(phoneBackView.mas_bottom).offset(40);
+        make.height.equalTo(@(45));
+        make.width.equalTo(@(SCREEN_WIDTH /4));
+    }];
+    UIView *codeBackView = [[UIView alloc]init];
+    codeBackView.layer.cornerRadius=5;
+    codeBackView.clipsToBounds = YES;
+    codeBackView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:codeBackView];
+    [codeBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(phoneBackView.mas_bottom).offset(40);
+        make.right.equalTo(ws.codeButton.mas_left).offset(-5);
+        make.left.equalTo(phoneBackView.mas_left).offset(0);
+        make.height.equalTo(@(45));
+    }];
     self.codeTextField = [[UITextField alloc]init];
     self.codeTextField.delegate = self;
     self.codeTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -115,36 +185,11 @@
     [self.codeTextField addTarget:self action:@selector(codeTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.codeTextField];
     [self.codeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(phoneLine.mas_bottom).offset(50);
-        make.left.equalTo(CNLabel.mas_right);
-        make.right.equalTo(ws.view.mas_right).offset(-SCREEN_WIDTH / 4 - 30);
+        make.centerY.equalTo(codeBackView);
+        make.left.equalTo(codeBackView.mas_left).offset(5);
+        make.right.equalTo(codeBackView.mas_right).offset(-5);
     }];
     
-    self.codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.codeButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
-    [self.codeButton setTitle:ZBLocalized(@"获取验证码", nil) forState:UIControlStateNormal];
-    [self.codeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.codeButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    self.codeButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [self.view addSubview:self.codeButton];
-    [self.codeButton addTarget:self action:@selector(verifyEvent) forControlEvents:UIControlEventTouchUpInside];
-    [self.codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(ws.view.mas_right).offset(-30);
-        make.top.equalTo(phoneLine.mas_bottom).offset(50);
-        make.centerY.equalTo(ws.codeTextField);
-        make.width.equalTo(@(SCREEN_WIDTH /4));
-    }];
-    
-    
-    UIView *codeLine = [[UIView alloc]init];
-    codeLine.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:codeLine];
-    [codeLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(phoneLine);
-        make.left.equalTo(phoneLine);
-        make.height.equalTo(@(0.5));
-        make.top.equalTo(ws.codeTextField.mas_bottom).offset(10);
-    }];
     
     UIButton *loginByOthr = [UIButton buttonWithType:UIButtonTypeCustom];
     NSString *str = ZBLocalized(@"其他登录", nil);
@@ -157,8 +202,8 @@
     titleSize.width += 20;
     [self.view addSubview:loginByOthr];
     [loginByOthr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(codeLine.mas_left).offset(5);
-        make.top.equalTo(codeLine.mas_bottom).offset(30);
+        make.left.equalTo(ws.view.mas_left).offset(30);
+        make.top.equalTo(codeBackView.mas_bottom).offset(30);
         make.height.equalTo(@(30));
         make.width.equalTo(@(titleSize.width));
     }];
@@ -170,8 +215,8 @@
     [registerBtn addTarget:self action:@selector(registerUser) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registerBtn];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(codeLine.mas_right).offset(-5);
-        make.top.equalTo(codeLine.mas_bottom).offset(30);
+        make.right.equalTo(ws.view.mas_right).offset(-30);
+        make.top.equalTo(codeBackView.mas_bottom).offset(30);
         make.height.equalTo(@(30));
         make.width.equalTo(@(SCREEN_WIDTH / 5));
     }];
@@ -187,7 +232,7 @@
     [self.view addSubview:self.toLoginButton];
     [self.toLoginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     [self.toLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(codeLine.mas_right).offset(-5);
+        make.left.equalTo(ws.view.mas_left).offset(30);
         make.top.equalTo(registerBtn.mas_bottom).offset(50);
         make.centerX.equalTo(ws.view);
         make.height.equalTo(@(50));
@@ -312,6 +357,11 @@
         [MBManager showBriefAlert:ZBLocalized(@"请输入验证码", nil)];
         return;
     }
+    if ([self.CNLabel.text isEqualToString:@"+86"]) {
+        self.phoneNumStr = [NSString stringWithFormat:@"86:%@",self.phoneNumStr];
+    }else{
+        self.phoneNumStr = [NSString stringWithFormat:@"66:%@",self.phoneNumStr];
+    }
     NSString * uuidStr= [UUID getUUID];
     NSString * md5Code = [MD5encryption MD5ForLower32Bate:self.codeNumStr];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,setsmsMsg];
@@ -369,7 +419,114 @@
     RegisterVC *registerVC = [[RegisterVC alloc]init];
     [self.navigationController pushViewController:registerVC animated:YES];
 }
+-(void)createwindowBackView{
+    self.windowBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
+    self.windowBackView.backgroundColor = [UIColor colorWithHexString:@"363636" alpha:0.3];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.windowBackView];
+    
+}
+-(void)tochooseCoun{
+    [self createwindowBackView];
+    __weak typeof(self) ws = self;
+    self.changeLagView = [[UIView alloc]init];
+    self.changeLagView.layer.cornerRadius=10;
+    
+    self.changeLagView.clipsToBounds = YES;
+    self.changeLagView.backgroundColor = [UIColor whiteColor];
+    [self.windowBackView addSubview:self.changeLagView];
+    [self.changeLagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.view);
+        make.centerY.equalTo(ws.windowBackView);
+        make.left.equalTo(ws.view.mas_left).offset(30);
+        make.height.equalTo(@(140));
+    }];
+    UIButton *backBtn =[UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.layer.cornerRadius=15;
+    [backBtn setImage:[UIImage imageNamed:@"icon_guanbianniu"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(closeWindow) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
+    backBtn.clipsToBounds = YES;
+    [self.windowBackView addSubview:backBtn];
+    [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.changeLagView.mas_right).offset(-5);
+        make.centerY.equalTo(ws.changeLagView.mas_top).offset(5);
+        make.width.and.height.equalTo(@(30));
+    }];
+    
+    [self createTableView];
+   
+}
 
+-(void)createTableView{
+    __weak typeof(self) ws = self;
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.scrollEnabled = NO;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.windowBackView addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerX.equalTo(ws.changeLagView);
+        make.top.equalTo(ws.changeLagView).offset(20) ;
+        make.left.equalTo(ws.changeLagView).offset(5);
+        make.bottom.equalTo(ws.changeLagView).offset(-20);
+    }];
+}
+#pragma mark- UITabelViewDataSource/delegat
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+    
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CellForChooseCountry *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    if(cell == nil)
+    {
+        cell = [[CellForChooseCountry alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+    }
+    
+    cell.selectionStyle =UITableViewCellSelectionStyleNone;
+    if (indexPath == self.lastIndexPath) {
+        [cell.Icon setImage:[UIImage imageNamed:@"icon_xuankuang_down"]];
+    }else{
+        [cell.Icon setImage:[UIImage imageNamed:@"icon_xuankuang"]];
+    }
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0){
+            cell.name.text = @"+66";
+            [cell.img setImage:[UIImage imageNamed:@"泰国"]];
+        }else if (indexPath.row == 1){
+            cell.name.text = @"+86";
+             [cell.img setImage:[UIImage imageNamed:@"中国"]];
+        }
+    }
+    
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.lastIndexPath = indexPath;
+    if (indexPath.row == 0) {
+        self.CNLabel.text = @"+66";
+        [self.countyBtn setImage:[UIImage imageNamed:@"泰国"]forState:UIControlStateNormal];
+    }else{
+        self.CNLabel.text = @"+86";
+        [self.countyBtn setImage:[UIImage imageNamed:@"中国"]forState:UIControlStateNormal];
+    }
+    [self.tableView reloadData];
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+}
+-(void)closeWindow{
+    [self.windowBackView removeFromSuperview];
+}
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }

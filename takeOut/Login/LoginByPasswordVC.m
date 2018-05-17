@@ -81,7 +81,7 @@
         make.height.equalTo(@(45));
     }];
     
-    UIImageView *phoneImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"用户"]];
+    UIImageView *phoneImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_zhanghao"]];
     [phoneBackView addSubview:phoneImg];
     [phoneImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(phoneBackView);
@@ -131,7 +131,7 @@
         make.height.equalTo(@(45));
     }];
     
-    UIImageView *codeImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"闹钟"]];
+    UIImageView *codeImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_mima"]];
     [codeBackView addSubview:codeImg];
     [codeImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(codeBackView);

@@ -23,7 +23,6 @@
     self.iconImg = [[UIImageView alloc]init];
     self.iconImg.layer.cornerRadius=ws.contentView.frame.size.width / 5 * 2.5 /2 ;
     self.iconImg.clipsToBounds = YES;
-    self.iconImg.backgroundColor = [UIColor orangeColor];
     [self.contentView addSubview:self.iconImg];
     [self.iconImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.contentView.mas_top).offset(15);
