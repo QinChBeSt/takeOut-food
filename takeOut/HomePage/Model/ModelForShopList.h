@@ -20,4 +20,5 @@
 @property (nonatomic , strong)NSArray *act_list;
 @property (nonatomic , copy)NSString *opentime;
 @property (nonatomic ,copy)NSString *acTypeStr;
+@property (nonatomic , copy)NSString *notice;
 @end

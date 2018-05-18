@@ -262,6 +262,7 @@
             mod.up_pic = dic[@"up_pic"];
             mod.act_list = dic[@"act_list"];
             mod.opentime = dic[@"opentime"];
+            mod.notice  = dic[@"shop_notice"];
             mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
             NSInteger acType = dic[@"shop_ac_type"];
             

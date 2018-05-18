@@ -152,12 +152,12 @@
     }];
     
     UIImageView *addIcon =[[UIImageView alloc]init];
-    [addIcon setImage:[UIImage imageNamed:@"ic_point"]];
+    [addIcon setImage:[UIImage imageNamed:@"icon_shangjiaxiangqingdizhi"]];
     [self.headView addSubview:addIcon];
     [addIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(ws.addressLab);
         make.left.equalTo(ws.headView.mas_left).offset(15);
-        make.width.equalTo(@(10));
+        make.width.equalTo(@(15));
         make.height.equalTo(@(15));
     }];
     
@@ -208,7 +208,7 @@
     line.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"];
     [self.footView addSubview:line];
     UIImageView *saveTitIocn = [[UIImageView alloc]init];
-    [saveTitIocn setImage:[UIImage imageNamed:@"活动"]];
+    [saveTitIocn setImage:[UIImage imageNamed:@"icon_shangjiaxiangqingyouhui"]];
     [self.footView addSubview:saveTitIocn];
     [saveTitIocn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.footView.mas_left).offset(10);
@@ -299,10 +299,10 @@
        make.centerY.equalTo(cell.mas_centerY).offset(5);
     }];
     if (indexPath.row == 0) {
-        [icon setImage:[UIImage imageNamed:@"店铺"]];
+        [icon setImage:[UIImage imageNamed:@"icon_shangjiaxiangqingchakan"]];
         text.text =ZBLocalized(@"查看食品安全档案", nil) ;
     }else if (indexPath.row == 1){
-        [icon setImage:[UIImage imageNamed:@"闹钟"]];
+        [icon setImage:[UIImage imageNamed:@"icon_shangjiaxiangqingshijian"]];
         text.text = self.openTime;
     }
     
