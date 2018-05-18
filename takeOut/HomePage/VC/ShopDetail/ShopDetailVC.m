@@ -14,7 +14,7 @@
 #import "ShopDetailMassageVC.h"
 
 @interface ShopDetailVC ()
-@property (nonatomic , strong) UIView *niveView;
+@property (nonatomic , strong) UIImageView *niveView;
 @property (nonatomic, strong) ZWMSegmentController *segmentVC;
 @property (nonatomic , copy) NSString *shopId;
 @property (nonatomic , copy) NSString *shopUpPayMoney;
@@ -50,13 +50,14 @@
 
 #pragma mark - ui
 -(void)createNaviView{
-    self.niveView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaTopHeight + 100)];
+    self.niveView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaTopHeight + 100)];
+    self.niveView.image =[UIImage imageNamed:@"bg_shangjiaxiangqing2"];
     self.niveView.backgroundColor = [UIColor colorWithHexString:@"737300"];
     [self.view addSubview:self.niveView];
     
     __weak typeof(self) ws = self;
     UIImageView *backImg = [[UIImageView alloc]init];
-    [backImg setImage:[UIImage imageNamed:@"back_icon"]];
+    [backImg setImage:[UIImage imageNamed:@"back_black"]];
     [self.niveView addSubview:backImg];
     [backImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.niveView.mas_top).offset(SafeAreaStatsBarHeight + 5);
@@ -67,7 +68,7 @@
     
     UIButton *backBTN = [UIButton buttonWithType:UIButtonTypeCustom];
     [backBTN addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [self.niveView addSubview:backBTN];
+    [self.view addSubview:backBTN];
     [backBTN mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.niveView.mas_top).offset(SafeAreaStatsBarHeight);
         make.left.equalTo(ws.niveView.mas_left).offset(10);
@@ -77,7 +78,7 @@
     
     UILabel *titleLabel = [[UILabel alloc]init];
     titleLabel.text = ZBLocalized(@"商家详情", nil);
-    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textColor = [UIColor blackColor];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.view);
@@ -96,7 +97,7 @@
     
     self.shopName = [[UILabel alloc]init];
     self.shopName.text = shopNameStr;
-    self.shopName.textColor = [UIColor whiteColor];
+    self.shopName.textColor = [UIColor blackColor];
     [self.niveView addSubview:self.shopName];
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.shipIcon.mas_right).offset(20);
@@ -115,7 +116,7 @@
     
     self.shopSaveLabel = [[UILabel alloc]init];
     self.shopSaveLabel.font = [UIFont systemFontOfSize:12];
-    self.shopSaveLabel.textColor = [UIColor whiteColor];
+    self.shopSaveLabel.textColor = [UIColor blackColor];
     self.shopSaveLabel.text = shopSaveStr;
     [self.niveView addSubview:self.shopSaveLabel];
     [self.shopSaveLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -124,7 +125,7 @@
     }];
     
     UIImageView *rightIcon = [[UIImageView alloc]init];
-    [rightIcon setImage:[UIImage imageNamed:@"右箭头"]];
+    [rightIcon setImage:[UIImage imageNamed:@"右箭头黑"]];
     [self.niveView addSubview:rightIcon];
     [rightIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.niveView.mas_right).offset(-10);
@@ -136,7 +137,7 @@
     
     self.shopSaveNumLabel = [[UILabel alloc]init];
     self.shopSaveNumLabel.font = [UIFont systemFontOfSize:12];
-    self.shopSaveNumLabel.textColor = [UIColor whiteColor];
+    self.shopSaveNumLabel.textColor = [UIColor blackColor];
     self.shopSaveNumLabel.text = numForSaveCount;
     [self.niveView addSubview:self.shopSaveNumLabel];
     [self.shopSaveNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,7 +147,7 @@
     
     UIButton *toDetailVC = [UIButton buttonWithType:UIButtonTypeCustom];
     [toDetailVC addTarget:self action:@selector(toDetail) forControlEvents:UIControlEventTouchUpInside];
-    [self.niveView addSubview:toDetailVC];
+    [self.view addSubview:toDetailVC];
     [toDetailVC mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(ws.niveView.mas_bottom).offset(-10);
         make.left.equalTo(ws.shipIcon.mas_right).offset(20);

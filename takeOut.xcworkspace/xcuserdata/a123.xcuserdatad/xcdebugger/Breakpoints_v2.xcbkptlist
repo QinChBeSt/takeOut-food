@@ -9,54 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "548136409.014815"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1295"
-            endingLineNumber = "1295"
-            landmarkName = "-showHaveBuyList"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__29-[FoodListVC showHaveBuyList]_block_invoke.780"
-                  moduleName = "takeOut"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-                  timestampString = "548233659.478322"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1295"
-                  endingLineNumber = "1295"
-                  offsetFromSymbolStart = "976">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.781"
-                  moduleName = "takeOut"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-                  timestampString = "548233659.481379"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1290"
-                  endingLineNumber = "1290"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "takeOut/MinePage/VC/AddNewAddressVC.m"
             timestampString = "547961554.528725"
             startingColumnNumber = "9223372036854775807"
@@ -74,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "548136409.014907"
+            timestampString = "548319684.748522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1190"
-            endingLineNumber = "1190"
+            startingLineNumber = "1192"
+            endingLineNumber = "1192"
             landmarkName = "-addBuyCar"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "548136409.014962"
+            timestampString = "548319684.748962"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1196"
-            endingLineNumber = "1196"
+            startingLineNumber = "1198"
+            endingLineNumber = "1198"
             landmarkName = "-addBuyCar"
             landmarkType = "7">
          </BreakpointContent>

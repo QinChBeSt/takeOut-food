@@ -405,7 +405,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 -(void)createShopingCarView{
     __weak typeof(self) ws = self;
     self.buyCarView = [[UIView alloc]init];
-    self.buyCarView.backgroundColor = [UIColor grayColor];
+    self.buyCarView.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
     [self.view addSubview:self.buyCarView];
     [self.buyCarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(ws.view.mas_bottom);
@@ -415,14 +415,14 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     }];
     
     UIImageView *imgShoppingCar = [[UIImageView alloc]init];
-    [imgShoppingCar setImage:[UIImage imageNamed:@"购物车"]];
+    [imgShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiaxiangqinggouwudown"]];
     [self.buyCarView addSubview:imgShoppingCar];
     [imgShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(20));
         make.top.equalTo(@(5));
 
     make.centerY.equalTo(ws.buyCarView.mas_top).offset(shoppingCarViewHeight/2);
-        make.width.equalTo(@(50));
+        make.width.equalTo(@(40));
     }];
     
     self.ShoppingCarRedLabel = [[UILabel alloc]init];
@@ -435,8 +435,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     self.ShoppingCarRedLabel.backgroundColor = [UIColor redColor];
     [imgShoppingCar addSubview:self.ShoppingCarRedLabel];
     [self.ShoppingCarRedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(imgShoppingCar.mas_right).offset(5);
-        make.top.equalTo(imgShoppingCar.mas_top).offset(0);
+        make.right.equalTo(imgShoppingCar.mas_right).offset(10);
+        make.bottom.equalTo(imgShoppingCar.mas_bottom).offset(3);
         make.width.equalTo(@(20));
         make.height.equalTo(@(20));
     }];
@@ -454,9 +454,9 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     
     
     self.addBuyCarViewAddBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
+    self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
     self.addBuyCarViewAddBtn.layer.cornerRadius = 0;
-    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@",self.upPayMoney,ZBLocalized(@"元起送", nil)];
+    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
     [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -823,8 +823,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 }
                 CGFloat upPayF = [self.upPayMoney floatValue];
                 if (_addMoney < upPayF) {
-                    self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
-                    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@",self.upPayMoney,ZBLocalized(@"元起送", nil)];
+                    self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
+ NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
                     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
                 }
             
@@ -962,15 +962,17 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 }];
                 CGFloat upPayF = [self.upPayMoney floatValue];
                 if (_addMoney < upPayF) {
-                    self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
-                    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@",self.upPayMoney,ZBLocalized(@"元起送", nil)];
+                    self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
+ 
+                    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
                     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
                 }
                 
                 if (self.arrForAddShoppingCarList.count == 0) {
                      [self.haveBuyBackView  removeFromSuperview];
-                    self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
-                    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@",self.upPayMoney,ZBLocalized(@"元起送", nil)];
+                    self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
+
+                    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
                     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
                 }
             }
@@ -1263,16 +1265,24 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
      self.haveBuyBackView.backgroundColor = [UIColor clearColor];
     [self.view addSubview: self.haveBuyBackView];
 
-    UIView *haveBuyToolBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    UIView *haveBuyToolBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
     [self.view addSubview:haveBuyToolBar];
-    haveBuyToolBar.backgroundColor = [UIColor lightGrayColor];
+    haveBuyToolBar.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     
-    UILabel *toolBatTitle = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 150, 40)];
-    toolBatTitle.text =ZBLocalized(@"购物车", nil);
+    UILabel *toolBatTitle = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 150, 40)];
+        toolBatTitle.font = [UIFont systemFontOfSize:14];
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"Beeorder配送", nil)];
+        //获取要调整颜色的文字位置,调整颜色
+    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"Beeorder", nil)];
+    [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
+   
+    toolBatTitle.attributedText =hintString;
     [haveBuyToolBar addSubview:toolBatTitle];
     
     UIButton *CleanBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    [CleanBtn setTitle:ZBLocalized(@"清空", nil) forState:UIControlStateNormal];
+    [CleanBtn setTitle:ZBLocalized(@"清空购物车", nil) forState:UIControlStateNormal];
+        [CleanBtn setTitleColor:[UIColor colorWithHexString:@"4b4b4b"] forState:UIControlStateNormal];
+        CleanBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [CleanBtn addTarget:self action:@selector(cleanAllData) forControlEvents:UIControlEventTouchUpInside];
     [haveBuyToolBar addSubview:CleanBtn];
     [CleanBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -1281,7 +1291,14 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         make.height.equalTo(haveBuyToolBar);
         make.width.equalTo(@(100));
     }];
-    
+        UIImageView *cleanImg = [[UIImageView alloc]init];
+        [cleanImg setImage:[UIImage imageNamed:@"icon_shangjiaxiangqingli"]];
+        [haveBuyToolBar addSubview:cleanImg];
+        [cleanImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(CleanBtn);
+            make.right.equalTo(CleanBtn.mas_left).offset(5);
+            make.width.and.height.equalTo(@(15));
+        }];
     self.haveBuyListTableview = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.haveBuyListTableview.delegate = self;
     self.haveBuyListTableview.dataSource = self;
@@ -1300,10 +1317,11 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 }
 -(void)cleanAllData{
    
-    self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
-    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@",self.upPayMoney,ZBLocalized(@"元起送", nil)];
+    self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
+ 
+    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
-    
+
     for (int i = 0; i < self.arrForType.count; i++) {
         NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%d",i];
         [defaults setObject:nil forKey:value];
@@ -1350,7 +1368,9 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 }
 -(void)addShoppongCarNetWord{
     if (self.arrForAddShoppingCarList.count == 0) {
-    self.addBuyCarViewAddBtn.backgroundColor = [UIColor grayColor];
+        self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
+ 
+      //  NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
     //[self.addBuyCarViewAddBtn setTitle:ZBLocalized(@"元起送", nil) forState:UIControlStateNormal];
     }else{
     [self getNetWorkForAddShoppingCar];

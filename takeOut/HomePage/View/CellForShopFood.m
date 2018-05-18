@@ -18,37 +18,44 @@
     return self;
 }
 -(void)setupUI{
-    self.bigImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 50, 50)];
+      __weak typeof(self) ws = self;
+    self.bigImage = [[UIImageView alloc]init];
     
     [self.contentView addSubview:self.bigImage];
-    __weak typeof(self) ws = self;
+    [self.bigImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.contentView.mas_left).offset(15);
+        make.top.equalTo(ws.contentView.mas_top).offset(10);
+        make.bottom.equalTo(ws.contentView.mas_bottom).offset(-10);
+        make.width.equalTo(ws.bigImage.mas_height);
+    }];
+  
     self.shopName = [[UILabel alloc]init];
     [self.contentView addSubview:self.shopName];
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(10);
         make.top.equalTo(ws.bigImage);
+        make.bottom.equalTo(ws.bigImage.mas_centerY);
     }];
     self.priceLabel = [[UILabel alloc]init];
+    self.priceLabel.numberOfLines = 2;
     self.priceLabel.textColor = [UIColor redColor];
     [self.contentView addSubview:self.priceLabel];
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(10);
         make.bottom.equalTo(ws.contentView.mas_bottom).offset(-10);
+         make.top.equalTo(ws.bigImage.mas_centerY);
     }];
 
     
     self.addToShoppingCar = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.addToShoppingCar setImage:[UIImage imageNamed:@"加"] forState:UIControlStateNormal];
-    self.addToShoppingCar.backgroundColor = [UIColor colorWithHexString:BaseYellow];
-    self.addToShoppingCar.layer.cornerRadius=10;
-    self.addToShoppingCar.clipsToBounds = YES;
+    [self.addToShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiajiahao"] forState:UIControlStateNormal];
     [self.addToShoppingCar addTarget:self action:@selector(addToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.addToShoppingCar];
     [self.addToShoppingCar setHidden:NO];
     [self.addToShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView.mas_right).offset(-15);
         make.centerY.equalTo(ws.priceLabel);
-        make.width.equalTo(@(20));
+        make.width.equalTo(@(28));
         make.height.equalTo(@(20));
     }];
     
@@ -78,16 +85,17 @@
         self.delectToShoppingCar.backgroundColor = [UIColor colorWithHexString:BaseYellow];
         self.delectToShoppingCar.layer.cornerRadius=10;
         self.delectToShoppingCar.clipsToBounds = YES;
-        [self.delectToShoppingCar setImage:[UIImage imageNamed:@"减"] forState:UIControlStateNormal];
+        [self.delectToShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiajianhao"] forState:UIControlStateNormal];
         [self.delectToShoppingCar addTarget:self action:@selector(delectToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.delectToShoppingCar];
         [self.delectToShoppingCar setHidden:NO];
         [self.delectToShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(ws.chooseCountLabel.mas_left).offset(-5);
             make.centerY.equalTo(ws.priceLabel);
-            make.width.equalTo(@(20));
+            make.width.equalTo(@(28));
             make.height.equalTo(@(20));
         }];
+    
     }
     if (self.blockAddShopingCar) {
         self.blockAddShopingCar(self.chooseMod);

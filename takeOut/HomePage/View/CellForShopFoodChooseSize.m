@@ -18,38 +18,46 @@
     return self;
 }
 -(void)setupUI{
-    self.bigImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 50, 50)];
-    
+    self.bigImage = [[UIImageView alloc]init];
+     __weak typeof(self) ws = self;
     [self.contentView addSubview:self.bigImage];
-    __weak typeof(self) ws = self;
+    [self.bigImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.contentView.mas_left).offset(15);
+        make.top.equalTo(ws.contentView.mas_top).offset(10);
+        make.bottom.equalTo(ws.contentView.mas_bottom).offset(-10);
+        make.width.equalTo(ws.bigImage.mas_height);
+    }];
+   
     self.shopName = [[UILabel alloc]init];
     [self.contentView addSubview:self.shopName];
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(10);
         make.top.equalTo(ws.bigImage);
+        make.bottom.equalTo(ws.bigImage.mas_centerY);
     }];
     self.priceLabel = [[UILabel alloc]init];
+    self.priceLabel.numberOfLines = 2;
     self.priceLabel.textColor = [UIColor redColor];
     [self.contentView addSubview:self.priceLabel];
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(10);
         make.bottom.equalTo(ws.contentView.mas_bottom).offset(-10);
+        make.top.equalTo(ws.bigImage.mas_centerY);
     }];
-    
     self.chooseSizeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.chooseSizeBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.chooseSizeBtn addTarget:self action:@selector(chooseSize:) forControlEvents:UIControlEventTouchUpInside];
     
     self.chooseSizeBtn.layer.cornerRadius = 5;
-    [self.chooseSizeBtn setTitle:ZBLocalized(@"选规格", nil) forState:UIControlStateNormal];
+    [self.chooseSizeBtn setImage:[UIImage imageNamed:@"icon_shangguige"] forState:UIControlStateNormal];
     self.chooseSizeBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.chooseSizeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.contentView addSubview:self.chooseSizeBtn];
     [self.chooseSizeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView.mas_right).offset(-10);
         make.centerY.equalTo(ws.priceLabel);
-        make.width.equalTo(@(60));
-        make.height.equalTo(@(25));
+        make.width.equalTo(@(44));
+        make.height.equalTo(@(30));
     }];
     
 }

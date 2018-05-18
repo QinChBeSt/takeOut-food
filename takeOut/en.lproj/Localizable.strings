@@ -148,7 +148,6 @@
 "登录/注册" = "Login/registration";
 
 
-
 "未知城市" = "Unknown city";
 "切换语言" = "Change language";
 "商家已取消" = "The merchant has cancelled";
@@ -163,3 +162,8 @@
 "BeeOrder配送" = "BeeOrder distribution";
 "登录代表您已同意《BeeOrder用户协议》" = "login, you have agreed to the 《BeeOrder user agreement》";
 "《BeeOrder用户协议》" ="《BeeOrder user agreement》";
+"经纬度错误" = "Latitude and longitude error";
+
+
+
+"清空购物车"= "Empty shopping cart";
