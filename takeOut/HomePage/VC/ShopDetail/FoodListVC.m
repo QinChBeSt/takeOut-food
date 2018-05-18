@@ -65,6 +65,7 @@
 @property (nonatomic , strong)UIView *haveBuyBackView;
 @property (nonatomic , strong)NSMutableArray *arrForHaveBuyList;
 @property (nonatomic , strong)NSIndexPath *rightChooseIndex;
+@property (nonatomic , strong)UIButton *chooseSizeBackBtn;
 @end
 
 @implementation FoodListVC{
@@ -310,41 +311,58 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     [self.view addSubview:self.chooseSizeBackgroundView];
     __weak typeof(self) ws = self;
     self.chooseSizeView = [[UIView alloc]init];
+    self.chooseSizeView.layer.cornerRadius=10;
+    
+    self.chooseSizeView.clipsToBounds = YES;
     self.chooseSizeView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.chooseSizeView];
     [self.chooseSizeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.view.mas_top).offset(30);
         make.left.equalTo(ws.view.mas_left).offset(30);
         make.centerX.equalTo(ws.view.mas_centerX);
-        make.height.equalTo(@(170));
+        make.height.equalTo(@(180));
     }];
+    
+    self.chooseSizeBackBtn =[UIButton buttonWithType:UIButtonTypeCustom];
+    self.chooseSizeBackBtn.layer.cornerRadius=15;
+    [self.chooseSizeBackBtn setImage:[UIImage imageNamed:@"icon_guanbianniu"] forState:UIControlStateNormal];
+    [self.chooseSizeBackBtn addTarget:self action:@selector(removewChooseView) forControlEvents:UIControlEventTouchUpInside];
+    self.chooseSizeBackBtn.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
+    self.chooseSizeBackBtn.clipsToBounds = YES;
+    [self.view addSubview:self.chooseSizeBackBtn];
+    [self.chooseSizeBackBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.chooseSizeView.mas_right).offset(-5);
+        make.centerY.equalTo(ws.chooseSizeView.mas_top).offset(5);
+        make.width.and.height.equalTo(@(30));
+    }];
+    
     [self.chooseSizeBackgroundView setHidden:YES];
     [self.chooseSizeView setHidden:YES];
-   
+    [self.chooseSizeBackBtn setHidden:YES];
+    
     self.chooesTitle = [[UILabel alloc]init];
     [self.chooseSizeView addSubview:self.chooesTitle];
     [self.chooesTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.chooseSizeView.mas_top).offset(10);
         make.centerX.equalTo(ws.chooseSizeView);
     }];
-    
-    UIButton *exti = [UIButton buttonWithType:UIButtonTypeCustom];
-    [exti setTitle:@"X" forState:UIControlStateNormal];
-    [exti setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [exti addTarget:self action:@selector(removewChooseView) forControlEvents:UIControlEventTouchUpInside];
-    [self.chooseSizeView addSubview:exti];
-    [exti mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(ws.chooseSizeView.mas_right).offset(-10);
-        make.top.equalTo(ws.chooseSizeView.mas_top).offset(10);
-        make.width.equalTo(@(30));
-        make.height.equalTo(@(30));
+    UIView *line = [[UIView alloc]init];
+    [self.chooseSizeView addSubview:line];
+    line.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.chooseSizeView);
+        make.top.equalTo(ws.chooesTitle.mas_bottom).offset(10);
+        make.left.equalTo(ws.chooseSizeView).offset(15);
+        make.height.equalTo(@(1));
     }];
     
-    CGFloat itemWidth = (SCREEN_WIDTH - 120 )/ 3;
-    CGFloat itemHeight = 30;
+    
+    
+    CGFloat itemWidth = (SCREEN_WIDTH - 150 )/ 2;
+    CGFloat itemHeight = 40;
     UICollectionViewFlowLayout *shareflowLayout = [[UICollectionViewFlowLayout alloc] init];
     shareflowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    shareflowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+    shareflowLayout.sectionInset =UIEdgeInsetsMake(5, 30, 5, 30);
     shareflowLayout.itemSize =CGSizeMake(itemWidth, itemHeight);
     // 1.设置列间距
     shareflowLayout.minimumInteritemSpacing = 15;
@@ -357,17 +375,17 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     self.collectionView.delaysContentTouches = NO;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.scrollEnabled = NO;
+    
     self.collectionView.showsHorizontalScrollIndicator = NO;
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(ws.chooseSizeView.mas_top).offset(50);
+        make.top.equalTo(line.mas_top).offset(3);
         make.width.equalTo(ws.chooseSizeView);
         make.centerX.equalTo(ws.chooseSizeView);
         make.bottom.equalTo(ws.chooseSizeView.mas_bottom).offset(-40);
     }];
     
     UIView *priceBakcground = [[UIView alloc]init];
-    [priceBakcground setBackgroundColor:[UIColor lightGrayColor]];
+    [priceBakcground setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     [self.chooseSizeView addSubview:priceBakcground];
     [priceBakcground mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(ws.chooseSizeView.mas_width);
@@ -378,6 +396,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     
     self.choosePrice = [[UILabel alloc]init];
     self.choosePrice.text = @"0 元";
+    self.choosePrice.textColor = [UIColor redColor];
     self.choosePrice.font = [UIFont systemFontOfSize:22];
     [self.chooseSizeView addSubview:self.choosePrice];
     [self.choosePrice mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -399,7 +418,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         make.bottom.equalTo(ws.chooseSizeView.mas_bottom).offset(-5);
         make.width.equalTo(@(100));
     }];
-    
+   
   
 }
 -(void)createShopingCarView{
@@ -486,6 +505,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.rightTable) {
         return 100;
+    }else if (tableView == self.leftTable){
+        return 80;
     }
     return 50;
 }
@@ -576,6 +597,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 self.arrForChooseSize = mod1.goodspic;
                 [self.collectionView reloadData];
                 self.chooseSizeBackgroundView.hidden = NO;
+                self.chooseSizeBackBtn.hidden = NO;
                 self.chooseSizeView.hidden = NO;
                 self.leftTableViewSelectRow = indexPath.section + 1;
                 if (self.leftTableViewSelectRow == nil) {
@@ -1119,6 +1141,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 -(void)removewChooseView{
     [self.chooseSizeBackgroundView setHidden:YES];
     [self.chooseSizeView setHidden:YES];
+    [self.chooseSizeBackBtn setHidden:YES];
 }
 -(void)addBuyCar{
     NSLog(@"%@,%f",self.selectbuyCarMoncy,self.addMoney);
