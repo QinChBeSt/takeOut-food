@@ -25,6 +25,7 @@
     [self.contentView addSubview:backGroundView];
     
     self.name = [[UILabel alloc]init];
+    self.name.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     self.name.font = [UIFont systemFontOfSize:14];
     [backGroundView addSubview:self.name];
     [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -34,6 +35,7 @@
     }];
     
     self.phone = [[UILabel alloc]init];
+    self.phone.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     self.phone.font = [UIFont systemFontOfSize:14];
     [backGroundView addSubview:self.phone];
     [self.phone mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -42,6 +44,7 @@
     }];
     
     self.addressLabel = [[UILabel alloc]init];
+    self.addressLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     self.addressLabel.numberOfLines = 2;
     self.addressLabel.font = [UIFont systemFontOfSize:14];
     [backGroundView addSubview:self.addressLabel];
@@ -70,6 +73,7 @@
     }];
     
     UILabel *chooseAdd = [[UILabel alloc]init];
+    chooseAdd.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     chooseAdd.font = [UIFont systemFontOfSize:14];
     chooseAdd.text = ZBLocalized(@"选择地址", nil);
     [self.contentView addSubview:chooseAdd];
@@ -79,6 +83,7 @@
     }];
     
     UILabel *edit = [[UILabel alloc]init];
+    edit.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     edit.text = ZBLocalized(@"编辑", nil);
     edit.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:edit];

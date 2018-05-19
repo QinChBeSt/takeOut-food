@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor =[UIColor colorWithHexString:@"E8E8E8"];
+    self.view.backgroundColor =[UIColor colorWithHexString:@"f5f5f5"];
     [self createNaviView];
     
     [self setUpUI];
@@ -101,6 +101,7 @@
    //收货人
     UILabel *userNameLabel = [[UILabel alloc]init];
     userNameLabel.text = ZBLocalized(@"收货人", nil);
+    userNameLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     userNameLabel.font = [UIFont systemFontOfSize:16];
     [topBackgroundView addSubview:userNameLabel];
     [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -116,6 +117,7 @@
      self.userNameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.userNameTextField addTarget:self action:@selector(UserTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [topBackgroundView addSubview:self.userNameTextField];
+    self.userNameTextField.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [self.userNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(SCREEN_WIDTH / 3));
         make.centerY.equalTo(userNameLabel);
@@ -123,11 +125,11 @@
         make.height.equalTo(@(45));
     }];
     UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(30, 50, SCREEN_WIDTH - 60, 0.5)];
-    line1.backgroundColor = [UIColor lightGrayColor];
+    line1.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [topBackgroundView addSubview:line1];
 //性别
     self.manIcon = [[UIImageView alloc]init];
-    [self.manIcon setBackgroundColor:[UIColor blueColor]];
+    self.manIcon.image = [UIImage imageNamed:@"icon_nanxingdown"];
     [topBackgroundView addSubview:self.manIcon];
     [self.manIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(topBackgroundView.mas_top).offset(75);
@@ -156,7 +158,7 @@
     
     
     self.womenIcon = [[UIImageView alloc]init];
-    [self.womenIcon setBackgroundColor:[UIColor blackColor]];
+    [self.womenIcon setImage:[UIImage imageNamed:@"icon_nvxing"]];
     [topBackgroundView addSubview:self.womenIcon];
     [self.womenIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(topBackgroundView.mas_top).offset(75);
@@ -187,8 +189,9 @@
     if (_userSex != nil) {
         NSString *sex = [NSString stringWithFormat:@"%@",_userSex];
         if (![sex isEqualToString:@"1"]) {
-            self.manIcon.backgroundColor = [UIColor blackColor];
-            self.womenIcon.backgroundColor = [UIColor redColor];
+            self.manIcon.image = [UIImage imageNamed:@"icon_nanxing"];
+
+            [self.womenIcon setImage:[UIImage imageNamed:@"icon_nvxingdown"]];
             _userSex = @"2";
         }
     }
@@ -202,6 +205,7 @@
     //收货人
     UILabel *userPhoneLabel = [[UILabel alloc]init];
     userPhoneLabel.text = ZBLocalized(@"电话", nil);
+    userNameLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     userPhoneLabel.font = [UIFont systemFontOfSize:16];
     [topBackgroundView addSubview:userPhoneLabel];
     [userPhoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -210,6 +214,7 @@
         make.width.equalTo(@(SCREEN_WIDTH / 3 - 25));
     }];
     self.userPhoneNum = [[UITextField alloc]init];
+    self.userPhoneNum.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     self.userPhoneNum.delegate = self;
     self.userPhoneNum.keyboardType = UIKeyboardTypeNumberPad;
     self.userPhoneNum.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -237,6 +242,7 @@
     }];
     
     UILabel *addressLabel = [[UILabel alloc]init];
+    addressLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     addressLabel.text = ZBLocalized(@"收货地址", nil);
     addressLabel.font = [UIFont systemFontOfSize:16];
     [bottomBackgroundView addSubview:addressLabel];
@@ -247,6 +253,7 @@
     }];
     
     UIImageView *locationIcon = [[UIImageView alloc]init];
+    
     [locationIcon setImage:[UIImage imageNamed:@"ic_point"]];
     [bottomBackgroundView addSubview:locationIcon];
     [locationIcon mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -257,6 +264,7 @@
     }];
     
     tapToLoactionLabel = [[UILabel alloc]init];
+    tapToLoactionLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     tapToLoactionLabel.font = [UIFont systemFontOfSize:16];
     tapToLoactionLabel.numberOfLines = 2;
     tapToLoactionLabel.text = ZBLocalized(@"点击选择", nil);
@@ -271,11 +279,12 @@
 
     if (_locationStr != nil) {
         tapToLoactionLabel.text = _locationStr;
-        tapToLoactionLabel.textColor = [UIColor blackColor];
+        tapToLoactionLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
         tapToLoactionLabel.textAlignment = NSTextAlignmentCenter;
     }
     
     UILabel *houseNoLabel = [[UILabel alloc]init];
+    houseNoLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     houseNoLabel.text = ZBLocalized(@"楼号/门牌号", nil);
     houseNoLabel.font = [UIFont systemFontOfSize:16];
     [bottomBackgroundView addSubview:houseNoLabel];
@@ -286,6 +295,7 @@
     }];
     self.houseAdd = [[UITextField alloc]init];
     self.houseAdd.delegate = self;
+    self.houseAdd.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     self.houseAdd.placeholder = ZBLocalized(@"例3号楼3001", nil);
     self.houseAdd.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.houseAdd addTarget:self action:@selector(houseTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -425,14 +435,16 @@
 }
 
 -(void)chooseMan{
-    self.manIcon.backgroundColor = [UIColor blueColor];
-    self.womenIcon.backgroundColor = [UIColor blackColor];
+    self.manIcon.image = [UIImage imageNamed:@"icon_nanxingdown"];
+    
+    [self.womenIcon setImage:[UIImage imageNamed:@"icon_nvxing"]];
     _userSex = @"1";
     
 }
 -(void)chooseWoman{
-    self.manIcon.backgroundColor = [UIColor blackColor];
-    self.womenIcon.backgroundColor = [UIColor redColor];
+    self.manIcon.image = [UIImage imageNamed:@"icon_nanxing"];
+    
+    [self.womenIcon setImage:[UIImage imageNamed:@"icon_nvxingdown"]];
     _userSex = @"2";
 }
 
