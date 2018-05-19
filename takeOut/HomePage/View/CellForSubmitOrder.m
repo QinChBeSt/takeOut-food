@@ -28,27 +28,28 @@
     }];
     
     self.foodsName = [[UILabel alloc]init];
-    self.foodsName.textColor = [UIColor grayColor];
+    self.foodsName.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [self.contentView addSubview:self.foodsName];
     [self.foodsName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.shopIcon.mas_right).offset(25);
-        make.centerY.equalTo(ws.contentView.mas_top).offset(22.5);
+        make.centerY.equalTo(ws.contentView.mas_centerY);
     }];
     
     self.foodsMoney = [[UILabel alloc]init];
-    self.foodsMoney.textColor = [UIColor grayColor];
+    self.foodsMoney.textColor = [UIColor redColor];
     [self.contentView addSubview:self.foodsMoney];
     [self.foodsMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView.mas_right).offset(-20);
-        make.centerY.equalTo(ws.contentView.mas_top).offset(22.5);
+        make.centerY.equalTo(ws.foodsName);
     }];
     
     self.foodsCount = [[UILabel alloc]init];
-    self.foodsCount.textColor = [UIColor grayColor];
+    self.foodsCount.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [self.contentView addSubview:self.foodsCount];
     [self.foodsCount mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView.mas_right).offset(-20);
-        make.centerY.equalTo(ws.contentView.mas_top).offset(67.5);
+        make.top.equalTo(ws.foodsMoney.mas_bottom);
+        make.bottom.equalTo(ws.contentView);
     }];
 }
 

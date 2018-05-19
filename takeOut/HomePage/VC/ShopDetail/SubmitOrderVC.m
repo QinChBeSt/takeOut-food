@@ -12,7 +12,7 @@
 #import "PayOrderChooseAddressVC.h"
 #import "OrderSuccessfullVC.h"
 #define topHieght 100
-#define midHeight 60
+#define midHeight 80
 #define bottomHeight 170
 @interface SubmitOrderVC ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 @property (nonatomic , strong)UIView *naviView;
@@ -176,20 +176,19 @@
 #pragma mark - UI
 -(void)setUpUI{
 //头视图
-    UIView *addBanckgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, 90)];
-    addBanckgroundView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    UIView *addBanckgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, 70)];
+    addBanckgroundView.backgroundColor = [UIColor colorWithHexString:@"F5F5F5"];
     [self.view addSubview:addBanckgroundView];
     
-    UIView *addView = [[UIView alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 50)];
+    UIView *addView = [[UIView alloc]initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 50)];
     addView.backgroundColor = [UIColor whiteColor];
     [addBanckgroundView addSubview:addView];
-    
     UIImageView *addIcon = [[UIImageView alloc]init];
-    [addIcon setImage:[UIImage imageNamed:@"加号"]];
+    [addIcon setImage:[UIImage imageNamed:@"右箭头黑"]];
     [addView addSubview:addIcon];
     [addIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(addBanckgroundView);
-        make.left.equalTo(@(20));
+        make.right.equalTo(addView.mas_right).offset(-15);
         make.width.and.height.equalTo(@(20));
     }];
     self.loactinonStrLabel = [[UILabel alloc]init];
@@ -198,8 +197,8 @@
     [addView addSubview:self.loactinonStrLabel];
     [self.loactinonStrLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(addIcon);
-        make.left.equalTo(addIcon.mas_right).offset(20);
-        make.right.equalTo(addBanckgroundView.mas_right).offset(-15);
+        make.left.equalTo(addView.mas_left).offset(20);
+        make.right.equalTo(addIcon.mas_left).offset(-15);
     }];
     UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toChooseAddress)];
     
@@ -209,18 +208,16 @@
     bottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomView];
     
-    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(15, 0.5, SCREEN_WIDTH - 30, 0.5)];
-    line1.backgroundColor = [UIColor lightGrayColor];
-    [bottomView addSubview:line1];
-    
+   
     
     UILabel *psMoney = [[UILabel alloc]init];
     psMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),self.FpsPic];
-    psMoney.textColor = [UIColor grayColor];
+    psMoney.textColor = [UIColor redColor];
     [bottomView addSubview:psMoney];
     [psMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(bottomView.mas_right).offset(-20);
         make.centerY.equalTo(bottomView.mas_top).offset(midHeight / 4);
+        make.height.equalTo(@(40));
     }];
     
     UILabel *psMoneyTitle = [[UILabel alloc]init];
@@ -231,6 +228,11 @@
         make.left.equalTo(bottomView.mas_left).offset(20);
         make.centerY.equalTo(bottomView.mas_top).offset(midHeight / 4);
     }];
+    
+    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(15, 40, SCREEN_WIDTH - 30, 0.5)];
+    line1.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
+    [bottomView addSubview:line1];
+    
     
     UILabel *ADDMoneyTitle = [[UILabel alloc]init];
     ADDMoneyTitle.text = ZBLocalized(@"原价", nil);
@@ -244,42 +246,45 @@
     
     UILabel *ADDMoney = [[UILabel alloc]init];
     ADDMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),self.FallPIC];
-    ADDMoney.textColor = [UIColor grayColor];
+    ADDMoney.textColor = [UIColor redColor];
     [bottomView addSubview:ADDMoney];
     [ADDMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(bottomView.mas_right).offset(-20);
         make.centerY.equalTo(bottomView.mas_top).offset(midHeight / 4 * 3);
     }];
     
-    UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(15,midHeight, SCREEN_WIDTH - 30, 0.5)];
-    line2.backgroundColor = [UIColor lightGrayColor];
+    UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(0,midHeight, SCREEN_WIDTH , 10)];
+    line2.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [bottomView addSubview:line2];
     
     self.FpayMoney = self.FallPIC - self.FsavePic + self.FpsPic;
     if (self.FpayMoney < 0) {
         self.FpayMoney = 0.01;
     }
-    UILabel *payMoney = [[UILabel alloc]init];
-    payMoney.text = [NSString stringWithFormat:@"%@  %@%.2f",ZBLocalized(@"小计", nil),ZBLocalized(@"￥", nil),self.FpayMoney];
-    payMoney.textColor = [UIColor grayColor];
-    [bottomView addSubview:payMoney];
-    [payMoney mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(bottomView.mas_right).offset(-20);
-        make.top.equalTo(bottomView.mas_top).offset(midHeight + 20);
-    }];
+//    UILabel *payMoney = [[UILabel alloc]init];
+//    payMoney.text = [NSString stringWithFormat:@"%@  %@%.2f",ZBLocalized(@"小计", nil),ZBLocalized(@"￥", nil),self.FpayMoney];
+//    payMoney.textColor = [UIColor grayColor];
+//    [bottomView addSubview:payMoney];
+//    [payMoney mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(bottomView.mas_right).offset(-20);
+//        make.top.equalTo(bottomView.mas_top).offset(midHeight + 20);
+//    }];
     
     UILabel *tipeTitle = [[UILabel alloc]init];
     tipeTitle.text = ZBLocalized(@"备注", nil);
     tipeTitle.textColor = [UIColor grayColor];
     [bottomView addSubview:tipeTitle];
     [tipeTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(bottomView.mas_left).offset(30);
-        make.top.equalTo(payMoney.mas_bottom).offset(20);
+        make.left.equalTo(bottomView.mas_left).offset(20);
+        make.top.equalTo(line2.mas_bottom).offset(10);
     }];
    self.textView = [[UITextView alloc]init];
     self.textView.font = [UIFont systemFontOfSize:16];
     self.textView.delegate = self;
-    self.textView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    self.textView.layer.cornerRadius=10;
+    
+    self.textView.clipsToBounds = YES;
+    self.textView.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [bottomView addSubview:self.textView];
     [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(bottomView);
@@ -292,61 +297,69 @@
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight , SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -SafeAreaTabbarHeight - 40) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"F5F5F5"];
     self.tableView.tableHeaderView = addBanckgroundView;
     self.tableView.tableFooterView = bottomView;
     [self.tableView registerClass:[CellForSubmitOrder class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.view addSubview:self.tableView];
     
-    UIView *totalMoneyBackgrounView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREENH_HEIGHT  -SafeAreaTabbarHeight - 40,  SCREEN_WIDTH, 40 + SafeAreaTabbarHeight)];
+    UIView *totalMoneyBackgrounView = [[UIView alloc]initWithFrame:CGRectMake(0,SCREENH_HEIGHT  -SafeAreaTabbarHeight - 50,  SCREEN_WIDTH, 50 + SafeAreaTabbarHeight)];
     totalMoneyBackgrounView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:totalMoneyBackgrounView];
     
-    UIView *totalMoneyView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, 40 )];
+    UIView *totalMoneyView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, 50 )];
     totalMoneyView.backgroundColor = [UIColor whiteColor];
     [totalMoneyBackgrounView addSubview:totalMoneyView];
     
     UILabel *toPayTitle = [[UILabel alloc]init];
     toPayTitle.text = ZBLocalized(@"合计:", nil);
-    toPayTitle.textColor = [UIColor grayColor];
+    toPayTitle.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [totalMoneyView addSubview:toPayTitle];
     [toPayTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(totalMoneyView.mas_left).offset(30);
-        make.centerY.equalTo(totalMoneyView.mas_centerY);
-    }];
-    
-    UILabel *toPayMoney = [[UILabel alloc]init];
-    toPayMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥:", nil),self.FpayMoney];
-    toPayMoney.textColor = [UIColor redColor];
-    toPayMoney.font = [UIFont systemFontOfSize:22];
-    [totalMoneyView addSubview:toPayMoney];
-    [toPayMoney mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(toPayTitle.mas_right).offset(5);
+        make.left.equalTo(totalMoneyView.mas_left).offset(20);
         make.centerY.equalTo(totalMoneyView.mas_centerY);
     }];
     
    
+  
+   
     UIButton *toPay = [UIButton buttonWithType:UIButtonTypeCustom];
-    toPay.frame = CGRectMake(SCREEN_WIDTH /3 *2, 0, SCREEN_WIDTH /3, 40);
+    toPay.frame = CGRectMake(SCREEN_WIDTH* 0.717, 0, SCREEN_WIDTH* 0.283, 50);
     toPay.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [toPay setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [toPay addTarget:self action:@selector(toPay) forControlEvents:UIControlEventTouchUpInside];
     [toPay setTitle:ZBLocalized(@"提交订单", nil) forState:UIControlStateNormal];
     toPay.titleLabel.font = [UIFont systemFontOfSize:14];
     [totalMoneyBackgrounView addSubview:toPay];
-    
+   
     UILabel *toPaySaveMoney = [[UILabel alloc]init];
     toPaySaveMoney.text = [NSString stringWithFormat:@"%@%@)",ZBLocalized(@"(已减￥", nil),self.yhpic];
-    
     toPaySaveMoney.font = [UIFont systemFontOfSize:14];
     toPaySaveMoney.adjustsFontSizeToFitWidth = YES;
     toPaySaveMoney.textColor = [UIColor grayColor];
     [totalMoneyView addSubview:toPaySaveMoney];
     [toPaySaveMoney mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(toPayMoney.mas_right).offset(5);
         make.centerY.equalTo(totalMoneyView.mas_centerY);
         make.right.equalTo(toPay.mas_left).offset(-3);
     }];
+    [toPaySaveMoney setContentCompressionResistancePriority:UILayoutPriorityRequired
+                                                      forAxis:UILayoutConstraintAxisHorizontal];
+    
+    
+    
+    UILabel *toPayMoney = [[UILabel alloc]init];
+    toPayMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),self.FpayMoney];
+    toPayMoney.textColor = [UIColor redColor];
+    toPayMoney.font = [UIFont systemFontOfSize:22];
+    toPayMoney.adjustsFontSizeToFitWidth = YES;
+    [totalMoneyView addSubview:toPayMoney];
+    [toPayMoney mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(toPayTitle.mas_right).offset(2);
+        make.centerY.equalTo(totalMoneyView.mas_centerY);
+        make.right.equalTo(toPaySaveMoney.mas_left).offset(-2);
+        
+    }];
+    
     
   
 }

@@ -65,6 +65,7 @@
 		9D4952752068D491005A6BBC /* ShopMassageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952742068D491005A6BBC /* ShopMassageVC.m */; };
 		9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4952772068EDD8005A6BBC /* ModelForFoodList.m */; };
 		9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D49527A2068F1EA005A6BBC /* CellForShopFood.m */; };
+		9D4CBDB320B013EF009E626C /* CellForChooseOrderAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4CBDB220B013EF009E626C /* CellForChooseOrderAdd.m */; };
 		9D4FBC80207F37A700B7B5E6 /* CellForFoodListLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4FBC7F207F37A700B7B5E6 /* CellForFoodListLeft.m */; };
 		9D58C4902071D26D00D49721 /* CellForHadAddShopingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */; };
 		9D58C4932071D4CF00D49721 /* ModForHadAddShoppingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D58C4922071D4CF00D49721 /* ModForHadAddShoppingCar.m */; };
@@ -247,6 +248,8 @@
 		9D4952772068EDD8005A6BBC /* ModelForFoodList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForFoodList.m; sourceTree = "<group>"; };
 		9D4952792068F1EA005A6BBC /* CellForShopFood.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForShopFood.h; sourceTree = "<group>"; };
 		9D49527A2068F1EA005A6BBC /* CellForShopFood.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForShopFood.m; sourceTree = "<group>"; };
+		9D4CBDB120B013EF009E626C /* CellForChooseOrderAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForChooseOrderAdd.h; sourceTree = "<group>"; };
+		9D4CBDB220B013EF009E626C /* CellForChooseOrderAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForChooseOrderAdd.m; sourceTree = "<group>"; };
 		9D4FBC7E207F37A700B7B5E6 /* CellForFoodListLeft.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForFoodListLeft.h; sourceTree = "<group>"; };
 		9D4FBC7F207F37A700B7B5E6 /* CellForFoodListLeft.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForFoodListLeft.m; sourceTree = "<group>"; };
 		9D58C48E2071D26D00D49721 /* CellForHadAddShopingCar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForHadAddShopingCar.h; sourceTree = "<group>"; };
@@ -757,6 +760,8 @@
 				9D4FBC7F207F37A700B7B5E6 /* CellForFoodListLeft.m */,
 				9D923F0E20AC35ED0057540B /* CellForHomeType.h */,
 				9D923F0F20AC35ED0057540B /* CellForHomeType.m */,
+				9D4CBDB120B013EF009E626C /* CellForChooseOrderAdd.h */,
+				9D4CBDB220B013EF009E626C /* CellForChooseOrderAdd.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1129,6 +1134,7 @@
 				9D3854EB2079D89E00175693 /* DetailForOrder.m in Sources */,
 				9DFF11E3206B93DE0084D63F /* MD5encryption.m in Sources */,
 				9D33B00F2085C0CB0086DC93 /* UIView+MJExtension.m in Sources */,
+				9D4CBDB320B013EF009E626C /* CellForChooseOrderAdd.m in Sources */,
 				9DA022842074B47A005F7168 /* SubmitOrderVC.m in Sources */,
 				9D98D965206A14C30019AC0C /* CellForChooseSize.m in Sources */,
 				9DCF3220206E37BF0032F9B6 /* ModelForChooseSize.m in Sources */,
@@ -1384,7 +1390,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/takeOut/PrefixHeader.pch";
 				INFOPLIST_FILE = takeOut/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wtb.beeToC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1408,8 +1414,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/takeOut/PrefixHeader.pch";
 				INFOPLIST_FILE = takeOut/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wtb.beeToC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

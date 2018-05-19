@@ -10,7 +10,7 @@
 #import "AddNewAddressVC.h"
 #import "LoginByPhoneVC.h"
 
-#import "CellForMyAddress.h"
+#import "CellForChooseOrderAdd.h"
 
 @interface PayOrderChooseAddressVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UIView *naviView;
@@ -139,7 +139,7 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     self.tableView.tableFooterView=[[UIView alloc]init];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.tableView registerClass:[CellForMyAddress class] forCellReuseIdentifier:@"UITableViewCell"];
+    [self.tableView registerClass:[CellForChooseOrderAdd class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.view addSubview:self.tableView];
     
 }
@@ -153,25 +153,41 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CellForMyAddress *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    CellForChooseOrderAdd *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     if(cell == nil)
     {
-        cell = [[CellForMyAddress alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+        cell = [[CellForChooseOrderAdd alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
     ModelForGetAddress *mod = [[ModelForGetAddress alloc]init];
     mod = [self.arrForGetAddress objectAtIndex:indexPath.row];
     cell.Mod = mod;
-    cell.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    cell.backgroundColor = [UIColor colorWithHexString:@"e7e7e7"];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     if (indexPath == self.lastIndexPath) {
-        cell.selectImage.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+        cell.selectImage.image = [UIImage imageNamed:@"icon_dizhiduihao"];
     }else{
-        cell.selectImage.backgroundColor = [UIColor blackColor];
+        cell.selectImage.image = [UIImage imageNamed:@"icon_dizhiduihao1"];
     }
+    cell.blockChooseSize = ^(NSString *one) {
+        AddNewAddressVC *addnewVC = [[AddNewAddressVC alloc]init];
+        ModelForGetAddress *mod = [[ModelForGetAddress alloc]init];
+        mod = [self.arrForGetAddress objectAtIndex:indexPath.row];
+        addnewVC.userNameStr = mod.userAddrsUname;
+        addnewVC.locationStr = mod.userAddrsAddr;
+        addnewVC.userSex = mod.userAddrsUsex;
+        addnewVC.userPhoneStr = mod.userAddrsUphone;
+        addnewVC.userHouseNoStr = mod.userAddrsAddrText;
+        addnewVC.naviTitle = ZBLocalized(@"修改收货地址", nil);
+        addnewVC.addressId = mod.id;
+        addnewVC.userId = mod.userId;
+        addnewVC.getLong = mod.userAddrsLong;
+        addnewVC.getLat = mod.userAddrsLat;
+        [self.navigationController pushViewController:addnewVC animated:YES];
+    };
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 90;
+    return 141;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.lastIndexPath = indexPath;

@@ -697,7 +697,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 if (self.arrForAddShoppingCarList.count != 0) {
                     CGFloat upPayF = [self.upPayMoney floatValue];
                     if (_addMoney >= upPayF) {
-                        self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"#00CD00"];
+                        self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
                         [self.addBuyCarViewAddBtn setTitle:ZBLocalized(@"去结算", nil) forState:UIControlStateNormal];
                     }
                     
@@ -1244,7 +1244,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     if (self.arrForAddShoppingCarList.count != 0) {
         CGFloat upPayF = [self.upPayMoney floatValue];
         if (_addMoney >= upPayF) {
-            self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"#00CD00"];
+            self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
             [self.addBuyCarViewAddBtn setTitle:ZBLocalized(@"去结算", nil) forState:UIControlStateNormal];
         }
     }
