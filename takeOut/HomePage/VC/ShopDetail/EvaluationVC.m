@@ -14,6 +14,7 @@
 @property (nonatomic , strong)UIButton *badEva;
 @property (nonatomic , strong)UILabel *csiLabel;
 @property (nonatomic , strong)NSMutableArray *eavArr;
+@property (nonatomic , strong)UIImageView *kongbaiView;
 @end
 
 @implementation EvaluationVC
@@ -37,84 +38,108 @@
     [par setValue:self.shopId forKey:@"shopid"];
     [par setValue:type forKey:@"flg"];
     [par setValue:@"0" forKey:@"page"];
-    [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
-       NSString *code =[NSString stringWithFormat:@"%@",result[@"code"]];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
+    [manager GET:url parameters:par progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSString *code = [NSString stringWithFormat:@"%@",responseObject[@"code"]];
         if ([code isEqualToString:@"1"]) {
-            NSMutableDictionary *resDic = result[@"value"];
+            NSMutableDictionary *resDic = responseObject[@"value"];
             self.csiLabel.text = resDic[@"csi"];
             NSMutableArray *arr = resDic[@"dat2"];
             for (NSMutableDictionary *dic in arr) {
                 [self.eavArr addObject:dic];
+            }
+            if (self.eavArr.count == 0) {
+                self.kongbaiView.hidden = NO;
+            }else{
+                self.kongbaiView.hidden = YES;
             }
             [self.tableView reloadData];
             if (self.eavArr.count != 0) {
                 NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
                 [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:YES];
             }
-           
+            
         }else{
             [MBManager showBriefAlert:ZBLocalized(@"没有数据", nil)];
         }
-       
-    } withFail:^(NSError *error) {
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+   
 }
 
 #pragma mark - 创建tableView
 -(void)createTableView{
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
+    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 74)];
     
     [self.view addSubview:headView];
+    
     self.AllEva = [UIButton buttonWithType:UIButtonTypeCustom];
     [headView addSubview:self.AllEva];
+    self.AllEva.frame=CGRectMake(20, 16, SCREEN_WIDTH * 0.34, 40);
      self.AllEva.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.AllEva setTitle:ZBLocalized(@"全部", nil) forState:UIControlStateNormal];
     [self.AllEva setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.AllEva setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
-    self.AllEva.layer.cornerRadius=20;
+    UIBezierPath *maskPath=[UIBezierPath bezierPathWithRoundedRect:self.AllEva.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerBottomLeft cornerRadii:CGSizeMake(10, 10)];
+    CAShapeLayer *maskLayer=[[CAShapeLayer alloc]init];
+    maskLayer.frame=self.AllEva.bounds;
+    maskLayer.path=maskPath.CGPath;
+    self.AllEva.layer.mask=maskLayer;
     self.AllEva.clipsToBounds = YES;
     self.AllEva.enabled = NO;
     [self.AllEva addTarget:self action:@selector(allEvaAction) forControlEvents:UIControlEventTouchUpInside];
     [self.AllEva mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(headView);
         make.height.equalTo(@(40));
-        make.width.equalTo(@(SCREEN_WIDTH / 3.5));
-        make.left.equalTo(headView.mas_left).offset(5);
+        make.width.equalTo(@(SCREEN_WIDTH * 0.34));
+        make.left.equalTo(headView.mas_left).offset(20);
     }];
     
     self.badEva = [UIButton buttonWithType:UIButtonTypeCustom];
     [headView addSubview:self.badEva];
+    self.badEva.frame=CGRectMake(20 + SCREEN_WIDTH * 0.34, 16, SCREEN_WIDTH * 0.34, 40);
     self.badEva.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.badEva setTitle:ZBLocalized(@"差评", nil) forState:UIControlStateNormal];
     [self.badEva setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.badEva setBackgroundColor:[UIColor lightGrayColor]];
-    self.badEva.layer.cornerRadius=20;
+    UIBezierPath *maskPath2=[UIBezierPath bezierPathWithRoundedRect:self.badEva.bounds byRoundingCorners:UIRectCornerTopRight|UIRectCornerBottomRight cornerRadii:CGSizeMake(10, 10)];
+    CAShapeLayer *maskLayer2=[[CAShapeLayer alloc]init];
+    maskLayer2.frame=self.badEva.bounds;
+    maskLayer2.path=maskPath2.CGPath;
+    self.badEva.layer.mask=maskLayer2;
     self.badEva.clipsToBounds = YES;
       [self.badEva addTarget:self action:@selector(badEvaAction) forControlEvents:UIControlEventTouchUpInside];
     [self.badEva mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(headView);
         make.height.equalTo(@(40));
-        make.width.equalTo(@(SCREEN_WIDTH / 3.5));
-        make.left.equalTo(self.AllEva.mas_right).offset(10);
+        make.width.equalTo(@(SCREEN_WIDTH * 0.34));
+        make.left.equalTo(self.AllEva.mas_right).offset(0);
     }];
-    
+    __weak typeof(self) ws = self;
     self.csiLabel = [[UILabel alloc]init];
-   
+   self.csiLabel.textAlignment = NSTextAlignmentCenter;
     self.csiLabel.font = [UIFont systemFontOfSize:24];
+     self.csiLabel.text = @"0.0%";
     self.csiLabel.textColor = [UIColor colorWithHexString:BaseYellow];
     [headView addSubview:self.csiLabel];
     [_csiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(headView.mas_centerY).offset(-25);
-        make.centerX.equalTo(headView.mas_right).offset(-SCREEN_WIDTH / 6 );
+        make.centerY.equalTo(ws.badEva.mas_top).offset(0);
+        make.left.equalTo(ws.badEva.mas_right).offset(10);
+        make.right.equalTo(ws.view.mas_right).offset(-10);
     }];
+    
     UILabel *csiTitle = [[UILabel alloc]init];
     csiTitle.text = ZBLocalized(@"商家评分", nil);
+    csiTitle.textAlignment = NSTextAlignmentCenter;
     csiTitle.textColor = [UIColor lightGrayColor];
     [headView addSubview:csiTitle];
     [csiTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(headView.mas_centerY).offset(25);
-        make.centerX.equalTo(headView.mas_right).offset(-SCREEN_WIDTH / 6 );
+        make.centerY.equalTo(ws.badEva.mas_bottom).offset(0);
+        make.left.equalTo(ws.badEva.mas_right).offset(10);
+        make.right.equalTo(ws.view.mas_right).offset(-10);
     }];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -133,6 +158,15 @@
         make.bottom.equalTo(self.view.mas_bottom);
     }];
     
+    self.kongbaiView = [[UIImageView alloc]init];
+    self.kongbaiView.image = [UIImage imageNamed:@"07商家详情  评价"];
+    [self.view addSubview:self.kongbaiView];
+    [self.kongbaiView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.view);
+        make.width.equalTo(ws.view);
+        make.top.equalTo(headView.mas_bottom);
+        make.bottom.equalTo(ws.view.mas_bottom);
+    }];
 }
 
 #pragma mark - tableView DataSouce

@@ -62,7 +62,7 @@
     
     UIButton *backBTN = [UIButton buttonWithType:UIButtonTypeCustom];
     [backBTN addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [headView addSubview:backBTN];
+    [self.view addSubview:backBTN];
     [backBTN mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.naviView.mas_top).offset(SafeAreaStatsBarHeight);
         make.left.equalTo(ws.naviView.mas_left).offset(10);

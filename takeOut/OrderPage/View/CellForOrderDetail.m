@@ -24,36 +24,38 @@
     [self.contentView addSubview:self.bigImage];
     [self.bigImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.contentView.mas_top).offset(10);
-        make.left.equalTo(ws.contentView.mas_left).offset(10);
+        make.left.equalTo(ws.contentView.mas_left).offset(24);
         make.centerY.equalTo(ws.contentView);
-        make.width.equalTo(@(SCREEN_WIDTH / 4));
+        make.width.equalTo(ws.bigImage.mas_height);
     }];
     
     self.foodName = [[UILabel alloc]init];
-    self.foodName.textColor = [UIColor grayColor];
-    self.foodName.font = [UIFont systemFontOfSize:14];
+    self.foodName.textColor = [UIColor colorWithHexString:@"4b4b4b"];
+    self.foodName.font = [UIFont systemFontOfSize:16];
     [self.contentView addSubview:self.foodName];
     [self.foodName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(15);
         make.centerY.equalTo(ws.contentView.mas_centerY).offset(-25);
     }];
     
-    self.foodPic = [[UILabel alloc]init];
-    self.foodPic.textColor = [UIColor grayColor];
-    self.foodPic.font = [UIFont systemFontOfSize:14];
-    [self.contentView addSubview:self.foodPic];
-    [self.foodPic mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(ws.contentView.mas_right).offset(-15);
-        make.centerY.equalTo(ws.contentView.mas_centerY).offset(-25);
-    }];
+   
     
     self.foodCount = [[UILabel alloc]init];
-    self.foodCount.textColor = [UIColor grayColor];
-    self.foodCount.font = [UIFont systemFontOfSize:14];
+    self.foodCount.textColor = [UIColor colorWithHexString:@"4b4b4b"];
+    self.foodCount.font = [UIFont systemFontOfSize:16];
     [self.contentView addSubview:self.foodCount];
     [self.foodCount mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(ws.contentView.mas_right).offset(-15);
+        make.left.equalTo(ws.bigImage.mas_right).offset(15);
         make.centerY.equalTo(ws.contentView.mas_centerY).offset(25);
+    }];
+    
+    self.foodPic = [[UILabel alloc]init];
+    self.foodPic.textColor = [UIColor redColor];
+    self.foodPic.font = [UIFont systemFontOfSize:18];
+    [self.contentView addSubview:self.foodPic];
+    [self.foodPic mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(ws.contentView.mas_right).offset(-30);
+        make.centerY.equalTo(ws.foodCount.mas_centerY).offset(0);
     }];
 }
 -(void)setDic:(NSMutableDictionary *)dic{

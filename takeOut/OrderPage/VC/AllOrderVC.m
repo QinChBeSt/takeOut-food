@@ -18,6 +18,7 @@
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
 @property (nonatomic , strong)UIButton *toLOginBtn;
+@property (nonatomic , strong)UIImageView *kongBaiView;
 
 /**
  *   页数
@@ -46,6 +47,9 @@
      [self getNetwork];
     }
 }
+-(void)viewWillDisappear:(BOOL)animated{
+    self.kongBaiView.hidden = YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createTableView];
@@ -63,6 +67,10 @@
         make.height.equalTo(@(50));
         make.width.equalTo(@(SCREEN_WIDTH - 90));
     }];
+    self.kongBaiView = [[UIImageView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -TabbarHeight - SafeAreaTabbarHeight)];
+    self.kongBaiView.hidden = YES;
+    self.kongBaiView.image = [UIImage imageNamed:@"bg_dingdankongbaiye"];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.kongBaiView];
     
     // Do any additional setup after loading the view.
 }
@@ -92,6 +100,12 @@
             Mod.godslist = dic11[@"godslist"];
             Mod.cdata = dic11[@"cdata"];
             [self.arrForOrerList addObject:Mod];
+        }
+        if (self.arrForOrerList.count == 0) {
+            self.kongBaiView.hidden = NO;
+            
+        }else{
+            self.kongBaiView.hidden = YES;
         }
         [self.tableView.mj_footer resetNoMoreData];
         [self.tableView.mj_header endRefreshing];

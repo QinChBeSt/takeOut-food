@@ -10,11 +10,11 @@
 #import "CellForOrderDetail.h"
 #define headViewHeight 90
 
-#define moneyViewHeight 60
-#define totitViewHeight 40
+#define moneyViewHeight 90
+#define totitViewHeight 50
 #define callToShopViewHeight 40
-#define addressViewHeight 120
-#define orderMassageViewHeight 70
+#define addressViewHeight 125
+#define orderMassageViewHeight 80
 
 @interface DetailForOrder ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UIView *naviView;
@@ -108,7 +108,7 @@
         toF = toF - yhF;
         self.psPicStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),psF];
         self.yhPicStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"-￥", nil),yhF];
-        self.totleStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"小计: ￥", nil),toF];
+        self.totleStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),toF];
         self.totleStr.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
         self.shopPhoneNo = [NSString stringWithFormat:@"%@",dic[@"shopphone"]];
         self.userName.text = [NSString stringWithFormat:@"%@  %@",dic[@"uname"],dic[@"uphone"]] ;
@@ -219,38 +219,58 @@
     [backView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(ws.bottomView);
         make.centerX.and.centerY.equalTo(ws.bottomView);
-        make.top.equalTo(ws.bottomView.mas_top).offset(10);
+        make.top.equalTo(ws.bottomView.mas_top).offset(0);
     }];
 //金额
+    
     UIView *moneyView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , moneyViewHeight)];
     [backView addSubview:moneyView];
+    UIView *psLine = [[UIView alloc]init];
+    psLine.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
+    [moneyView addSubview:psLine];
+    [psLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(moneyView.mas_left).offset(15);
+        make.right.equalTo(moneyView);
+        make.height.equalTo(@(1));
+        make.top.equalTo(moneyView.mas_top);
+    }];
+    UIView *yhLine = [[UIView alloc]init];
+    yhLine.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
+    [moneyView addSubview:yhLine];
+    [yhLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(moneyView.mas_left).offset(15);
+        make.right.equalTo(moneyView);
+        make.height.equalTo(@(1));
+        make.top.equalTo(psLine.mas_bottom).offset(45);
+    }];
     UILabel *psPictit = [[UILabel alloc]init];
     psPictit.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"配送费", nil)];
-    psPictit.font = [UIFont systemFontOfSize:14];
-    psPictit.textColor = [UIColor lightGrayColor];
+    psPictit.font = [UIFont systemFontOfSize:16];
+    psPictit.textColor = [UIColor colorWithHexString:@"222222"];
     [moneyView addSubview:psPictit];
     [psPictit mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(moneyView.mas_left).offset(15);
+        make.left.equalTo(moneyView.mas_left).offset(30);
         make.centerY.equalTo(moneyView.mas_centerY).offset(-moneyViewHeight / 4);
     }];
+    
     self.psPicStr = [[UILabel alloc]init];
     
     self.psPicStr.font = [UIFont systemFontOfSize:14];
-    self.psPicStr.textColor = [UIColor lightGrayColor];
+    self.psPicStr.textColor = [UIColor redColor];
     [moneyView addSubview:self.psPicStr];
     [self.psPicStr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(moneyView.mas_right).offset(-40);
+        make.right.equalTo(moneyView.mas_right).offset(-30);
         make.centerY.equalTo(moneyView.mas_centerY).offset(-moneyViewHeight / 4);
     }];
     
  
     UILabel *yhPictit = [[UILabel alloc]init];
     yhPictit.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"优惠金额", nil)];
-    yhPictit.font = [UIFont systemFontOfSize:14];
-    yhPictit.textColor = [UIColor lightGrayColor];
+    yhPictit.font = [UIFont systemFontOfSize:16];
+    yhPictit.textColor = [UIColor colorWithHexString:@"222222"];
     [moneyView addSubview:yhPictit];
     [yhPictit mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(moneyView.mas_left).offset(15);
+        make.left.equalTo(moneyView.mas_left).offset(30);
         make.centerY.equalTo(moneyView.mas_centerY).offset(moneyViewHeight / 4);
     }];
     self.yhPicStr = [[UILabel alloc]init];
@@ -258,18 +278,18 @@
     self.yhPicStr.textColor = [UIColor redColor];
     [moneyView addSubview:self.yhPicStr];
     [self.yhPicStr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(moneyView.mas_right).offset(-40);
+        make.right.equalTo(moneyView.mas_right).offset(-30);
         make.centerY.equalTo(moneyView.mas_centerY).offset(moneyViewHeight / 4);
     }];
     
     UIView *topLine = [[UIView alloc]init];
-    topLine.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    topLine.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [self.bottomView addSubview:topLine];
     [topLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bottomView.mas_left).offset(15);
         make.centerX.and.centerY.equalTo(ws.bottomView);
         make.bottom.equalTo(moneyView.mas_bottom).offset(-0.5);
-        make.height.equalTo(@(0.5));
+        make.height.equalTo(@(1));
     }];
     
 //小计
@@ -277,17 +297,27 @@
     totleView.backgroundColor = [UIColor whiteColor];
     [backView addSubview:totleView];
     
+    UILabel *totletit = [[UILabel alloc]init];
+    totletit.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"小计", nil)];
+    totletit.font = [UIFont systemFontOfSize:16];
+    totletit.textColor = [UIColor colorWithHexString:@"222222"];
+    [totleView addSubview:totletit];
+    [totletit mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(totleView.mas_left).offset(30);
+        make.centerY.equalTo(totleView);
+    }];
+    
     self.totleStr = [[UILabel alloc]init];
-    self.totleStr.font = [UIFont systemFontOfSize:14];
-    self.totleStr.textColor = [UIColor lightGrayColor];
+    self.totleStr.font = [UIFont systemFontOfSize:16];
+    self.totleStr.textColor = [UIColor redColor];
     [totleView addSubview:self.totleStr];
     [self.totleStr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(totleView.mas_right).offset(-20);
+        make.right.equalTo(totleView.mas_right).offset(-30);
         make.centerY.equalTo(totleView);
     }];
     
     UIView *midLine = [[UIView alloc]init];
-    midLine.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    midLine.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [self.bottomView addSubview:midLine];
     [midLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bottomView.mas_left).offset(15);
@@ -306,30 +336,30 @@
     [btnView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(shopPhoneView);
         make.centerX.equalTo(shopPhoneView);
-        make.width.equalTo(@(100));
+        make.width.equalTo(@(SCREEN_WIDTH));
         make.centerY.equalTo(shopPhoneView);
     }];
     UIImageView *phoneICon = [[UIImageView alloc]init];
-    [phoneICon setImage:[UIImage imageNamed:@"电话"]];
+    [phoneICon setImage:[UIImage imageNamed:@"icon_xingqingdianhua"]];
     [btnView addSubview:phoneICon];
     [phoneICon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(btnView);
-        make.left.equalTo(btnView);
-        make.width.and.height.equalTo(@(callToShopViewHeight / 2));
+        make.right.equalTo(btnView).offset(-40);
+        make.width.and.height.equalTo(@(callToShopViewHeight * 0.7));
     }];
     UILabel *callShop = [[UILabel alloc]init];
     callShop.text = ZBLocalized(@"商家电话", nil);
-    callShop.font = [UIFont systemFontOfSize:14];
-    callShop.textColor = [UIColor lightGrayColor];
+    callShop.font = [UIFont systemFontOfSize:16];
+    callShop.textColor = [UIColor colorWithHexString:@"222222"];
     [btnView addSubview:callShop];
     [callShop mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(btnView);
-        make.right.equalTo(btnView);
+        make.left.equalTo(btnView).offset(30);
     }];
     
 //地址
     UIView *addressView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + totitViewHeight + callToShopViewHeight, SCREEN_WIDTH,addressViewHeight)];
-    addressView.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    addressView.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [backView addSubview:addressView];
     UIView *addressbackview = [[UIView alloc]initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH , addressViewHeight - 20)];
     addressbackview.backgroundColor = [UIColor whiteColor];
@@ -339,59 +369,61 @@
     [addressbackview addSubview:psAddressTitle];
     psAddressTitle.text = ZBLocalized(@"配送地址", nil);
     psAddressTitle.font = [UIFont systemFontOfSize:14];
-    psAddressTitle.textColor = [UIColor lightGrayColor];
+    psAddressTitle.textColor = [UIColor colorWithHexString:@"959595"];
     [psAddressTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(addressbackview.mas_left).offset(15);
-       make.centerY.equalTo(addressbackview.mas_top).offset((addressViewHeight - 20) / 8);
+        make.left.equalTo(addressbackview.mas_left).offset(30);
+       make.top.equalTo(addressbackview.mas_top).offset(10);
+        make.height.equalTo(@(20));
     }];
     
    self.userName = [[UILabel alloc]init];
     [addressbackview addSubview: self.userName];
      self.userName.font = [UIFont systemFontOfSize:14];
-     self.userName.textColor = [UIColor lightGrayColor];
+     self.userName.textColor = [UIColor colorWithHexString:@"222222"];
     [ self.userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(psAddressTitle.mas_right).offset(20);
-       make.centerY.equalTo(addressbackview.mas_top).offset((addressViewHeight - 20) / 8);
+       make.top.equalTo(psAddressTitle.mas_top);
     }];
     
     self.userAddress = [[UILabel alloc]init];
     self.userAddress.numberOfLines = 3;
     [addressbackview addSubview: self.userAddress];
     self.userAddress.font = [UIFont systemFontOfSize:14];
-    self.userAddress.textColor = [UIColor lightGrayColor];
+    self.userAddress.textColor = [UIColor colorWithHexString:@"222222"];
     [ self.userAddress mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(psAddressTitle.mas_right).offset(20);
         make.right.equalTo(addressbackview.mas_right).offset(-10);
-        make.centerY.equalTo(addressbackview.mas_top).offset((addressViewHeight - 20) / 8 * 3);
+        make.top.equalTo(ws.userName.mas_bottom);
     }];
     
     UILabel *pscomp = [[UILabel alloc]init];
     [addressbackview addSubview:pscomp];
     pscomp.text = ZBLocalized(@"配送服务", nil);
     pscomp.font = [UIFont systemFontOfSize:14];
-    pscomp.textColor = [UIColor lightGrayColor];
+    pscomp.textColor = [UIColor colorWithHexString:@"959595"];
     [pscomp mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(addressbackview.mas_left).offset(15);
-        make.centerY.equalTo(addressbackview.mas_bottom).offset(-(addressViewHeight - 20) / 8);
+        make.left.equalTo(addressbackview.mas_left).offset(30);
+        make.bottom.equalTo(addressbackview.mas_bottom).offset(-10);
+        make.height.equalTo(@(30));
     }];
     
     UILabel *compName = [[UILabel alloc]init];
     [addressbackview addSubview:compName];
-    compName.text = @"Beeirder";
+    compName.text = @"Beeorder";
     compName.font = [UIFont systemFontOfSize:14];
     compName.textColor = [UIColor colorWithHexString:BaseYellow];
     [compName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(psAddressTitle.mas_right).offset(20);
-        make.centerY.equalTo(addressbackview.mas_bottom).offset(-(addressViewHeight - 20) / 8);
+        make.centerY.equalTo(pscomp);
     }];
     UILabel *compStr = [[UILabel alloc]init];
     [addressbackview addSubview:compStr];
     compStr.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"提供商品高品质配送服务", nil)];
     compStr.font = [UIFont systemFontOfSize:14];
-    compStr.textColor = [UIColor lightGrayColor];
+    compStr.textColor = [UIColor colorWithHexString:@"222222"];
     [compStr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(compName.mas_right);
-        make.centerY.equalTo(addressbackview.mas_bottom).offset(-(addressViewHeight - 20) / 8);
+        make.centerY.equalTo(compName);
     }];
     
     UIView *orderMassageView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + totitViewHeight + callToShopViewHeight + addressViewHeight, SCREEN_WIDTH,orderMassageViewHeight)];
@@ -402,10 +434,11 @@
     [orderMassageView addSubview:orderNumTitle];
     orderNumTitle.text = ZBLocalized(@"订单号码", nil);
     orderNumTitle.font = [UIFont systemFontOfSize:14];
-    orderNumTitle.textColor = [UIColor lightGrayColor];
+    orderNumTitle.textColor = [UIColor colorWithHexString:@"959595"];
     [orderNumTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(addressbackview.mas_left).offset(15);
+        make.left.equalTo(addressbackview.mas_left).offset(30);
         make.centerY.equalTo(orderMassageView.mas_top).offset(orderMassageViewHeight / 6);
+       
     }];
     
     
@@ -422,10 +455,11 @@
     [orderMassageView addSubview:orderdateTitle];
     orderdateTitle.text = ZBLocalized(@"订单日期", nil);
     orderdateTitle.font = [UIFont systemFontOfSize:14];
-    orderdateTitle.textColor = [UIColor lightGrayColor];
+    orderdateTitle.textColor = [UIColor colorWithHexString:@"959595"];
     [orderdateTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(addressbackview.mas_left).offset(15);
+        make.left.equalTo(addressbackview.mas_left).offset(30);
         make.centerY.equalTo(orderMassageView.mas_top).offset(orderMassageViewHeight / 6 * 3);
+        
     }];
     
     
@@ -442,9 +476,9 @@
     [orderMassageView addSubview:orderPayTypeTitle];
     orderPayTypeTitle.text = ZBLocalized(@"支付方式", nil);
     orderPayTypeTitle.font = [UIFont systemFontOfSize:14];
-    orderPayTypeTitle.textColor = [UIColor lightGrayColor];
+    orderPayTypeTitle.textColor = [UIColor colorWithHexString:@"959595"];
     [orderPayTypeTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(addressbackview.mas_left).offset(15);
+        make.left.equalTo(addressbackview.mas_left).offset(30);
         make.centerY.equalTo(orderMassageView.mas_top).offset(orderMassageViewHeight / 6 * 5);
     }];
     
@@ -494,7 +528,7 @@
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 100;
+    return 105;
     
     
 }

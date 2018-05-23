@@ -19,6 +19,8 @@
 @property (nonatomic , strong)UIView *tbFirst;
 @property (nonatomic , strong)NSIndexPath *index;
 @property (nonatomic , assign)NSInteger indexNum;
+
+@property (nonatomic , strong)UIImageView *kongbaiView;
 @end
 
 @implementation MineAddressVC
@@ -60,6 +62,11 @@
                  mod.userAddrsUsex = dic[@"userAddrsUsex"];
                  mod.userId = dic[@"userId"];
                 [self.arrForGetAddress addObject:mod];
+            }
+            if (self.arrForGetAddress.count == 0) {
+                self.kongbaiView.hidden = YES;
+            }else{
+                self.kongbaiView.hidden = NO;
             }
             [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -126,7 +133,10 @@
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.tableView registerClass:[CellForMyAddress class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.view addSubview:self.tableView];
-    
+    self.kongbaiView = [[UIImageView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight - SafeAreaTabbarHeight - 50)];
+    self.kongbaiView.hidden = YES;
+    self.kongbaiView.image = [UIImage imageNamed:@"bg_dizhikongbaiye"];
+    [self.view addSubview:self.kongbaiView];
 }
 #pragma mark- UITabelViewDataSource/delegat
 

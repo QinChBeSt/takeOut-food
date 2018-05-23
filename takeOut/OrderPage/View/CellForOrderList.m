@@ -27,7 +27,7 @@
 -(void)setUpUI{
     __weak typeof(self) ws = self;
     self.shopIcon = [[UIImageView alloc]init];
-    [self.shopIcon setImage:[UIImage imageNamed:@"店铺"]];
+    [self.shopIcon setImage:[UIImage imageNamed:@"icon_shangjtouxiang"]];
     [self.contentView addSubview:self.shopIcon];
     self.shopIcon.sd_layout
     .leftSpaceToView(self.contentView, 10)
@@ -60,7 +60,7 @@
     self.haveEvaluateLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:self.haveEvaluateLabel];
     [self.haveEvaluateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView.mas_right).offset(-10);
+        make.right.equalTo(self.contentView.mas_right).offset(-20);
         make.centerY.equalTo(self.shopIcon);
         make.left.equalTo(rightIcon.mas_right).offset(5);
     }];
@@ -84,11 +84,11 @@
     [self.contentView addSubview:self.foodsMuch];
     
     self.foodsTolitLabel = [[UILabel alloc]init];
-    self.foodsTolitLabel.textColor = [UIColor colorWithHexString:BaseTextGrayColor];
+    self.foodsTolitLabel.textColor = [UIColor colorWithHexString:@"959595"];
     [self.contentView addSubview:self.foodsTolitLabel];
    
     self.orderTimeLabel = [[UILabel alloc]init];
-    self.orderTimeLabel.textColor = [UIColor colorWithHexString:BaseTextGrayColor];
+    self.orderTimeLabel.textColor = [UIColor colorWithHexString:@"959595"];
     [self.contentView addSubview:self.orderTimeLabel];
     
     self.foodsView.foodsName.font = [UIFont systemFontOfSize:15];
