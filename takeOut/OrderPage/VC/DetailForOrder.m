@@ -14,7 +14,7 @@
 #define totitViewHeight 50
 #define callToShopViewHeight 40
 #define addressViewHeight 125
-#define orderMassageViewHeight 80
+#define orderMassageViewHeight 90
 
 @interface DetailForOrder ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UIView *naviView;
@@ -424,6 +424,7 @@
     [compStr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(compName.mas_right);
         make.centerY.equalTo(compName);
+        make.right.equalTo(ws.view.mas_right).offset(-5);
     }];
     
     UIView *orderMassageView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + totitViewHeight + callToShopViewHeight + addressViewHeight, SCREEN_WIDTH,orderMassageViewHeight)];
@@ -433,12 +434,13 @@
     UILabel *orderNumTitle = [[UILabel alloc]init];
     [orderMassageView addSubview:orderNumTitle];
     orderNumTitle.text = ZBLocalized(@"订单号码", nil);
+    orderNumTitle.numberOfLines = 2;
     orderNumTitle.font = [UIFont systemFontOfSize:14];
     orderNumTitle.textColor = [UIColor colorWithHexString:@"959595"];
     [orderNumTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(addressbackview.mas_left).offset(30);
         make.centerY.equalTo(orderMassageView.mas_top).offset(orderMassageViewHeight / 6);
-       
+        make.right.equalTo(psAddressTitle.mas_right).offset(20);
     }];
     
     
@@ -454,12 +456,13 @@
     UILabel *orderdateTitle = [[UILabel alloc]init];
     [orderMassageView addSubview:orderdateTitle];
     orderdateTitle.text = ZBLocalized(@"订单日期", nil);
+    orderdateTitle.numberOfLines = 2;
     orderdateTitle.font = [UIFont systemFontOfSize:14];
     orderdateTitle.textColor = [UIColor colorWithHexString:@"959595"];
     [orderdateTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(addressbackview.mas_left).offset(30);
         make.centerY.equalTo(orderMassageView.mas_top).offset(orderMassageViewHeight / 6 * 3);
-        
+        make.right.equalTo(psAddressTitle.mas_right).offset(20);
     }];
     
     

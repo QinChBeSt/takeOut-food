@@ -14,7 +14,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.foodsName = [[UILabel alloc]init];
-        self.foodsName.font = [UIFont fontWithName:@"Helvetica" size:15.f];
+        self.foodsName.font = [UIFont systemFontOfSize:15];
         [self addSubview:self.foodsName];
         self.foodsCount = [[UILabel alloc]init];
         [self addSubview:self.foodsCount];

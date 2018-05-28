@@ -553,7 +553,7 @@
     toGetNetBtn.layer.cornerRadius=10;
     
     toGetNetBtn.clipsToBounds = YES;
-    [toGetNetBtn setTitle:@"提交" forState:UIControlStateNormal];
+    [toGetNetBtn setTitle:ZBLocalized(@"提交", nil) forState:UIControlStateNormal];
     toGetNetBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [toGetNetBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [toGetNetBtn addTarget:self action:@selector(getNetWork) forControlEvents:UIControlEventTouchUpInside];

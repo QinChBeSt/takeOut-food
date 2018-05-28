@@ -475,17 +475,18 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     self.addBuyCarViewAddBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
     self.addBuyCarViewAddBtn.layer.cornerRadius = 0;
-    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
+    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"¥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
     [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
     [self.addBuyCarViewAddBtn addTarget:self action:@selector(addShoppongCarNetWord) forControlEvents:UIControlEventTouchUpInside];
+    self.addBuyCarViewAddBtn.titleLabel.numberOfLines = 2;
     [self.buyCarView addSubview:self.addBuyCarViewAddBtn];
     [self.addBuyCarViewAddBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.buyCarAddLabel);
         make.right.equalTo(ws.buyCarView.mas_right).offset(0);
         make.top.equalTo(ws.buyCarView.mas_top).offset(0);
-        make.width.equalTo(@(100));
+        make.width.equalTo(@(SCREEN_WIDTH * 0.4));
     }];
    
     UIButton *addShowHaveBuyList = [UIButton buttonWithType:UIButtonTypeCustom];
