@@ -400,7 +400,7 @@
         make.top.equalTo(headviewSelectView.mas_top).offset(10);
         make.left.equalTo(headviewSelectView.mas_left).offset(20);
         make.height.equalTo(@(20));
-        make.width.equalTo(@(80));
+        
     }];
     
     headviewSelectLeftView = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -453,7 +453,7 @@
         make.top.equalTo(line.mas_bottom).offset(5);
         make.left.equalTo(sortingView.mas_left).offset(20);
         make.height.equalTo(@(25));
-        make.width.equalTo(@(80));
+        
     }];
 
      NSArray *arrButtonTitle = @[ZBLocalized(@"综合排序", nil),ZBLocalized(@"销量最高", nil),ZBLocalized(@"距离最近", nil)];

@@ -25,7 +25,7 @@
 @property (nonatomic,assign) BOOL isSelected;
 
 @property (nonatomic , strong)NSMutableArray *arrForType;
-@property (nonatomic , strong)NSMutableArray *arrForDetal;
+//@property (nonatomic , strong)NSMutableArray *arrForDetal;
 
 //选择大小份View
 @property (nonatomic , strong)UIView *chooseSizeBackgroundView;
@@ -80,12 +80,12 @@
     }
     return _arrForType;
 }
--(NSMutableArray *)arrForDetal{
-    if (_arrForDetal == nil) {
-        _arrForDetal = [NSMutableArray array];
-    }
-    return _arrForDetal;
-}
+//-(NSMutableArray *)arrForDetal{
+//    if (_arrForDetal == nil) {
+//        _arrForDetal = [NSMutableArray array];
+//    }
+//    return _arrForDetal;
+//}
 -(NSMutableArray *)arrForChooseSize{
     if (_arrForChooseSize == nil) {
         _arrForChooseSize = [NSMutableArray array];
@@ -125,26 +125,26 @@
             [defaults setObject:nil forKey:value];
             
         }
-        for (NSDictionary *dic in self.arrForType) {
-            NSArray *arr = dic[@"goodsLists"];
-            for (NSDictionary *dic1 in arr) {
-                ModelForFoodList *mod = [[ModelForFoodList alloc]init];
-                mod.id = [dic1[@"id"] intValue];
-                mod.godsname = dic1[@"godsname"];
-                mod.godslog = [NSString stringWithFormat:@"%@",dic1[@"godslog"]];
-                mod.ys = dic1[@"ys"];
-                mod.pic = [dic1[@"pic"] floatValue];
-                NSArray *array = dic1[@"goodspic"];
-                if (array != nil && ![array isKindOfClass:[NSNull class]] && array.count != 0){
-
-                    mod.goodspic = dic1[@"goodspic"];
-                    [self.arrForDetal addObject:mod];
-                }
-                
-               
-                
-            }
-        }
+//        for (NSDictionary *dic in self.arrForType) {
+//            NSArray *arr = dic[@"goodsLists"];
+//            for (NSDictionary *dic1 in arr) {
+//                ModelForFoodList *mod = [[ModelForFoodList alloc]init];
+//                mod.id = [dic1[@"id"] intValue];
+//                mod.godsname = dic1[@"godsname"];
+//                mod.godslog = [NSString stringWithFormat:@"%@",dic1[@"godslog"]];
+//                mod.ys = dic1[@"ys"];
+//                mod.pic = [dic1[@"pic"] floatValue];
+//                NSArray *array = dic1[@"goodspic"];
+//                if (array != nil && ![array isKindOfClass:[NSNull class]] && array.count != 0){
+//
+//                    mod.goodspic = dic1[@"goodspic"];
+//                    [self.arrForDetal addObject:mod];
+//                }
+//
+//
+//
+//            }
+//        }
         [self.leftTable reloadData];
         [self.rightTable reloadData];
     } withFail:^(NSError *error) {
@@ -524,8 +524,15 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     }else if (tableView == self.haveBuyListTableview ){
         return self.arrForAddShoppingCarList.count;
     
-    }else
-    return self.arrForDetal.count;
+    }else if(tableView == self.rightTable){
+    
+         NSDictionary *item = [self.arrForType objectAtIndex:section];
+        NSArray *arr = item[@"goodsLists"];
+        return arr.count;
+   
+
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -569,15 +576,35 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         return cell;
     }
 //右边==============
+    
     else if (tableView == self.rightTable) {
-        
-        ModelForFoodList *modArr = [self.arrForDetal objectAtIndex:indexPath.row];
-        
+        NSMutableArray *arrForDetal= [[NSMutableArray alloc]init];
+       NSDictionary *item = [self.arrForType objectAtIndex:indexPath.section];
+        NSArray *arritem = item[@"goodsLists"];
+        for (NSDictionary *dic1 in arritem) {
+            ModelForFoodList *mod = [[ModelForFoodList alloc]init];
+            mod.id = [dic1[@"id"] intValue];
+            mod.godsname = dic1[@"godsname"];
+            mod.godslog = [NSString stringWithFormat:@"%@",dic1[@"godslog"]];
+            mod.ys = dic1[@"ys"];
+            mod.pic = [dic1[@"pic"] floatValue];
+            NSArray *array = dic1[@"goodspic"];
+            if (array != nil && ![array isKindOfClass:[NSNull class]] && array.count != 0){
+                
+                mod.goodspic = dic1[@"goodspic"];
+                [arrForDetal addObject:mod];
+            }
+            
+            
+            
+        }
+        ModelForFoodList *modArr = [arrForDetal objectAtIndex:indexPath.row];
+       
 //需要选大小尺码==================
         if (modArr.goodspic.count > 1) {
           NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
             CellForShopFoodChooseSize *cell1 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            ModelForFoodList *mod = [self.arrForDetal objectAtIndex:indexPath.row];
+            ModelForFoodList *mod = [arrForDetal objectAtIndex:indexPath.row];
             if (!cell1) {
                 
                 cell1 = [[CellForShopFoodChooseSize alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
@@ -592,6 +619,8 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             //选大小后加购物车
             cell1.blockChooseSize = ^(ModelForFoodList *mod1) {
                 NSLog(@"%f",mod1.pic);
+                self.RightCollectionViewSelectceRow
+                = 0;
                 self.RightTableViewSelelctRow = indexPath.row;
                 self.rightChooseIndex = indexPath;
                 self.chooesTitle.text = mod1.godsname;
@@ -613,7 +642,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         else{
             NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
             CellForShopFood *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-             ModelForFoodList *mod = [self.arrForDetal objectAtIndex:indexPath.row];
+             ModelForFoodList *mod = [arrForDetal objectAtIndex:indexPath.row];
             if (!cell2) {
                 
                 cell2 = [[CellForShopFood alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
@@ -649,7 +678,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 self.selectbuyCarMoncy = dic[@"goodsPicPic"];
                 self.selcetbuyCarId = dic[@"id"];
                 [self addBuyCarNoSize];
-                ModelForFoodList *mod11 = [self.arrForDetal objectAtIndex:indexPath.row];
+                ModelForFoodList *mod11 = [arrForDetal objectAtIndex:indexPath.row];
                 NSInteger removeIndex = 0;
                 for (int i = 0 ; i < self.arrForAddShoppingCarList.count; i++) {
                     NSMutableDictionary *dicForChoose = [NSMutableDictionary dictionary];
@@ -1178,7 +1207,28 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     }
     NSInteger RightRow = self.RightCollectionViewSelectceRow;
     
-     ModelForFoodList *mod = [self.arrForDetal objectAtIndex:self.RightTableViewSelelctRow];
+    NSMutableArray *arrForDetal = [[NSMutableArray alloc]init];
+    NSDictionary *item = [self.arrForType objectAtIndex:self.leftTableViewSelectRow - 1];
+    NSArray *arritem = item[@"goodsLists"];
+    for (NSDictionary *dic1 in arritem) {
+        ModelForFoodList *mod = [[ModelForFoodList alloc]init];
+        mod.id = [dic1[@"id"] intValue];
+        mod.godsname = dic1[@"godsname"];
+        mod.godslog = [NSString stringWithFormat:@"%@",dic1[@"godslog"]];
+        mod.ys = dic1[@"ys"];
+        mod.pic = [dic1[@"pic"] floatValue];
+        NSArray *array = dic1[@"goodspic"];
+        if (array != nil && ![array isKindOfClass:[NSNull class]] && array.count != 0){
+            
+            mod.goodspic = dic1[@"goodspic"];
+            [arrForDetal addObject:mod];
+        }
+        
+        
+        
+    }
+    
+     ModelForFoodList *mod = [arrForDetal objectAtIndex:self.RightTableViewSelelctRow];
    
 
     for (int i = 0 ; i < self.arrForAddShoppingCarList.count; i++) {
@@ -1313,14 +1363,14 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         make.centerY.equalTo(haveBuyToolBar);
         make.right.equalTo(haveBuyToolBar.mas_right).offset(-10);
         make.height.equalTo(haveBuyToolBar);
-        make.width.equalTo(@(100));
+        make.width.equalTo(@(SCREEN_WIDTH / 3));
     }];
         UIImageView *cleanImg = [[UIImageView alloc]init];
         [cleanImg setImage:[UIImage imageNamed:@"icon_shangjiaxiangqingli"]];
         [haveBuyToolBar addSubview:cleanImg];
         [cleanImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(CleanBtn);
-            make.right.equalTo(CleanBtn.mas_left).offset(5);
+            make.right.equalTo(CleanBtn.mas_left).offset(-5);
             make.width.and.height.equalTo(@(15));
         }];
     self.haveBuyListTableview = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];

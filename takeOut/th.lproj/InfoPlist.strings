@@ -7,3 +7,5 @@
 */
 // Localizable App Name是App在英语环境环境下显示的名称
 CFBundleDisplayName = "beeOrder";
+NSLocationAlwaysUsageDescription = "ต้องการค้นหา，ธุรกิจในบริเวณใกล้เคียงที่แนะนำ";
+NSLocationWhenInUseUsageDescription = "ต้องการค้นหา，ธุรกิจในบริเวณใกล้เคียงที่แนะนำ";

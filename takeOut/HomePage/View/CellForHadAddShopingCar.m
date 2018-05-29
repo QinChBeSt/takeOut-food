@@ -70,7 +70,7 @@
     self.typeName.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:self.typeName];
     [self.typeName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(ws.goodsName);
+        make.left.equalTo(ws.goodsName);
         make.top.equalTo(ws.contentView.mas_centerY);
         make.centerY.equalTo(ws.contentView.mas_centerY).offset(self.frame.size.height / 4);
     }];
@@ -83,16 +83,21 @@
     self.goodsName.text = Mod.g_name;
     self.goodsMoney.text =ZBLocalized(priceStr, nil);
     self.goodsCount.text = [NSString stringWithFormat:@"%@",Mod.count];
-    
+     __weak typeof(self) ws = self;
     if (Mod.g_chooseType == nil) {
         self.goodsName.text = Mod.g_name;
+        self.typeName.hidden = YES;
+        [self.goodsName mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(ws.contentView);
+            make.left.equalTo(ws.contentView).offset(20);
+        }];
     }else{
-        __weak typeof(self) ws = self;
+       self.typeName.hidden = NO;
          self.goodsName.text = Mod.g_chooseType;
         self.typeName.text = Mod.g_name;
         [self.goodsName mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(ws.contentView.mas_centerY);
-            make.left.equalTo(ws.contentView).offset(10);
+            make.left.equalTo(ws.contentView).offset(20);
         }];
     }
     self.chooseMod = Mod;

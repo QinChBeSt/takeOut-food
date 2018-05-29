@@ -6,3 +6,5 @@
   Copyright © 2018年 QinChBeSt. All rights reserved.
 */
 CFBundleDisplayName = "beeOrder";
+NSLocationAlwaysUsageDescription = "需要定位,为您推荐附近的商家";
+NSLocationWhenInUseUsageDescription = "需要定位,为您推荐附近的商家";
