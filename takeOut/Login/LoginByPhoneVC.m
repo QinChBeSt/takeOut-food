@@ -323,7 +323,7 @@
 #pragma mark - 点击事件
 - (void)verifyEvent
 {
-    if (self.phoneNumStr.length != 11 ) {
+    if (self.phoneNumStr.length == 0 ) {
         [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
         return;
     }
@@ -332,9 +332,15 @@
     NSString * uuidStr= [UUID getUUID];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getsmsMsg];
     NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
+    NSString *phoneStr = [[NSString alloc]init];
     
+    if ([self.CNLabel.text isEqualToString:@"+86"]) {
+        phoneStr = [NSString stringWithFormat:@"86:%@",self.phoneNumStr];
+    }else{
+        phoneStr = [NSString stringWithFormat:@"66:%@",self.phoneNumStr];
+    }
     [par setValue:uuidStr forKey:@"phonemac"];
-    [par setValue:self.phoneNumStr forKey:@"phone"];
+    [par setValue:phoneStr forKey:@"phone"];
     
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         NSString *code =[NSString stringWithFormat:@"%@",result[@"code"]];
@@ -357,15 +363,16 @@
         [MBManager showBriefAlert:ZBLocalized(@"请输入验证码", nil)];
         return;
     }
+     NSString *phoneStr = [[NSString alloc]init];
     if ([self.CNLabel.text isEqualToString:@"+86"]) {
-        self.phoneNumStr = [NSString stringWithFormat:@"86:%@",self.phoneNumStr];
+        phoneStr = [NSString stringWithFormat:@"86:%@",self.phoneNumStr];
     }else{
-        self.phoneNumStr = [NSString stringWithFormat:@"66:%@",self.phoneNumStr];
+        phoneStr = [NSString stringWithFormat:@"66:%@",self.phoneNumStr];
     }
     NSString * uuidStr= [UUID getUUID];
     NSString * md5Code = [MD5encryption MD5ForLower32Bate:self.codeNumStr];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,setsmsMsg];
-    NSDictionary *parameters = @{@"phone":self.phoneNumStr,
+    NSDictionary *parameters = @{@"phone":phoneStr,
                                  @"yzm":md5Code,
                                  @"phonemac":uuidStr
                                  };
