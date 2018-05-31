@@ -25,5 +25,7 @@ typedef void (^blockDelShopingCar)(ModelForFoodList *);
 @property (nonatomic , strong)UIButton *delectToShoppingCar;
 @property (nonatomic , assign)NSInteger ChooseCount;
 @property (nonatomic , strong)UILabel *chooseCountLabel;
+@property (nonatomic , strong)NSString *acType;
+@property (nonatomic , strong)NSString *acTypeStr;
 
 @end

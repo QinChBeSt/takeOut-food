@@ -64,9 +64,9 @@
                 [self.arrForGetAddress addObject:mod];
             }
             if (self.arrForGetAddress.count == 0) {
-                self.kongbaiView.hidden = YES;
-            }else{
                 self.kongbaiView.hidden = NO;
+            }else{
+                self.kongbaiView.hidden = YES;
             }
             [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

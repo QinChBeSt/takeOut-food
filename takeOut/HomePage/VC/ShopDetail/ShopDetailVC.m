@@ -26,6 +26,7 @@
 @property (nonatomic , strong)UILabel *shopSaveNumLabel;
 @property (nonatomic , strong)ModelForShopList *toNextMod;
 @property (nonatomic , strong)NSString *shopIcomURL;
+@property (nonatomic , strong)NSString *shopACType;
 @end
 
 @implementation ShopDetailVC{
@@ -168,6 +169,7 @@
     FoodListVC *f = [[FoodListVC alloc] init];
     f.shopId = self.shopId;
     f.upPayMoney = self.shopUpPayMoney;
+    f.acTypeStr = self.shopACType;
     EvaluationVC *s = [[EvaluationVC alloc] init];
     s.shopId = self.shopId;
     ShopMassageVC *f1 = [[ShopMassageVC alloc] init];
@@ -208,6 +210,7 @@
     self.shopUpPayMoney = modShopList.up_pic;
     self.shopIcomURL = modShopList.store_img;
     shopNameStr = modShopList.store_name;
+    self.shopACType = modShopList.acTypeStr;
     if (modShopList.act_list.count != 0) {
         self.saveListArr = modShopList.act_list;
         numForSaveCount = [NSString stringWithFormat:@"%lu%@",(unsigned long)self.saveListArr.count,ZBLocalized(@"个活动", nil)];

@@ -9,6 +9,9 @@
 #import "CellForShopFood.h"
 
 @implementation CellForShopFood
+
+
+
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier])
@@ -67,36 +70,41 @@
     self.shopName.text = mod.godsname;
      self.priceLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"¥", nil),mod.pic];
     [self.bigImage sd_setImageWithURL:[NSURL URLWithString:mod.godslog] placeholderImage:[UIImage imageNamed:@"logo"]];
+    self.acType = self.acTypeStr;
 }
 
 -(void)addToShopingCarAction:(UIButton *)btn{
     
-    if (!_delectToShoppingCar) {
-        __weak typeof(self) ws = self;
-        
-        self.chooseCountLabel = [[UILabel alloc]init];
-        self.chooseCountLabel.text = [NSString stringWithFormat:@" %ld ",(long)self.ChooseCount];
-        [self.contentView addSubview:self.chooseCountLabel];
-        [self.chooseCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.centerY.equalTo(ws.priceLabel);
-             make.right.equalTo(ws.addToShoppingCar.mas_left).offset(-5);
-        }];
-        self.delectToShoppingCar = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.delectToShoppingCar.backgroundColor = [UIColor colorWithHexString:BaseYellow];
-        self.delectToShoppingCar.layer.cornerRadius=10;
-        self.delectToShoppingCar.clipsToBounds = YES;
-        [self.delectToShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiajianhao"] forState:UIControlStateNormal];
-        [self.delectToShoppingCar addTarget:self action:@selector(delectToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:self.delectToShoppingCar];
-        [self.delectToShoppingCar setHidden:NO];
-        [self.delectToShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(ws.chooseCountLabel.mas_left).offset(-5);
-            make.centerY.equalTo(ws.priceLabel);
-            make.width.equalTo(@(28));
-            make.height.equalTo(@(20));
-        }];
-    
+    if ([self.acTypeStr isEqualToString:@"2"]) {
+        if (!_delectToShoppingCar) {
+            __weak typeof(self) ws = self;
+            
+            self.chooseCountLabel = [[UILabel alloc]init];
+            self.chooseCountLabel.text = [NSString stringWithFormat:@" %ld ",(long)self.ChooseCount];
+            [self.contentView addSubview:self.chooseCountLabel];
+            [self.chooseCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(ws.priceLabel);
+                make.right.equalTo(ws.addToShoppingCar.mas_left).offset(-5);
+            }];
+            self.delectToShoppingCar = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.delectToShoppingCar.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+            self.delectToShoppingCar.layer.cornerRadius=10;
+            self.delectToShoppingCar.clipsToBounds = YES;
+            [self.delectToShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiajianhao"] forState:UIControlStateNormal];
+            [self.delectToShoppingCar addTarget:self action:@selector(delectToShopingCarAction:) forControlEvents:UIControlEventTouchUpInside];
+            [self.contentView addSubview:self.delectToShoppingCar];
+            [self.delectToShoppingCar setHidden:NO];
+            [self.delectToShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(ws.chooseCountLabel.mas_left).offset(-5);
+                make.centerY.equalTo(ws.priceLabel);
+                make.width.equalTo(@(28));
+                make.height.equalTo(@(20));
+            }];
+            
+        }
     }
+    
+    
     if (self.blockAddShopingCar) {
         self.blockAddShopingCar(self.chooseMod);
     }

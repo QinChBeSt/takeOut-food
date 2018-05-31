@@ -11,4 +11,5 @@
 @interface FoodListVC : UIViewController
 @property (nonatomic , copy) NSString *shopId;
 @property (nonatomic , copy) NSString *upPayMoney;
+@property (nonatomic , strong)NSString *acTypeStr;
 @end

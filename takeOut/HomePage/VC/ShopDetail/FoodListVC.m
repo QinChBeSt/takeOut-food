@@ -422,82 +422,109 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
   
 }
 -(void)createShopingCarView{
-    __weak typeof(self) ws = self;
-    self.buyCarView = [[UIView alloc]init];
-    self.buyCarView.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
-    [self.view addSubview:self.buyCarView];
-    [self.buyCarView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(ws.view.mas_bottom);
-        make.width.equalTo(ws.view.mas_width);
-        make.height.equalTo(@(shoppingCarViewHeight + SafeAreaTabbarHeight));
-        make.centerX.equalTo(ws.view);
-    }];
-    
-    UIImageView *imgShoppingCar = [[UIImageView alloc]init];
-    [imgShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiaxiangqinggouwudown"]];
-    [self.buyCarView addSubview:imgShoppingCar];
-    [imgShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@(20));
-        make.top.equalTo(@(5));
-
-    make.centerY.equalTo(ws.buyCarView.mas_top).offset(shoppingCarViewHeight/2);
-        make.width.equalTo(@(40));
-    }];
-    
-    self.ShoppingCarRedLabel = [[UILabel alloc]init];
-    self.ShoppingCarRedLabel.hidden = YES;
-    self.ShoppingCarRedLabel.layer.cornerRadius = 10;
-    self.ShoppingCarRedLabel.clipsToBounds = YES;
-    self.ShoppingCarRedLabel.font = [UIFont systemFontOfSize:12];
-    self.ShoppingCarRedLabel.textAlignment = NSTextAlignmentCenter;
-    self.ShoppingCarRedLabel.textColor = [UIColor whiteColor];
-    self.ShoppingCarRedLabel.backgroundColor = [UIColor redColor];
-    [imgShoppingCar addSubview:self.ShoppingCarRedLabel];
-    [self.ShoppingCarRedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(imgShoppingCar.mas_right).offset(10);
-        make.bottom.equalTo(imgShoppingCar.mas_bottom).offset(3);
-        make.width.equalTo(@(20));
-        make.height.equalTo(@(20));
-    }];
-    
-    self.buyCarAddLabel = [[UILabel alloc]init];
-    self.buyCarAddLabel.text = @"0 元";
-    self.buyCarAddLabel.font = [UIFont systemFontOfSize:22];
-    self.buyCarAddLabel.textColor = [UIColor whiteColor];
-    [self.buyCarView addSubview:self.buyCarAddLabel];
-    [self.buyCarAddLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(ws.buyCarView.mas_top).offset(shoppingCarViewHeight/2);
-        make.left.equalTo(imgShoppingCar.mas_right).offset(20);
-    }];
-    
-    
-    
-    self.addBuyCarViewAddBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
-    self.addBuyCarViewAddBtn.layer.cornerRadius = 0;
-    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"¥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
-    [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
-    [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
-    [self.addBuyCarViewAddBtn addTarget:self action:@selector(addShoppongCarNetWord) forControlEvents:UIControlEventTouchUpInside];
-    self.addBuyCarViewAddBtn.titleLabel.numberOfLines = 2;
-    [self.buyCarView addSubview:self.addBuyCarViewAddBtn];
-    [self.addBuyCarViewAddBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.buyCarAddLabel);
-        make.right.equalTo(ws.buyCarView.mas_right).offset(0);
-        make.top.equalTo(ws.buyCarView.mas_top).offset(0);
-        make.width.equalTo(@(SCREEN_WIDTH * 0.4));
-    }];
+  
+    if ([_acTypeStr isEqualToString:@"2"]) {
+        __weak typeof(self) ws = self;
+        self.buyCarView = [[UIView alloc]init];
+        self.buyCarView.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
+        [self.view addSubview:self.buyCarView];
+        [self.buyCarView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(ws.view.mas_bottom);
+            make.width.equalTo(ws.view.mas_width);
+            make.height.equalTo(@(shoppingCarViewHeight + SafeAreaTabbarHeight));
+            make.centerX.equalTo(ws.view);
+        }];
+        
+        UIImageView *imgShoppingCar = [[UIImageView alloc]init];
+        [imgShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiaxiangqinggouwudown"]];
+        [self.buyCarView addSubview:imgShoppingCar];
+        [imgShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(@(20));
+            make.top.equalTo(@(5));
+            
+            make.centerY.equalTo(ws.buyCarView.mas_top).offset(shoppingCarViewHeight/2);
+            make.width.equalTo(@(40));
+        }];
+        
+        self.ShoppingCarRedLabel = [[UILabel alloc]init];
+        self.ShoppingCarRedLabel.hidden = YES;
+        self.ShoppingCarRedLabel.layer.cornerRadius = 10;
+        self.ShoppingCarRedLabel.clipsToBounds = YES;
+        self.ShoppingCarRedLabel.font = [UIFont systemFontOfSize:12];
+        self.ShoppingCarRedLabel.textAlignment = NSTextAlignmentCenter;
+        self.ShoppingCarRedLabel.textColor = [UIColor whiteColor];
+        self.ShoppingCarRedLabel.backgroundColor = [UIColor redColor];
+        [imgShoppingCar addSubview:self.ShoppingCarRedLabel];
+        [self.ShoppingCarRedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(imgShoppingCar.mas_right).offset(10);
+            make.bottom.equalTo(imgShoppingCar.mas_bottom).offset(3);
+            make.width.equalTo(@(20));
+            make.height.equalTo(@(20));
+        }];
+        
+        self.buyCarAddLabel = [[UILabel alloc]init];
+        self.buyCarAddLabel.text = @"0 元";
+        self.buyCarAddLabel.font = [UIFont systemFontOfSize:22];
+        self.buyCarAddLabel.textColor = [UIColor whiteColor];
+        [self.buyCarView addSubview:self.buyCarAddLabel];
+        [self.buyCarAddLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(ws.buyCarView.mas_top).offset(shoppingCarViewHeight/2);
+            make.left.equalTo(imgShoppingCar.mas_right).offset(20);
+        }];
+        
+        
+        
+        self.addBuyCarViewAddBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
+        self.addBuyCarViewAddBtn.layer.cornerRadius = 0;
+        NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"¥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
+        [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
+        [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+        [self.addBuyCarViewAddBtn addTarget:self action:@selector(addShoppongCarNetWord) forControlEvents:UIControlEventTouchUpInside];
+        self.addBuyCarViewAddBtn.titleLabel.numberOfLines = 2;
+        [self.buyCarView addSubview:self.addBuyCarViewAddBtn];
+        [self.addBuyCarViewAddBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.buyCarAddLabel);
+            make.right.equalTo(ws.buyCarView.mas_right).offset(0);
+            make.top.equalTo(ws.buyCarView.mas_top).offset(0);
+            make.width.equalTo(@(SCREEN_WIDTH * 0.4));
+        }];
+        
+        UIButton *addShowHaveBuyList = [UIButton buttonWithType:UIButtonTypeCustom];
+        [addShowHaveBuyList addTarget:self action:@selector(showHaveBuyList) forControlEvents:UIControlEventTouchUpInside];
+        [self.buyCarView addSubview:addShowHaveBuyList];
+        [addShowHaveBuyList mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.buyCarAddLabel);
+            make.right.equalTo(self.addBuyCarViewAddBtn.mas_left).offset(0);
+            make.top.equalTo(ws.buyCarView.mas_top).offset(0);
+            make.left.equalTo(ws.buyCarView.mas_left);
+        }];
+        
+    }else{
+        __weak typeof(self) ws = self;
+        self.buyCarView = [[UIView alloc]init];
+        self.buyCarView.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
+        [self.view addSubview:self.buyCarView];
+        [self.buyCarView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(ws.view.mas_bottom);
+            make.width.equalTo(ws.view.mas_width);
+            make.height.equalTo(@(shoppingCarViewHeight + SafeAreaTabbarHeight));
+            make.centerX.equalTo(ws.view);
+        }];
+        
+        UILabel *openLab = [[UILabel alloc]init];
+        openLab.text = ZBLocalized(@"打烊了", nil);
+        openLab.font = [UIFont systemFontOfSize:22];
+        openLab.textColor = [UIColor whiteColor];
+        [self.buyCarView addSubview:openLab];
+        [openLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(ws.buyCarView.mas_top).offset(shoppingCarViewHeight/2);
+            make.centerX.equalTo(ws.view);
+        }];
+    }
    
-    UIButton *addShowHaveBuyList = [UIButton buttonWithType:UIButtonTypeCustom];
-    [addShowHaveBuyList addTarget:self action:@selector(showHaveBuyList) forControlEvents:UIControlEventTouchUpInside];
-    [self.buyCarView addSubview:addShowHaveBuyList];
-    [addShowHaveBuyList mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.buyCarAddLabel);
-        make.right.equalTo(self.addBuyCarViewAddBtn.mas_left).offset(0);
-        make.top.equalTo(ws.buyCarView.mas_top).offset(0);
-        make.left.equalTo(ws.buyCarView.mas_left);
-    }];
+   
    
 }
 
@@ -619,6 +646,10 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             //选大小后加购物车
             cell1.blockChooseSize = ^(ModelForFoodList *mod1) {
                 NSLog(@"%f",mod1.pic);
+                if (![self.acTypeStr isEqualToString:@"2"]) {
+                    [MBManager showBriefAlert:ZBLocalized(@"打烊了", nil)];
+                    return ;
+                }
                 self.RightCollectionViewSelectceRow
                 = 0;
                 self.RightTableViewSelelctRow = indexPath.row;
@@ -650,6 +681,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             }
             cell2.selectionStyle = UITableViewCellSelectionStyleNone;
             cell2.mod = mod;
+            cell2.acType = _acTypeStr;
             NSString *cellValue = [NSString stringWithFormat:@"RightTableViewsection%ldrow%ld",indexPath.section,indexPath.row];
             if (self.arrForAddShoppingCarList.count == 0) {
             
@@ -673,6 +705,10 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             
 //添加购物车+++++++++++++++++++++++++++++++++
             cell2.blockAddShopingCar = ^(ModelForFoodList *mod2) {
+                if (![self.acTypeStr isEqualToString:@"2"]) {
+                    [MBManager showBriefAlert:ZBLocalized(@"打烊了", nil)];
+                    return ;
+                }
                 NSArray *arr = mod2.goodspic;
                 NSDictionary *dic = arr[0];
                 self.selectbuyCarMoncy = dic[@"goodsPicPic"];
