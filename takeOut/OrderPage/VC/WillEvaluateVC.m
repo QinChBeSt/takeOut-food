@@ -95,6 +95,13 @@
             }
             
         }
+        
+        NSString *willEvaCount =[NSString stringWithFormat:@"%lu",(unsigned long)self.arrForOrerList.count];
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        
+        [center postNotificationName:@"willEvaCount" object:willEvaCount userInfo:nil];
+        
+        
         if (self.arrForOrerList.count == 0) {
             [self.tableView.mj_header endRefreshing];
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -230,6 +237,7 @@
     [self.navigationController pushViewController:login animated:YES];
     
 }
+
 /*
 #pragma mark - Navigation
 

@@ -21,7 +21,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
+    
+    // 注册一个监听事件。第三个参数的事件名， 系统用这个参数来区别不同事件。
+    [notiCenter addObserver:self selector:@selector(receiveNotification:) name:@"willEvaCount" object:nil];
+    
+
      self.view.backgroundColor = [UIColor whiteColor];
      [self createNaviView];
 
@@ -75,6 +80,7 @@
     self.segmentVC.viewControllers = [array copy];
   
     
+    
     self.segmentVC.segmentView.style=ZWMSegmentStyleFlush;
    
     [self addSegmentController:self.segmentVC];
@@ -94,6 +100,26 @@ LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)receiveNotification:(NSNotification *)noti
+{
+    
+    // NSNotification 有三个属性，name, object, userInfo，其中最关键的object就是从第三个界面传来的数据。name就是通知事件的名字， userInfo一般是事件的信息。
+   
+    
+    [self.segmentVC enumerateBadges:@[@"0",noti.object]];
+    if ([noti.object isEqualToString:@"0"]) {
+        [self.segmentVC clearAllBadges];
+    }
+}
+
+// 第一界面中dealloc中移除监听的事件
+- (void)dealloc
+{
+    // 移除当前对象监听的事件
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+ 
+    
 }
 
 /*

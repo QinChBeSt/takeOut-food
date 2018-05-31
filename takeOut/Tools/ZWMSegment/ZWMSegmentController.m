@@ -63,7 +63,7 @@ typedef void(^ZWMViewControllerIndexBlock)(NSUInteger, UIButton *, UIViewControl
     [self.view addSubview:_segmentView];
     
     UIButton *button = _segmentView.buttons.firstObject;
-    _offsetSize = CGSizeMake(_segmentView.buttonSpace, (ZWMSegmentHeight - [@"ZWM" sizeWithAttributes:@{NSFontAttributeName: button.titleLabel.font}].height) / 2);
+    _offsetSize = CGSizeMake(_segmentView.buttonSpace - 5, (ZWMSegmentHeight - [@"ZWM" sizeWithAttributes:@{NSFontAttributeName: button.titleLabel.font}].height) / 2);
 }
 
 - (void)containerViewSetting {
@@ -175,7 +175,7 @@ typedef void(^ZWMViewControllerIndexBlock)(NSUInteger, UIButton *, UIViewControl
 - (void)enumerateBadges:(NSArray<NSNumber *> *)badges {
     [badges enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *button = self.segmentView.buttons[idx];
-        [button addNumberBadge:obj.integerValue badgeOffsetSize:_offsetSize color:_segmentView.segmentTintColor borderColor:_segmentView.backgroundColor];
+        [button addNumberBadge:obj.integerValue badgeOffsetSize:_offsetSize color:[UIColor redColor] borderColor:[UIColor clearColor]];
     }];
 }
 
