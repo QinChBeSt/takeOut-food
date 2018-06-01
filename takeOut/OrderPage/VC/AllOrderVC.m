@@ -86,6 +86,7 @@
                                  };
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
     [self.arrForOrerList removeAllObjects];
+    [self.tableView reloadData];
     [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSMutableDictionary *dic = responseObject;

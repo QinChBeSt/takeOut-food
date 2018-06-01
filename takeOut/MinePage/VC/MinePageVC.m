@@ -143,14 +143,14 @@
         make.top.equalTo(ws.headView.mas_bottom);
         make.height.equalTo(@(10));
     }];
-    CGFloat itemWidth = (SCREEN_WIDTH - 3 )/ 3;
-    CGFloat itemHeight = (SCREEN_WIDTH - 3 ) / 3;
+    CGFloat itemWidth = (SCREEN_WIDTH - 3 )/ 4;
+    CGFloat itemHeight = (SCREEN_WIDTH - 3 ) / 4;
     UICollectionViewFlowLayout *shareflowLayout = [[UICollectionViewFlowLayout alloc] init];
     shareflowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    shareflowLayout.sectionInset = UIEdgeInsetsMake(1, 1, 1,1);
+    shareflowLayout.sectionInset = UIEdgeInsetsMake(1, (SCREEN_WIDTH - 3) / 4 / 3/2, 1,(SCREEN_WIDTH - 3) / 4 / 3/2);
     shareflowLayout.itemSize =CGSizeMake(itemWidth, itemHeight);
     // 1.设置列间距
-    shareflowLayout.minimumInteritemSpacing = 0;
+    shareflowLayout.minimumInteritemSpacing = (SCREEN_WIDTH - 3) / 4 / 3;
     // 2.设置行间距
     shareflowLayout.minimumLineSpacing = 0;
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:shareflowLayout];
@@ -166,7 +166,7 @@
         make.top.equalTo(topLine.mas_bottom);
         make.width.equalTo(ws.view);
         make.centerX.equalTo(ws.view);
-        make.height.equalTo(@(SCREEN_WIDTH / 3));
+        make.height.equalTo(@(SCREEN_WIDTH / 4));
     }];
     
 }

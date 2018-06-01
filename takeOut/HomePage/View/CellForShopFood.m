@@ -69,13 +69,14 @@
     self.chooseMod = mod;
     self.shopName.text = mod.godsname;
      self.priceLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"¥", nil),mod.pic];
-    [self.bigImage sd_setImageWithURL:[NSURL URLWithString:mod.godslog] placeholderImage:[UIImage imageNamed:@"logo"]];
+    NSString *ImgUrl = [NSString stringWithFormat:@"%@/%@",IMGBaesURL,mod.godslog];
+    [self.bigImage sd_setImageWithURL:[NSURL URLWithString:ImgUrl] placeholderImage:[UIImage imageNamed:@"logo"]];
     self.acType = self.acTypeStr;
 }
 
 -(void)addToShopingCarAction:(UIButton *)btn{
     
-    if ([self.acTypeStr isEqualToString:@"2"]) {
+    if (![self.acTypeStr isEqualToString:@"2"]) {
         if (!_delectToShoppingCar) {
             __weak typeof(self) ws = self;
             

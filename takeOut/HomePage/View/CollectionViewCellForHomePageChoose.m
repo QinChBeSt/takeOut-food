@@ -47,32 +47,32 @@
     NSString *modId = [NSString stringWithFormat:@"%@",mod.id];
     
     if ([modId isEqualToString:@"1"]) {
-        [self.iconImg setImage:[UIImage imageNamed:@"ic_ms"]];
+        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyemeishi"]];
     }
     else if ([modId isEqualToString:@"2"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"ic_sgsx"]];
+        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyemifengkuaisong"]];
     }
     else if ([modId isEqualToString:@"3"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"ic_mfzs"]];
+        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyeshuiguo"]];
     }
     else if ([modId isEqualToString:@"4"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"ic_hbps"]];
+        [self.iconImg setImage:[UIImage imageNamed:@"icon_zhanghao-1"]];
     }
     else if ([modId isEqualToString:@"5"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"ic_xwc"]];
+        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyedehui"]];
     }
     else if ([modId isEqualToString:@"6"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"ic_zjls"]];
+        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyejiachangcai"]];
     }
     else if ([modId isEqualToString:@"7"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"ic_jcc"]];
+        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyehanbao"]];
     }
     else if ([modId isEqualToString:@"8"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"ic_ptdg"]];
+        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyejichi"]];
     }else if ([modId isEqualToString:@"9"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"ic_ms"]];
+        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyetiandian"]];
     }else if ([modId isEqualToString:@"10"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"ic_tsms"]];
+        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyedesemianshi"]];
     }
     
 }

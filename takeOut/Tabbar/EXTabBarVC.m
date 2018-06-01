@@ -75,14 +75,14 @@ DEF_SINGLETON(EXTabBarVC);
     
     UINavigationController *naviHome = [[UINavigationController alloc]initWithRootViewController:self.homeVC];
     
-    naviHome.tabBarItem = [[UITabBarItem alloc] initWithTitle:ZBLocalized(@"首页", nil) image:[self configureImage:@"icon_home_normal"] selectedImage:[self configureImage:@"icon_home_higjhlighted"]];
+    naviHome.tabBarItem = [[UITabBarItem alloc] initWithTitle:ZBLocalized(@"首页", nil) image:[self configureImage:@"icon_shouye"] selectedImage:[self configureImage:@"icon_shouyedown"]];
     naviHome.tabBarItem.imageInsets = inserts;
     
     [mArray addObject:naviHome];
     
     self.orderVC = [[OrderPageVC alloc] init];
     UINavigationController *naviorder = [[UINavigationController alloc]initWithRootViewController:self.orderVC];
-    naviorder.tabBarItem = [[UITabBarItem alloc] initWithTitle:ZBLocalized(@"订单", nil) image:[self configureImage:@"icon_order_normal"] selectedImage:[self configureImage:@"icon_order_higjhlighted"]];
+    naviorder.tabBarItem = [[UITabBarItem alloc] initWithTitle:ZBLocalized(@"订单", nil) image:[self configureImage:@"icon_dingdan"] selectedImage:[self configureImage:@"icon_dingdandown"]];
     UIEdgeInsets insertsDis = UIEdgeInsetsMake(0, 0, 0, 0);
 
     naviorder.tabBarItem.imageInsets = insertsDis;
@@ -93,7 +93,7 @@ DEF_SINGLETON(EXTabBarVC);
     
     self.userCenterVC = [[MinePageVC alloc] init];
     UINavigationController *naviUsercenter = [[UINavigationController alloc]initWithRootViewController:self.userCenterVC];
-    naviUsercenter.tabBarItem = [[UITabBarItem alloc] initWithTitle:ZBLocalized(@"我的", nil) image:[self configureImage:@"icon_user_normal"] selectedImage:[self configureImage:@"icon_user_higjhlighted"]];
+    naviUsercenter.tabBarItem = [[UITabBarItem alloc] initWithTitle:ZBLocalized(@"我的", nil) image:[self configureImage:@"icon_wode"] selectedImage:[self configureImage:@"icon_wodedown"]];
     naviUsercenter.tabBarItem.imageInsets = inserts;
     [mArray addObject:naviUsercenter];
     

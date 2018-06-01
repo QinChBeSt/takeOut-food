@@ -247,6 +247,8 @@
     [par setValue:numTypeFlg forKey:@"typeflg"];
     [par setValue:numPage forKey:@"page"];
     [self.arrForHomePageShopList removeAllObjects];
+    [self.tableView.mj_header setHidden:NO];
+     [self.tableView reloadData];
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
     
         NSArray *arr = result[@"value"];
@@ -316,6 +318,7 @@
             
             
         }
+        
         [self.tableView.mj_footer resetNoMoreData];
         [self.tableView.mj_header endRefreshing];
         [self.tableView reloadData];

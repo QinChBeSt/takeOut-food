@@ -473,6 +473,27 @@
     [self.view endEditing:YES];
     
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];//取消第一响应者
+    
+    return YES;
+}
+- (BOOL)application:(UIApplication *)application
+
+shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier
+
+{
+    
+    if ([extensionPointIdentifier isEqualToString:@"com.apple.keyboard-service"]) {
+        
+        return NO;
+        
+    }
+    
+    return YES;
+    
+} 
 /*
 #pragma mark - Navigation
 
