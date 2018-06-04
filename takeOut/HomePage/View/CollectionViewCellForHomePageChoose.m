@@ -21,8 +21,7 @@
 -(void)setupUI{
     __weak typeof(self) ws = self;
     self.iconImg = [[UIImageView alloc]init];
-    self.iconImg.layer.cornerRadius=ws.contentView.frame.size.width / 5 * 2.5 /2 ;
-    self.iconImg.clipsToBounds = YES;
+
     [self.contentView addSubview:self.iconImg];
     [self.iconImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.contentView.mas_top).offset(15);
@@ -44,36 +43,38 @@
 }
 -(void)setMod:(ModelForHomeType *)mod{
     self.titleLable.text = mod.shopTypeName;
-    NSString *modId = [NSString stringWithFormat:@"%@",mod.id];
-    
-    if ([modId isEqualToString:@"1"]) {
-        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyemeishi"]];
-    }
-    else if ([modId isEqualToString:@"2"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyemifengkuaisong"]];
-    }
-    else if ([modId isEqualToString:@"3"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyeshuiguo"]];
-    }
-    else if ([modId isEqualToString:@"4"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"icon_zhanghao-1"]];
-    }
-    else if ([modId isEqualToString:@"5"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyedehui"]];
-    }
-    else if ([modId isEqualToString:@"6"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyejiachangcai"]];
-    }
-    else if ([modId isEqualToString:@"7"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyehanbao"]];
-    }
-    else if ([modId isEqualToString:@"8"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyejichi"]];
-    }else if ([modId isEqualToString:@"9"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyetiandian"]];
-    }else if ([modId isEqualToString:@"10"]){
-        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyedesemianshi"]];
-    }
-    
+   // NSString *modId = [NSString stringWithFormat:@"%@",mod.id];
+   
+//    if ([modId isEqualToString:@"1"]) {
+//        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyemeishi"]];
+//    }
+//    else if ([modId isEqualToString:@"2"]){
+//        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyemifengkuaisong"]];
+//    }
+//    else if ([modId isEqualToString:@"3"]){
+//        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyeshuiguo"]];
+//    }
+//    else if ([modId isEqualToString:@"4"]){
+//        [self.iconImg setImage:[UIImage imageNamed:@"icon_zhanghao-1"]];
+//    }
+//    else if ([modId isEqualToString:@"5"]){
+//        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyedehui"]];
+//    }
+//    else if ([modId isEqualToString:@"6"]){
+//        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyejiachangcai"]];
+//    }
+//    else if ([modId isEqualToString:@"7"]){
+//        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyehanbao"]];
+//    }
+//    else if ([modId isEqualToString:@"8"]){
+//        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyejichi"]];
+//    }else if ([modId isEqualToString:@"9"]){
+//        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyetiandian"]];
+//    }else if ([modId isEqualToString:@"10"]){
+//        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyedesemianshi"]];
+//    }
+
+     NSString *imgUrl = [NSString stringWithFormat:@"http://beeorder.net:8080/spmvc/apidocs/img/ic%@.png",mod.id];
+    [self.iconImg sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
 }
 @end

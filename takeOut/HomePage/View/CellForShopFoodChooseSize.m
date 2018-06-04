@@ -45,10 +45,10 @@
         make.top.equalTo(ws.bigImage.mas_centerY);
     }];
     self.chooseSizeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.chooseSizeBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+//    self.chooseSizeBtn.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self.chooseSizeBtn addTarget:self action:@selector(chooseSize:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.chooseSizeBtn.layer.cornerRadius = 5;
+   // self.chooseSizeBtn.layer.cornerRadius = 5;
     [self.chooseSizeBtn setImage:[UIImage imageNamed:@"icon_shangguige"] forState:UIControlStateNormal];
     self.chooseSizeBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.chooseSizeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

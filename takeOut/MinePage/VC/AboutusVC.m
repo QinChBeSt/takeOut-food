@@ -54,7 +54,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = ZBLocalized(@"我的评价", nil);
+    titleLabel.text = ZBLocalized(@"关于我们", nil);
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -80,6 +80,18 @@
     [vison mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.view);
         make.top.equalTo(ICON.mas_bottom).offset(10);
+    }];
+    
+    UILabel *text = [[UILabel alloc]init];
+    text.font = [UIFont systemFontOfSize:14];
+    
+    text.numberOfLines = 0;
+    text.text = ZBLocalized(@"Beeorder, 目前领先的餐饮供应电商平台! F2B模式, 工厂直接报价给商家,去掉中间环节, 终端市场建仓配送直达餐厅。上百种产品厂家直供, 商家无忧买到性价比超高的优质产品, 并享受到专业的客户服务。不需要再起早贪黑跑菜市场、跑批发部, 不需要再货比三家讨价还价。无论是在店里还是在家里、旅途你都能随时随地为您的餐厅下单采购！Beeorder, 餐厅老板的信赖之选, 让天下餐厅没有难做的生意。", nil) ;
+    [self.view addSubview:text];
+    [text mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.view);
+        make.left.equalTo(ws.view.mas_left).offset(30);
+        make.top.equalTo(vison.mas_bottom).offset(20);
     }];
 }
 #pragma mark - 点击事件

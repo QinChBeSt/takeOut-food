@@ -1175,7 +1175,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CellForChooseSize *cell = (CellForChooseSize *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor grayColor];
+    cell.backgroundColor = [UIColor colorWithHexString:@"e7e7e7"];
     if (self.arrForChooseSize.count != 0) {
         NSDictionary *dic = [self.arrForChooseSize objectAtIndex:indexPath.row];
         cell.nameLabel.text = dic[@"goodsPicName"];

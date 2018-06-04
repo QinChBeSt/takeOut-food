@@ -522,7 +522,7 @@
     self.tableView.dataSource = self;
     [self createHeadView];
     self.tableView.tableHeaderView = self.headView;
-   
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self netWorkForShopList:self.chooseType];
     }];

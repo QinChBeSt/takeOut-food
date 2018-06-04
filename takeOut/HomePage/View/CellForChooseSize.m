@@ -38,7 +38,7 @@
     if (selected) {
         self.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     }else{
-        self.backgroundColor = [UIColor grayColor];
+        self.backgroundColor = [UIColor colorWithHexString:@"e7e7e7"];
     }
     
     // Configure the view for the selected state

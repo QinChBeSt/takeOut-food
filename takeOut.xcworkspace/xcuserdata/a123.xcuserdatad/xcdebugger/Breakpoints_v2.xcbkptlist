@@ -25,38 +25,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "549525269.475778"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1282"
-            endingLineNumber = "1282"
-            landmarkName = "-addBuyCar"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "549525269.475896"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1280"
-            endingLineNumber = "1280"
-            landmarkName = "-addBuyCar"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "takeOut/Login/RegisterVC.m"
             timestampString = "549455451.804337"
             startingColumnNumber = "9223372036854775807"
@@ -74,7 +42,7 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "549537969.95374"
+                  timestampString = "549795717.261068"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "269"
@@ -89,7 +57,7 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "549537969.956432"
+                  timestampString = "549795717.263767"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "270"
@@ -104,7 +72,7 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "549537969.95906"
+                  timestampString = "549795717.2663"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "269"
@@ -137,7 +105,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "549525269.476096"
+            timestampString = "549776394.386089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
@@ -153,7 +121,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "549525269.476179"
+            timestampString = "549776394.386199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "650"
@@ -169,12 +137,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/Login/LoginByPhoneVC.m"
-            timestampString = "549538083.508811"
+            timestampString = "549621942.160868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "328"
             endingLineNumber = "328"
             landmarkName = "-verifyEvent"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "takeOut/HomePage/VC/ShopDetail/ShopMassageVC.m"
+            timestampString = "549795717.000566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-getNet"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
