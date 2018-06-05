@@ -117,7 +117,7 @@
             saveIcon.backgroundColor = [UIColor orangeColor];
             [self.view addSubview:saveIcon];
             
-            UILabel *saveLabel = [[UILabel alloc]initWithFrame:CGRectMake(85, SafeAreaTopHeight + 195+ 10 + i * 30, 100, 20)];
+            UILabel *saveLabel = [[UILabel alloc]initWithFrame:CGRectMake(85, SafeAreaTopHeight + 195+ 10 + i * 30, SCREEN_WIDTH - 85 - 30, 20)];
             saveLabel.font = [UIFont systemFontOfSize:14];
             saveLabel.text = [NSString stringWithFormat:@"%@",self.saveListArr[i][@"content"]];
             [self.view addSubview:saveLabel];

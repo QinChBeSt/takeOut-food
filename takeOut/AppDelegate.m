@@ -189,6 +189,20 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+- (BOOL)application:(UIApplication *)application
 
+shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier
+
+{
+    
+    if ([extensionPointIdentifier isEqualToString:@"com.apple.keyboard-service"]) {
+        
+        return NO;
+        
+    }
+    
+    return YES;
+    
+}
 
 @end

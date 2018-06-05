@@ -190,9 +190,10 @@
         arrForGoodsCount = mod.godslist;
         
         NSString *shopStrat = mod.shopstart;
+        NSString *shopOrderNo = mod.ordenum;
       //  if ([shopStrat isEqualToString:@"9"]) {
             //        CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:@"pool1"];
-        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld-%ld-%@-%lu",indexPath.section,indexPath.row,shopStrat,(unsigned long)arrForGoodsCount.count];
+        NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld-%ld-%@-%lu-%@",indexPath.section,indexPath.row,shopStrat,(unsigned long)arrForGoodsCount.count,shopOrderNo];
             
             CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (!cell) {

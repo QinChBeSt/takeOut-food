@@ -375,6 +375,9 @@
        make.top.equalTo(addressbackview.mas_top).offset(10);
         make.height.equalTo(@(20));
     }];
+    [psAddressTitle setContentCompressionResistancePriority:UILayoutPriorityRequired
+                                                  forAxis:UILayoutConstraintAxisHorizontal];
+
     
    self.userName = [[UILabel alloc]init];
     [addressbackview addSubview: self.userName];
@@ -410,7 +413,7 @@
     UILabel *compName = [[UILabel alloc]init];
     [addressbackview addSubview:compName];
     compName.text = @"Beeorder";
-    compName.font = [UIFont systemFontOfSize:14];
+    compName.font = [UIFont systemFontOfSize:13];
     compName.textColor = [UIColor colorWithHexString:BaseYellow];
     [compName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(psAddressTitle.mas_right).offset(20);
@@ -419,12 +422,13 @@
     UILabel *compStr = [[UILabel alloc]init];
     [addressbackview addSubview:compStr];
     compStr.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"提供商品高品质配送服务", nil)];
-    compStr.font = [UIFont systemFontOfSize:14];
+    compStr.font = [UIFont systemFontOfSize:13];
     compStr.textColor = [UIColor colorWithHexString:@"222222"];
     [compStr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(compName.mas_right);
         make.centerY.equalTo(compName);
         make.right.equalTo(ws.view.mas_right).offset(-5);
+        
     }];
     
     UIView *orderMassageView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + totitViewHeight + callToShopViewHeight + addressViewHeight, SCREEN_WIDTH,orderMassageViewHeight)];

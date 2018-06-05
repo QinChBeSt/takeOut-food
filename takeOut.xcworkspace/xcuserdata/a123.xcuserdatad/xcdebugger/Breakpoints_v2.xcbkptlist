@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/MinePage/VC/AddNewAddressVC.m"
-            timestampString = "549538626.614186"
+            timestampString = "549884991.605157"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "363"
@@ -42,7 +42,7 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "549795717.261068"
+                  timestampString = "549884992.046784"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "269"
@@ -57,7 +57,7 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "549795717.263767"
+                  timestampString = "549884992.04987"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "270"
@@ -72,7 +72,7 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "549795717.2663"
+                  timestampString = "549884992.052924"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "269"
@@ -143,22 +143,6 @@
             startingLineNumber = "328"
             endingLineNumber = "328"
             landmarkName = "-verifyEvent"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "takeOut/HomePage/VC/ShopDetail/ShopMassageVC.m"
-            timestampString = "549795717.000566"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "-getNet"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

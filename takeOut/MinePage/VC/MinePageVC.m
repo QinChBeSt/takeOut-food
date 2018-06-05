@@ -144,7 +144,7 @@
         make.height.equalTo(@(10));
     }];
     CGFloat itemWidth = (SCREEN_WIDTH - 3 )/ 4;
-    CGFloat itemHeight = (SCREEN_WIDTH - 3 ) / 4;
+    CGFloat itemHeight = (SCREEN_WIDTH - 3 ) / 4 + 10;
     UICollectionViewFlowLayout *shareflowLayout = [[UICollectionViewFlowLayout alloc] init];
     shareflowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     shareflowLayout.sectionInset = UIEdgeInsetsMake(1, (SCREEN_WIDTH - 3) / 4 / 3/2, 1,(SCREEN_WIDTH - 3) / 4 / 3/2);
@@ -166,7 +166,7 @@
         make.top.equalTo(topLine.mas_bottom);
         make.width.equalTo(ws.view);
         make.centerX.equalTo(ws.view);
-        make.height.equalTo(@(SCREEN_WIDTH / 4));
+        make.height.equalTo(@(SCREEN_WIDTH / 4 + 10));
     }];
     
 }

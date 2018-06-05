@@ -82,6 +82,7 @@
     }];
     
     cityName = [[UILabel alloc]init];
+    cityName.numberOfLines = 2;
     cityName.font = [UIFont systemFontOfSize:16];
     cityName.textAlignment = NSTextAlignmentCenter;
     [titleView addSubview:cityName];

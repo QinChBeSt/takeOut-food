@@ -217,18 +217,21 @@
          NSString *imgUrl =  self.saveListArr[0][@"img"];
          shopSaveIconUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,imgUrl] ;
         int count = 0;
-        for (NSMutableDictionary *dic in self.saveListArr) {
-            
-            if (shopSaveStr == nil) {
-                shopSaveStr = dic[@"content"];
-            }else{
-                if (count < 2) {
-                     shopSaveStr = [NSString stringWithFormat:@"%@,%@",shopSaveStr,dic[@"content"]];
-                }
-           
-           }
-            count++;
-        }
+        
+        NSMutableDictionary *dic = self.saveListArr[0];
+        shopSaveStr = dic[@"content"];
+//        for (NSMutableDictionary *dic in self.saveListArr) {
+//
+//            if (shopSaveStr == nil) {
+//                shopSaveStr = dic[@"content"];
+//            }else{
+//                if (count < 2) {
+//                     shopSaveStr = [NSString stringWithFormat:@"%@,%@",shopSaveStr,dic[@"content"]];
+//                }
+//
+//           }
+//            count++;
+//        }
     }
     
 }

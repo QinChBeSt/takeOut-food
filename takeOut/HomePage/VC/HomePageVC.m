@@ -26,7 +26,7 @@
 #define kHeadAdderssViewHeight 40
 #define kHeadSelectViewHeight 160
 #define kHeadImageViewHeight 120
-#define kHeadCollectionViewHeight SCREEN_WIDTH / 5 * 2
+#define kHeadCollectionViewHeight SCREEN_WIDTH / 5 * 2 + 3
 
 @interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate,SDCycleScrollViewDelegate>
 {
@@ -487,7 +487,7 @@
 #pragma mark - 创建collecttionView
 -(void)createCollectionView{
     CGFloat itemWidth = (SCREEN_WIDTH - 5 )/ 5;
-    CGFloat itemHeight = (SCREEN_WIDTH - 5 ) / 5;
+    CGFloat itemHeight = (SCREEN_WIDTH  ) / 5;
     UICollectionViewFlowLayout *shareflowLayout = [[UICollectionViewFlowLayout alloc] init];
     shareflowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     shareflowLayout.sectionInset = UIEdgeInsetsMake(1, 1, 1,1);

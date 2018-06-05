@@ -31,7 +31,7 @@
     }];
     _dyLabel = [[UILabel alloc]init];
     _dyLabel.backgroundColor = [UIColor lightGrayColor];
-    _dyLabel.text = @"打烊";
+    _dyLabel.text = ZBLocalized(@"打烊", nil);
     _dyLabel.textAlignment = NSTextAlignmentCenter;
     _dyLabel.textColor = [UIColor redColor];
     [self.bigImage addSubview:_dyLabel];

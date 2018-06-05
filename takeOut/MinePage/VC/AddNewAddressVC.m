@@ -471,7 +471,9 @@
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent *)event{
     
     [self.view endEditing:YES];
-    
+    [self.userNameTextField resignFirstResponder];
+    [self.userPhoneNum resignFirstResponder];
+    [self.houseAdd resignFirstResponder];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     

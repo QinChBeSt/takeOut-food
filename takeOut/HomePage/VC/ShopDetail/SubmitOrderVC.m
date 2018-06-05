@@ -30,6 +30,7 @@
 
 @implementation SubmitOrderVC{
     NSString *remakeStr;
+    UIButton *toPay;
 }
 
 - (void)viewDidLoad {
@@ -323,12 +324,13 @@
    
   
    
-    UIButton *toPay = [UIButton buttonWithType:UIButtonTypeCustom];
+    toPay = [UIButton buttonWithType:UIButtonTypeCustom];
     toPay.frame = CGRectMake(SCREEN_WIDTH* 0.717, 0, SCREEN_WIDTH* 0.283, 50);
     toPay.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [toPay setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [toPay addTarget:self action:@selector(toPay) forControlEvents:UIControlEventTouchUpInside];
     [toPay setTitle:ZBLocalized(@"提交订单", nil) forState:UIControlStateNormal];
+    
     toPay.titleLabel.font = [UIFont systemFontOfSize:14];
     [totalMoneyBackgrounView addSubview:toPay];
    
@@ -435,18 +437,27 @@
                                  @"bz":self.bz,
                                  };
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    
+    toPay.enabled = NO;
+    [MBManager showLoadingInView:self.view];
     [managers POST:Url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"提交订单：：：：%@",responseObject);
         NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
         if ([code isEqualToString:@"1"]) {
-            [MBManager showBriefAlert:@"提交订单成功"];
+            [MBManager hideAlert];
+            toPay.enabled = YES;
+            [MBManager showBriefAlert:ZBLocalized(@"提交订单成功", nil)];
             [self performSelector:@selector(toSusse) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
         }else{
-            [MBManager showBriefAlert:@"提交订单失败"];
+            [MBManager hideAlert];
+            toPay.enabled = YES;
+            [MBManager showBriefAlert:ZBLocalized(@"提交订单失败", nil) ];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        [MBManager hideAlert];
+        toPay.enabled = YES;
+        [MBManager showBriefAlert:ZBLocalized(@"提交订单失败", nil) ];
     }];
 }
 -(void)toChooseAddress{
