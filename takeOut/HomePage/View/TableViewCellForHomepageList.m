@@ -111,19 +111,63 @@
         make.centerY.equalTo(ws.shopPreferentImg2);
     }];
 }
+-(NSString *)isACType:(NSString *)optime{
+    NSArray *arrayTime = [optime componentsSeparatedByString:@"-"];
+    NSString *openTime = arrayTime[0];
+    NSArray *openTimeArr = [openTime componentsSeparatedByString:@":"];
+    NSInteger openTimeHour = [openTimeArr[0] integerValue];
+    NSInteger openTimeMin =[openTimeArr[1] integerValue];
+    
+    NSString *closeTime = arrayTime[1];
+    NSArray *closeTimeArr = [closeTime componentsSeparatedByString:@":"];
+    NSInteger closeTimeHour = [closeTimeArr[0] integerValue];;
+    NSInteger closeTimeMin =[closeTimeArr[1] integerValue];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSDate *data =[NSDate date];
+    NSString *nowDate = [dateFormatter stringFromDate:data];
+    NSArray *nowTimeArr = [nowDate componentsSeparatedByString:@":"];
+    NSInteger nowTimeHour = [nowTimeArr[0] integerValue];;
+    NSInteger nowTimeMin =[nowTimeArr[1] integerValue];
+    
+    if (nowTimeHour < openTimeHour) {
+        return @"2";
+        
+    }
+    if (nowTimeHour > closeTimeHour) {
+        return @"2";
+    }
+    
+    //开门小时一样 分钟符合
+    else if (nowTimeHour == openTimeHour && nowTimeMin <openTimeMin){
+        return @"2";
+    }
+    else if (nowTimeHour == closeTimeHour && nowTimeHour >closeTimeHour){
+        return @"2";
+    }
+
+
+
+    return @"1";
+}
 -(void)setMod:(ModelForShopList *)mod{
     self.shopName.text = mod.store_name;
-    if ([mod.acTypeStr isEqualToString:@"2"]) {
+    NSString *cyType = [self isACType:mod.opentime];
+    if ([cyType isEqualToString:@"2"]) {
+        self.dyLabel.hidden = NO;
+        
+        //[self.bigImage sd_setImageWithURL:photourl];
+    }else{
+        
         self.dyLabel.hidden = YES;
         NSString *url = [NSString stringWithFormat:@"%@",mod.store_img];
         
         [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
-        
-        //[self.bigImage sd_setImageWithURL:photourl];
-    }else{
-        self.dyLabel.hidden = NO;
     }
    
+    
+    
     int disint = [mod.send_dis intValue];
     
     float disFloat = (float)disint / (float)1000;

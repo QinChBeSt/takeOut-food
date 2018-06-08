@@ -42,12 +42,12 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "550136856.465855"
+                  timestampString = "550167556.979142"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "269"
                   endingLineNumber = "269"
-                  offsetFromSymbolStart = "1090">
+                  offsetFromSymbolStart = "1076">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,12 +57,12 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "550136856.468709"
+                  timestampString = "550167556.982082"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "270"
                   endingLineNumber = "270"
-                  offsetFromSymbolStart = "79">
+                  offsetFromSymbolStart = "100">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -72,12 +72,12 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/RegisterVC.m"
-                  timestampString = "550136856.4715509"
+                  timestampString = "550167556.984942"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "269"
                   endingLineNumber = "269"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -127,6 +127,54 @@
             startingLineNumber = "328"
             endingLineNumber = "328"
             landmarkName = "-verifyEvent"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "takeOut/HomePage/View/TableViewCellForHomepageList.m"
+            timestampString = "550167556.827639"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "-isACType:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "takeOut/HomePage/View/TableViewCellForHomepageList.m"
+            timestampString = "550167556.827898"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-isACType:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "takeOut/HomePage/View/TableViewCellForHomepageList.m"
+            timestampString = "550167556.828153"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-isACType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

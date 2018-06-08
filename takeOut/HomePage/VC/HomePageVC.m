@@ -290,7 +290,7 @@
             mod.notice  = dic[@"shop_notice"];
             mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
             NSInteger acType = dic[@"shop_ac_type"];
-            
+             [self.arrForHomePageShopList addObject:mod];
             
             if (acType == 2) {
                
@@ -300,44 +300,7 @@
                  NSLog(@"打烊了");
             }
             
-            NSArray *arrayTime = [dic[@"opentime"] componentsSeparatedByString:@"-"];
-            NSString *openTime = arrayTime[0];
-            NSArray *openTimeArr = [openTime componentsSeparatedByString:@":"];
-            NSInteger openTimeHour = [openTimeArr[0] integerValue];
-            NSInteger openTimeMin =[openTimeArr[1] integerValue];
-            
-            NSString *closeTime = arrayTime[1];
-            NSArray *closeTimeArr = [closeTime componentsSeparatedByString:@":"];
-            NSInteger closeTimeHour = [closeTimeArr[0] integerValue];;
-            NSInteger closeTimeMin =[closeTimeArr[1] integerValue];
-            
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"HH:mm"];
-            NSDate *data =[NSDate date];
-            NSString *nowDate = [dateFormatter stringFromDate:data];
-            NSArray *nowTimeArr = [nowDate componentsSeparatedByString:@":"];
-            NSInteger nowTimeHour = [nowTimeArr[0] integerValue];;
-            NSInteger nowTimeMin =[nowTimeArr[1] integerValue];
-            
-            if (nowTimeHour > openTimeHour) {
-                if (nowTimeHour < closeTimeHour) {
-                    //小时 分钟 都符合
-                    [self.arrForHomePageShopList addObject:mod];
-                }
-                
-            }
-            //开门小时一样 分钟符合
-            else if (nowTimeHour == openTimeHour && nowTimeMin >openTimeMin){
-                //关门小时符合
-                if (nowTimeHour < closeTimeHour) {
-                    [self.arrForHomePageShopList addObject:mod];
-                }
-                //关门小时不符合 但是分钟符合了
-                else if (nowTimeHour == closeTimeHour && nowTimeMin <= closeTimeMin){
-                    [self.arrForHomePageShopList addObject:mod];
-                }
-                
-            }
+           
             
             
         }
