@@ -256,7 +256,7 @@
     self.psPicStr = [[UILabel alloc]init];
     
     self.psPicStr.font = [UIFont systemFontOfSize:14];
-    self.psPicStr.textColor = [UIColor redColor];
+    self.psPicStr.textColor = [UIColor colorWithHexString:@"222222"];
     [moneyView addSubview:self.psPicStr];
     [self.psPicStr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(moneyView.mas_right).offset(-30);
@@ -348,7 +348,7 @@
         make.width.and.height.equalTo(@(callToShopViewHeight * 0.7));
     }];
     UILabel *callShop = [[UILabel alloc]init];
-    callShop.text = ZBLocalized(@"商家电话", nil);
+    callShop.text = ZBLocalized(@"客服电话", nil);
     callShop.font = [UIFont systemFontOfSize:16];
     callShop.textColor = [UIColor colorWithHexString:@"222222"];
     [btnView addSubview:callShop];

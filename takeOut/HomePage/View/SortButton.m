@@ -15,7 +15,7 @@
         self.titleLabel.textAlignment=NSTextAlignmentRight;//Button内部的文字设置
         self.imageView.contentMode=UIViewContentModeLeft;//Button内部的图片设置居中
         self.titleLabel.numberOfLines=0;
-        self.titleLabel.font=[UIFont systemFontOfSize:14.0];
+        self.titleLabel.font=[UIFont systemFontOfSize:12.0];
     }
     return self;
 }
@@ -33,7 +33,7 @@
     CGFloat titleX,titleY,titleW,titleH;
     titleX=0;
     titleY=0;
-    titleW=self.frame.size.width*0.8;
+    titleW=self.frame.size.width*0.82;
     titleH=self.frame.size.height;
     return CGRectMake(titleX, titleY, titleW, titleH);
 }

@@ -89,6 +89,7 @@
     [self.navigationController.navigationBar setHidden:YES];
     [self.tabBarController.tabBar setHidden:NO];
     [self getLocation];
+    [self getNetworkForType];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -101,7 +102,7 @@
 #pragma mark - 网络请求
 -(void)getNetWork{
     [self getNetWorkForBanner];
-    [self getNetworkForType];
+    
     
     [self.tableView reloadData];
 }
@@ -148,6 +149,8 @@
 }
 //选择分类
 -(void)getNetworkForType{
+    NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+    NSLog(@"切换后的语言:%@",language);
     NSString *URL = [NSString stringWithFormat:@"%@%@",BASEURL,homeTypeURL];
     [self.arrForHomePageTypeName removeAllObjects];
     [MHNetWorkTask getWithURL:URL withParameter:nil withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
@@ -155,7 +158,27 @@
         for (NSDictionary *dic in arr) {
             ModelForHomeType *mod = [[ModelForHomeType alloc]init];
             mod.id = dic[@"id"];
-            mod.shopTypeName = dic[@"shopTypeName"];
+            if ([language isEqualToString:@"en"]) {
+                NSString *strshopTypeName =dic[@"shopTypeNameEn"];
+                if ([strshopTypeName isEqual:[NSNull null]]||strshopTypeName.length == 0)
+                {
+                    strshopTypeName =dic[@"shopTypeName"];
+                }
+                 mod.shopTypeName = strshopTypeName;
+            }
+            else if ([language isEqualToString:@"th"]){
+                NSString *strshopTypeName =dic[@"shopTypeNameTh"];
+                if ([strshopTypeName isEqual:[NSNull null]]||strshopTypeName.length == 0)
+                {
+                    strshopTypeName =dic[@"shopTypeName"];
+                }
+                mod.shopTypeName = strshopTypeName;
+            }
+            else{
+                mod.shopTypeName = dic[@"shopTypeName"];
+            }
+           
+            
             [self.arrForHomePageTypeName addObject:mod];
         }
         [self.collectionView reloadData];
@@ -397,7 +420,7 @@
     
     UILabel *selectImage = [[UILabel alloc]init];
     //[selectImage setImage:[UIImage imageNamed:@"yhhd"]];
-    selectImage.text = ZBLocalized(@"优惠专区", nil);
+    selectImage.text = ZBLocalized(@"吃货福利", nil);
     [headviewSelectView addSubview:selectImage];
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(headviewSelectView.mas_top).offset(10);
@@ -407,7 +430,7 @@
     }];
     
     headviewSelectLeftView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [headviewSelectLeftView setImage:[UIImage imageNamed:@"left"] forState:UIControlStateNormal];
+    [headviewSelectLeftView setImage:[UIImage imageNamed:@"banner1"] forState:UIControlStateNormal];
     [headviewSelectLeftView addTarget:self action:@selector(tapSelectLeft) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectLeftView];
     
@@ -420,7 +443,7 @@
 
    
     headviewSelectRightView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [headviewSelectRightView setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
+    [headviewSelectRightView setImage:[UIImage imageNamed:@"banner2"] forState:UIControlStateNormal];
     [headviewSelectRightView addTarget:self action:@selector(tapSelectRight) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectRightView];
     [headviewSelectRightView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -450,7 +473,7 @@
     
     UILabel *selectImage = [[UILabel alloc]init];
     //[selectImage setImage:[UIImage imageNamed:@"tjsj"]];
-    selectImage.text = ZBLocalized(@"附近商家", nil);
+    selectImage.text = ZBLocalized(@"所有商家", nil);
     [sortingView addSubview:selectImage];
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(line.mas_bottom).offset(5);
@@ -470,7 +493,7 @@
         }
         
         clickButton.tag=i;
-        clickButton.titleLabel.font=[UIFont systemFontOfSize:14.0];
+        clickButton.titleLabel.font=[UIFont systemFontOfSize:12.0];
         [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
         [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];

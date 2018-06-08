@@ -17,6 +17,7 @@
         self.foodsName.font = [UIFont systemFontOfSize:15];
         [self addSubview:self.foodsName];
         self.foodsCount = [[UILabel alloc]init];
+        self.foodsCount.textColor = [UIColor colorWithHexString:@"959595"];
         [self addSubview:self.foodsCount];
         
     }

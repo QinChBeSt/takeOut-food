@@ -78,7 +78,7 @@
     
     self.AllEva = [UIButton buttonWithType:UIButtonTypeCustom];
     [headView addSubview:self.AllEva];
-    self.AllEva.frame=CGRectMake(20, 16, SCREEN_WIDTH * 0.34, 40);
+    self.AllEva.frame=CGRectMake(20, 16, SCREEN_WIDTH * 0.30, 40);
      self.AllEva.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.AllEva setTitle:ZBLocalized(@"全部", nil) forState:UIControlStateNormal];
     [self.AllEva setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -94,13 +94,13 @@
     [self.AllEva mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(headView);
         make.height.equalTo(@(40));
-        make.width.equalTo(@(SCREEN_WIDTH * 0.34));
+        make.width.equalTo(@(SCREEN_WIDTH * 0.30));
         make.left.equalTo(headView.mas_left).offset(20);
     }];
     
     self.badEva = [UIButton buttonWithType:UIButtonTypeCustom];
     [headView addSubview:self.badEva];
-    self.badEva.frame=CGRectMake(20 + SCREEN_WIDTH * 0.34, 16, SCREEN_WIDTH * 0.34, 40);
+    self.badEva.frame=CGRectMake(20 + SCREEN_WIDTH * 0.30, 16, SCREEN_WIDTH * 0.30, 40);
     self.badEva.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.badEva setTitle:ZBLocalized(@"差评", nil) forState:UIControlStateNormal];
     [self.badEva setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -115,7 +115,7 @@
     [self.badEva mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(headView);
         make.height.equalTo(@(40));
-        make.width.equalTo(@(SCREEN_WIDTH * 0.34));
+        make.width.equalTo(@(SCREEN_WIDTH * 0.30));
         make.left.equalTo(self.AllEva.mas_right).offset(0);
     }];
     __weak typeof(self) ws = self;
@@ -123,6 +123,7 @@
    self.csiLabel.textAlignment = NSTextAlignmentCenter;
     self.csiLabel.font = [UIFont systemFontOfSize:24];
      self.csiLabel.text = @"0.0%";
+    self.csiLabel.adjustsFontSizeToFitWidth = YES;
     self.csiLabel.textColor = [UIColor colorWithHexString:BaseYellow];
     [headView addSubview:self.csiLabel];
     [_csiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -135,6 +136,7 @@
     csiTitle.text = ZBLocalized(@"商家评分", nil);
     csiTitle.textAlignment = NSTextAlignmentCenter;
     csiTitle.textColor = [UIColor lightGrayColor];
+    csiTitle.adjustsFontSizeToFitWidth = YES;
     [headView addSubview:csiTitle];
     [csiTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(ws.badEva.mas_bottom).offset(0);

@@ -44,6 +44,7 @@
 		9D33B00D2085C0CB0086DC93 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D33AFF72085C0CB0086DC93 /* UIScrollView+MJExtension.m */; };
 		9D33B00E2085C0CB0086DC93 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D33AFF92085C0CB0086DC93 /* UIScrollView+MJRefresh.m */; };
 		9D33B00F2085C0CB0086DC93 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D33AFFB2085C0CB0086DC93 /* UIView+MJExtension.m */; };
+		9D365A2320CA2F1C00704BCD /* bzDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D365A2220CA2F1C00704BCD /* bzDetailVC.m */; };
 		9D3854E82079AC4200175693 /* OrderSuccessfullVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854E72079AC4200175693 /* OrderSuccessfullVC.m */; };
 		9D3854EB2079D89E00175693 /* DetailForOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854EA2079D89E00175693 /* DetailForOrder.m */; };
 		9D3854EE207A069D00175693 /* CellForOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3854ED207A069D00175693 /* CellForOrderDetail.m */; };
@@ -207,6 +208,8 @@
 		9D33AFF92085C0CB0086DC93 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		9D33AFFA2085C0CB0086DC93 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		9D33AFFB2085C0CB0086DC93 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		9D365A2120CA2F1C00704BCD /* bzDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bzDetailVC.h; sourceTree = "<group>"; };
+		9D365A2220CA2F1C00704BCD /* bzDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bzDetailVC.m; sourceTree = "<group>"; };
 		9D3854E62079AC4200175693 /* OrderSuccessfullVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderSuccessfullVC.h; sourceTree = "<group>"; };
 		9D3854E72079AC4200175693 /* OrderSuccessfullVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderSuccessfullVC.m; sourceTree = "<group>"; };
 		9D3854E92079D89E00175693 /* DetailForOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailForOrder.h; sourceTree = "<group>"; };
@@ -539,6 +542,8 @@
 				9D0E761920887B7600BD2378 /* ShopMapLoactionView.m */,
 				9D0E761B208881EA00BD2378 /* FoodSafeVC.h */,
 				9D0E761C208881EA00BD2378 /* FoodSafeVC.m */,
+				9D365A2120CA2F1C00704BCD /* bzDetailVC.h */,
+				9D365A2220CA2F1C00704BCD /* bzDetailVC.m */,
 			);
 			path = ShopDetail;
 			sourceTree = "<group>";
@@ -1168,6 +1173,7 @@
 				9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */,
 				9DDFD2762064EC7100393DE5 /* AppDelegate.m in Sources */,
 				9D0E761A20887B7600BD2378 /* ShopMapLoactionView.m in Sources */,
+				9D365A2320CA2F1C00704BCD /* bzDetailVC.m in Sources */,
 				9D6143922073268F00187232 /* ShopDetailMassageVC.m in Sources */,
 				9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */,
 				9D49527B2068F1EA005A6BBC /* CellForShopFood.m in Sources */,

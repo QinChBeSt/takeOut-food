@@ -84,17 +84,17 @@
     [self.contentView addSubview:self.foodsMuch];
     
     self.foodsTolitLabel = [[UILabel alloc]init];
-    self.foodsTolitLabel.textColor = [UIColor colorWithHexString:@"959595"];
+    self.foodsTolitLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [self.contentView addSubview:self.foodsTolitLabel];
    
     self.orderTimeLabel = [[UILabel alloc]init];
-    self.orderTimeLabel.textColor = [UIColor colorWithHexString:@"959595"];
+    self.orderTimeLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [self.contentView addSubview:self.orderTimeLabel];
     
     self.foodsView.foodsName.font = [UIFont systemFontOfSize:15];
     self.foodsView2.foodsName.font = [UIFont systemFontOfSize:15];
     self.foodsView3.foodsName.font = [UIFont systemFontOfSize:15];
-    self.foodsMuch.font = [UIFont systemFontOfSize:20];
+    self.foodsMuch.font = [UIFont systemFontOfSize:24];
     self.foodsTolitLabel.font = [UIFont systemFontOfSize:15];
     self.orderTimeLabel.font = [UIFont systemFontOfSize:15];
     
@@ -162,7 +162,7 @@
         self.foodsView = [[ViewForOrderListFoodsName alloc]init];
         self.foodsView.foodsName.text = foodsArr[i][@"ordersGoodsName"];
         NSString *listFoodcount = foodsArr[i][@"ordersGoodsNum"];
-        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x %@",listFoodcount];
+        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"%@",listFoodcount];
         [self.contentView addSubview:self.foodsView];
         __weak typeof(self) ws = self;
         [self.foodsView mas_makeConstraints:^(MASConstraintMaker *make) {

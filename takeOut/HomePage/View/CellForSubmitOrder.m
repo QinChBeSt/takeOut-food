@@ -32,7 +32,7 @@
     [self.contentView addSubview:self.foodsName];
     [self.foodsName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.shopIcon.mas_right).offset(25);
-        make.centerY.equalTo(ws.contentView.mas_centerY);
+        make.centerY.equalTo(ws.contentView.mas_centerY).offset(-10);
     }];
     
     self.foodsMoney = [[UILabel alloc]init];

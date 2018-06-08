@@ -11,6 +11,7 @@
 #import "AllOrderVC.h"
 #import "WillEvaluateVC.h"
 #import "LoginByPhoneVC.h"
+#import "ModelForOrderList.h"
 @interface OrderPageVC ()
 @property (nonatomic , strong)UIView *naviView;
 @property (nonatomic, strong) ZWMSegmentController *segmentVC;
@@ -112,7 +113,36 @@ LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
         [self.segmentVC clearAllBadges];
     }
 }
+-(void)getNetWorkForWill{
 
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getOrderListURL];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    NSDictionary *parameters = @{@"userid":userID,
+                                 @"flg":@"0",
+                                 @"page":@"1",
+                                 };
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSMutableDictionary *dic = responseObject;
+        NSMutableArray *arr = dic[@"value"];
+        NSMutableArray *arrWillList = [[NSMutableArray alloc]init];
+        for (NSMutableDictionary *dic11 in arr) {
+            ModelForOrderList *Mod = [[ModelForOrderList alloc]init];
+           
+            if ([Mod.shopstart isEqualToString:@"9"]) {
+                [arrWillList addObject:Mod];
+            }
+            
+        }
+        NSString *count = [NSString stringWithFormat:@"%@",arrWillList.count];
+        
+        [self.segmentVC enumerateBadges:@[@"0",count]];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
 // 第一界面中dealloc中移除监听的事件
 - (void)dealloc
 {

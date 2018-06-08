@@ -74,7 +74,7 @@
 //        [self.iconImg setImage:[UIImage imageNamed:@"icon_shouyedesemianshi"]];
 //    }
 
-     NSString *imgUrl = [NSString stringWithFormat:@"http://beeorder.net:8080/spmvc/apidocs/img/ic%@.png",mod.id];
+     NSString *imgUrl = [NSString stringWithFormat:@"%@/apidocs/img/ic%@.png",BASEURL,mod.id];
     [self.iconImg sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
 }
 @end

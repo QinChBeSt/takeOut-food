@@ -50,7 +50,7 @@
     }];
     
     self.foodPic = [[UILabel alloc]init];
-    self.foodPic.textColor = [UIColor redColor];
+    self.foodPic.textColor =[UIColor colorWithHexString:@"222222"];
     self.foodPic.font = [UIFont systemFontOfSize:18];
     [self.contentView addSubview:self.foodPic];
     [self.foodPic mas_makeConstraints:^(MASConstraintMaker *make) {
