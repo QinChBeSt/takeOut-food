@@ -161,7 +161,7 @@
     }];
     
     self.kongbaiView = [[UIImageView alloc]init];
-    self.kongbaiView.image = [UIImage imageNamed:@"07商家详情  评价"];
+    self.kongbaiView.image = [UIImage imageNamed:ZBLocalized(@"bg_zanwupinglun", nil)];
     [self.view addSubview:self.kongbaiView];
     [self.kongbaiView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.view);

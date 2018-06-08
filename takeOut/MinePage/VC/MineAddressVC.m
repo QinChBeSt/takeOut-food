@@ -135,7 +135,7 @@
     [self.view addSubview:self.tableView];
     self.kongbaiView = [[UIImageView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight - SafeAreaTabbarHeight - 50)];
     self.kongbaiView.hidden = YES;
-    self.kongbaiView.image = [UIImage imageNamed:@"bg_dizhikongbaiye"];
+    self.kongbaiView.image = [UIImage imageNamed:ZBLocalized(@"bg_dizhikongbaiye", nil)];
     [self.view addSubview:self.kongbaiView];
 }
 #pragma mark- UITabelViewDataSource/delegat

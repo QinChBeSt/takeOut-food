@@ -12,10 +12,12 @@
 #import "DetailForOrder.h"
 #import "OrderEditVC.h"
 #import "LoginByPhoneVC.h"
+
 @interface WillEvaluateVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
 @property (nonatomic , strong)UIButton *toLOginBtn;
+@property (nonatomic , strong)UIImageView *kongBaiView;
 /**
  *   页数
  */
@@ -29,7 +31,11 @@
     }
     return _arrForOrerList;
 }
+-(void)viewWillDisappear:(BOOL)animated{
+    self.kongBaiView.hidden = YES;
+}
 -(void)viewWillAppear:(BOOL)animated{
+  
     [self.tabBarController.tabBar setHidden:NO];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -60,7 +66,10 @@
         make.height.equalTo(@(50));
         make.width.equalTo(@(SCREEN_WIDTH - 90));
     }];
-    
+    self.kongBaiView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -TabbarHeight - SafeAreaTabbarHeight - 45)];
+    self.kongBaiView.hidden = YES;
+    self.kongBaiView.image = [UIImage imageNamed:ZBLocalized(@"bg_dingdankongbaiye", nil)];
+    [self.view addSubview:self.kongBaiView];
 }
 
 -(void)getNetwork{
@@ -101,7 +110,12 @@
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         
         [center postNotificationName:@"willEvaCount" object:willEvaCount userInfo:nil];
-        
+        if (self.arrForOrerList.count == 0) {
+            self.kongBaiView.hidden = NO;
+            
+        }else{
+            self.kongBaiView.hidden = YES;
+        }
         
         if (self.arrForOrerList.count == 0) {
             [self.tableView.mj_header endRefreshing];

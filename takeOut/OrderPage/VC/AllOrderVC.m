@@ -69,7 +69,7 @@
     }];
     self.kongBaiView = [[UIImageView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -TabbarHeight - SafeAreaTabbarHeight)];
     self.kongBaiView.hidden = YES;
-    self.kongBaiView.image = [UIImage imageNamed:@"bg_dingdankongbaiye"];
+    self.kongBaiView.image = [UIImage imageNamed:ZBLocalized(@"bg_dingdankongbaiye", nil)];
     [[UIApplication sharedApplication].keyWindow addSubview:self.kongBaiView];
     
     // Do any additional setup after loading the view.

@@ -49,7 +49,7 @@
     [self.chooseSizeBtn addTarget:self action:@selector(chooseSize:) forControlEvents:UIControlEventTouchUpInside];
     
    // self.chooseSizeBtn.layer.cornerRadius = 5;
-    [self.chooseSizeBtn setImage:[UIImage imageNamed:@"icon_shangguige"] forState:UIControlStateNormal];
+    [self.chooseSizeBtn setImage:[UIImage imageNamed:ZBLocalized(@"icon_shangguige", nil)] forState:UIControlStateNormal];
     self.chooseSizeBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.chooseSizeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.contentView addSubview:self.chooseSizeBtn];
