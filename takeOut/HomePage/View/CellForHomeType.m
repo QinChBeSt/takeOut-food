@@ -30,10 +30,8 @@
         make.height.equalTo(@(SCREEN_WIDTH / 4.5));
     }];
     _dyLabel = [[UILabel alloc]init];
-    _dyLabel.backgroundColor = [UIColor lightGrayColor];
-    _dyLabel.text = ZBLocalized(@"打烊", nil);
-    _dyLabel.textAlignment = NSTextAlignmentCenter;
-    _dyLabel.textColor = [UIColor redColor];
+ 
+    _dyLabel.image = [UIImage imageNamed:ZBLocalized(@"icon_yidayang", nil)];
     [self.bigImage addSubview:_dyLabel];
     [_dyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.bigImage);

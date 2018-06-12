@@ -131,7 +131,7 @@
 "温馨提示，点击可以编辑地址，长按可以删除" = "กดนานเพื่อรบทิ้ง";
 "我的评价" = "คอมเมนท์ของฉัน";
 "关于我们" = "เกี่ยวกับเรา";
-"清除缓存" = "Clean cache";
+"清除缓存" = "ล้างแคช";
 "没有缓存" = "no cache";
 "成功" = "เรียบร้อย";
 "退出登录" = "ออกจากระบบ";
@@ -185,7 +185,16 @@
 "所有商家" = "All Shop";
 "口味、偏好等要求" = "Taste, preference, etc.";
 
+
+"用户名或密码错误" = "User name or password error";
+"服务器异常" = "Server exception";
+
+
+
+
+//===========================================图
 "bg_zanwupinglun" = "bg_zanwupinglun2";
 "icon_shangguige" = "icon_shangguige2";
 "bg_dingdankongbaiye" = "bg_dingdankongbaiye2";
 "bg_dizhikongbaiye" = "bg_dizhikongbaiye2";
+"icon_yidayang" = "icon_yidayang_taiweng";

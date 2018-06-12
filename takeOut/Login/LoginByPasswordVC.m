@@ -275,12 +275,10 @@
             [MBManager showBriefAlert:ZBLocalized(@"登录成功", nil)];
             [self performSelector:@selector(backToMine) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
         }else{
-              NSString *msg =[NSString stringWithFormat:@"%@",responseObject[@"msg"]];
-            NSString *error = [NSString stringWithFormat:@"%@,code=%@,%@",ZBLocalized(@"登录失败", nil),code,msg];
-            [MBManager showBriefAlert:error];
+             [MBManager showBriefAlert:ZBLocalized(@"用户名或密码错误", nil)];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+         [MBManager showBriefAlert:ZBLocalized(@"服务器异常", nil)];
     }];
 }
 -(void)toUserProto{

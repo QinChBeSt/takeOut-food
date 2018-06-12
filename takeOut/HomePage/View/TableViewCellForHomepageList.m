@@ -29,11 +29,9 @@
         make.width.equalTo(@(SCREEN_WIDTH / 4.5));
         make.height.equalTo(@(SCREEN_WIDTH / 4.5));
     }];
-    _dyLabel = [[UILabel alloc]init];
-    _dyLabel.backgroundColor = [UIColor lightGrayColor];
-    _dyLabel.text = ZBLocalized(@"打烊", nil);
-    _dyLabel.textAlignment = NSTextAlignmentCenter;
-    _dyLabel.textColor = [UIColor redColor];
+    _dyLabel = [[UIImageView alloc]init];
+    _dyLabel.image = [UIImage imageNamed:ZBLocalized(@"icon_yidayang", nil)];
+
     [self.bigImage addSubview:_dyLabel];
     [_dyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.bigImage);
@@ -155,6 +153,9 @@
     self.shopName.text = mod.store_name;
     NSString *cyType = [self isACType:mod.opentime];
     if ([cyType isEqualToString:@"2"]) {
+        NSString *url = [NSString stringWithFormat:@"%@",mod.store_img];
+        
+        [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
         self.dyLabel.hidden = NO;
         
         //[self.bigImage sd_setImageWithURL:photourl];

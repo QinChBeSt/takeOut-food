@@ -273,11 +273,11 @@
                     [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
                 }else{
                     NSString *msg =[NSString stringWithFormat:@"%@",responseObject[@"msg"]];
-                    NSString *error = [NSString stringWithFormat:@"%@,code=%@,%@",ZBLocalized(@"登录失败", nil),code,msg];
+                    NSString *error = [NSString stringWithFormat:@"%@,code=%@,%@",ZBLocalized(@"注册失败", nil),code,msg];
                     [MBManager showBriefAlert:error];
                 }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+         [MBManager showBriefAlert:ZBLocalized(@"服务器异常", nil)];
     }];
 
 }
