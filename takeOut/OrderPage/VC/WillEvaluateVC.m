@@ -180,8 +180,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    /** 注册cell. */
-    [self.tableView registerClass:[CellForOrderList class] forCellReuseIdentifier:@"pool1"];
+
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getNetwork];
     }];
@@ -205,7 +204,11 @@
 {
     ModelForOrderList *mod = [[ModelForOrderList alloc]init];
     mod = [self.arrForOrerList objectAtIndex:indexPath.row];
-    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+      NSString *shopOrderNo = mod.ordenum;
+    NSArray *arrForGoodsCount = [[NSArray alloc]init];
+    arrForGoodsCount = mod.godslist;
+     NSString *shopStrat = mod.shopstart;
+     NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld-%ld-%@-%lu-%@",indexPath.section,indexPath.row,shopStrat,(unsigned long)arrForGoodsCount.count,shopOrderNo];
     
     CellForOrderList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
