@@ -26,15 +26,17 @@
 
 @implementation AddNewAddressVC{
     UILabel *tapToLoactionLabel;
-   
+    UIView *topBackgroundView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor =[UIColor colorWithHexString:@"f5f5f5"];
     [self createNaviView];
     
     [self setUpUI];
+    
 }
 #pragma mark - ui
 -(void)createNaviView{
@@ -89,7 +91,7 @@
 }
 -(void)setUpUI{
     __weak typeof(self) ws = self;
-    UIView *topBackgroundView = [[UIView alloc]init];
+    topBackgroundView = [[UIView alloc]init];
     topBackgroundView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:topBackgroundView];
     [topBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -468,34 +470,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent *)event{
-    
+//- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent *)event{
+//
+//    [self.view endEditing:YES];
+//
+//}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
-    [self.userNameTextField resignFirstResponder];
-    [self.userPhoneNum resignFirstResponder];
-    [self.houseAdd resignFirstResponder];
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    [textField resignFirstResponder];//取消第一响应者
-    
-    return YES;
-}
-- (BOOL)application:(UIApplication *)application
 
-shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier
 
-{
-    
-    if ([extensionPointIdentifier isEqualToString:@"com.apple.keyboard-service"]) {
-        
-        return NO;
-        
-    }
-    
-    return YES;
-    
-} 
 /*
 #pragma mark - Navigation
 

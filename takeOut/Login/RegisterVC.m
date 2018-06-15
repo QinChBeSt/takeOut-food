@@ -95,8 +95,7 @@
     self.phoneNumTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.phoneNumTextField.placeholder = ZBLocalized(@"请输入手机号", nil);
     self.phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
-    self.phoneNumTextField.returnKeyType = UIReturnKeyNext;
-    
+        
     [self.phoneNumTextField addTarget:self action:@selector(phoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.phoneNumTextField];
     [self.phoneNumTextField mas_makeConstraints:^(MASConstraintMaker *make) {
