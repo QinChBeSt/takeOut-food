@@ -224,7 +224,8 @@
     uAddLab.textColor = [UIColor colorWithHexString:@"222222"];
     [addView addSubview:uAddLab];
     [uAddLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(addIcon).offset(-70 / 4);
+        make.bottom.equalTo(addIcon.mas_centerY);
+        make.top.equalTo(addView);
         make.left.equalTo(addView.mas_left).offset(20);
         make.right.equalTo(addIcon.mas_left).offset(-15);
     }];
@@ -235,8 +236,9 @@
     uNameLab.textColor = [UIColor colorWithHexString:@"959595"];
     [addView addSubview:uNameLab];
     [uNameLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(addIcon).offset(70 / 4);
-        make.left.equalTo(addView.mas_right).offset(20);
+        make.top.equalTo(uAddLab.mas_bottom);
+        make.bottom.equalTo(addView);
+        make.left.equalTo(addView.mas_left).offset(20);
         make.right.equalTo(addIcon.mas_left).offset(-15);
     }];
     

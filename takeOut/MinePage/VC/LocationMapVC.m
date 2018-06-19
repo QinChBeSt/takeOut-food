@@ -9,8 +9,10 @@
 #import "LocationMapVC.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-@interface LocationMapVC ()<MKMapViewDelegate>
+@interface LocationMapVC ()<MKMapViewDelegate,UITextViewDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic , strong)UIView *naviView;
+@property(nonatomic,strong) NSMutableArray *searchResultArray;
+@property(nonatomic,strong)UITableView *tableView;
 @end
 
 @implementation LocationMapVC
@@ -23,15 +25,94 @@
     NSString *getlongitude;
     
     UILabel *cityName;
-    UILabel *loactionLabel;
+    UITextView *loactionLabel;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self createNaviView];
     [self initMap];
+    [self initTableView];
 }
+
 #pragma mark - ui
+-(void)initTableView
+{
+     __weak typeof(self) ws = self;
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.hidden = YES;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.scrollEnabled = NO;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    UIView *tableFootView = [[UIView alloc]init];
+    self.tableView.tableFooterView = tableFootView;
+    tableFootView.backgroundColor = [UIColor orangeColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerX.equalTo(maMapView);
+        make.top.equalTo(maMapView) ;
+        make.left.equalTo(maMapView);
+        make.bottom.equalTo(maMapView);
+    }];
+
+    UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
+    tapGesturRecognizer.delegate = self;
+    [self.tableView addGestureRecognizer:tapGesturRecognizer];
+}
+-(void)tapAction
+
+{
+    
+    
+    [self.view endEditing:YES];
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UITableView class]]) {
+        return YES;
+    }
+    
+    return  NO;
+}
+#pragma mark- UITabelViewDataSource/delegat
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.searchResultArray.count;
+    
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    if(cell == nil)
+    {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+    }
+    CLPlacemark *placemark = [self.searchResultArray objectAtIndex:indexPath.row];
+        NSLog(@",地名：%@",placemark.name);
+        cell.textLabel.text = placemark.name;
+    
+    cell.selectionStyle =UITableViewCellSelectionStyleNone;
+   
+    
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CLPlacemark *placemark = [self.searchResultArray objectAtIndex:indexPath.row];
+    loactionLabel.text =placemark.name;
+    self.tableView.hidden = YES;
+    maMapView.region=MKCoordinateRegionMake(CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude), MKCoordinateSpanMake(0.01, 0.01));
+    
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40;
+}
 -(void)createNaviView{
     self.naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaTopHeight )];
     self.naviView.backgroundColor = [UIColor colorWithHexString:BaseYellow];
@@ -92,11 +173,13 @@
         make.width.equalTo(@(SCREEN_WIDTH / 5));
     }];
     
-    loactionLabel = [[UILabel alloc]init];
+    loactionLabel = [[UITextView alloc]init];
     loactionLabel.font = [UIFont systemFontOfSize:12];
     loactionLabel.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     loactionLabel.textAlignment = NSTextAlignmentCenter;
-    loactionLabel.numberOfLines = 2;
+    //loactionLabel.numberOfLines = 2;
+    
+    loactionLabel.delegate = self;
     [titleView addSubview:loactionLabel];
     [loactionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(cityName.mas_right).offset(5);
@@ -179,7 +262,91 @@
     }];
     
 }
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:locationStr]) {
+        
+        textView.text = @"";
+        
+    }
+}
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    if (textView.text.length <1) {
+        textView.text = locationStr;
+    }
+    
+    
+}
+- (void)textViewDidChange:(UITextView *)textView
+{
+    CLGeocoder *geocoder=[[CLGeocoder alloc]init];
+    
+    NSString *addressStr = textView.text;//位置信息
+    
+    [geocoder geocodeAddressString:addressStr completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (error!=nil || placemarks.count==0) {
+            return ;
+        }
+        
+        self.searchResultArray = [[NSMutableArray alloc]initWithArray:placemarks];
+        [self.tableView reloadData];
+        if (self.searchResultArray.count != 0) {
+            self.tableView.hidden = NO;
+        }else{
+            self.tableView.hidden = YES;
+        }
+//        //创建placemark对象
+//        CLPlacemark *placemark=[placemarks firstObject];
+//        //经度
+//        NSString *longitude =[NSString stringWithFormat:@"%f",placemark.location.coordinate.longitude];
+//        //纬度
+//        NSString *latitude =[NSString stringWithFormat:@"%f",placemark.location.coordinate.latitude];
+//
+//
+//        NSLog(@"经度：%@，纬度：%@,地名：%@",longitude,latitude,placemark.name);
+//        NSLog(@"详细地址1：%@",addressStr);
+//        NSLog(@"详细地址2：%@",placemark.addressDictionary);
+//        NSLog(@"详细地址3：%@",placemark.locality);
+//
+    }];
+}
+//- (void)fetchNearbyInfo:(CLLocationDegrees )latitude andT:(CLLocationDegrees )longitude
+//
+//{
+//
+//    CLLocationCoordinate2D location=CLLocationCoordinate2DMake(latitude, longitude);
+//
+//    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(location, 1 ,1 );
+//
+//    MKLocalSearchRequest *requst = [[MKLocalSearchRequest alloc] init];
+//    requst.region = region;
+//    requst.naturalLanguageQuery = @"place"; //想要的信息
+//    MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest:requst];
+//   // [self.dataRrray removeAllObjects];
+//    [localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error){
+//        if (!error)
+//        {
+//
+//            for (MKMapItem *map in response.mapItems) {
+//                NSLog(@"%@",map.name);
+//            }
+////            [self.dataRrray addObjectsFromArray:response.mapItems];
+////            [self.tableView reloadData];
+//            //
+//        }
+//        else
+//        {
+//            //
+//        }
+//    }];
+//}
 
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent *)event{
+    
+    [self.view endEditing:YES];
+   
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
