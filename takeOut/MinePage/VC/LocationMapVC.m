@@ -200,6 +200,7 @@
     if(![CLLocationManager locationServicesEnabled]||[CLLocationManager authorizationStatus]!=kCLAuthorizationStatusAuthorizedWhenInUse){
         [locationManager requestWhenInUseAuthorization];
     }
+    locationManager.desiredAccuracy = 100;
     //用户位置追踪(用户位置追踪用于标记用户当前位置，此时会调用定位服务)
     maMapView.userTrackingMode = MKUserTrackingModeFollow;
     //设置地图类型
@@ -267,6 +268,7 @@
     if ([textView.text isEqualToString:locationStr]) {
         
         textView.text = @"";
+        maMapView.userTrackingMode=MKUserTrackingModeNone;
         
     }
 }

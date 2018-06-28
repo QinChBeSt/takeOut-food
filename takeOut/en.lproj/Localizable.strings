@@ -11,10 +11,10 @@
 "我的" = "Mine";
 "获取位置中...." = "Getting location...";
 "去结算" = "To pay";
-"¥" = "$";
+"฿" = "฿";
 "个活动" = " of activity";
 "配送" = "Distribution";
-"起送" = "Send out up";
+"起送" = "sart";
 "月售" = "Months sell";
 "配送时间" = "Distribution time";
 "提交订单" = "Submit Order";
@@ -24,8 +24,8 @@
 "小计" = "Subtotal";
 "备注" = "Remark";
 "合计:"="total:";
-"(已减￥" = "(Had Reduct $";
-"￥:" = "$:";
+"(已减￥" = "(Had Reduct ฿";
+"￥:" = "฿:";
 "确定" = "OK";
 "提交订单成功" = "Submit order successfully";
 "提交订单失败" = "Submit order Failed";
@@ -42,14 +42,14 @@
 "综合排序" = "comprehensive";
 "销量最高" = "Highest sales";
 "距离最近" = "The closest";
-"配送：￥" = "Distribution: $";
-"起送：￥" = "Up to send : $";
+"配送：฿" = "Distribution: ฿";
+"起送：฿" = "Up to send : ฿";
 "月售：" = "On sale";
 "点菜" = "To order";
 "商家" = "Shop";
 "商家详情" = "Business details";
 "加入购物车" = "Add to cart";
-"元起送" = "$ upSend";
+"元起送" = "฿ sart";
 "清空" = "clean";
 "购物车" = "shopping cart";
 "选规格" = "specifications";
@@ -62,7 +62,7 @@
 "订单时间" = "Order time";
 "订单详情" = "Detail Order";
 "感谢您的支持，欢迎下次光临！" = "Thank you for your support. Welcome next time!";
-"小计: ￥" = "total: $";
+"小计: ￥" = "total: ฿";
 "客服电话" = "Customer service phone";
 "配送地址" = "Address";
 "配送服务" = "Delivery";
@@ -192,7 +192,7 @@
 
 "用户名或密码错误" = "User name or password error";
 "服务器异常" = "Server exception";
-
+"份" = "part";
 //=============================================图
 "bg_zanwupinglun" = "bg_zanwupinglun2";
 "icon_shangguige"= "icon_shangguige2";

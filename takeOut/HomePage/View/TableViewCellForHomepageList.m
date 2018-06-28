@@ -187,8 +187,8 @@
    // }
    
     self.shopDistance.text = dis;
-    
-    NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@ | %@%@",ZBLocalized(@"配送：￥", nil),mod.send_pic,ZBLocalized(@"起送：￥", nil),mod.up_pic,ZBLocalized(@"月售：", nil),mod.per_mean];
+    NSString *yueShou = [NSString stringWithFormat:@"👍%@",mod.per_mean];
+    NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@ | %@%@",ZBLocalized(@"配送：฿", nil),mod.send_pic,ZBLocalized(@"起送：฿", nil),mod.up_pic,yueShou,ZBLocalized(@"份", nil)];
     self.shopMassage.text = msg;
     
     if (mod.act_list.count == 1) {

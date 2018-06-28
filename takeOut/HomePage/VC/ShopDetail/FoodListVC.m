@@ -486,7 +486,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         self.addBuyCarViewAddBtn.enabled = NO;
         self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
         self.addBuyCarViewAddBtn.layer.cornerRadius = 0;
-        NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"¥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
+        NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"¥", nil),ZBLocalized(@"起送", nil)];
         [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
         [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -925,7 +925,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 if (_addMoney < upPayF) {
                     self.addBuyCarViewAddBtn.enabled = NO;
                     self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
- NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
+   NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
                     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
                     self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize:14];
                     [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -1015,7 +1015,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             
             //底部数据
             self.addMoney = [mod.g_pic floatValue] + self.addMoney;
-            self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"¥", nil),self.addMoney];
+            self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),self.addMoney];
             self.ShoppingCarRedNum++;
             self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)self.ShoppingCarRedNum];
             
@@ -1067,8 +1067,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 if (_addMoney < upPayF) {
                     self.addBuyCarViewAddBtn.enabled = NO;
                     self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
- 
-                    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
+   NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
                     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
                     self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize:14];
                     [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -1078,7 +1077,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                      [self.haveBuyBackView  removeFromSuperview];
                     self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
 self.addBuyCarViewAddBtn.enabled = NO;
-                    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
+                     NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
                     self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize:14];
                     [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
@@ -1115,7 +1114,7 @@ self.addBuyCarViewAddBtn.enabled = NO;
             
             //底部数据
             self.addMoney =  self.addMoney -[mod.g_pic floatValue] ;
-            self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"¥", nil),self.addMoney];
+            self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),self.addMoney];
             self.ShoppingCarRedNum--;
             if (self.ShoppingCarRedNum == 0) {
                 self.ShoppingCarRedNum = 0;
@@ -1199,7 +1198,7 @@ self.addBuyCarViewAddBtn.enabled = NO;
     if (self.arrForChooseSize.count != 0) {
         NSDictionary *dic = [self.arrForChooseSize objectAtIndex:indexPath.row];
         cell.nameLabel.text = dic[@"goodsPicName"];
-        NSString *piece = [NSString stringWithFormat:@"¥ %@",self.arrForChooseSize[0][@"goodsPicPic"]];
+        NSString *piece = [NSString stringWithFormat:@"฿ %@",self.arrForChooseSize[0][@"goodsPicPic"]];
         self.selectbuyCarMoncy =self.arrForChooseSize[0][@"goodsPicPic"];
         self.choosePrice.text = ZBLocalized(piece, nil) ;
        
@@ -1218,7 +1217,7 @@ self.addBuyCarViewAddBtn.enabled = NO;
     NSString *strPic = dic[@"goodsPicPic"];
     self.selectbuyCarMoncy = dic[@"goodsPicPic"];
     self.selcetbuyCarId = dic[@"id"];
-    NSString *piece = [NSString stringWithFormat:@"¥ %@",strPic];
+    NSString *piece = [NSString stringWithFormat:@"฿ %@",strPic];
     self.choosePrice.text = ZBLocalized(piece, nil) ;
     
 }
@@ -1233,7 +1232,7 @@ self.addBuyCarViewAddBtn.enabled = NO;
     NSLog(@"%@,%f",self.selectbuyCarMoncy,self.addMoney);
     [self removewChooseView];
     self.addMoney = [self.selectbuyCarMoncy floatValue] + self.addMoney;
-    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"¥", nil),self.addMoney];
+    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),self.addMoney];
     NSInteger row = self.leftTableViewSelectRow - 1;
     NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%ld",(long)row];
     NSString *countStr = [defaults objectForKey:value];
@@ -1366,12 +1365,12 @@ self.addBuyCarViewAddBtn.enabled = NO;
 -(void)addBuyCarNoSize{
     NSLog(@"当前购物车%@,加上新的%f",self.selectbuyCarMoncy,self.addMoney);
     self.addMoney = [self.selectbuyCarMoncy floatValue] + self.addMoney;
-    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"¥", nil),self.addMoney];
+    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),self.addMoney];
 }
 -(void)delectBuyCarNoSize{
     NSLog(@"当前购物车%@,减去取消的%f",self.selectbuyCarMoncy,self.addMoney);
     self.addMoney =   self.addMoney  - [self.selectbuyCarMoncy floatValue];
-    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"¥", nil),self.addMoney];
+    self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),self.addMoney];
 }
 - (UIWindow *)lastWindow
 {
@@ -1452,7 +1451,7 @@ self.addBuyCarViewAddBtn.enabled = NO;
    self.addBuyCarViewAddBtn.enabled =NO;
     self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
  
-    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"￥", nil),self.upPayMoney,ZBLocalized(@"起送", nil)];
+     NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
     self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

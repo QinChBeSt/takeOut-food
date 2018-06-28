@@ -73,7 +73,7 @@
         for (NSDictionary *dic in arr) {
             ModelForShopList *mod = [[ModelForShopList alloc]init];
             mod.act_list = dic[@"act_list"];
-            mod.per_mean = dic[@"per_mean"];
+            mod.per_mean = [NSString stringWithFormat:@"%@",dic[@"per_mean"]];
             mod.send_dis = dic[@"send_dis"];
             mod.send_time = dic[@"send_time"];
             mod.send_pic = dic[@"send_pic"];
@@ -81,7 +81,7 @@
             mod.store_img = dic[@"store_img"];
             mod.store_name = dic[@"store_name"];
             mod.up_pic = dic[@"up_pic"];
-            
+            mod.opentime = dic[@"opentime"];
             mod.acTypeStr =[NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]] ;
             [self.arrForHomePageShopList addObject:mod];
         }

@@ -9,7 +9,8 @@
 #import "AddNewAddressVC.h"
 #import "LocationMapVC.h"
 #import "LoginByPhoneVC.h"
-
+#import <IQKeyboardReturnKeyHandler.h>
+#import <IQKeyboardManager.h>
 @interface AddNewAddressVC ()<UITextFieldDelegate>
 @property (nonatomic , strong)UIView *naviView;
 @property (nonatomic , strong)UITextField *userNameTextField;
@@ -20,14 +21,24 @@
 @property (nonatomic , strong)UIImageView *womenIcon;
 @property (nonatomic , strong)UIButton *manBtn;
 @property (nonatomic , strong)UIButton *womanBtn;
-
-
+@property (nonatomic , strong)UIView *topBackgroundView;
+@property (nonatomic , strong)UILabel *tapToLoactionLabel;
 @end
 
 @implementation AddNewAddressVC{
-    UILabel *tapToLoactionLabel;
-    UIView *topBackgroundView;
+    
+    
+    IQKeyboardReturnKeyHandler * _returnKeyHander;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    _returnKeyHander = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
+      [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -91,10 +102,10 @@
 }
 -(void)setUpUI{
     __weak typeof(self) ws = self;
-    topBackgroundView = [[UIView alloc]init];
-    topBackgroundView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:topBackgroundView];
-    [topBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.topBackgroundView = [[UIView alloc]init];
+    self.topBackgroundView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.topBackgroundView];
+    [self.topBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(ws.view);
         make.centerX.equalTo(ws.view);
         make.top.equalTo(ws.naviView.mas_bottom).offset(10);
@@ -105,10 +116,10 @@
     userNameLabel.text = ZBLocalized(@"收货人", nil);
     userNameLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     userNameLabel.font = [UIFont systemFontOfSize:16];
-    [topBackgroundView addSubview:userNameLabel];
+    [self.topBackgroundView addSubview:userNameLabel];
     [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(topBackgroundView.mas_left).offset(20);
-        make.centerY.equalTo(topBackgroundView.mas_top).offset(25);
+        make.left.equalTo(self.topBackgroundView.mas_left).offset(20);
+        make.centerY.equalTo(self.topBackgroundView.mas_top).offset(25);
         make.width.equalTo(@(SCREEN_WIDTH / 3 - 25));
     }];
     self.userNameTextField = [[UITextField alloc]init];
@@ -118,24 +129,24 @@
     }
      self.userNameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.userNameTextField addTarget:self action:@selector(UserTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [topBackgroundView addSubview:self.userNameTextField];
+    [self.topBackgroundView addSubview:self.userNameTextField];
     self.userNameTextField.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [self.userNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(SCREEN_WIDTH / 3));
         make.centerY.equalTo(userNameLabel);
-        make.right.equalTo(topBackgroundView.mas_right).offset(-10);
+        make.right.equalTo(self.topBackgroundView.mas_right).offset(-10);
         make.height.equalTo(@(45));
     }];
     UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(30, 50, SCREEN_WIDTH - 60, 0.5)];
     line1.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
-    [topBackgroundView addSubview:line1];
+    [self.topBackgroundView addSubview:line1];
 //性别
     self.manIcon = [[UIImageView alloc]init];
     self.manIcon.image = [UIImage imageNamed:@"icon_nanxingdown"];
-    [topBackgroundView addSubview:self.manIcon];
+    [self.topBackgroundView addSubview:self.manIcon];
     [self.manIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(topBackgroundView.mas_top).offset(75);
-        make.left.equalTo(topBackgroundView.mas_left).offset(SCREEN_WIDTH / 3);
+        make.centerY.equalTo(self.topBackgroundView.mas_top).offset(75);
+        make.left.equalTo(self.topBackgroundView.mas_left).offset(SCREEN_WIDTH / 3);
         make.width.equalTo(@(20));
         make.height.equalTo(@(20));
     }];
@@ -143,14 +154,14 @@
     UILabel *manStr = [[UILabel alloc]init];
     manStr.text = ZBLocalized(@"先生", nil);
     manStr.font = [UIFont systemFontOfSize:14];
-    [topBackgroundView addSubview:manStr];
+    [self.topBackgroundView addSubview:manStr];
     [manStr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(ws.manIcon);
         make.left.equalTo(ws.manIcon.mas_right).offset(15);
     }];
     self.manBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.manBtn addTarget:self action:@selector(chooseMan) forControlEvents:UIControlEventTouchUpInside];
-    [topBackgroundView addSubview:self.manBtn];
+    [self.topBackgroundView addSubview:self.manBtn];
     [self.manBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_manIcon);
         make.left.equalTo(_manIcon);
@@ -161,9 +172,9 @@
     
     self.womenIcon = [[UIImageView alloc]init];
     [self.womenIcon setImage:[UIImage imageNamed:@"icon_nvxing"]];
-    [topBackgroundView addSubview:self.womenIcon];
+    [self.topBackgroundView addSubview:self.womenIcon];
     [self.womenIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(topBackgroundView.mas_top).offset(75);
+        make.centerY.equalTo(self.topBackgroundView.mas_top).offset(75);
         make.left.equalTo(manStr.mas_right).offset(30);
         make.width.equalTo(@(20));
         make.height.equalTo(@(20));
@@ -172,7 +183,7 @@
     UILabel *womanStr = [[UILabel alloc]init];
     womanStr.text = ZBLocalized(@"女士", nil);
     womanStr.font = [UIFont systemFontOfSize:14];
-    [topBackgroundView addSubview:womanStr];
+    [self.topBackgroundView addSubview:womanStr];
     [womanStr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(ws.womenIcon);
         make.left.equalTo(ws.womenIcon.mas_right).offset(15);
@@ -180,7 +191,7 @@
     
     self.womanBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.womanBtn addTarget:self action:@selector(chooseWoman) forControlEvents:UIControlEventTouchUpInside];
-    [topBackgroundView addSubview:self.womanBtn];
+    [self.topBackgroundView addSubview:self.womanBtn];
     [self.womanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_womenIcon);
         make.left.equalTo(_womenIcon);
@@ -201,7 +212,7 @@
     
     UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(30, 100, SCREEN_WIDTH - 60, 0.5)];
     line2.backgroundColor = [UIColor lightGrayColor];
-    [topBackgroundView addSubview:line2];
+    [self.topBackgroundView addSubview:line2];
 
 //电话
     //收货人
@@ -209,23 +220,22 @@
     userPhoneLabel.text = ZBLocalized(@"电话", nil);
     userNameLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     userPhoneLabel.font = [UIFont systemFontOfSize:16];
-    [topBackgroundView addSubview:userPhoneLabel];
+    [self.topBackgroundView addSubview:userPhoneLabel];
     [userPhoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(topBackgroundView.mas_left).offset(20);
-        make.centerY.equalTo(topBackgroundView.mas_top).offset(125);
+        make.left.equalTo(self.topBackgroundView.mas_left).offset(20);
+        make.centerY.equalTo(self.topBackgroundView.mas_top).offset(125);
         make.width.equalTo(@(SCREEN_WIDTH / 3 - 25));
     }];
     self.userPhoneNum = [[UITextField alloc]init];
     self.userPhoneNum.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     self.userPhoneNum.delegate = self;
-    self.userPhoneNum.keyboardType = UIKeyboardTypeNumberPad;
     self.userPhoneNum.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.userPhoneNum addTarget:self action:@selector(PhoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [topBackgroundView addSubview:self.userPhoneNum];
+    [self.topBackgroundView addSubview:self.userPhoneNum];
     [self.userPhoneNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(SCREEN_WIDTH / 3));
         make.centerY.equalTo(userPhoneLabel);
-        make.right.equalTo(topBackgroundView.mas_right).offset(-10);
+        make.right.equalTo(self.topBackgroundView.mas_right).offset(-10);
         make.height.equalTo(@(45));
     }];
     if (_userPhoneStr != nil) {
@@ -239,7 +249,7 @@
     [bottomBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(ws.view);
         make.centerX.equalTo(ws.view);
-        make.top.equalTo(topBackgroundView.mas_bottom).offset(20);
+        make.top.equalTo(self.topBackgroundView.mas_bottom).offset(20);
         make.height.equalTo(@(100));
     }];
     
@@ -265,14 +275,14 @@
         make.height.equalTo(@(15));
     }];
     
-    tapToLoactionLabel = [[UILabel alloc]init];
-    tapToLoactionLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
-    tapToLoactionLabel.font = [UIFont systemFontOfSize:16];
-    tapToLoactionLabel.numberOfLines = 2;
-    tapToLoactionLabel.text = ZBLocalized(@"点击选择", nil);
-    tapToLoactionLabel.textColor = [UIColor colorWithHexString:@"B5B5B5"];
-    [bottomBackgroundView addSubview:tapToLoactionLabel];
-    [tapToLoactionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.tapToLoactionLabel = [[UILabel alloc]init];
+    self.tapToLoactionLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
+    self.tapToLoactionLabel.font = [UIFont systemFontOfSize:16];
+    self.tapToLoactionLabel.numberOfLines = 2;
+    self.tapToLoactionLabel.text = ZBLocalized(@"点击选择", nil);
+    self.tapToLoactionLabel.textColor = [UIColor colorWithHexString:@"B5B5B5"];
+    [bottomBackgroundView addSubview:self.tapToLoactionLabel];
+    [self.tapToLoactionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(locationIcon.mas_right).offset(5);
         make.right.equalTo(bottomBackgroundView.mas_right).offset(-5);
         make.centerY.equalTo(addressLabel);
@@ -280,9 +290,9 @@
     }];
 
     if (_locationStr != nil) {
-        tapToLoactionLabel.text = _locationStr;
-        tapToLoactionLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
-        tapToLoactionLabel.textAlignment = NSTextAlignmentCenter;
+        self.tapToLoactionLabel.text = _locationStr;
+        self.tapToLoactionLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
+        self.tapToLoactionLabel.textAlignment = NSTextAlignmentCenter;
     }
     
     UILabel *houseNoLabel = [[UILabel alloc]init];
@@ -453,9 +463,9 @@
 -(void)taptoLocation{
     LocationMapVC *mapVC = [[LocationMapVC alloc]init];
     mapVC.returnValueBlock = ^(NSString *strValue) {
-        tapToLoactionLabel.text = strValue;
-        tapToLoactionLabel.textColor = [UIColor blackColor];
-        tapToLoactionLabel.textAlignment = NSTextAlignmentCenter;
+        self.tapToLoactionLabel.text = strValue;
+        self.tapToLoactionLabel.textColor = [UIColor blackColor];
+        self.tapToLoactionLabel.textAlignment = NSTextAlignmentCenter;
         _locationStr = strValue;
     };
     mapVC.returnlatBlock = ^(NSString *lat) {

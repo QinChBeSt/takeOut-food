@@ -129,11 +129,14 @@
     shopNameStr = modShopList.store_name;
     NSString *send_pay = modShopList.send_pic;
     NSString *send_Start = modShopList.up_pic;
-    NSString *yueShou = modShopList.per_mean;
+    NSString *yueShou = [NSString stringWithFormat:@"👍%@",modShopList.per_mean];
     NSString *time = modShopList.opentime;
     NSString *noti = modShopList.notice;
+    if (noti == NULL ) {
+        noti = @"";
+    }
     self.shopIcomURL = modShopList.store_img;
-    shopMassage1 = [NSString stringWithFormat:@"%@：%@ | %@：%@ | %@：%@",ZBLocalized(@"配送", nil),send_pay,ZBLocalized(@"起送", nil),send_Start,ZBLocalized(@"月售", nil),yueShou];
+    shopMassage1 = [NSString stringWithFormat:@"%@：%@ | %@：%@ | %@%@",ZBLocalized(@"配送", nil),send_pay,ZBLocalized(@"起送", nil),send_Start,yueShou,ZBLocalized(@"份", nil)];
     shopMassage2 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"配送时间", nil),time];
     shopMassage3 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"商家公告", nil),noti];
     if (modShopList.act_list.count != 0) {

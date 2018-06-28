@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "EXTabBarVC.h"
 #import "EXNavigationVC.h"
-
+#import <IQKeyboardManager/IQKeyboardManager.h>
 // 引入JPush功能所需头文件
 #import "JPUSHService.h"
 // iOS10注册APNs所需头文件
@@ -35,7 +35,11 @@
 //国际化===============
     [[ZBLocalized sharedInstance]initLanguage];//放在tabbar前初始化
     
+    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager]; // 获取类库的单例变量
     
+    keyboardManager.enable = YES; // 控制整个功能是否启用
+    
+
 //极光推送=============
     //初始化APNs
     JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
@@ -182,7 +186,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+    
+    [JPUSHService setBadge:0];
+    
+
 }
 
 
