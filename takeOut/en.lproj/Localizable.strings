@@ -12,7 +12,7 @@
 "获取位置中...." = "Getting location...";
 "去结算" = "To pay";
 "฿" = "฿";
-"个活动" = " of activity";
+"个活动" = "promotions";
 "配送" = "Distribution";
 "起送" = "sart";
 "月售" = "Months sell";
@@ -24,14 +24,14 @@
 "小计" = "Subtotal";
 "备注" = "Remark";
 "合计:"="total:";
-"(已减￥" = "(Had Reduct ฿";
-"￥:" = "฿:";
-"确定" = "OK";
+"(已减฿" = "(Had Reduct ฿";
+"฿:" = "฿:";
+"确定" = "Conform";
 "提交订单成功" = "Submit order successfully";
 "提交订单失败" = "Submit order Failed";
-"全部" = "all";
+"全部" = "All";
 "差评" = "Bad";
-"商家评分" = "Shop score";
+"商家评分" = "shop score";
 "满意" = "good";
 "不满意" = "not good";
 "一般" = "mid";
@@ -45,11 +45,11 @@
 "配送：฿" = "Distribution: ฿";
 "起送：฿" = "Up to send : ฿";
 "月售：" = "On sale";
-"点菜" = "To order";
-"商家" = "Shop";
-"商家详情" = "Business details";
+"点菜" = "order";
+"商家" = "shop";
+"商家详情" = "shop details";
 "加入购物车" = "Add to cart";
-"元起送" = "฿ sart";
+"元起送" = "฿ start";
 "清空" = "clean";
 "购物车" = "shopping cart";
 "选规格" = "specifications";
@@ -62,7 +62,7 @@
 "订单时间" = "Order time";
 "订单详情" = "Detail Order";
 "感谢您的支持，欢迎下次光临！" = "Thank you for your support. Welcome next time!";
-"小计: ￥" = "total: ฿";
+"小计: ฿" = "total: ฿";
 "客服电话" = "Customer service phone";
 "配送地址" = "Address";
 "配送服务" = "Delivery";
@@ -71,7 +71,7 @@
 "在线支付" = "Online payment";
 "订单日期" = "Order Data";
 "支付方式" = "payType";
-"评价" = "evaluation";
+"评价" = "comment";
 "最少输入八个字" = "least 8 words";
 "对菜品口味，包装服务的还满意吗？您可以在此处输入您的想法与意见~（至少输入8个字）" = "Are you satisfied with the dishes? You can enter your thoughts and comments here ~ (at least 8 words)";
 "请选择配送员评价" = "Please select the distributor evaluation";
@@ -160,7 +160,7 @@
 "我要合作" = "Join us";
 "确定要退出吗？" = "Are you sure you want to quit?";
 "BeeOrder配送" = "BeeOrder distribution";
-"登录代表您已同意《BeeOrder用户协议》" = "login, you have agreed to the 《BeeOrder user agreement》";
+"注册代表您已同意《BeeOrder用户协议》" = "regis, you have agreed to the 《BeeOrder user agreement》";
 "《BeeOrder用户协议》" ="《BeeOrder user agreement》";
 "经纬度错误" = "Latitude and longitude error";
 
@@ -193,6 +193,17 @@
 "用户名或密码错误" = "User name or password error";
 "服务器异常" = "Server exception";
 "份" = "part";
+"请同意用户协议" = "Please agree to the user agreement";
+"隐私政策" = "Privacy policy";
+"支付方式" = "Payment method";
+"请选择支付方式" = "choose pay method";
+"货到付款" = "Cash on delivery";
+"信用卡"="CreditCard ";
+"泰银二维码"="Thai QR Payment ";
+"支付宝"="AliPay";
+"微信"="WeChat pay";
+"当前版本：" = "Current version:";
+
 //=============================================图
 "bg_zanwupinglun" = "bg_zanwupinglun2";
 "icon_shangguige"= "icon_shangguige2";

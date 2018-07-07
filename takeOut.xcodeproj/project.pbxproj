@@ -12,8 +12,11 @@
 		9D012B1D20736C200015322E /* LocationMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B1C20736C200015322E /* LocationMapVC.m */; };
 		9D012B2120736E440015322E /* JZLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D012B2020736E440015322E /* JZLocationConverter.m */; };
 		9D012B23207371AC0015322E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D012B22207371AC0015322E /* MapKit.framework */; };
+		9D04639C20E7180B00812EC5 /* CellForPay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D04639B20E7180B00812EC5 /* CellForPay.m */; };
 		9D0E761A20887B7600BD2378 /* ShopMapLoactionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E761920887B7600BD2378 /* ShopMapLoactionView.m */; };
 		9D0E761D208881EA00BD2378 /* FoodSafeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E761C208881EA00BD2378 /* FoodSafeVC.m */; };
+		9D1028DF20E61C6700E06F3D /* YSZCvc.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1028DE20E61C6700E06F3D /* YSZCvc.m */; };
+		9D1028E220E62CC800E06F3D /* ChoosePayType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1028E120E62CC800E06F3D /* ChoosePayType.m */; };
 		9D2338DF207B130200302F76 /* OrderEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2338DE207B130200302F76 /* OrderEditVC.m */; };
 		9D26201E206C877200A2351B /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D26201D206C877200A2351B /* FileTool.m */; };
 		9D262021206CB50000A2351B /* HomeTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262020206CB50000A2351B /* HomeTypeVC.m */; };
@@ -70,6 +73,7 @@
 		9D4FBC80207F37A700B7B5E6 /* CellForFoodListLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4FBC7F207F37A700B7B5E6 /* CellForFoodListLeft.m */; };
 		9D58C4902071D26D00D49721 /* CellForHadAddShopingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */; };
 		9D58C4932071D4CF00D49721 /* ModForHadAddShoppingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D58C4922071D4CF00D49721 /* ModForHadAddShoppingCar.m */; };
+		9D5F243F20E4D73700C6A23D /* NewAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D5F243E20E4D73700C6A23D /* NewAddVC.m */; };
 		9D6143922073268F00187232 /* ShopDetailMassageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6143912073268F00187232 /* ShopDetailMassageVC.m */; };
 		9D72E2B7206B25E200CEE3B0 /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B6206B25E200CEE3B0 /* RegisterVC.m */; };
 		9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B9206B262300CEE3B0 /* LoginByPhoneVC.m */; };
@@ -142,10 +146,16 @@
 		9D012B1F20736E440015322E /* JZLocationConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZLocationConverter.h; sourceTree = "<group>"; };
 		9D012B2020736E440015322E /* JZLocationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZLocationConverter.m; sourceTree = "<group>"; };
 		9D012B22207371AC0015322E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9D04639A20E7180B00812EC5 /* CellForPay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForPay.h; sourceTree = "<group>"; };
+		9D04639B20E7180B00812EC5 /* CellForPay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForPay.m; sourceTree = "<group>"; };
 		9D0E761820887B7600BD2378 /* ShopMapLoactionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopMapLoactionView.h; sourceTree = "<group>"; };
 		9D0E761920887B7600BD2378 /* ShopMapLoactionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopMapLoactionView.m; sourceTree = "<group>"; };
 		9D0E761B208881EA00BD2378 /* FoodSafeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodSafeVC.h; sourceTree = "<group>"; };
 		9D0E761C208881EA00BD2378 /* FoodSafeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodSafeVC.m; sourceTree = "<group>"; };
+		9D1028DD20E61C6700E06F3D /* YSZCvc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSZCvc.h; sourceTree = "<group>"; };
+		9D1028DE20E61C6700E06F3D /* YSZCvc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSZCvc.m; sourceTree = "<group>"; };
+		9D1028E020E62CC800E06F3D /* ChoosePayType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePayType.h; sourceTree = "<group>"; };
+		9D1028E120E62CC800E06F3D /* ChoosePayType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePayType.m; sourceTree = "<group>"; };
 		9D2338DD207B130200302F76 /* OrderEditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderEditVC.h; sourceTree = "<group>"; };
 		9D2338DE207B130200302F76 /* OrderEditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderEditVC.m; sourceTree = "<group>"; };
 		9D26201C206C877200A2351B /* FileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileTool.h; sourceTree = "<group>"; };
@@ -259,6 +269,8 @@
 		9D58C48F2071D26D00D49721 /* CellForHadAddShopingCar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForHadAddShopingCar.m; sourceTree = "<group>"; };
 		9D58C4912071D4CF00D49721 /* ModForHadAddShoppingCar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModForHadAddShoppingCar.h; sourceTree = "<group>"; };
 		9D58C4922071D4CF00D49721 /* ModForHadAddShoppingCar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModForHadAddShoppingCar.m; sourceTree = "<group>"; };
+		9D5F243D20E4D73700C6A23D /* NewAddVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAddVC.h; sourceTree = "<group>"; };
+		9D5F243E20E4D73700C6A23D /* NewAddVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAddVC.m; sourceTree = "<group>"; };
 		9D6143902073268F00187232 /* ShopDetailMassageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopDetailMassageVC.h; sourceTree = "<group>"; };
 		9D6143912073268F00187232 /* ShopDetailMassageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopDetailMassageVC.m; sourceTree = "<group>"; };
 		9D72E2B5206B25E200CEE3B0 /* RegisterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
@@ -544,6 +556,10 @@
 				9D0E761C208881EA00BD2378 /* FoodSafeVC.m */,
 				9D365A2120CA2F1C00704BCD /* bzDetailVC.h */,
 				9D365A2220CA2F1C00704BCD /* bzDetailVC.m */,
+				9D5F243D20E4D73700C6A23D /* NewAddVC.h */,
+				9D5F243E20E4D73700C6A23D /* NewAddVC.m */,
+				9D1028E020E62CC800E06F3D /* ChoosePayType.h */,
+				9D1028E120E62CC800E06F3D /* ChoosePayType.m */,
 			);
 			path = ShopDetail;
 			sourceTree = "<group>";
@@ -684,6 +700,8 @@
 				9D430E0F207DEE1D00CE8F2A /* AboutusVC.m */,
 				9D33AFCA2085B02E0086DC93 /* ChangelanguageVC.h */,
 				9D33AFCB2085B02E0086DC93 /* ChangelanguageVC.m */,
+				9D1028DD20E61C6700E06F3D /* YSZCvc.h */,
+				9D1028DE20E61C6700E06F3D /* YSZCvc.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -767,6 +785,8 @@
 				9D923F0F20AC35ED0057540B /* CellForHomeType.m */,
 				9D4CBDB120B013EF009E626C /* CellForChooseOrderAdd.h */,
 				9D4CBDB220B013EF009E626C /* CellForChooseOrderAdd.m */,
+				9D04639A20E7180B00812EC5 /* CellForPay.h */,
+				9D04639B20E7180B00812EC5 /* CellForPay.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1130,7 +1150,9 @@
 				9D012B17207354600015322E /* AddNewAddressVC.m in Sources */,
 				9D72E2BD206B263F00CEE3B0 /* LoginByPasswordVC.m in Sources */,
 				9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */,
+				9D04639C20E7180B00812EC5 /* CellForPay.m in Sources */,
 				9D98D96C206A43780019AC0C /* CellForShopFoodChooseSize.m in Sources */,
+				9D5F243F20E4D73700C6A23D /* NewAddVC.m in Sources */,
 				D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */,
 				9D33B0012085C0CB0086DC93 /* MJRefreshAutoGifFooter.m in Sources */,
 				9DFF11DC206B6DB30084D63F /* UUID.m in Sources */,
@@ -1164,6 +1186,7 @@
 				9D33B0052085C0CB0086DC93 /* MJRefreshBackNormalFooter.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
 				9D49524F2068944E005A6BBC /* ModelForHomeType.m in Sources */,
+				9D1028E220E62CC800E06F3D /* ChoosePayType.m in Sources */,
 				9D430E0D207DEB3F00CE8F2A /* MyEvaVC.m in Sources */,
 				9D33B0002085C0CB0086DC93 /* MJRefreshHeader.m in Sources */,
 				9D3854EE207A069D00175693 /* CellForOrderDetail.m in Sources */,
@@ -1196,6 +1219,7 @@
 				9D012B2120736E440015322E /* JZLocationConverter.m in Sources */,
 				9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */,
 				9DA022812074734F005F7168 /* CellForMyAddress.m in Sources */,
+				9D1028DF20E61C6700E06F3D /* YSZCvc.m in Sources */,
 				9D430E10207DEE1D00CE8F2A /* AboutusVC.m in Sources */,
 				9D58C4932071D4CF00D49721 /* ModForHadAddShoppingCar.m in Sources */,
 			);

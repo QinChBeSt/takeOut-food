@@ -9,6 +9,7 @@
 #import "LocationMapVC.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+
 @interface LocationMapVC ()<MKMapViewDelegate,UITextViewDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic , strong)UIView *naviView;
 @property(nonatomic,strong) NSMutableArray *searchResultArray;
@@ -17,6 +18,8 @@
 
 @implementation LocationMapVC
 {
+
+  
     CLLocationManager *   locationManager;
     MKMapView         *   maMapView;
     NSString *currentCity;//当前城市
@@ -26,6 +29,11 @@
     
     UILabel *cityName;
     UITextView *loactionLabel;
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    _returnKeyHander = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
+//    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -194,21 +194,21 @@
     }];
     
     
-    UILabel *hintLabel=[[UILabel alloc]initWithFrame:CGRectMake(30, SCREENH_HEIGHT - TabbarHeight - 30, SCREEN_WIDTH - 60, 50)];
-    hintLabel.numberOfLines=0;
-    hintLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:hintLabel];
-    hintLabel.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登录代表您已同意《BeeOrder用户协议》", nil)];
-    //获取要调整颜色的文字位置,调整颜色
-    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BeeOrder用户协议》", nil)];
-    [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
-    hintLabel.attributedText=hintString;
-    
-    UIButton *changeType = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.view addSubview:changeType];
-    changeType.frame = CGRectMake(30, SCREENH_HEIGHT - TabbarHeight - 30, SCREEN_WIDTH - 60, 50);
-    [changeType addTarget:self action:@selector(toUserProto) forControlEvents:UIControlEventTouchUpInside];
+//    UILabel *hintLabel=[[UILabel alloc]initWithFrame:CGRectMake(30, SCREENH_HEIGHT - TabbarHeight - 30, SCREEN_WIDTH - 60, 50)];
+//    hintLabel.numberOfLines=0;
+//    hintLabel.textAlignment = NSTextAlignmentCenter;
+//    [self.view addSubview:hintLabel];
+//    hintLabel.font = [UIFont systemFontOfSize:14];
+//    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登录代表您已同意《BeeOrder用户协议》", nil)];
+//    //获取要调整颜色的文字位置,调整颜色
+//    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BeeOrder用户协议》", nil)];
+//    [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
+//    hintLabel.attributedText=hintString;
+//    
+//    UIButton *changeType = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.view addSubview:changeType];
+//    changeType.frame = CGRectMake(30, SCREENH_HEIGHT - TabbarHeight - 30, SCREEN_WIDTH - 60, 50);
+//    [changeType addTarget:self action:@selector(toUserProto) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - 监听textFile

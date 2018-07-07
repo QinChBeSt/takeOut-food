@@ -102,21 +102,22 @@
 }
 -(void)setUpUI{
     __weak typeof(self) ws = self;
-    self.topBackgroundView = [[UIView alloc]init];
+    self.topBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight + 10, SCREEN_WIDTH, 150)];
     self.topBackgroundView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.topBackgroundView];
-    [self.topBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(ws.view);
-        make.centerX.equalTo(ws.view);
-        make.top.equalTo(ws.naviView.mas_bottom).offset(10);
-        make.height.equalTo(@(150));
-    }];
+//    [self.topBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.equalTo(ws.view);
+//        make.centerX.equalTo(ws.view);
+//        make.top.equalTo(ws.naviView.mas_bottom).offset(10);
+//        make.height.equalTo(@(150));
+//    }];
+ 
    //收货人
     UILabel *userNameLabel = [[UILabel alloc]init];
     userNameLabel.text = ZBLocalized(@"收货人", nil);
     userNameLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     userNameLabel.font = [UIFont systemFontOfSize:16];
-    [self.topBackgroundView addSubview:userNameLabel];
+    [self.view addSubview:userNameLabel];
     [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.topBackgroundView.mas_left).offset(20);
         make.centerY.equalTo(self.topBackgroundView.mas_top).offset(25);
@@ -129,7 +130,7 @@
     }
      self.userNameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.userNameTextField addTarget:self action:@selector(UserTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [self.topBackgroundView addSubview:self.userNameTextField];
+    [self.view addSubview:self.userNameTextField];
     self.userNameTextField.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [self.userNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(SCREEN_WIDTH / 3));
@@ -143,7 +144,7 @@
 //性别
     self.manIcon = [[UIImageView alloc]init];
     self.manIcon.image = [UIImage imageNamed:@"icon_nanxingdown"];
-    [self.topBackgroundView addSubview:self.manIcon];
+    [self.view addSubview:self.manIcon];
     [self.manIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.topBackgroundView.mas_top).offset(75);
         make.left.equalTo(self.topBackgroundView.mas_left).offset(SCREEN_WIDTH / 3);
@@ -154,14 +155,14 @@
     UILabel *manStr = [[UILabel alloc]init];
     manStr.text = ZBLocalized(@"先生", nil);
     manStr.font = [UIFont systemFontOfSize:14];
-    [self.topBackgroundView addSubview:manStr];
+    [self.view addSubview:manStr];
     [manStr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(ws.manIcon);
         make.left.equalTo(ws.manIcon.mas_right).offset(15);
     }];
     self.manBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.manBtn addTarget:self action:@selector(chooseMan) forControlEvents:UIControlEventTouchUpInside];
-    [self.topBackgroundView addSubview:self.manBtn];
+    [self.view addSubview:self.manBtn];
     [self.manBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_manIcon);
         make.left.equalTo(_manIcon);
@@ -172,7 +173,7 @@
     
     self.womenIcon = [[UIImageView alloc]init];
     [self.womenIcon setImage:[UIImage imageNamed:@"icon_nvxing"]];
-    [self.topBackgroundView addSubview:self.womenIcon];
+    [self.view addSubview:self.womenIcon];
     [self.womenIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.topBackgroundView.mas_top).offset(75);
         make.left.equalTo(manStr.mas_right).offset(30);
@@ -183,7 +184,7 @@
     UILabel *womanStr = [[UILabel alloc]init];
     womanStr.text = ZBLocalized(@"女士", nil);
     womanStr.font = [UIFont systemFontOfSize:14];
-    [self.topBackgroundView addSubview:womanStr];
+    [self.view addSubview:womanStr];
     [womanStr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(ws.womenIcon);
         make.left.equalTo(ws.womenIcon.mas_right).offset(15);
@@ -191,7 +192,7 @@
     
     self.womanBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.womanBtn addTarget:self action:@selector(chooseWoman) forControlEvents:UIControlEventTouchUpInside];
-    [self.topBackgroundView addSubview:self.womanBtn];
+    [self.view addSubview:self.womanBtn];
     [self.womanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_womenIcon);
         make.left.equalTo(_womenIcon);
@@ -485,7 +486,8 @@
 //    [self.view endEditing:YES];
 //
 //}
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
     [self.view endEditing:YES];
 }
 

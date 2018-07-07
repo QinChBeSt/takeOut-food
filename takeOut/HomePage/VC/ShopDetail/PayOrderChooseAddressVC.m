@@ -8,6 +8,7 @@
 
 #import "PayOrderChooseAddressVC.h"
 #import "AddNewAddressVC.h"
+#import "NewAddVC.h"
 #import "LoginByPhoneVC.h"
 
 #import "CellForChooseOrderAdd.h"
@@ -110,11 +111,12 @@
     [SureBTN setTitle:ZBLocalized(@"确定", nil) forState:UIControlStateNormal];
     [SureBTN addTarget:self action:@selector(cheakAdd) forControlEvents:UIControlEventTouchUpInside];
     [SureBTN setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    SureBTN.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.naviView addSubview:SureBTN];
     [SureBTN mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.naviView.mas_top).offset(SafeAreaStatsBarHeight);
         make.right.equalTo(ws.naviView.mas_right).offset(-10);
-        make.width.equalTo(@(40));
+        make.width.equalTo(@(60));
         make.height.equalTo(@(SafeAreaTopHeight - SafeAreaStatsBarHeight));
     }];
     
@@ -169,7 +171,7 @@
         cell.selectImage.image = [UIImage imageNamed:@"icon_dizhiduihao1"];
     }
     cell.blockChooseSize = ^(NSString *one) {
-        AddNewAddressVC *addnewVC = [[AddNewAddressVC alloc]init];
+        NewAddVC *addnewVC = [[NewAddVC alloc]init];
         ModelForGetAddress *mod = [[ModelForGetAddress alloc]init];
         mod = [self.arrForGetAddress objectAtIndex:indexPath.row];
         addnewVC.userNameStr = mod.userAddrsUname;
@@ -250,7 +252,7 @@
     
 }
 -(void)addAddress{
-    AddNewAddressVC *ADD = [[AddNewAddressVC alloc]init];
+    NewAddVC *ADD = [[NewAddVC alloc]init];
     [self.navigationController pushViewController:ADD animated:YES];
 }
 - (void)didReceiveMemoryWarning {

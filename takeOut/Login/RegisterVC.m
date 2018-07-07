@@ -7,7 +7,7 @@
 //
 
 #import "RegisterVC.h"
-
+#import "UserProtoVC.h"
 @interface RegisterVC ()<UITextFieldDelegate>
 @property (nonatomic , strong) UITextField *phoneNumTextField;
 @property (nonatomic , copy) NSString *phoneNumStr;
@@ -18,6 +18,8 @@
 @property (nonatomic , strong) UIView *niveView;
 
 @property (nonatomic , strong) UIButton *regisBtn;
+
+@property (nonatomic , strong)UIButton *xuanze;
 @end
 
 @implementation RegisterVC
@@ -203,7 +205,7 @@
     hintLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:hintLabel];
     hintLabel.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登录代表您已同意《BeeOrder用户协议》", nil)];
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"注册代表您已同意《BeeOrder用户协议》", nil)];
     //获取要调整颜色的文字位置,调整颜色
     NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BeeOrder用户协议》", nil)];
     [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
@@ -212,14 +214,49 @@
     UIButton *changeType = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:changeType];
     changeType.frame = CGRectMake(30, SCREENH_HEIGHT - TabbarHeight - 30, SCREEN_WIDTH - 60, 50);
-    [changeType addTarget:self action:@selector(toUserProto) forControlEvents:UIControlEventTouchUpInside];
+    [changeType addTarget:self action:@selector(toysxieView) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.xuanze = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.xuanze addTarget:self action:@selector(xuanzeAcTION) forControlEvents:UIControlEventTouchUpInside];
+    [self.xuanze setImage:[UIImage imageNamed:@"icon_xuankuang"] forState:UIControlStateNormal];
+    [self.xuanze setImage:[UIImage imageNamed:@"icon_xuankuang_down"] forState:UIControlStateSelected];
+    [self.view addSubview:self.xuanze];
+    [self.xuanze mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(hintLabel);
+        make.right.equalTo(hintLabel.mas_left);
+        make.width.and.height.equalTo(@(20));
+    }];
 }
-
+-(void)xuanzeAcTION{
+    if (self.xuanze.selected == YES) {
+        self.xuanze.selected = NO;
+        if (self.phoneNumStr != nil && self.codeNumStr != nil && self.sureCodeNumStr != nil && self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0 && self.sureCodeNumStr.length != 0 &&self.xuanze.selected == YES) {
+            [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+            self.regisBtn.enabled = YES;
+        }else{
+            [self.regisBtn setBackgroundColor:[UIColor grayColor]];
+            self.regisBtn.enabled = NO;
+        }
+    }
+    
+   else if (self.xuanze.selected == NO) {
+        self.xuanze.selected = YES;
+       
+       if (self.phoneNumStr != nil && self.codeNumStr != nil && self.sureCodeNumStr != nil && self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0 && self.sureCodeNumStr.length != 0 &&self.xuanze.selected == YES) {
+           [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+           self.regisBtn.enabled = YES;
+       }else{
+           [self.regisBtn setBackgroundColor:[UIColor grayColor]];
+           self.regisBtn.enabled = NO;
+       }
+    }
+    
+}
 #pragma mark - 监听textFile
 -(void)phoneTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.phoneNumStr = theTextField.text;
-    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.sureCodeNumStr != nil && self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0 && self.sureCodeNumStr.length != 0) {
+    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.sureCodeNumStr != nil && self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0 && self.sureCodeNumStr.length != 0 &&self.xuanze.selected == YES) {
         [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
         self.regisBtn.enabled = YES;
     }else{
@@ -230,7 +267,7 @@
 -(void)codeTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.codeNumStr = theTextField.text;
-    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.sureCodeNumStr != nil && self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0 && self.sureCodeNumStr.length != 0) {
+    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.sureCodeNumStr != nil && self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0 && self.sureCodeNumStr.length != 0&&self.xuanze.selected == YES) {
         [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
         self.regisBtn.enabled = YES;
     }else{
@@ -241,7 +278,7 @@
 -(void)sureCodeTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.sureCodeNumStr = theTextField.text;
-    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.sureCodeNumStr != nil && self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0 && self.sureCodeNumStr.length != 0) {
+    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.sureCodeNumStr != nil && self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0 && self.sureCodeNumStr.length != 0&&self.xuanze.selected == YES) {
         [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
         self.regisBtn.enabled = YES;
     }else{
@@ -257,7 +294,10 @@
         [MBManager showBriefAlert: ZBLocalized(@"两次密码不相同，请检查输入的密码", nil)];
         return;
     }
-    
+    if (self.xuanze.selected == NO) {
+        [MBManager showBriefAlert: ZBLocalized(@"请同意用户协议", nil)];
+        return;
+    }
     NSString *url11 = [NSString stringWithFormat:@"%@%@",BASEURL,RegisUserURL];
      NSString * md5Code = [MD5encryption MD5ForLower32Bate:self.codeNumStr];
     NSDictionary *parameters = @{@"name":self.phoneNumStr,
@@ -271,8 +311,8 @@
                     [MBManager showBriefAlert:ZBLocalized(@"注册成功", nil)];
                     [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
                 }else{
-                    NSString *msg =[NSString stringWithFormat:@"%@",responseObject[@"msg"]];
-                    NSString *error = [NSString stringWithFormat:@"%@,code=%@,%@",ZBLocalized(@"注册失败", nil),code,msg];
+                   // NSString *msg =[NSString stringWithFormat:@"%@",responseObject[@"msg"]];
+                    NSString *error = [NSString stringWithFormat:@"%@",ZBLocalized(@"注册失败", nil)];
                     [MBManager showBriefAlert:error];
                 }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -280,8 +320,9 @@
     }];
 
 }
--(void)toUserProto{
-    
+-(void)toysxieView{
+    UserProtoVC *userProto = [[UserProtoVC alloc]init];
+    [self.navigationController pushViewController:userProto animated:YES];
 }
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];

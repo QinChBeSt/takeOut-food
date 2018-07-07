@@ -119,7 +119,38 @@
             
             UILabel *saveLabel = [[UILabel alloc]initWithFrame:CGRectMake(85, SafeAreaTopHeight + 195+ 10 + i * 30, SCREEN_WIDTH - 85 - 30, 20)];
             saveLabel.font = [UIFont systemFontOfSize:14];
-            saveLabel.text = [NSString stringWithFormat:@"%@",self.saveListArr[i][@"content"]];
+         
+            NSString *savr1Str =[NSString stringWithFormat:@"%@",self.saveListArr[i][@"content"]];
+            NSArray *arraySave1 = [savr1Str componentsSeparatedByString:@","];
+            NSString *CHSave1Str;
+            NSString *THSave1Str;
+            NSString *ENSave1Str;
+ 
+            if (arraySave1.count == 1) {
+                CHSave1Str =savr1Str;
+                THSave1Str = savr1Str;
+                ENSave1Str = savr1Str;
+            }else if(arraySave1.count == 2){
+                CHSave1Str =arraySave1[0];
+                THSave1Str = arraySave1[1];
+                ENSave1Str = arraySave1[1];
+            }else{
+                CHSave1Str =arraySave1[0];
+                THSave1Str = arraySave1[1];
+                ENSave1Str = arraySave1[2];
+            }
+            
+            NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+            if ([language isEqualToString:@"th"]) {
+                saveLabel.text =THSave1Str;
+            }
+            else if ([language isEqualToString:@"zh-Hans"]) {
+                saveLabel.text = CHSave1Str;
+            }
+            else if ([language isEqualToString:@"en"]) {
+                saveLabel.text = ENSave1Str;
+            }
+            
             [self.view addSubview:saveLabel];
             
         }
@@ -127,8 +158,8 @@
 }
 -(void)setModShopList:(ModelForShopList *)modShopList{
     shopNameStr = modShopList.store_name;
-    NSString *send_pay = modShopList.send_pic;
-    NSString *send_Start = modShopList.up_pic;
+    NSString *send_pay =[NSString stringWithFormat:@"%@฿",modShopList.send_pic];
+    NSString *send_Start = [NSString stringWithFormat:@"%@฿",modShopList.up_pic];
     NSString *yueShou = [NSString stringWithFormat:@"👍%@",modShopList.per_mean];
     NSString *time = modShopList.opentime;
     NSString *noti = modShopList.notice;
