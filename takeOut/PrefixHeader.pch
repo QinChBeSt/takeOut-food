@@ -24,14 +24,14 @@
 //#define BASEURL @"http://beeorder.net:8080/spmvc"
 //#define IMGBaesURL @"http://beeorder.net:8080/spmvc/apidocs/upload/"
 //
-//#define BASEURL @"http://118.24.100.177:8080/spmvc"
-//#define IMGBaesURL @"http://118.24.100.177:8080/spmvc/apidocs/upload/"
+#define BASEURL @"http://118.24.100.177:8080/spmvc"
+#define IMGBaesURL @"http://118.24.100.177:8080/spmvc/apidocs/upload/"
 
 //
 //
-#define BASEURL @"http://150.109.179.93"
-#define IMGBaesURL @"http://150.109.179.93/apidocs/upload/"
-//
+//#define BASEURL @"http://150.109.179.93"
+//#define IMGBaesURL @"http://150.109.179.93/apidocs/upload/"
+////
 //#define BASEURL @"http://192.168.0.154:8081"
 //#define IMGBaesURL @"http://192.168.0.154:8081/apidocs/upload/"
 

@@ -69,6 +69,18 @@
         make.right.equalTo(ws.shopDistance.mas_left).offset(-20);
     }];
     
+    UIButton *showMoreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [showMoreBtn setImage:[UIImage imageNamed:@"showMore"] forState:UIControlStateNormal];
+    [showMoreBtn addTarget:self action:@selector(toShowMoreAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:showMoreBtn];
+    [showMoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(ws.contentView).offset(-15);
+        make.top.equalTo(ws.shopMassage.mas_bottom).offset(10);
+        make.height.equalTo(@(15));
+        make.width.equalTo(@(30));
+        
+    }];
+    
     self.shopPreferentImg1 = [[UIImageView alloc]init];
     self.shopPreferentImg1.hidden = YES;
     [self.contentView addSubview:self.shopPreferentImg1];
@@ -149,6 +161,9 @@
 
     return @"1";
 }
+-(void)toShowMoreAction{
+    
+}
 -(void)setMod:(ModelForShopList *)mod{
     self.shopName.text = mod.store_name;
     NSString *cyType = [self isACType:mod.opentime];
@@ -190,6 +205,7 @@
     NSString *yueShou = [NSString stringWithFormat:@"👍%@",mod.per_mean];
     NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@ | %@%@",ZBLocalized(@"配送：฿", nil),mod.send_pic,ZBLocalized(@"起送：฿", nil),mod.up_pic,yueShou,ZBLocalized(@"份", nil)];
     self.shopMassage.text = msg;
+    
     
     
   
