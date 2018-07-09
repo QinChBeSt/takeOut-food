@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ModelForShopList.h"
+typedef void (^blockChooseShow)(NSString *);
 @interface TableViewCellForHomepageList : UITableViewCell
+@property (nonatomic , copy)blockChooseShow blockChooseShow;
 @property (nonatomic , strong) UIImageView *bigImage;
 @property (nonatomic , strong) UILabel *shopName;
 @property (nonatomic , strong) UILabel *shopDistance;
@@ -19,4 +21,8 @@
 @property (nonatomic , strong) UILabel *shopPreferential2;
 @property (nonatomic , strong) UIImageView *dyLabel;
 @property (nonatomic , strong) ModelForShopList *mod;
+@property (nonatomic , strong) NSNumber *isShowLong;
+@property (nonatomic , strong)UIView *longSaveView;
+@property (nonatomic , strong)UIView *shortSaceView;
+@property (nonatomic , strong)UIButton *showMoreBtn;
 @end

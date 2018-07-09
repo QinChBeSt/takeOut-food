@@ -69,11 +69,11 @@
         make.right.equalTo(ws.shopDistance.mas_left).offset(-20);
     }];
     
-    UIButton *showMoreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [showMoreBtn setImage:[UIImage imageNamed:@"showMore"] forState:UIControlStateNormal];
-    [showMoreBtn addTarget:self action:@selector(toShowMoreAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:showMoreBtn];
-    [showMoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.showMoreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.showMoreBtn setImage:[UIImage imageNamed:@"showMore"] forState:UIControlStateNormal];
+    [self.showMoreBtn addTarget:self action:@selector(toShowMoreAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.showMoreBtn];
+    [self.showMoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView).offset(-15);
         make.top.equalTo(ws.shopMassage.mas_bottom).offset(10);
         make.height.equalTo(@(15));
@@ -81,45 +81,47 @@
         
     }];
     
-    self.shopPreferentImg1 = [[UIImageView alloc]init];
-    self.shopPreferentImg1.hidden = YES;
-    [self.contentView addSubview:self.shopPreferentImg1];
-    [self.shopPreferentImg1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(ws.bigImage.mas_right).offset(15);
-        make.top.equalTo(ws.shopMassage.mas_bottom).offset(10);
-        make.width.equalTo(@(15));
-        make.height.equalTo(@(15));
-    }];
     
-    self.shopPreferential1 = [[UILabel alloc]init];
-    self.shopPreferential1.hidden = YES;
-    self.shopPreferential1.text = @"满10-5";
-    self.shopPreferential1.font = [UIFont systemFontOfSize:12];
-    [self.contentView addSubview:self.shopPreferential1];
-    [self.shopPreferential1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.shopPreferentImg1.mas_right).offset(10);
-        make.centerY.equalTo(ws.shopPreferentImg1);
-    }];
-    
-    self.shopPreferentImg2 = [[UIImageView alloc]init];
-    self.shopPreferentImg1.hidden = YES;
-    [self.contentView addSubview:self.shopPreferentImg2];
-    [self.shopPreferentImg2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(ws.bigImage.mas_right).offset(15);
-        make.top.equalTo(ws.shopPreferentImg1.mas_bottom).offset(10);
-        make.width.equalTo(@(15));
-        make.height.equalTo(@(15));
-    }];
-    
-    self.shopPreferential2 = [[UILabel alloc]init];
-    self.shopPreferential2.hidden = YES;
-    self.shopPreferential2.text = @"满10-5";
-    self.shopPreferential2.font = [UIFont systemFontOfSize:12];
-    [self.contentView addSubview:self.shopPreferential2];
-    [self.shopPreferential2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.shopPreferentImg2.mas_right).offset(10);
-        make.centerY.equalTo(ws.shopPreferentImg2);
-    }];
+//    
+//    self.shopPreferentImg1 = [[UIImageView alloc]init];
+//    self.shopPreferentImg1.hidden = YES;
+//    [self.contentView addSubview:self.shopPreferentImg1];
+//    [self.shopPreferentImg1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(ws.bigImage.mas_right).offset(15);
+//        make.top.equalTo(ws.shopMassage.mas_bottom).offset(10);
+//        make.width.equalTo(@(15));
+//        make.height.equalTo(@(15));
+//    }];
+//    
+//    self.shopPreferential1 = [[UILabel alloc]init];
+//    self.shopPreferential1.hidden = YES;
+//    self.shopPreferential1.text = @"满10-5";
+//    self.shopPreferential1.font = [UIFont systemFontOfSize:12];
+//    [self.contentView addSubview:self.shopPreferential1];
+//    [self.shopPreferential1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.shopPreferentImg1.mas_right).offset(10);
+//        make.centerY.equalTo(ws.shopPreferentImg1);
+//    }];
+//    
+//    self.shopPreferentImg2 = [[UIImageView alloc]init];
+//    self.shopPreferentImg1.hidden = YES;
+//    [self.contentView addSubview:self.shopPreferentImg2];
+//    [self.shopPreferentImg2 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(ws.bigImage.mas_right).offset(15);
+//        make.top.equalTo(ws.shopPreferentImg1.mas_bottom).offset(10);
+//        make.width.equalTo(@(15));
+//        make.height.equalTo(@(15));
+//    }];
+//    
+//    self.shopPreferential2 = [[UILabel alloc]init];
+//    self.shopPreferential2.hidden = YES;
+//    self.shopPreferential2.text = @"满10-5";
+//    self.shopPreferential2.font = [UIFont systemFontOfSize:12];
+//    [self.contentView addSubview:self.shopPreferential2];
+//    [self.shopPreferential2 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.shopPreferentImg2.mas_right).offset(10);
+//        make.centerY.equalTo(ws.shopPreferentImg2);
+//    }];
 }
 -(NSString *)isACType:(NSString *)optime{
     NSArray *arrayTime = [optime componentsSeparatedByString:@"-"];
@@ -162,8 +164,11 @@
     return @"1";
 }
 -(void)toShowMoreAction{
-    
+    if (self.blockChooseShow) {
+        self.blockChooseShow(@"1");
+    }
 }
+
 -(void)setMod:(ModelForShopList *)mod{
     self.shopName.text = mod.store_name;
     NSString *cyType = [self isACType:mod.opentime];
@@ -205,8 +210,208 @@
     NSString *yueShou = [NSString stringWithFormat:@"👍%@",mod.per_mean];
     NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@ | %@%@",ZBLocalized(@"配送：฿", nil),mod.send_pic,ZBLocalized(@"起送：฿", nil),mod.up_pic,yueShou,ZBLocalized(@"份", nil)];
     self.shopMassage.text = msg;
+    __weak typeof(self) ws = self;
     
+    if (mod.act_list.count <= 2) {
+        self.showMoreBtn.hidden = YES;
+    }
     
+    if (self.isShowLong == [NSNumber numberWithBool:YES]) {
+        [self.longSaveView removeFromSuperview];
+        [self.shortSaceView removeFromSuperview];
+        
+        self.longSaveView = [[UIView alloc]init];
+        [self.contentView addSubview:self.longSaveView];
+        [self.longSaveView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(ws.bigImage.mas_right).offset(15);
+            make.top.equalTo(ws.shopMassage.mas_bottom).offset(10 );
+            make.width.equalTo(@(100));
+            make.height.equalTo(@(10 + mod.act_list.count* 25));
+        }];
+        for (int i = 0 ; i < mod.act_list.count; i++) {
+            NSString *savr1Str =mod.act_list[i][@"content"];
+            NSArray *arraySave1 = [savr1Str componentsSeparatedByString:@","];
+            NSString *CHSave1Str;
+            NSString *THSave1Str;
+            NSString *ENSave1Str;
+            NSString *SHOWSaveStr1;
+            if (arraySave1.count == 1) {
+                CHSave1Str =savr1Str;
+                THSave1Str = savr1Str;
+                ENSave1Str = savr1Str;
+            }else if(arraySave1.count == 2){
+                CHSave1Str =arraySave1[0];
+                THSave1Str = arraySave1[1];
+                ENSave1Str = arraySave1[1];
+            }else{
+                CHSave1Str =arraySave1[0];
+                THSave1Str = arraySave1[1];
+                ENSave1Str = arraySave1[2];
+            }
+            
+            NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+            if ([language isEqualToString:@"th"]) {
+                SHOWSaveStr1 =THSave1Str;
+            }
+            else if ([language isEqualToString:@"zh-Hans"]) {
+                SHOWSaveStr1 = CHSave1Str;
+            }
+            else if ([language isEqualToString:@"en"]) {
+                SHOWSaveStr1 = ENSave1Str;
+            }
+            NSString *imgUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,mod.act_list[i][@"img"]] ;
+            
+            
+           self.shopPreferentImg1 = [[UIImageView alloc]init];
+            [self.longSaveView addSubview:self.shopPreferentImg1];
+            [self.shopPreferentImg1 mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(ws.bigImage.mas_right).offset(15);
+                make.top.equalTo(ws.shopMassage.mas_bottom).offset(10 + i* 25);
+                make.width.equalTo(@(15));
+                make.height.equalTo(@(15));
+            }];
+            
+            self.shopPreferential1 = [[UILabel alloc]init];
+            self.shopPreferential1.text = @"满10-5";
+            self.shopPreferential1.font = [UIFont systemFontOfSize:12];
+            [self.longSaveView addSubview:self.shopPreferential1];
+            [self.shopPreferential1 mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.shopPreferentImg1.mas_right).offset(10);
+                make.centerY.equalTo(self.shopPreferentImg1);
+            }];
+            
+            [self.shopPreferentImg1 sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
+            self.shopPreferential1.text = SHOWSaveStr1;
+        }
+        
+        
+    }else{
+        [self.longSaveView removeFromSuperview];
+        [self.shortSaceView removeFromSuperview];
+        self.shortSaceView = [[UIView alloc]init];
+        [self.contentView addSubview:self.shortSaceView];
+        [self.shortSaceView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(ws.bigImage.mas_right).offset(15);
+            make.top.equalTo(ws.shopMassage.mas_bottom).offset(10 );
+            make.width.equalTo(@(100));
+            make.height.equalTo(@(60));
+        }];
+        if (mod.act_list.count >= 2) {
+            for (int i = 0 ; i < 2; i++) {
+                NSString *savr1Str =mod.act_list[i][@"content"];
+                NSArray *arraySave1 = [savr1Str componentsSeparatedByString:@","];
+                NSString *CHSave1Str;
+                NSString *THSave1Str;
+                NSString *ENSave1Str;
+                NSString *SHOWSaveStr1;
+                if (arraySave1.count == 1) {
+                    CHSave1Str =savr1Str;
+                    THSave1Str = savr1Str;
+                    ENSave1Str = savr1Str;
+                }else if(arraySave1.count == 2){
+                    CHSave1Str =arraySave1[0];
+                    THSave1Str = arraySave1[1];
+                    ENSave1Str = arraySave1[1];
+                }else{
+                    CHSave1Str =arraySave1[0];
+                    THSave1Str = arraySave1[1];
+                    ENSave1Str = arraySave1[2];
+                }
+                
+                NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+                if ([language isEqualToString:@"th"]) {
+                    SHOWSaveStr1 =THSave1Str;
+                }
+                else if ([language isEqualToString:@"zh-Hans"]) {
+                    SHOWSaveStr1 = CHSave1Str;
+                }
+                else if ([language isEqualToString:@"en"]) {
+                    SHOWSaveStr1 = ENSave1Str;
+                }
+                NSString *imgUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,mod.act_list[i][@"img"]] ;
+                
+                __weak typeof(self) ws = self;
+                UIImageView *shopPreferentImg1 = [[UIImageView alloc]init];
+                [self.shortSaceView addSubview:shopPreferentImg1];
+                [shopPreferentImg1 mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(ws.bigImage.mas_right).offset(15);
+                    make.top.equalTo(ws.shopMassage.mas_bottom).offset(10 + i* 25);
+                    make.width.equalTo(@(15));
+                    make.height.equalTo(@(15));
+                }];
+                
+                UILabel *shopPreferential1 = [[UILabel alloc]init];
+                shopPreferential1.text = @"满10-5";
+                shopPreferential1.font = [UIFont systemFontOfSize:12];
+                [self.shortSaceView addSubview:shopPreferential1];
+                [shopPreferential1 mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(shopPreferentImg1.mas_right).offset(10);
+                    make.centerY.equalTo(shopPreferentImg1);
+                }];
+                
+                [shopPreferentImg1 sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
+                shopPreferential1.text = SHOWSaveStr1;
+            }
+        }else{
+            for (int i = 0 ; i < 1; i++) {
+                NSString *savr1Str =mod.act_list[i][@"content"];
+                NSArray *arraySave1 = [savr1Str componentsSeparatedByString:@","];
+                NSString *CHSave1Str;
+                NSString *THSave1Str;
+                NSString *ENSave1Str;
+                NSString *SHOWSaveStr1;
+                if (arraySave1.count == 1) {
+                    CHSave1Str =savr1Str;
+                    THSave1Str = savr1Str;
+                    ENSave1Str = savr1Str;
+                }else if(arraySave1.count == 2){
+                    CHSave1Str =arraySave1[0];
+                    THSave1Str = arraySave1[1];
+                    ENSave1Str = arraySave1[1];
+                }else{
+                    CHSave1Str =arraySave1[0];
+                    THSave1Str = arraySave1[1];
+                    ENSave1Str = arraySave1[2];
+                }
+                
+                NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+                if ([language isEqualToString:@"th"]) {
+                    SHOWSaveStr1 =THSave1Str;
+                }
+                else if ([language isEqualToString:@"zh-Hans"]) {
+                    SHOWSaveStr1 = CHSave1Str;
+                }
+                else if ([language isEqualToString:@"en"]) {
+                    SHOWSaveStr1 = ENSave1Str;
+                }
+                NSString *imgUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,mod.act_list[i][@"img"]] ;
+                
+                __weak typeof(self) ws = self;
+                UIImageView *shopPreferentImg1 = [[UIImageView alloc]init];
+                [self.shortSaceView addSubview:shopPreferentImg1];
+                [shopPreferentImg1 mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(ws.bigImage.mas_right).offset(15);
+                    make.top.equalTo(ws.shopMassage.mas_bottom).offset(10 + i* 25);
+                    make.width.equalTo(@(15));
+                    make.height.equalTo(@(15));
+                }];
+                
+                UILabel *shopPreferential1 = [[UILabel alloc]init];
+                shopPreferential1.text = @"满10-5";
+                shopPreferential1.font = [UIFont systemFontOfSize:12];
+                [self.shortSaceView addSubview:shopPreferential1];
+                [shopPreferential1 mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(shopPreferentImg1.mas_right).offset(10);
+                    make.centerY.equalTo(shopPreferentImg1);
+                }];
+                
+                [shopPreferentImg1 sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
+                shopPreferential1.text = SHOWSaveStr1;
+            }
+        }
+        
+        
+    }
     
   
     if (mod.act_list.count == 1) {

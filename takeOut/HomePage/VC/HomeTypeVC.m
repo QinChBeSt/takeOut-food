@@ -11,6 +11,7 @@
 #import "TableViewCellForHomepageList.h"
 #import "ShopDetailVC.h"
 #import "CellForHomeType.h"
+
 @interface HomeTypeVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)UIView *naviView;

@@ -38,6 +38,7 @@
     UIButton *headviewSelectRightView;
     UIView *sortingView;
     SortButton *clickButton;
+     NSMutableDictionary *dicForShow;//创建一个字典进行判断收缩还是展开
 }
 @property (strong,nonatomic)NSMutableArray *netImages;  //网络图片
 @property (strong,nonatomic)SDCycleScrollView *cycleScrollView;//轮播器
@@ -93,6 +94,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+     dicForShow = [NSMutableDictionary dictionary];
     self.view.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self createTableView];
     // Do any additional setup after loading the view.
@@ -539,15 +541,28 @@
     if (!cell) {
         cell = [[TableViewCellForHomepageList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-     cell.mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
+    cell.isShowLong =dicForShow[indexPath];
+    cell.mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.blockChooseShow = ^(NSString *isShow) {
+         dicForShow[indexPath] = [NSNumber numberWithBool:![dicForShow[indexPath] boolValue]];
+             [self.tableView reloadData];
+            
+    };
+    
     return cell;
         
    
 }
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-   
+    if (dicForShow[indexPath]== [NSNumber numberWithBool:YES] ) {
+        ModelForShopList *mod =[self.arrForHomePageShopList objectAtIndex:indexPath.row];
+        NSInteger cont = mod.act_list.count - 2;
+        NSInteger addHeight = cont * 25 + 110;
+        return addHeight;
+        
+    }
        return 110;
     
 }
