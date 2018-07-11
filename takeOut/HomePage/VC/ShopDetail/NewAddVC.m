@@ -8,20 +8,21 @@
 
 #import "NewAddVC.h"
 #import "LocationMapVC.h"
-#import "LoginByPhoneVC.h"
+#import "NewLoginByPhoneVC.h"
 #import <IQKeyboardReturnKeyHandler.h>
 #import <IQKeyboardManager.h>
-@interface NewAddVC ()<UITextFieldDelegate>
+@interface NewAddVC ()<UITextFieldDelegate,UITextViewDelegate>
 @property (nonatomic , strong)UIView *naviView;
 @property (nonatomic , strong)UITextField *userNameTextField;
 @property (nonatomic , strong)UITextField *userPhoneNum;
-@property (nonatomic , strong)UITextField *houseAdd;
+@property (nonatomic , strong)UITextView *houseAdd;
 
 @property (nonatomic , strong)UIImageView *manIcon;
 @property (nonatomic , strong)UIImageView *womenIcon;
 @property (nonatomic , strong)UIButton *manBtn;
 @property (nonatomic , strong)UIButton *womanBtn;
 @property (nonatomic , strong)UILabel *tapToLoactionLabel;
+@property (nonatomic , strong)UILabel *textViewPlaLab;
 @end
 
 @implementation NewAddVC{
@@ -29,8 +30,8 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    _returnKeyHander = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
-    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+//    _returnKeyHander = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
+//    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -296,22 +297,38 @@
         make.centerY.equalTo(midLine.mas_bottom).offset(75);
         make.width.equalTo(@(SCREEN_WIDTH / 3 - 25));
     }];
-    self.houseAdd = [[UITextField alloc]init];
-    self.houseAdd.delegate = self;
+    
+    
+    self.textViewPlaLab = [[UILabel alloc]init];
+    self.textViewPlaLab.text =ZBLocalized(@"例3号楼3001", nil);
+    self.textViewPlaLab.font = [UIFont systemFontOfSize:14];
+    self.textViewPlaLab.textColor = [UIColor colorWithHexString:@"B5B5B5"];
+    [self.view addSubview:self.textViewPlaLab];
+    [self.textViewPlaLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(SCREEN_WIDTH / 3 + 10));
+        make.centerY.equalTo(houseNoLabel) ;
+        make.right.equalTo(ws.view.mas_right).offset(-10);
+        make.height.equalTo(@(45));
+    }];
+    self.houseAdd = [[UITextView alloc]init];
+   
     self.houseAdd.textColor = [UIColor colorWithHexString:@"4b4b4b"];
-    self.houseAdd.placeholder = ZBLocalized(@"例3号楼3001", nil);
-    self.houseAdd.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    [self.houseAdd addTarget:self action:@selector(houseTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    self.houseAdd.backgroundColor = [UIColor clearColor];
+
+    self.houseAdd.font = [UIFont systemFontOfSize:14];
+    
+    self.houseAdd.delegate = self;
     [self.view addSubview:self.houseAdd];
     [self.houseAdd mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(SCREEN_WIDTH / 3));
-        make.centerY.equalTo(houseNoLabel);
+        make.top.equalTo(houseNoLabel).offset(-6) ;
         make.right.equalTo(ws.view.mas_right).offset(-10);
-        make.height.equalTo(@(45));
+        make.height.equalTo(@(90));
     }];
     
     if (_userHouseNoStr != nil) {
         self.houseAdd.text =_userHouseNoStr;
+        self.textViewPlaLab.hidden = YES;
     }
     
     UIButton *addNewADD = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -361,7 +378,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
-            LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+            NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
             [self.navigationController pushViewController:login animated:YES];
         }else{
             NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,editAddressURL];
@@ -404,7 +421,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
-            LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+            NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
             [self.navigationController pushViewController:login animated:YES];
         } else{
             if(_userSex == nil){
@@ -439,6 +456,24 @@
 }
 -(void)houseTextFieldDidChange :(UITextField *)theTextField{
     _userHouseNoStr = theTextField.text;
+}
+-(void)textViewDidChange:(UITextView *)textView{
+    if (textView== self.houseAdd) {
+         _userHouseNoStr = textView.text;
+    }
+ 
+}
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+     if (textView == self.houseAdd) {
+    self.textViewPlaLab.hidden = YES;
+     }
+}
+-(void)textViewDidEndEditing:(UITextView *)textView
+{if (textView == self.houseAdd) {
+    if (textView.text.length == 0) {
+        self.textViewPlaLab.hidden = NO;
+    }
+}
 }
 
 #pragma mark - 监听textFile

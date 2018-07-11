@@ -19,4 +19,5 @@
 @property (nonatomic , strong) NSString *getLong;
 @property (nonatomic , strong) NSString *addressId;
 @property (nonatomic , strong) NSString *userId;
+
 @end

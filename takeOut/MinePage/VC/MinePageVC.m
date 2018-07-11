@@ -7,7 +7,7 @@
 //
 
 #import "MinePageVC.h"
-#import "LoginByPhoneVC.h"
+#import "NewLoginByPhoneVC.h"
 #import "FileTool.h"
 #import "MineAddressVC.h"
 #import "MyEvaVC.h"
@@ -318,14 +318,36 @@
 //            [self.navigationController presentViewController:vc animated:YES completion:nil];
             [self createChangeLag];
         }else if (indexPath.row == 1){
-            MineAddressVC *myaddress = [[MineAddressVC alloc]init];
-            myaddress.hidesBottomBarWhenPushed=YES;
-            [self.navigationController pushViewController:myaddress animated:YES];
+           
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *userID = [defaults objectForKey:UD_USERID];
+            if (userID == nil || [userID isEqualToString:@""]) {
+                NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
+                login.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:login animated:YES];
+                
+            }else{
+                MineAddressVC *myaddress = [[MineAddressVC alloc]init];
+                myaddress.hidesBottomBarWhenPushed=YES;
+                [self.navigationController pushViewController:myaddress animated:YES];
+                
+            }
             
         }else if (indexPath.row == 2){
-            MyEvaVC *eva = [[MyEvaVC alloc]init];
-            eva.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:eva animated:YES];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *userID = [defaults objectForKey:UD_USERID];
+            if (userID == nil || [userID isEqualToString:@""]) {
+                NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
+                login.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:login animated:YES];
+               
+            }else{
+                MyEvaVC *eva = [[MyEvaVC alloc]init];
+                eva.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:eva animated:YES];
+            }
+      
             
         }
     }
@@ -623,7 +645,7 @@
     NSString *userName = [defaults objectForKey:UD_USERNAME];
     NSString *userID = [defaults objectForKey:UD_USERID];
     if (userID == nil || [userID isEqualToString:@""]) {
-        LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+        NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
         login.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:login animated:YES];
     }else{

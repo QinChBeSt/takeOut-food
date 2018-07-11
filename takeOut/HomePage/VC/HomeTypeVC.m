@@ -23,6 +23,7 @@
 @implementation HomeTypeVC{
     SortButton *clickButton;
      UIView *sortingView;
+     NSMutableDictionary *dicForShow;//创建一个字典进行判断收缩还是展开
 }
 -(NSMutableArray *)arrForHomePageShopList{
     if (_arrForHomePageShopList == nil) {
@@ -36,6 +37,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    dicForShow = [NSMutableDictionary dictionary];
     self.view.backgroundColor = [UIColor whiteColor];
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
     view.backgroundColor = [UIColor whiteColor];
@@ -187,18 +189,38 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    CellForHomeType *cell = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
+  
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+    
+    TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[TableViewCellForHomepageList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    cell.isShowLong =dicForShow[indexPath];
     cell.mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.blockChooseShow = ^(NSString *isShow) {
+        dicForShow[indexPath] = [NSNumber numberWithBool:![dicForShow[indexPath] boolValue]];
+        [self.tableView reloadData];
+        
+    };
+    
     return cell;
+    
     
     
 }
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 120;
-    
+    if (dicForShow[indexPath]== [NSNumber numberWithBool:YES] ) {
+        ModelForShopList *mod =[self.arrForHomePageShopList objectAtIndex:indexPath.row];
+        NSInteger cont = mod.act_list.count - 2;
+        NSInteger addHeight = cont * 25 + 110;
+        return addHeight;
+        
+    }
+    return 110;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

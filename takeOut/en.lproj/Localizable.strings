@@ -14,7 +14,7 @@
 "฿" = "฿";
 "个活动" = "promotions";
 "配送" = "Distribution";
-"起送" = "sart";
+"起送" = "start";
 "月售" = "Months sell";
 "配送时间" = "Distribution time";
 "提交订单" = "Submit Order";
@@ -98,11 +98,11 @@
 " + 新增收货地址" = "+ Add Shipping Address";
 "新增收货地址" = "Add Shipping Address";
 "请输入手机号" = "Please enter your phone number";
-"请确认密码" = "Please confirm the password";
+"再次输入密码" = "Please confirm the password";
 "请输入验证码" = "Please enter code";
 "获取验证码" = "Get code";
-"其他登录" = "Other Login";
-"注册" = "register";
+"使用其他登录" = "Other Login";
+"注册" = "Register";
 "注册成功" = "register success";
 "注册失败" = "register failed";
 "请输入密码" = "Please enter your password";
@@ -160,7 +160,7 @@
 "我要合作" = "Join us";
 "确定要退出吗？" = "Are you sure you want to quit?";
 "BeeOrder配送" = "BeeOrder distribution";
-"注册代表您已同意《BeeOrder用户协议》" = "regis, you have agreed to the 《BeeOrder user agreement》";
+"注册代表您已同意《BeeOrder用户协议》" = "Regis, you have agreed to the 《BeeOrder user agreement》";
 "《BeeOrder用户协议》" ="《BeeOrder user agreement》";
 "经纬度错误" = "Latitude and longitude error";
 
@@ -204,6 +204,15 @@
 "微信"="WeChat pay";
 "当前版本：" = "Current version:";
 
+"手机号归属地" = "Mobile phone number attribution";
+"选择手机号归属地" = "Choose mobile phone number attribution";
+"泰国" = "Thailand";
+"中国" = "China";
+"请同意用户协议" = "Please agree the user agreement";
+"登陆代表您已同意《BeeOrder用户协议》" = "Login, you have agreed to the 《BeeOrder user agreement》";
+"用户协议" = "User agreement";
+"验证码错误" = "Verify code wrong";
+"账号已存在" = "Account already exists";
 //=============================================图
 "bg_zanwupinglun" = "bg_zanwupinglun2";
 "icon_shangguige"= "icon_shangguige2";

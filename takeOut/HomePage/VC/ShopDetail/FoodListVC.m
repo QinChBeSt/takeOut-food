@@ -15,7 +15,7 @@
 #import "CellForHadAddShopingCar.h"
 #import "ModForHadAddShoppingCar.h"
 #import "SubmitOrderVC.h"
-#import "LoginByPhoneVC.h"
+#import "NewLoginByPhoneVC.h"
 #import "CellForFoodListLeft.h"
 #define shoppingCarViewHeight 50
 
@@ -158,7 +158,7 @@
     
     if (userID == nil) {
         NSLog(@"去登录！！！");
-        LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+        NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
         [self.navigationController pushViewController:login animated:YES];
         return;
     }

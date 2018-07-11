@@ -68,19 +68,27 @@
         make.top.equalTo(ws.shopName.mas_bottom).offset(10);
         make.right.equalTo(ws.shopDistance.mas_left).offset(-20);
     }];
-    
-    self.showMoreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.showMoreBtn setImage:[UIImage imageNamed:@"showMore"] forState:UIControlStateNormal];
-    [self.showMoreBtn addTarget:self action:@selector(toShowMoreAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:self.showMoreBtn];
-    [self.showMoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.showMoreImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"showMore"]];
+    [self.contentView addSubview:self.showMoreImg];
+    [self.showMoreImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView).offset(-15);
         make.top.equalTo(ws.shopMassage.mas_bottom).offset(10);
         make.height.equalTo(@(15));
         make.width.equalTo(@(30));
         
     }];
-    
+    self.showMoreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+
+    [self.showMoreBtn addTarget:self action:@selector(toShowMoreAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.showMoreBtn];
+    [self.showMoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(ws.contentView).offset(-15);
+        make.top.equalTo(ws.shopMassage.mas_bottom).offset(10);
+        make.height.equalTo(@(30));
+        make.width.equalTo(@(40));
+        
+    }];
+   
     
 //    
 //    self.shopPreferentImg1 = [[UIImageView alloc]init];
@@ -214,6 +222,7 @@
     
     if (mod.act_list.count <= 2) {
         self.showMoreBtn.hidden = YES;
+        self.showMoreImg.hidden = YES;
     }
     
     if (self.isShowLong == [NSNumber numberWithBool:YES]) {
@@ -414,123 +423,7 @@
     }
     
   
-    if (mod.act_list.count == 1) {
-        NSString *savr1Str =mod.act_list[0][@"content"];
-        NSArray *arraySave1 = [savr1Str componentsSeparatedByString:@","];
-        NSString *CHSave1Str;
-        NSString *THSave1Str;
-        NSString *ENSave1Str;
-        NSString *SHOWSaveStr1;
-        if (arraySave1.count == 1) {
-            CHSave1Str =savr1Str;
-            THSave1Str = savr1Str;
-            ENSave1Str = savr1Str;
-        }else if(arraySave1.count == 2){
-            CHSave1Str =arraySave1[0];
-            THSave1Str = arraySave1[1];
-            ENSave1Str = arraySave1[1];
-        }else{
-            CHSave1Str =arraySave1[0];
-            THSave1Str = arraySave1[1];
-            ENSave1Str = arraySave1[2];
-        }
-        
-        NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
-        if ([language isEqualToString:@"th"]) {
-            SHOWSaveStr1 =THSave1Str;
-        }
-        else if ([language isEqualToString:@"zh-Hans"]) {
-            SHOWSaveStr1 = CHSave1Str;
-        }
-        else if ([language isEqualToString:@"en"]) {
-            SHOWSaveStr1 = ENSave1Str;
-        }
-        [self.shopPreferentImg1 setHidden:NO];
-        [self.shopPreferential1 setHidden:NO];
-        [self.shopPreferential2 setHidden:YES];
-        [self.shopPreferentImg2 setHidden:YES];
-        NSString *imgUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,mod.act_list[0][@"img"]] ;
-        [self.shopPreferentImg1 sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
-        
-        self.shopPreferential1.text = SHOWSaveStr1;
-    }else if (mod.act_list.count > 1){
-        
-        NSString *savr1Str =mod.act_list[0][@"content"];
-        NSArray *arraySave1 = [savr1Str componentsSeparatedByString:@","];
-        NSString *CHSave1Str;
-        NSString *THSave1Str;
-        NSString *ENSave1Str;
-        NSString *SHOWSaveStr1;
-        if (arraySave1.count == 1) {
-            CHSave1Str =savr1Str;
-            THSave1Str = savr1Str;
-            ENSave1Str = savr1Str;
-        }else if(arraySave1.count == 2){
-            CHSave1Str =arraySave1[0];
-            THSave1Str = arraySave1[1];
-            ENSave1Str = arraySave1[1];
-        }else{
-            CHSave1Str =arraySave1[0];
-            THSave1Str = arraySave1[1];
-            ENSave1Str = arraySave1[2];
-        }
-        
-        NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
-        if ([language isEqualToString:@"th"]) {
-            SHOWSaveStr1 =THSave1Str;
-        }
-        else if ([language isEqualToString:@"zh-Hans"]) {
-            SHOWSaveStr1 = CHSave1Str;
-        }
-        else if ([language isEqualToString:@"en"]) {
-            SHOWSaveStr1 = ENSave1Str;
-        }
-        
-        
-        NSString *savr2Str =mod.act_list[1][@"content"];
-        NSArray *arraySave2 = [savr1Str componentsSeparatedByString:@","];
-        NSString *CHSave2Str;
-        NSString *THSave2Str;
-        NSString *ENSave2Str;
-        NSString *SHOWSaveStr2;
-        if (arraySave2.count == 1) {
-            CHSave2Str =savr2Str;
-            THSave2Str = savr2Str;
-            ENSave2Str = savr2Str;
-        }else if(arraySave2.count == 2){
-            CHSave2Str =arraySave2[0];
-            THSave2Str = arraySave2[1];
-            ENSave2Str = arraySave2[1];
-        }else{
-            CHSave2Str =arraySave2[0];
-            THSave2Str = arraySave2[1];
-            ENSave2Str = arraySave1[2];
-        }
-        
-        if ([language isEqualToString:@"th"]) {
-            SHOWSaveStr2 =THSave2Str;
-        }
-        else if ([language isEqualToString:@"zh-Hans"]) {
-            SHOWSaveStr2 = CHSave2Str;
-        }
-        else if ([language isEqualToString:@"en"]) {
-            SHOWSaveStr2 = ENSave2Str;
-        }
-        
-        [self.shopPreferentImg1 setHidden:NO];
-        [self.shopPreferential1 setHidden:NO];
-        [self.shopPreferential2 setHidden:NO];
-        [self.shopPreferentImg2 setHidden:NO];
-        
-        NSString *imgUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,mod.act_list[0][@"img"]] ;
-        [self.shopPreferentImg1 sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
-       
-        self.shopPreferential1.text = SHOWSaveStr1;
-        
-        NSString *imgUrl1 =[NSString stringWithFormat:@"%@/%@",BASEURL,mod.act_list[1][@"img"]] ;
-        [self.shopPreferentImg2 sd_setImageWithURL:[NSURL URLWithString:imgUrl1]];
-        self.shopPreferential2.text = SHOWSaveStr2;
-    }
+   
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

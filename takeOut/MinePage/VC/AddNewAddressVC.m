@@ -8,7 +8,7 @@
 
 #import "AddNewAddressVC.h"
 #import "LocationMapVC.h"
-#import "LoginByPhoneVC.h"
+#import "NewLoginByPhoneVC.h"
 #import <IQKeyboardReturnKeyHandler.h>
 #import <IQKeyboardManager.h>
 @interface AddNewAddressVC ()<UITextFieldDelegate>
@@ -360,7 +360,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
-            LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+            NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
             [self.navigationController pushViewController:login animated:YES];
         }else{
             NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,editAddressURL];
@@ -403,7 +403,7 @@
           NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
-            LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+            NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
             [self.navigationController pushViewController:login animated:YES];
         }else if(_userSex == nil){
             _userSex = @"1";

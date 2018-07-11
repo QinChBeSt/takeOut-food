@@ -9,7 +9,7 @@
 #import "MineAddressVC.h"
 #import "AddNewAddressVC.h"
 #import "NewAddVC.h"
-#import "LoginByPhoneVC.h"
+#import "NewLoginByPhoneVC.h"
 #import "ModelForGetAddress.h"
 #import "CellForMyAddress.h"
 @interface MineAddressVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -39,7 +39,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userid = [defaults objectForKey:UD_USERID];
     if (userid == nil) {
-        LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+        NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
         [self.navigationController pushViewController:login animated:YES];
     }else{
         NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getAddressUrl];

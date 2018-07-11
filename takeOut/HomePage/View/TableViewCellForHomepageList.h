@@ -25,4 +25,5 @@ typedef void (^blockChooseShow)(NSString *);
 @property (nonatomic , strong)UIView *longSaveView;
 @property (nonatomic , strong)UIView *shortSaceView;
 @property (nonatomic , strong)UIButton *showMoreBtn;
+@property (nonatomic , strong)UIImageView *showMoreImg;
 @end

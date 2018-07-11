@@ -12,7 +12,7 @@
 #import "DetailForOrder.h"
 #import "OrderEditVC.h"
 #import "CellForOrderListNoPJ.h"
-#import "LoginByPhoneVC.h"
+#import "NewLoginByPhoneVC.h"
 
 @interface AllOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
@@ -249,8 +249,8 @@
     [self.navigationController pushViewController:detailvc animated:YES];
 }
 -(void)toLogin{
-    LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
-    self.hidesBottomBarWhenPushed = YES;
+    NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
+    login.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:login animated:YES];
     
 }
