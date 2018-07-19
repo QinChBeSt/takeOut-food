@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/HomePage/VC/ShopDetail/FoodListVC.m"
-            timestampString = "552909538.573632"
+            timestampString = "553602352.141499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "660"
@@ -58,7 +58,7 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/HomePage/VC/ShopDetail/SubmitOrderVC.m"
-                  timestampString = "552996382.475345"
+                  timestampString = "553605806.5384459"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "607"
@@ -73,7 +73,7 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/HomePage/VC/ShopDetail/SubmitOrderVC.m"
-                  timestampString = "552996382.478193"
+                  timestampString = "553605806.541483"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "608"
@@ -88,7 +88,7 @@
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/HomePage/VC/ShopDetail/SubmitOrderVC.m"
-                  timestampString = "552996382.4808559"
+                  timestampString = "553605806.544531"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "607"
@@ -153,13 +153,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/Login/NewLoginByPhoneVC.m"
-            timestampString = "552996565.136446"
+            timestampString = "553605794.5704941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
-            landmarkName = "-verifyEvent"
-            landmarkType = "7">
+            startingLineNumber = "370"
+            endingLineNumber = "370"
+            landmarkName = "NewLoginByPhoneVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -169,58 +169,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "takeOut/Login/NewLoginByPhoneVC.m"
-            timestampString = "552996565.136564"
+            timestampString = "553605794.570614"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
-            landmarkName = "-login"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
+            landmarkName = "-verifyEvent"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[NewLoginByPhoneVC login]"
+                  symbolName = "-[NewLoginByPhoneVC verifyEvent]"
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/NewLoginByPhoneVC.m"
-                  timestampString = "552996382.512287"
+                  timestampString = "553605806.5711271"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "408"
-                  endingLineNumber = "408"
-                  offsetFromSymbolStart = "2508">
+                  startingLineNumber = "360"
+                  endingLineNumber = "360"
+                  offsetFromSymbolStart = "3072">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__26-[NewLoginByPhoneVC login]_block_invoke"
+                  symbolName = "__32-[NewLoginByPhoneVC verifyEvent]_block_invoke"
                   moduleName = "takeOut"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/NewLoginByPhoneVC.m"
-                  timestampString = "552996382.514961"
+                  timestampString = "553605806.573959"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "409"
-                  endingLineNumber = "409"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.481"
-                  moduleName = "takeOut"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a123/Desktop/TakeOut-Food/takeOut/Login/NewLoginByPhoneVC.m"
-                  timestampString = "552996382.517748"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "408"
-                  endingLineNumber = "408"
-                  offsetFromSymbolStart = "20">
+                  startingLineNumber = "361"
+                  endingLineNumber = "361"
+                  offsetFromSymbolStart = "72">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -231,13 +216,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "takeOut/Login/NewLoginByPhoneVC.m"
-            timestampString = "552996565.1366529"
+            filePath = "Pods/SDCycleScrollView/SDCycleScrollView/Lib/SDCycleScrollView/SDCycleScrollView.m"
+            timestampString = "553596133.3615659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
-            landmarkName = "-login"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "+cycleScrollViewWithFrame:imageURLStringsGroup:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "takeOut/HomePage/View/TableViewCellForHomepageList.m"
+            timestampString = "553605794.57077"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
+            landmarkName = "-setMod:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

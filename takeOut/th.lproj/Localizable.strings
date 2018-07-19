@@ -159,9 +159,9 @@
 "骑手招募" = "รับสมัคคนขับ";
 "我要合作" = "การร่วมมือ";
 "确定要退出吗？" = "ออกจากระบบ?";
-"BeeOrder配送" = "BeeOrder delivery";
-"注册代表您已同意《BeeOrder用户协议》" = "Regis, you have agreed to the 《BeeOrder user agreement》";
-"《BeeOrder用户协议》" ="《BeeOrder user agreement》";
+"BEEORDER配送" = "BEEORDER delivery";
+"注册代表您已同意《BEEORDER用户协议》" = "Regis, you have agreed to the 《BEEORDER user agreement》";
+"《BEEORDER用户协议》" ="《BEEORDER user agreement》";
 "经纬度错误" = "Latitude and longitude error";
 
 
@@ -173,14 +173,14 @@
 
 "打烊了" = "ปิด";
 "打烊" = "ปิด";
-"Beeorder, 目前领先的餐饮供应电商平台! F2B模式, 工厂直接报价给商家,去掉中间环节, 终端市场建仓配送直达餐厅。上百种产品厂家直供, 商家无忧买到性价比超高的优质产品, 并享受到专业的客户服务。不需要再起早贪黑跑菜市场、跑批发部, 不需要再货比三家讨价还价。无论是在店里还是在家里、旅途你都能随时随地为您的餐厅下单采购！Beeorder, 餐厅老板的信赖之选, 让天下餐厅没有难做的生意。" = "beeorder, now the leading e-commerce platform for catering supply! In F2B mode, the factory directly quotes to the merchants, removes the intermediate link, and builds warehouses in the terminal market to deliver goods to the restaurant. Hundreds of products are directly supplied by manufacturers, and merchants are free to buy high-quality products with high cost performance and enjoy professional customer service. No need to get up early to run the vegetable market, run the wholesale department, no need to compare prices. You can shop for your restaurant anytime, anywhere, at home or on the road! Beeorder, the trusted choice of the owner of the restaurant, makes it easy for the restaurant to do business.";
+"BEEORDER, 目前领先的餐饮供应电商平台! F2B模式, 工厂直接报价给商家,去掉中间环节, 终端市场建仓配送直达餐厅。上百种产品厂家直供, 商家无忧买到性价比超高的优质产品, 并享受到专业的客户服务。不需要再起早贪黑跑菜市场、跑批发部, 不需要再货比三家讨价还价。无论是在店里还是在家里、旅途你都能随时随地为您的餐厅下单采购！BEEORDER, 餐厅老板的信赖之选, 让天下餐厅没有难做的生意。" = "BEEORDER, now the leading e-commerce platform for catering supply! In F2B mode, the factory directly quotes to the merchants, removes the intermediate link, and builds warehouses in the terminal market to deliver goods to the restaurant. Hundreds of products are directly supplied by manufacturers, and merchants are free to buy high-quality products with high cost performance and enjoy professional customer service. No need to get up early to run the vegetable market, run the wholesale department, no need to compare prices. You can shop for your restaurant anytime, anywhere, at home or on the road! BEEORDER, the trusted choice of the owner of the restaurant, makes it easy for the restaurant to do business.";
 "商家公告" = "ประกาศทางร้าน";
 "优惠满减" = "ส่วนลด";
 "敬请期待" = "coming soon";
 "规格" = "สเปค";
 "完成" ="เสนอ";
 "编辑" = "Edit";
-
+"赞" = "like";
 "吃货福利" = "foodie benefit";
 "所有商家" = "All Shop";
 "口味、偏好等要求" = "Taste, preference, etc.";
@@ -205,10 +205,17 @@
 "泰国" = "Thailand";
 "中国" = "China";
 "请同意用户协议" = "Please agree the user agreement";
-"登陆代表您已同意《BeeOrder用户协议》" = "Login, you have agreed to the 《BeeOrder user agreement》";
+"登陆代表您已同意《BEEORDER用户协议》" = "Login, you have agreed to the 《BEEORDER user agreement》";
 "用户协议" = "User agreement";
 "验证码错误" = "รหัสยืนยันไม่ถูกต้อง";
 "账号已存在" = "Account already exists";
+"手机号不能大于11位数" = "The phone number cannot be greater than 11 digits";
+"手机号应该为9~11位数字" = "The phone number should be 9~11 digits";
+"手机号不能大于9位数" = "The phone number cannot be greater than 9 digits";
+"手机号不能大于10位数" = "The phone number cannot be greater than 10 digits";
+"手机号不能大于11位数" = "The phone number cannot be greater than 11 digits";
+"获取验证码失败，请检查网络" = "Failed to get verification code, please check the network";
+"手机号应为0或9开头" = "The phone number should start with 0 or 9";
 //===========================================图
 "bg_zanwupinglun" = "bg_zanwupinglun2";
 "icon_shangguige" = "icon_shangguige2";

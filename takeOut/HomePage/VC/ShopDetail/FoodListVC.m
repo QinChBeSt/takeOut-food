@@ -1396,9 +1396,9 @@ self.addBuyCarViewAddBtn.enabled = NO;
     
     UILabel *toolBatTitle = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 150, 40)];
         toolBatTitle.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"Beeorder配送", nil)];
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"BEEORDER配送", nil)];
         //获取要调整颜色的文字位置,调整颜色
-    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"Beeorder", nil)];
+    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"BEEORDER", nil)];
     [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
    
     toolBatTitle.attributedText =hintString;

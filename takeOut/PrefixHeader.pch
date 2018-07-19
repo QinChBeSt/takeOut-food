@@ -29,11 +29,11 @@
 
 //
 //
-#define BASEURL @"http://150.109.179.93"
-#define IMGBaesURL @"http://150.109.179.93/apidocs/upload/"
+//#define BASEURL @"http://150.109.179.93"
+//#define IMGBaesURL @"http://150.109.179.93/apidocs/upload/"
 ////
-//#define BASEURL @"http://192.168.0.154:8081"
-//#define IMGBaesURL @"http://192.168.0.154:8081/apidocs/upload/"
+#define BASEURL @"http://192.168.0.126:8082"
+#define IMGBaesURL @"http://192.168.0.126:8082/apidocs/upload/"
 
 //bnner
 #define LUNBOURL @"/xmfapi/getCarousel"

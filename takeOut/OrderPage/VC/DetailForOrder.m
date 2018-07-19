@@ -412,7 +412,7 @@
     
     UILabel *compName = [[UILabel alloc]init];
     [addressbackview addSubview:compName];
-    compName.text = @"Beeorder";
+    compName.text = @"BEEORDER";
     compName.font = [UIFont systemFontOfSize:13];
     compName.textColor = [UIColor colorWithHexString:BaseYellow];
     [compName mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -62,7 +62,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = [NSString stringWithFormat:@"%@BeeOrder",ZBLocalized(@"登录", nil)];
+    titleLabel.text = [NSString stringWithFormat:@"%@BEEORDER",ZBLocalized(@"登录", nil)];
     titleLabel.textColor = [UIColor colorWithHexString:BaseTextBlackColor];
     titleLabel.font = [UIFont systemFontOfSize:16];
     [self.niveView addSubview:titleLabel];
@@ -124,12 +124,12 @@
     [self.countryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(countryLine);
         make.centerY.equalTo(countryTit);
-        make.width.equalTo(@(kWidthScale(150)));
-        make.bottom.equalTo(countryLine);
+        make.width.equalTo(@(kWidthScale(100)));
+        make.height.equalTo(@(kWidthScale(66)));
     }];
     
     UIView *countrySx = [[UIView alloc]init];
-    countrySx.backgroundColor = [UIColor colorWithHexString:@"e9e9e9"];
+    countrySx.backgroundColor = [UIColor clearColor];
     [self.view addSubview:countrySx];
     [countrySx mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(countryTit);
@@ -148,6 +148,10 @@
         make.width.equalTo(@(kWidthScale(150)));
         
     }];
+    UITapGestureRecognizer *countryNoTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toChooseCountry)];
+    [self.countryNumLab addGestureRecognizer:countryNoTapGestureRecognizer];
+    self.countryNumLab.userInteractionEnabled = YES; // 可以理解为设置label可
+    
     UIView *phoneLine = [[UIView alloc]init];
     phoneLine.backgroundColor = [UIColor colorWithHexString:@"e9e9e9"];
     [self.view addSubview:phoneLine];
@@ -250,10 +254,11 @@
     
      NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
     if ([language isEqualToString:@"zh-Hans"]) {
-        [self.countryBtn setTitle:ZBLocalized(@"中国", nil) forState:UIControlStateNormal];
+
+        [self.countryBtn setImage:[UIImage imageNamed:@"中国"] forState:UIControlStateNormal];
         self.countryNumLab.text = @"+86";
     }else{
-        [self.countryBtn setTitle:ZBLocalized(@"泰国", nil) forState:UIControlStateNormal];
+       [self.countryBtn setImage:[UIImage imageNamed:@"泰国"] forState:UIControlStateNormal];
         self.countryNumLab.text = @"+66";
     }
     
@@ -263,9 +268,9 @@
     hintLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:hintLabel];
     hintLabel.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登陆代表您已同意《BeeOrder用户协议》", nil)];
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登陆代表您已同意《BEEORDER用户协议》", nil)];
     //获取要调整颜色的文字位置,调整颜色
-    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BeeOrder用户协议》", nil)];
+    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BEEORDER用户协议》", nil)];
     [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
     hintLabel.attributedText=hintString;
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seeProtpo)];
@@ -275,6 +280,7 @@
     [self.xuanze addTarget:self action:@selector(xuanzeAcTION) forControlEvents:UIControlEventTouchUpInside];
     [self.xuanze setImage:[UIImage imageNamed:@"ubXIEYI"] forState:UIControlStateNormal];
     [self.xuanze setImage:[UIImage imageNamed:@"xieyi"] forState:UIControlStateSelected];
+    self.xuanze.selected = YES;
     [self.view addSubview:self.xuanze];
     [self.xuanze mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(hintLabel);
@@ -324,9 +330,29 @@
         phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
         phoneZoneStr = [NSString stringWithFormat:@"86"];
     }else{
-        phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
+        NSString *first = [self.phoneNumStr substringToIndex:1];
+        if ([first isEqualToString:@"0"]) {
+            if (self.phoneNumStr.length >10) {
+                [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于10位数", nil) ];
+                return;
+            }else{
+                 phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
+            }
+        }else {
+            if (self.phoneNumStr.length >9) {
+                [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于9位数", nil) ];
+                return;
+            }else{
+                 phoneStr = [NSString stringWithFormat:@"0%@",self.phoneNumStr];
+            }
+        }
+       
         phoneZoneStr = [NSString stringWithFormat:@"66"];
     }
+   
+    
+    
+    
     //[par setValue:uuidStr forKey:@"phonemac"];
     [par setValue:phoneStr forKey:@"phone"];
     [par setValue:phoneZoneStr forKey:@"phonezone"];
@@ -341,7 +367,7 @@
         }
         
     } withFail:^(NSError *error) {
-        [MBManager showBriefAlert:@"获取验证码失败，请检查网络"];
+        [MBManager showBriefAlert:ZBLocalized(@"获取验证码失败，请检查网络", nil)];
     }];
 }
 #pragma mark - 监听textFile
@@ -367,6 +393,52 @@
 //        self.toLoginButton.enabled = NO;
 //    }
 }
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if ([string isEqualToString:@"\n"])  //按会车可以改变
+    {
+        return NO;
+    }
+   
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if (self.phoneNumTextField == textField)
+    {
+        if ([self.countryNumLab.text isEqualToString:@"+86"]) {
+            if ([toBeString length] > 11) {
+                textField.text = [toBeString substringToIndex:11];
+                NSLog(@"不能大于11");
+                [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于11位数", nil) ];
+                return NO;
+            }
+        }else{
+            if ([self isBlankString:toBeString] ) {
+                return YES;
+            }else{
+                NSString *first = [toBeString substringToIndex:1];
+                NSLog(@"起始字符%@",first);
+                if ([first isEqualToString:@"0"]) {
+                    if ([toBeString length] > 10) {
+                        textField.text = [toBeString substringToIndex:10];
+                        NSLog(@"不能大于10");
+                        [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于10位数", nil) ];
+                        return NO;
+                    }
+                }else  {
+                    if ([toBeString length] > 9) {
+                        textField.text = [toBeString substringToIndex:9];
+                        NSLog(@"不能大于9");
+                        [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于9位数", nil) ];
+                        return NO;
+                    }
+                }
+            }
+            
+        }
+        
+    }
+    return YES;
+}
+    
 
 -(void)xuanzeAcTION{
     if (self.xuanze.selected == YES) {
@@ -390,11 +462,30 @@
         [MBManager showBriefAlert:ZBLocalized(@"请同意用户协议", nil)];
         return;
     }
+    
+    
+    
     NSString *phoneStr = [[NSString alloc]init];
     if ([self.countryNumLab.text isEqualToString:@"+86"]) {
+        
         phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
     }else{
-        phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
+        NSString *first = [self.phoneNumStr substringToIndex:1];
+        if ([first isEqualToString:@"0"]) {
+            if (self.phoneNumStr.length >10) {
+                [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于10位数", nil) ];
+                return;
+            }else{
+                phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
+            }
+        }else {
+            if (self.phoneNumStr.length >9) {
+                [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于9位数", nil) ];
+                return;
+            }else{
+                phoneStr = [NSString stringWithFormat:@"0%@",self.phoneNumStr];
+            }
+        }
     }
     NSString * uuidStr= [UUID getUUID];
     NSString * md5Code = [MD5encryption MD5ForLower32Bate:self.codeNumStr];
@@ -461,10 +552,10 @@
     ChooseCountryVC *chooseCou  = [[ChooseCountryVC alloc]init];
     chooseCou.blockChooseShow = ^(NSString *country) {
         if ([country isEqualToString:@"0"]) {
-            [self.countryBtn setTitle:ZBLocalized(@"中国", nil) forState:UIControlStateNormal];
+           [self.countryBtn setImage:[UIImage imageNamed:@"中国"] forState:UIControlStateNormal];
             self.countryNumLab.text = @"+86";
         }else{
-            [self.countryBtn setTitle:ZBLocalized(@"泰国", nil) forState:UIControlStateNormal];
+          [self.countryBtn setImage:[UIImage imageNamed:@"泰国"] forState:UIControlStateNormal];
             self.countryNumLab.text = @"+66";
         }
     };
@@ -478,7 +569,44 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(BOOL) isBlankString:(NSString *)string{
+    NSString *str = [NSString stringWithFormat:@"%@",string];
+    
+    if ([str isEqualToString:@""]) {
+        return YES;
+    }
+    
+    if ([str isEqualToString:@"<null>"]) {
+        return YES;
+    }
+    
+    if ([str isEqualToString:@"(null)"]) {
+        return YES;
+    }
+    
+    if ([str isEqualToString:@"<nil>"]) {
+        return YES;
+    }
+    
+    if (str == nil || str == NULL) {
+        return YES;
+    }
+    
+    if ([str isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    
+    if ([str isEqual:[NSNull null]]) {
+        return YES;
+    }
+    
+    if ([[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        return YES;
+    }
+    
+    
+    return NO;
+}
 /*
 #pragma mark - Navigation
 

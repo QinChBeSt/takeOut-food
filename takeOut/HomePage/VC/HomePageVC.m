@@ -13,7 +13,7 @@
 //VC
 #import "ShopDetailVC.h"
 #import "HomeTypeVC.h"
-
+#import "HomeDetailWebView.h"
 //VIEW
 #import "SortButton.h"
 #import "CollectionViewCellForHomePageChoose.h"
@@ -24,9 +24,10 @@
 #import "ModelForShopList.h"
 
 #define kHeadAdderssViewHeight 40
-#define kHeadSelectViewHeight 160
-#define kHeadImageViewHeight 120
-#define kHeadCollectionViewHeight SCREEN_WIDTH / 5 * 2 + 3
+#define kHeadSelectViewHeight kWidthScale(345)
+#define kHeadImageViewHeight kWidthScale(225)
+#define kHeadCollectionViewHeight kWidthScale(310)
+#define kHeadShortViewHeight kWidthScale(160)
 
 @interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate,SDCycleScrollViewDelegate>
 {
@@ -50,6 +51,8 @@
 @property (nonatomic , strong)NSMutableArray *arrForHomePageTypeName;
 @property (nonatomic , strong)NSMutableArray *arrForHomePageShopList;
 
+@property (nonatomic , strong)NSMutableArray *arrForBannerDetail;
+
 /**
  *   页数
  */
@@ -66,6 +69,12 @@
 /**
  *  懒加载网络图片数据
  */
+-(NSMutableArray *)arrForBannerDetail{
+    if (!_arrForBannerDetail) {
+        _arrForBannerDetail = [NSMutableArray array];
+    }
+    return _arrForBannerDetail;
+}
 -(NSMutableArray *)netImages{
     
     if (!_netImages) {
@@ -112,12 +121,30 @@
 -(void)getNetWorkForBanner{
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,LUNBOURL];
     //@"http://118.24.100.177:8080/spmvc/xmfapi/getCarousel";
-    [MHNetWorkTask getWithURL:url withParameter:nil withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+    NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+    NSLog(@"切换后的语言:%@",language);
+    NSString *lauStr;
+    if ([language isEqualToString:@"th"]) {
+        lauStr = @"1";
+    }
+    else if ([language isEqualToString:@"en"]){
+        lauStr = @"3";
+    }
+    else if ([language isEqualToString:@"zh-Hans"]){
+        lauStr = @"2";
+    }
+    NSDictionary *parameters = @{@"langet":lauStr,
+                               
+                                 };
+    [MHNetWorkTask getWithURL:url withParameter:parameters withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         
         NSArray *dic = result[@"value"];
         for (NSMutableDictionary *dicRes in dic) {
-            NSString *urlS = [NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
-          [self.netImages addObject:urlS];
+            NSString *urlS =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
+            urlS = [urlS stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+            NSString *detailurl = [NSString stringWithFormat:@"%@",dicRes[@"bannerText"]];
+           [self.netImages addObject:urlS];
+           [self.arrForBannerDetail addObject:detailurl];
         }
        
         /** 测试本地图片数据*/
@@ -137,10 +164,10 @@
         
         [self.tableView addSubview:self.cycleScrollView];
         [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(headviewAddressView.mas_bottom);
-            make.width.equalTo(headviewAddressView);
+            make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
+            make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
             make.centerX.equalTo(headviewAddressView);
-            make.height.equalTo(@(kHeadImageViewHeight));
+            make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
         }];
        
         
@@ -316,7 +343,7 @@
 }
 #pragma mark - 创建透视图
 -(void)createHeadView{
-    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeadAdderssViewHeight + kHeadImageViewHeight + kHeadCollectionViewHeight + kHeadSelectViewHeight + 65 + SafeAreaStatsBarHeight)];
+    self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeadAdderssViewHeight + kHeadImageViewHeight + kHeadCollectionViewHeight + kHeadSelectViewHeight + kHeadShortViewHeight + SafeAreaStatsBarHeight)];
     self.headView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.headView];
     [self createHeadViewAddressView];
@@ -355,10 +382,10 @@
 //头视图
 -(void)createHeadviewImageView{
     headviewImageView = [[UIImageView alloc]init];
-    headviewImageView.backgroundColor = [UIColor orangeColor];
+   
     [self.headView addSubview:headviewImageView];
     [headviewImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(headviewAddressView.mas_bottom);
+        make.top.equalTo(headviewAddressView.mas_bottom) ;
         make.width.equalTo(headviewAddressView);
         make.centerX.equalTo(headviewAddressView);
         make.height.equalTo(@(kHeadImageViewHeight));
@@ -373,7 +400,7 @@
     headviewSelectView.backgroundColor = [UIColor whiteColor];
     [self.headView addSubview:headviewSelectView];
     [headviewSelectView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.collectionView.mas_bottom);
+        make.top.equalTo(self.collectionView.mas_bottom) ;
         make.width.equalTo(headviewImageView);
         make.centerX.equalTo(headviewImageView);
         make.height.equalTo(@(kHeadSelectViewHeight));
@@ -386,11 +413,12 @@
     UILabel *selectImage = [[UILabel alloc]init];
     //[selectImage setImage:[UIImage imageNamed:@"yhhd"]];
     selectImage.text = ZBLocalized(@"吃货福利", nil);
+    selectImage.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     [headviewSelectView addSubview:selectImage];
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(headviewSelectView.mas_top).offset(10);
-        make.left.equalTo(headviewSelectView.mas_left).offset(20);
-        make.height.equalTo(@(20));
+        make.top.equalTo(headviewSelectView.mas_top).offset(kWidthScale(40));
+        make.left.equalTo(headviewSelectView.mas_left).offset(kWidthScale(20));
+        make.height.equalTo(@(kWidthScale(75)));
         
     }];
     
@@ -400,10 +428,10 @@
     [headviewSelectView addSubview:headviewSelectLeftView];
     
     [headviewSelectLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(headviewSelectView.mas_left).offset(15);
-        make.top.equalTo(selectImage.mas_bottom).offset(15);
-        make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-5);
-        make.right.equalTo(headviewSelectView.mas_centerX).offset(-5);
+        make.left.equalTo(headviewSelectView.mas_left).offset(kWidthScale(18));
+        make.top.equalTo(selectImage.mas_bottom).offset(0);
+        make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-kWidthScale(5));
+        make.right.equalTo(headviewSelectView.mas_centerX).offset(-kWidthScale(5));
     }];
 
    
@@ -412,10 +440,10 @@
     [headviewSelectRightView addTarget:self action:@selector(tapSelectRight) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectRightView];
     [headviewSelectRightView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(headviewSelectView.mas_right).offset(-15);
-        make.top.equalTo(selectImage.mas_bottom).offset(15);
-        make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-5);
-        make.left.equalTo(headviewSelectView.mas_centerX).offset(5);
+        make.right.equalTo(headviewSelectView.mas_right).offset(-kWidthScale(18));
+        make.top.equalTo(selectImage.mas_bottom).offset(0);
+        make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-kWidthScale(5));
+        make.left.equalTo(headviewSelectView.mas_centerX).offset(kWidthScale(5));
     }];
  
 }
@@ -429,36 +457,37 @@
         make.top.equalTo(headviewSelectView.mas_bottom);
         make.width.equalTo(headviewImageView);
         make.centerX.equalTo(headviewImageView);
-        make.height.equalTo(@(70));
+        make.height.equalTo(@(kHeadShortViewHeight));
     }];
     
-     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
-    line.backgroundColor = [UIColor lightGrayColor];
-    [sortingView addSubview:line];
+//    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
+//    line.backgroundColor = [UIColor lightGrayColor];
+//    [sortingView addSubview:line];
     
     UILabel *selectImage = [[UILabel alloc]init];
+    selectImage.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     //[selectImage setImage:[UIImage imageNamed:@"tjsj"]];
     selectImage.text = ZBLocalized(@"所有商家", nil);
     [sortingView addSubview:selectImage];
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(line.mas_bottom).offset(5);
-        make.left.equalTo(sortingView.mas_left).offset(20);
-        make.height.equalTo(@(25));
+        make.top.equalTo(sortingView.mas_top).offset(kWidthScale(40)) ;
+        make.left.equalTo(sortingView.mas_left).offset(kWidthScale(20));
+        make.height.equalTo(@(kWidthScale(75)));
         
     }];
 
      NSArray *arrButtonTitle = @[ZBLocalized(@"综合排序", nil),ZBLocalized(@"销量最高", nil),ZBLocalized(@"距离最近", nil)];
-    CGFloat buttonW = SCREEN_WIDTH / arrButtonTitle.count; //按钮的宽度和高度
-    CGFloat buttonH = 30;
+    CGFloat buttonW = (SCREEN_WIDTH - kWidthScale(36) )/ arrButtonTitle.count; //按钮的宽度和高度
+    CGFloat buttonH = kWidthScale(60);
     for (int i=0; i<arrButtonTitle.count; i++) {  // 循环创建3个按钮
-        clickButton=[[SortButton alloc]initWithFrame:CGRectMake(buttonW*i, 15 + 20, buttonW, buttonH)];
+        clickButton=[[SortButton alloc]initWithFrame:CGRectMake(kWidthScale(18) +  buttonW*i, kWidthScale(115), buttonW, buttonH)];
         if(i==0){
             clickButton.selected=YES;  // 设置第一个为默认值
             self.replaceButton=clickButton;
         }
         
         clickButton.tag=i;
-        clickButton.titleLabel.font=[UIFont systemFontOfSize:12.0];
+        clickButton.titleLabel.font=[UIFont systemFontOfSize:10.0];
         [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
         [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
@@ -475,7 +504,7 @@
 #pragma mark - 创建collecttionView
 -(void)createCollectionView{
     CGFloat itemWidth = (SCREEN_WIDTH - 5 )/ 5;
-    CGFloat itemHeight = (SCREEN_WIDTH  ) / 5;
+    CGFloat itemHeight = kWidthScale(155);
     UICollectionViewFlowLayout *shareflowLayout = [[UICollectionViewFlowLayout alloc] init];
     shareflowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     shareflowLayout.sectionInset = UIEdgeInsetsMake(1, 1, 1,1);
@@ -549,7 +578,7 @@
              [self.tableView reloadData];
             
     };
-    
+
     return cell;
         
    
@@ -559,11 +588,12 @@
     if (dicForShow[indexPath]== [NSNumber numberWithBool:YES] ) {
         ModelForShopList *mod =[self.arrForHomePageShopList objectAtIndex:indexPath.row];
         NSInteger cont = mod.act_list.count - 2;
-        NSInteger addHeight = cont * 25 + 110;
+        cont = cont / 3 + 1;
+        NSInteger addHeight = cont * 20 + kWidthScale(250);
         return addHeight;
         
     }
-       return 110;
+       return kWidthScale(250);
     
 }
 
@@ -621,7 +651,15 @@
 #pragma mark - 轮播图代理方法
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    NSString *detail = [self.arrForBannerDetail objectAtIndex:index];
     
+    if ([detail containsString:@"http"]) {
+        HomeDetailWebView *webView = [[HomeDetailWebView alloc]init];
+        webView.urlStr = detail;
+        webView.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:webView animated:YES];
+        
+    }
     NSLog(@"%ld",index);
 }
 

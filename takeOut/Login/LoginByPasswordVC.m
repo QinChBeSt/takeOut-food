@@ -58,7 +58,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = [NSString stringWithFormat:@"%@BeeOrder",ZBLocalized(@"登录", nil)];
+    titleLabel.text = [NSString stringWithFormat:@"%@BEEORDER",ZBLocalized(@"登录", nil)];
     titleLabel.textColor = [UIColor colorWithHexString:BaseTextBlackColor];
     titleLabel.font = [UIFont systemFontOfSize:16];
     [self.niveView addSubview:titleLabel];
@@ -202,9 +202,9 @@
     hintLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:hintLabel];
     hintLabel.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登陆代表您已同意《BeeOrder用户协议》", nil)];
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登陆代表您已同意《BEEORDER用户协议》", nil)];
     //获取要调整颜色的文字位置,调整颜色
-    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BeeOrder用户协议》", nil)];
+    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BEEORDER用户协议》", nil)];
     [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
     hintLabel.attributedText=hintString;
     
@@ -216,6 +216,7 @@
     [self.xuanze addTarget:self action:@selector(xuanzeAcTION) forControlEvents:UIControlEventTouchUpInside];
     [self.xuanze setImage:[UIImage imageNamed:@"ubXIEYI"] forState:UIControlStateNormal];
     [self.xuanze setImage:[UIImage imageNamed:@"xieyi"] forState:UIControlStateSelected];
+    self.xuanze.selected = YES;
     [self.view addSubview:self.xuanze];
     [self.xuanze mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(hintLabel);
@@ -237,6 +238,7 @@
 #pragma mark - 监听textFile
 -(void)phoneTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
+    
     self.phoneNumStr = theTextField.text;
    
 }
@@ -244,6 +246,25 @@
     NSLog( @"text changed: %@", theTextField.text);
     self.codeNumStr = theTextField.text;
    
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if ([string isEqualToString:@"\n"])  //按会车可以改变
+    {
+        return NO;
+    }
+    
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if (self.phoneNumTextField == textField)
+    {
+        textField.text = [toBeString substringToIndex:11];
+        NSLog(@"不能大于11");
+        [MBManager showBriefAlert:@"手机号不能大于11位数"];
+        return NO;
+            
+       
+    }
+    return YES;
 }
 -(void)xuanzeAcTION{
     if (self.xuanze.selected == YES) {
@@ -262,7 +283,12 @@
     if (self.phoneNumStr.length == 0) {
         [MBManager showBriefAlert:ZBLocalized(@"请输入手机号", nil)];
         return;
-    }else if (self.codeNumStr.length == 0){
+    }else if (self.phoneNumStr.length < 9 || self.phoneNumStr.length >11){
+        [MBManager showBriefAlert:ZBLocalized(@"手机号应该为9~11位数字", nil)];
+        return;
+    }
+    
+    else if (self.codeNumStr.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请输入密码", nil)];
         return;
     }else if(_xuanze.selected == NO){

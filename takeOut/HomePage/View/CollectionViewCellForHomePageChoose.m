@@ -24,10 +24,10 @@
 
     [self.contentView addSubview:self.iconImg];
     [self.iconImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(ws.contentView.mas_top).offset(15);
+        make.top.equalTo(ws.contentView.mas_top).offset(kWidthScale(10));
         make.centerX.equalTo(ws.contentView);
-        make.width.equalTo(@(ws.contentView.frame.size.width / 5 * 2.5));
-        make.height.equalTo(@(ws.contentView.frame.size.width / 5 * 2.5));
+        make.width.equalTo(@(kWidthScale(90)));
+        make.height.equalTo(@(kWidthScale(90)));
     }];
     
     self.titleLable = [[UILabel alloc]init];
@@ -36,7 +36,7 @@
     [self.contentView addSubview:self.titleLable];
     [self.titleLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.iconImg);
-        make.top.equalTo(ws.iconImg.mas_bottom).offset(5);
+        make.top.equalTo(ws.iconImg.mas_bottom).offset(kWidthScale(10));
         make.right.equalTo(ws.contentView);
         make.left.equalTo(ws.contentView);
     }];
