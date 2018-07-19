@@ -642,16 +642,19 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             mod.ys = dic1[@"ys"];
             mod.pic = [dic1[@"pic"] floatValue];
             NSArray *array = dic1[@"goodspic"];
-            if (array != nil && ![array isKindOfClass:[NSNull class]] && array.count != 0){
-                
+            if ([dic1[@"goodspic"] isKindOfClass:[NSNull class]] ){
+                mod.goodspic = @[@{@"goodsId":dic1[@"id"],@"goodsPicName":@"",@"goodsPicPic":@"0",@"id":@"0"}];
+                [arrForDetal addObject:mod];
+               
+            }else{
                 mod.goodspic = dic1[@"goodspic"];
                 [arrForDetal addObject:mod];
             }
-            else{
-                
-            }
+            
       
         }
+        
+        
         ModelForFoodList *modArr = [arrForDetal objectAtIndex:indexPath.row];
        
 //需要选大小尺码==================
@@ -736,6 +739,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                     [MBManager showBriefAlert:ZBLocalized(@"打烊了", nil)];
                     return ;
                 }
+                
                 NSArray *arr = mod2.goodspic;
                 NSDictionary *dic = arr[0];
                 self.selectbuyCarMoncy = dic[@"goodsPicPic"];

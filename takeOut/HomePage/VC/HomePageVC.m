@@ -511,8 +511,8 @@
         }
         
         clickButton.tag=i;
-        clickButton.titleLabel.font=[UIFont systemFontOfSize:10.0];
-        [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+        clickButton.titleLabel.font=[UIFont systemFontOfSize:12.0];
+        [clickButton setTitleColor:[UIColor lightGrayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
         [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         [clickButton setImage:[UIImage imageNamed:@"ic_pulldown"] forState:UIControlStateSelected];

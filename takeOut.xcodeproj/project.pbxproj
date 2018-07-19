@@ -119,6 +119,8 @@
 		D6C301C42077BD24009B9B35 /* CellForOrderList.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C301C32077BD24009B9B35 /* CellForOrderList.m */; };
 		D6C301C82077C0BA009B9B35 /* ModelForOrderList.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C301C72077C0BA009B9B35 /* ModelForOrderList.m */; };
 		D6C301CB2077CA85009B9B35 /* ViewForOrderListFoodsName.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C301CA2077CA85009B9B35 /* ViewForOrderListFoodsName.m */; };
+		D6D7A6292100A6F50081AB3C /* ZHPlaceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D7A6282100A6F50081AB3C /* ZHPlaceInfoModel.m */; };
+		D6D7A62C2100AE2A0081AB3C /* CellForMyNearSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D7A62B2100AE2A0081AB3C /* CellForMyNearSpace.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -368,6 +370,10 @@
 		D6C301C72077C0BA009B9B35 /* ModelForOrderList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForOrderList.m; sourceTree = "<group>"; };
 		D6C301C92077CA85009B9B35 /* ViewForOrderListFoodsName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewForOrderListFoodsName.h; sourceTree = "<group>"; };
 		D6C301CA2077CA85009B9B35 /* ViewForOrderListFoodsName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewForOrderListFoodsName.m; sourceTree = "<group>"; };
+		D6D7A6272100A6F50081AB3C /* ZHPlaceInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHPlaceInfoModel.h; sourceTree = "<group>"; };
+		D6D7A6282100A6F50081AB3C /* ZHPlaceInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHPlaceInfoModel.m; sourceTree = "<group>"; };
+		D6D7A62A2100AE2A0081AB3C /* CellForMyNearSpace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForMyNearSpace.h; sourceTree = "<group>"; };
+		D6D7A62B2100AE2A0081AB3C /* CellForMyNearSpace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForMyNearSpace.m; sourceTree = "<group>"; };
 		F3C52C8109E37E7630666F17 /* libPods-takeOut.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-takeOut.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -697,6 +703,8 @@
 			children = (
 				9DA0227C20746DEB005F7168 /* ModelForGetAddress.h */,
 				9DA0227D20746DEB005F7168 /* ModelForGetAddress.m */,
+				D6D7A6272100A6F50081AB3C /* ZHPlaceInfoModel.h */,
+				D6D7A6282100A6F50081AB3C /* ZHPlaceInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -733,6 +741,8 @@
 				9DA022802074734F005F7168 /* CellForMyAddress.m */,
 				9D430E14207E0A7500CE8F2A /* CellForMyAve.h */,
 				9D430E15207E0A7500CE8F2A /* CellForMyAve.m */,
+				D6D7A62A2100AE2A0081AB3C /* CellForMyNearSpace.h */,
+				D6D7A62B2100AE2A0081AB3C /* CellForMyNearSpace.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1231,10 +1241,12 @@
 				9D262035206CD24500A2351B /* WillEvaluateVC.m in Sources */,
 				9D4952612068C97C005A6BBC /* ShopDetailVC.m in Sources */,
 				9D262032206CD21F00A2351B /* AllOrderVC.m in Sources */,
+				D6D7A6292100A6F50081AB3C /* ZHPlaceInfoModel.m in Sources */,
 				9D33B0042085C0CB0086DC93 /* MJRefreshBackGifFooter.m in Sources */,
 				9D012B1D20736C200015322E /* LocationMapVC.m in Sources */,
 				9D33B0062085C0CB0086DC93 /* MJRefreshBackStateFooter.m in Sources */,
 				9D33B0092085C0CB0086DC93 /* MJRefreshStateHeader.m in Sources */,
+				D6D7A62C2100AE2A0081AB3C /* CellForMyNearSpace.m in Sources */,
 				D6C301C82077C0BA009B9B35 /* ModelForOrderList.m in Sources */,
 				9D2F370720AACBD000A916E6 /* UserProtoVC.m in Sources */,
 				9D923F0D20ABE2C80057540B /* CellForChooseLag.m in Sources */,

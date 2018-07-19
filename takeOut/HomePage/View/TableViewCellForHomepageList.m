@@ -41,33 +41,33 @@
     }];
     
     self.shopName = [[UILabel alloc]init];
-    self.shopName.font = [UIFont systemFontOfSize:14];
+    self.shopName.font = [UIFont systemFontOfSize:16];
     [self.contentView addSubview:self.shopName];
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(ws.bigImage.mas_top);
+        make.top.equalTo(ws.bigImage.mas_top).offset(-2) ;
         make.left.equalTo(ws.bigImage.mas_right).offset(kWidthScale(15));
-        make.height.equalTo(@(kWidthScale(45)));
+        //make.height.equalTo(@(kWidthScale(45)));
     }];
 
     self.shopDistance = [[UILabel alloc]init];
-    self.shopDistance.font = [UIFont systemFontOfSize:10];
+    self.shopDistance.font = [UIFont systemFontOfSize:12];
     self.shopDistance.textColor = [UIColor lightGrayColor];
     self.shopDistance.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:self.shopDistance];
     [self.shopDistance mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView.mas_right).offset(-10);
-        make.top.equalTo(ws.shopName.mas_bottom).offset(0);
+        make.top.equalTo(ws.bigImage.mas_top).offset(kWidthScale(45));
     }];
     [self.shopDistance setContentCompressionResistancePriority:UILayoutPriorityRequired
                                                       forAxis:UILayoutConstraintAxisHorizontal];
     self.shopLikeLab = [[UILabel alloc]init];
     self.shopLikeLab.numberOfLines = 1;
     self.shopLikeLab.textColor = [UIColor lightGrayColor];
-    self.shopLikeLab.font = [UIFont systemFontOfSize:10];
+    self.shopLikeLab.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:self.shopLikeLab];
     [self.shopLikeLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(kWidthScale(15));
-        make.top.equalTo(ws.shopName.mas_bottom).offset(0);
+        make.top.equalTo(ws.bigImage.mas_top).offset(kWidthScale(45));
         make.right.equalTo(ws.shopDistance.mas_left).offset(-20);
         make.height.equalTo(@(kWidthScale(40)));
     }];
@@ -75,7 +75,7 @@
     self.shopMassage = [[UILabel alloc]init];
     self.shopMassage.numberOfLines = 1;
     self.shopMassage.textColor = [UIColor lightGrayColor];
-    self.shopMassage.font = [UIFont systemFontOfSize:10];
+    self.shopMassage.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:self.shopMassage];
     [self.shopMassage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(kWidthScale(15));
@@ -233,7 +233,7 @@
     NSString *yueShou = [NSString stringWithFormat:@"👍%@",mod.per_mean];
     self.shopLikeLab.text = [NSString stringWithFormat:@"%@%@",yueShou,ZBLocalized(@"赞", nil)];
     
-    NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@",ZBLocalized(@"配送：฿", nil),mod.send_pic,ZBLocalized(@"起送：฿", nil),mod.up_pic];
+    NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@",ZBLocalized(@"起送：฿", nil),mod.up_pic,ZBLocalized(@"配送：฿", nil),mod.send_pic];
     self.shopMassage.text = msg;
     __weak typeof(self) ws = self;
     

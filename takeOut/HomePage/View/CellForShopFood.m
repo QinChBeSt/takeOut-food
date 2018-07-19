@@ -75,7 +75,10 @@
 }
 
 -(void)addToShopingCarAction:(UIButton *)btn{
-    
+    if (self.mod.id == 0 ) {
+        [MBManager showBriefAlert:@"禁止添加此商品"];
+        return;
+    }
     if (![self.acTypeStr isEqualToString:@"2"]) {
         if (!_delectToShoppingCar) {
             __weak typeof(self) ws = self;

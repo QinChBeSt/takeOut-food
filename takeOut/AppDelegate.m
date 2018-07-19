@@ -87,6 +87,26 @@
                  apsForProduction:JPushIsProduction
             advertisingIdentifier:advertisingId];
     
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    if (userID == nil || [userID isEqualToString:@""]) {
+        [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+            
+            NSLog(@"删除Alias==%ld",(long)iResCode);
+            
+        } seq:0];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *userId = [defaults objectForKey:UD_USERID];
+        NSString *strTag = [NSString stringWithFormat:@"bee%@",userId];
+        NSSet *set = [[NSSet alloc] initWithObjects:strTag,nil];
+        [JPUSHService deleteTags:set completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+            
+            NSLog(@"删除Tag====%ld",(long)iResCode);
+        } seq:0];
+    }
+    
+    
     EXTabBarVC *tabbar = [EXTabBarVC sharedInstance];
     UIViewController * viewconrtoller = [[EXNavigationVC alloc]initWithRootViewController:tabbar];
     [self.window setRootViewController:viewconrtoller];
