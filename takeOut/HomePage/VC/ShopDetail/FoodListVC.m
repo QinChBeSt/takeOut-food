@@ -120,11 +120,27 @@
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
               
         self.arrForType = result[@"value"];
+     
+    
         for (int i = 0; i < self.arrForType.count; i++) {
             NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%d",i];
             [defaults setObject:nil forKey:value];
             
         }
+//        NSMutableArray *arrayForBig;
+//        NSMutableArray *arrayForSM;
+//        NSMutableArray *arrayForValue = result[@"value"];
+//        for (NSDictionary *dic in arrayForValue) {
+//             NSArray *arr = dic[@"goodsLists"];
+//            for (int i = 0;i<arr.count;i++){
+//                NSString *picStr= [NSString stringWithFormat:@"%@",arr[i][@"pic"]];
+//                if (![picStr isEqualToString:@"0"]) {
+//                    [arrayForSM addObject arr[i]];
+//                }
+//            }
+//
+//        }
+
 //        for (NSDictionary *dic in self.arrForType) {
 //            NSArray *arr = dic[@"goodsLists"];
 //            for (NSDictionary *dic1 in arr) {
@@ -631,9 +647,10 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 mod.goodspic = dic1[@"goodspic"];
                 [arrForDetal addObject:mod];
             }
-            
-            
-            
+            else{
+                
+            }
+      
         }
         ModelForFoodList *modArr = [arrForDetal objectAtIndex:indexPath.row];
        

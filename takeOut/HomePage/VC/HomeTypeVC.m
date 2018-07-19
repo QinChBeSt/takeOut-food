@@ -150,7 +150,7 @@
         }
         
         clickButton.tag=i;
-        clickButton.titleLabel.font=[UIFont systemFontOfSize:14.0];
+        clickButton.titleLabel.font=[UIFont systemFontOfSize:12.0];
         [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
         [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];

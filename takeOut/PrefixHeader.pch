@@ -20,6 +20,8 @@
 
 #define JPushKey @"e322341773c5527c69d87501"
 #define JPushIsProduction 1  //0 (默认值)表示采用的是开发证书，1 表示采用生产证书发布应用
+#define ICTYPE @"1"
+
 //测试
 //#define BASEURL @"http://beeorder.net:8080/spmvc"
 //#define IMGBaesURL @"http://beeorder.net:8080/spmvc/apidocs/upload/"
@@ -81,6 +83,8 @@
 #define editAddressURL @"/xmfapi/eitAddr"
 //删除地址
 #define deleteAddressURL @"/xmfapi/delAddr"
+//检查是否强制更新
+#define isNeedUpDateURL @"/xmfapi/upvinum"
 
 #define ssRGBAlpha(r, g, b, a) [UIColor colorWithRed:(254 / 255.0) green:(214 / 255.0) blue:(49 / 255.0) alpha:1]
 #define BaseYellow @"#ffc235"

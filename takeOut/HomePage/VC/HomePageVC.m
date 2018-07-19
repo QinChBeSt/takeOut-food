@@ -27,7 +27,7 @@
 #define kHeadSelectViewHeight kWidthScale(345)
 #define kHeadImageViewHeight kWidthScale(225)
 #define kHeadCollectionViewHeight kWidthScale(310)
-#define kHeadShortViewHeight kWidthScale(160)
+#define kHeadShortViewHeight kWidthScale(150)
 
 @interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate,SDCycleScrollViewDelegate>
 {
@@ -112,10 +112,34 @@
 
 #pragma mark - 网络请求
 -(void)getNetWork{
+    [self isNeedUpdate];
     [self getNetWorkForBanner];
     
     
     [self.tableView reloadData];
+}
+-(void)isNeedUpdate{
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,isNeedUpDateURL];
+    NSDictionary *parameters = @{@"flg":@"3",
+                                 @"vnum":ICTYPE,
+                                
+                                 };
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    //请求的方式：POST
+    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
+        if ([code isEqualToString:@"1"]) {
+            
+            
+           
+       
+            [MBManager showBriefAlert:ZBLocalized(@"需要更新", nil)];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+      
+    }];
+    
 }
 //banner
 -(void)getNetWorkForBanner{
@@ -410,15 +434,16 @@
 //    line.backgroundColor = [UIColor grayColor];
 //    [self.headView addSubview:line];
     
-    UILabel *selectImage = [[UILabel alloc]init];
-    //[selectImage setImage:[UIImage imageNamed:@"yhhd"]];
-    selectImage.text = ZBLocalized(@"吃货福利", nil);
-    selectImage.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+    UIImageView *selectImage = [[UIImageView alloc]init];
+    [selectImage setImage:[UIImage imageNamed:ZBLocalized(@"zhongwengyouhuizhuanqu", nil)]];
+//    selectImage.text = ZBLocalized(@"吃货福利", nil);
+//    selectImage.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     [headviewSelectView addSubview:selectImage];
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(headviewSelectView.mas_top).offset(kWidthScale(40));
         make.left.equalTo(headviewSelectView.mas_left).offset(kWidthScale(20));
-        make.height.equalTo(@(kWidthScale(75)));
+        make.height.equalTo(@(kWidthScale(48)));
+        make.width.equalTo(@(kWidthScale(275)));
         
     }];
     
@@ -429,7 +454,7 @@
     
     [headviewSelectLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(headviewSelectView.mas_left).offset(kWidthScale(18));
-        make.top.equalTo(selectImage.mas_bottom).offset(0);
+        make.top.equalTo(selectImage.mas_bottom).offset(kWidthScale(20));
         make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-kWidthScale(5));
         make.right.equalTo(headviewSelectView.mas_centerX).offset(-kWidthScale(5));
     }];
@@ -441,7 +466,7 @@
     [headviewSelectView addSubview:headviewSelectRightView];
     [headviewSelectRightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(headviewSelectView.mas_right).offset(-kWidthScale(18));
-        make.top.equalTo(selectImage.mas_bottom).offset(0);
+        make.top.equalTo(selectImage.mas_bottom).offset(kWidthScale(20));
         make.bottom.equalTo(headviewSelectView.mas_bottom).offset(-kWidthScale(5));
         make.left.equalTo(headviewSelectView.mas_centerX).offset(kWidthScale(5));
     }];
@@ -464,15 +489,14 @@
 //    line.backgroundColor = [UIColor lightGrayColor];
 //    [sortingView addSubview:line];
     
-    UILabel *selectImage = [[UILabel alloc]init];
-    selectImage.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    //[selectImage setImage:[UIImage imageNamed:@"tjsj"]];
-    selectImage.text = ZBLocalized(@"所有商家", nil);
+    UIImageView *selectImage = [[UIImageView alloc]init];
+    [selectImage setImage:[UIImage imageNamed:ZBLocalized(@"zhongwengfujingshangjia", nil)]];
     [sortingView addSubview:selectImage];
     [selectImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(sortingView.mas_top).offset(kWidthScale(40)) ;
+        make.top.equalTo(sortingView.mas_top).offset(kWidthScale(50)) ;
         make.left.equalTo(sortingView.mas_left).offset(kWidthScale(20));
-        make.height.equalTo(@(kWidthScale(75)));
+        make.height.equalTo(@(kWidthScale(48)));
+        make.width.equalTo(@(kWidthScale(275)));
         
     }];
 
@@ -480,7 +504,7 @@
     CGFloat buttonW = (SCREEN_WIDTH - kWidthScale(36) )/ arrButtonTitle.count; //按钮的宽度和高度
     CGFloat buttonH = kWidthScale(60);
     for (int i=0; i<arrButtonTitle.count; i++) {  // 循环创建3个按钮
-        clickButton=[[SortButton alloc]initWithFrame:CGRectMake(kWidthScale(18) +  buttonW*i, kWidthScale(115), buttonW, buttonH)];
+        clickButton=[[SortButton alloc]initWithFrame:CGRectMake(kWidthScale(18) +  buttonW*i, kWidthScale(100), buttonW, buttonH)];
         if(i==0){
             clickButton.selected=YES;  // 设置第一个为默认值
             self.replaceButton=clickButton;
