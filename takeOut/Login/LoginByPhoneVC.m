@@ -8,7 +8,7 @@
 
 #import "LoginByPhoneVC.h"
 #import "LoginByPasswordVC.h"
-#import "RegisterVC.h"
+#import "NewRegisVC.h"
 #import "UserProtoVC.h"
 #import "CellForChooseCountry.h"
 @interface LoginByPhoneVC ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -420,7 +420,7 @@
     [self.navigationController pushViewController:loginPassword animated:YES];
 }
 -(void)registerUser{
-    RegisterVC *registerVC = [[RegisterVC alloc]init];
+    NewRegisVC  *registerVC = [[NewRegisVC alloc]init];
     [self.navigationController pushViewController:registerVC animated:YES];
 }
 -(void)createwindowBackView{

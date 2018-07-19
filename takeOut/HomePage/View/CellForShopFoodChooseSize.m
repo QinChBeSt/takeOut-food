@@ -64,7 +64,7 @@
 -(void)setMod:(ModelForFoodList *)mod{
     self.chooseMod = mod;
     self.shopName.text = mod.godsname;
-    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"¥", nil),mod.pic];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),mod.pic];
     NSString *url = [NSString stringWithFormat:@"%@/%@",IMGBaesURL,mod.godslog];
      [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
 }

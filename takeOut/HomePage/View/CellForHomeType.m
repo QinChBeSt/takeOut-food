@@ -29,7 +29,7 @@
         make.width.equalTo(@(SCREEN_WIDTH / 4.5));
         make.height.equalTo(@(SCREEN_WIDTH / 4.5));
     }];
-    _dyLabel = [[UILabel alloc]init];
+    _dyLabel = [[UIImageView alloc]init];
  
     _dyLabel.image = [UIImage imageNamed:ZBLocalized(@"icon_yidayang", nil)];
     [self.bigImage addSubview:_dyLabel];
@@ -123,17 +123,26 @@
         self.dyLabel.hidden = NO;
     }
     
-    int disint = [mod.send_dis intValue];
-    
-    float disFloat = (float)disint / (float)1000;
+
     NSString *time =mod.send_time;
     NSArray *array = [time componentsSeparatedByString:@"m"];
     CGFloat timeInt = [array[0] floatValue];
     
-    NSString *dis = [NSString stringWithFormat:@"%.fmin | %.2fKm",timeInt,disFloat];
-    self.shopDistance.text = dis;
+    int disint = [mod.send_dis intValue];
+    float disFloat;
+    NSString *dis;
+    //    if (disint >= 1000) {
+    //        disFloat = (float)disint / (float)1000;
+    //        dis = [NSString stringWithFormat:@"%.fmin | %.2fKm",timeInt,disFloat];
+    //    }else{
+    disFloat = disint;
+    dis = [NSString stringWithFormat:@"%.fmin | %.fKm",timeInt,disFloat];
+    // }
     
-    NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@ | %@%@",ZBLocalized(@"配送：￥", nil),mod.send_pic,ZBLocalized(@"起送：￥", nil),mod.up_pic,ZBLocalized(@"月售：", nil),mod.per_mean];
+    self.shopDistance.text = dis;
+    self.shopDistance.text = dis;
+     NSString *yueShou = [NSString stringWithFormat:@"👍%@",mod.per_mean];
+    NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@ | %@%@",ZBLocalized(@"配送：฿", nil),mod.send_pic,ZBLocalized(@"起送：฿", nil),mod.up_pic,yueShou,ZBLocalized(@"份", nil)];
     self.shopMassage.text = msg;
     
     if (mod.act_list.count == 1) {

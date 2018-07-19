@@ -12,7 +12,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self=[super initWithFrame:frame]) {
-        self.titleLabel.textAlignment=NSTextAlignmentRight;//Button内部的文字设置
+        self.titleLabel.textAlignment=NSTextAlignmentLeft;//Button内部的文字设置
         self.imageView.contentMode=UIViewContentModeLeft;//Button内部的图片设置居中
         self.titleLabel.numberOfLines=0;
         self.titleLabel.font=[UIFont systemFontOfSize:12.0];

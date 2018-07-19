@@ -86,7 +86,7 @@
     }];
     
     UILabel *beeOrder = [[UILabel alloc]init];
-    beeOrder.text = ZBLocalized(@"BeeOrder配送", nil);
+    beeOrder.text = ZBLocalized(@"BEEORDER配送", nil);
     [self.contentView addSubview:beeOrder];
    beeOrder.font = [UIFont systemFontOfSize:14];
     beeOrder.textColor = [UIColor lightGrayColor];

@@ -7,5 +7,5 @@ pod 'SDAutoLayout'
 pod 'JPush', '~> 3.0.9'
 pod 'MBProgressHUD'
 pod 'SDCycleScrollView'
-
+pod 'IQKeyboardManager'
 end

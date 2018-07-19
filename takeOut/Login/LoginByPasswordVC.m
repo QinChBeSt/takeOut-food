@@ -7,7 +7,7 @@
 //
 
 #import "LoginByPasswordVC.h"
-#import "RegisterVC.h"
+#import "NewRegisVC.h"
 #import "UserProtoVC.h"
 @interface LoginByPasswordVC ()<UITextFieldDelegate>
 @property (nonatomic , strong) UITextField *phoneNumTextField;
@@ -17,6 +17,7 @@
 @property (nonatomic , strong) UIView *niveView;
 @property (nonatomic , strong) UIButton *regisBtn;
 @property (nonatomic , strong) UIButton *regisRegisBtn;
+@property (nonatomic , strong)UIButton *xuanze;
 @end
 
 @implementation LoginByPasswordVC
@@ -57,11 +58,12 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = ZBLocalized(@"登录", nil);
-    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.text = [NSString stringWithFormat:@"%@BEEORDER",ZBLocalized(@"登录", nil)];
+    titleLabel.textColor = [UIColor colorWithHexString:BaseTextBlackColor];
+    titleLabel.font = [UIFont systemFontOfSize:16];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(ws.view);
+        make.left.equalTo(backBTN.mas_right).offset(kWidthScale(30));
         make.centerY.equalTo(backImg);
     }];
 }
@@ -70,24 +72,23 @@
     //手机号
     __weak typeof(self) ws = self;
     UIView *phoneBackView = [[UIView alloc]init];
-    phoneBackView.layer.cornerRadius=5;
+    phoneBackView.layer.cornerRadius=0;
     phoneBackView.clipsToBounds = YES;
     phoneBackView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:phoneBackView];
     [phoneBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(ws.niveView.mas_bottom).offset(45);
-        make.right.equalTo(ws.view.mas_right).offset(-25);
-        make.left.equalTo(ws.view.mas_left).offset(25);
-        make.height.equalTo(@(45));
+        make.top.equalTo(ws.niveView.mas_bottom).offset(kWidthScale(60));
+        make.right.equalTo(ws.view.mas_right).offset(-kWidthScale(50));
+        make.left.equalTo(ws.view.mas_left).offset(kWidthScale(50));
+        make.height.equalTo(@(kWidthScale(100)));
     }];
     
-    UIImageView *phoneImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_zhanghao"]];
+    UIImageView *phoneImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_zhanghap"]];
     [phoneBackView addSubview:phoneImg];
     [phoneImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(phoneBackView);
-        make.left.equalTo(phoneBackView.mas_left).offset(10);
-        make.top.equalTo(phoneBackView.mas_top).offset(10);
-        make.width.equalTo(phoneImg.mas_height);
+        make.left.equalTo(phoneBackView.mas_left).offset(kWidthScale(20));
+        make.width.and.height.equalTo(@(kWidthScale(45)));
     }];
     
     self.phoneNumTextField = [[UITextField alloc]init];
@@ -101,43 +102,32 @@
     [self.view addSubview:self.phoneNumTextField];
     [self.phoneNumTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(phoneBackView.mas_top);
-        make.right.equalTo(phoneBackView.mas_right);
+        make.right.equalTo(phoneBackView.mas_right).offset(-kWidthScale(100));
         make.height.equalTo(phoneBackView.mas_height);
-        make.left.equalTo(phoneImg.mas_right).offset(10);
+        make.left.equalTo(phoneBackView.mas_left).offset(kWidthScale(80));
     }];
     
     
-    
-    UIView *phoneLine = [[UIView alloc]init];
-    //phoneLine.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:phoneLine];
-    [phoneLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(ws.view);
-        make.left.equalTo(ws.phoneNumTextField);
-        make.height.equalTo(@(0.5));
-        make.top.equalTo(ws.phoneNumTextField.mas_bottom).offset(10);
-    }];
-    
+
     
     UIView *codeBackView = [[UIView alloc]init];
-    codeBackView.layer.cornerRadius=5;
+    codeBackView.layer.cornerRadius=0;
     codeBackView.clipsToBounds = YES;
     codeBackView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:codeBackView];
     [codeBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(phoneBackView.mas_bottom).offset(50);
+        make.top.equalTo(phoneBackView.mas_bottom).offset(kWidthScale(50));
         make.left.equalTo(phoneBackView.mas_left);
         make.right.equalTo(phoneBackView.mas_right);
-        make.height.equalTo(@(45));
+        make.height.equalTo(phoneBackView);
     }];
     
     UIImageView *codeImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_mima"]];
     [codeBackView addSubview:codeImg];
     [codeImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(codeBackView);
-        make.left.equalTo(codeBackView.mas_left).offset(10);
-        make.top.equalTo(codeBackView.mas_top).offset(10);
-        make.width.equalTo(codeImg.mas_height);
+        make.left.equalTo(codeBackView.mas_left).offset(kWidthScale(20));
+        make.width.and.height.equalTo(@(kWidthScale(45)));
     }];
     
     self.codeTextField = [[UITextField alloc]init];
@@ -151,91 +141,161 @@
     [self.view addSubview:self.codeTextField];
     [self.codeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(codeBackView.mas_top);
-        make.right.equalTo(codeBackView.mas_right);
+        make.right.equalTo(codeBackView.mas_right).offset(-kWidthScale(100));
         make.height.equalTo(codeBackView.mas_height);
-        make.left.equalTo(codeImg.mas_right).offset(10);
+        make.left.equalTo(codeBackView.mas_left).offset(kWidthScale(80));
     }];
-
+    UIButton *seePassWordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [seePassWordBtn setImage:[UIImage imageNamed:@"icon_buchakn"] forState:UIControlStateNormal];
+    [seePassWordBtn setImage:[UIImage imageNamed:@"icon_chakn"] forState:UIControlStateHighlighted];
+    //处理按钮点击事件
+    [seePassWordBtn addTarget:self action:@selector(TouchDown)forControlEvents:UIControlEventTouchDown];
+    //处理按钮松开状态
+    [seePassWordBtn addTarget:self action:@selector(TouchUp)forControlEvents: UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+    [self.view addSubview:seePassWordBtn];
+    [seePassWordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(codeBackView);
+        make.width.equalTo(@(kWidthScale(55)));
+        make.height.equalTo(@(kWidthScale(40)));
+        make.right.equalTo(codeBackView.mas_right).offset(-kWidthScale(20));
+    }];
     
    
     self.regisBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.regisBtn setBackgroundColor:[UIColor grayColor]];
-    self.regisBtn.layer.cornerRadius=10;
+    [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+    self.regisBtn.layer.cornerRadius=kWidthScale(5);
     self.regisBtn.clipsToBounds = YES;
-    self.regisBtn.enabled = NO;
     [self.regisBtn setTitle:ZBLocalized(@"登录", nil) forState:UIControlStateNormal];
-    [self.regisBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.regisBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.regisBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
     [self.view addSubview:self.regisBtn];
     [self.regisBtn addTarget:self action:@selector(regisAction) forControlEvents:UIControlEventTouchUpInside];
     [self.regisBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(codeBackView.mas_right).offset(-5);
-        make.top.equalTo(codeBackView.mas_bottom).offset(50);
+
+        make.left.equalTo(ws.view.mas_left).offset(kWidthScale(65));
+        make.top.equalTo(codeBackView.mas_bottom).offset(kWidthScale(55));
         make.centerX.equalTo(ws.view);
-        make.height.equalTo(@(50));
+        make.height.equalTo(@(kWidthScale(85)));
     }];
     
     self.regisRegisBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.regisRegisBtn setBackgroundColor:[UIColor colorWithHexString:BaseBackgroundGray]];
-    self.regisRegisBtn.layer.cornerRadius=10;
+    [self.regisRegisBtn setBackgroundColor:[UIColor clearColor]];
+    self.regisRegisBtn.layer.cornerRadius=kWidthScale(5);
     self.regisRegisBtn.clipsToBounds = YES;
     self.regisRegisBtn.layer.borderWidth = 1;
     [self.regisRegisBtn setTitle:ZBLocalized(@"注册", nil) forState:UIControlStateNormal];
-    [self.regisRegisBtn setTitleColor:[UIColor colorWithHexString:BaseYellow] forState:UIControlStateNormal];
+    [self.regisRegisBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.regisRegisBtn.layer.borderColor = [UIColor colorWithHexString:BaseYellow].CGColor;
     [self.regisRegisBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
     [self.view addSubview:self.regisRegisBtn];
     [self.regisRegisBtn addTarget:self action:@selector(toregisAction) forControlEvents:UIControlEventTouchUpInside];
     [self.regisRegisBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(codeBackView.mas_right).offset(-5);
-        make.top.equalTo(ws.regisBtn.mas_bottom).offset(20);
+        make.left.equalTo(ws.view.mas_left).offset(kWidthScale(65));
+        make.top.equalTo(ws.regisBtn.mas_bottom).offset(kWidthScale(40));
         make.centerX.equalTo(ws.view);
-        make.height.equalTo(@(50));
+        make.height.equalTo(@(kWidthScale(85)));
     }];
     
     
-    UILabel *hintLabel=[[UILabel alloc]initWithFrame:CGRectMake(30, SCREENH_HEIGHT - TabbarHeight - 30, SCREEN_WIDTH - 60, 50)];
+    UILabel *hintLabel=[[UILabel alloc]initWithFrame:CGRectMake(kWidthScale(150), SCREENH_HEIGHT - SafeAreaTabbarHeight - kWidthScale(120), SCREEN_WIDTH - kWidthScale(190), kWidthScale(80))];
     hintLabel.numberOfLines=0;
-    hintLabel.textAlignment = NSTextAlignmentCenter;
+    hintLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:hintLabel];
     hintLabel.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登录代表您已同意《BeeOrder用户协议》", nil)];
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登陆代表您已同意《BEEORDER用户协议》", nil)];
     //获取要调整颜色的文字位置,调整颜色
-    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BeeOrder用户协议》", nil)];
+    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BEEORDER用户协议》", nil)];
     [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
     hintLabel.attributedText=hintString;
     
-    UIButton *changeType = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.view addSubview:changeType];
-    changeType.frame = CGRectMake(30, SCREENH_HEIGHT - TabbarHeight - 30, SCREEN_WIDTH - 60, 50);
-    [changeType addTarget:self action:@selector(toUserProto) forControlEvents:UIControlEventTouchUpInside];
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seeProtpo)];
+    [hintLabel addGestureRecognizer:labelTapGestureRecognizer];
+    hintLabel.userInteractionEnabled = YES; // 可以理解为设置label可被点击
+    
+    self.xuanze = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.xuanze addTarget:self action:@selector(xuanzeAcTION) forControlEvents:UIControlEventTouchUpInside];
+    [self.xuanze setImage:[UIImage imageNamed:@"ubXIEYI"] forState:UIControlStateNormal];
+    [self.xuanze setImage:[UIImage imageNamed:@"xieyi"] forState:UIControlStateSelected];
+    self.xuanze.selected = YES;
+    [self.view addSubview:self.xuanze];
+    [self.xuanze mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(hintLabel);
+        make.right.equalTo(hintLabel.mas_left).offset(-kWidthScale(10));
+        make.width.and.height.equalTo(@(kWidthScale(40)));
+    }];
+    
+}
+- (void)TouchDown
+{
+    self.codeTextField.secureTextEntry = NO;
+}
+
+- (void)TouchUp
+{
+    self.codeTextField.secureTextEntry = YES;
 }
 
 #pragma mark - 监听textFile
 -(void)phoneTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
+    
     self.phoneNumStr = theTextField.text;
-    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0) {
-        [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
-        self.regisBtn.enabled = YES;
-    }else{
-        [self.regisBtn setBackgroundColor:[UIColor grayColor]];
-        self.regisBtn.enabled = NO;
-    }
+   
 }
 -(void)codeTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.codeNumStr = theTextField.text;
-    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length !=0) {
-        [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
-        self.regisBtn.enabled = YES;
-    }else {
-        [self.regisBtn setBackgroundColor:[UIColor grayColor]];
-        self.regisBtn.enabled = NO;
+   
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if ([string isEqualToString:@"\n"])  //按会车可以改变
+    {
+        return NO;
     }
+    
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if (self.phoneNumTextField == textField)
+    {
+        textField.text = [toBeString substringToIndex:11];
+        NSLog(@"不能大于11");
+        [MBManager showBriefAlert:@"手机号不能大于11位数"];
+        return NO;
+            
+       
+    }
+    return YES;
+}
+-(void)xuanzeAcTION{
+    if (self.xuanze.selected == YES) {
+        self.xuanze.selected = NO;
+    }
+    
+    else if (self.xuanze.selected == NO) {
+        self.xuanze.selected = YES;
+        
+    }
+    
 }
 #pragma mark - 点击事件
 -(void)regisAction{
+    
+    if (self.phoneNumStr.length == 0) {
+        [MBManager showBriefAlert:ZBLocalized(@"请输入手机号", nil)];
+        return;
+    }else if (self.phoneNumStr.length < 9 || self.phoneNumStr.length >11){
+        [MBManager showBriefAlert:ZBLocalized(@"手机号应该为9~11位数字", nil)];
+        return;
+    }
+    
+    else if (self.codeNumStr.length == 0){
+        [MBManager showBriefAlert:ZBLocalized(@"请输入密码", nil)];
+        return;
+    }else if(_xuanze.selected == NO){
+        [MBManager showBriefAlert:ZBLocalized(@"请同意用户协议", nil)];
+        return;
+    }
+    
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,LoginUserURL];
 //    NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
 //    [par setValue:self.codeNumStr forKey:@"pwd"];
@@ -286,7 +346,7 @@
     [self.navigationController pushViewController:userProto animated:YES];
 }
 -(void)toregisAction{
-    RegisterVC *regi = [[RegisterVC alloc]init];
+    NewRegisVC *regi = [[NewRegisVC alloc]init];
     [self.navigationController pushViewController:regi animated:YES];
 }
 -(void)back{
@@ -294,6 +354,10 @@
 }
 -(void)backToMine{
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+-(void)seeProtpo{
+    UserProtoVC *userProto = [[UserProtoVC alloc]init];
+    [self.navigationController pushViewController:userProto animated:YES];
 }
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent *)event{
     

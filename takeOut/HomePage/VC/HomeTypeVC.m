@@ -11,6 +11,7 @@
 #import "TableViewCellForHomepageList.h"
 #import "ShopDetailVC.h"
 #import "CellForHomeType.h"
+
 @interface HomeTypeVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
 @property (nonatomic , strong)UIView *naviView;
@@ -22,6 +23,7 @@
 @implementation HomeTypeVC{
     SortButton *clickButton;
      UIView *sortingView;
+     NSMutableDictionary *dicForShow;//创建一个字典进行判断收缩还是展开
 }
 -(NSMutableArray *)arrForHomePageShopList{
     if (_arrForHomePageShopList == nil) {
@@ -35,6 +37,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    dicForShow = [NSMutableDictionary dictionary];
     self.view.backgroundColor = [UIColor whiteColor];
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
     view.backgroundColor = [UIColor whiteColor];
@@ -73,7 +76,7 @@
         for (NSDictionary *dic in arr) {
             ModelForShopList *mod = [[ModelForShopList alloc]init];
             mod.act_list = dic[@"act_list"];
-            mod.per_mean = dic[@"per_mean"];
+            mod.per_mean = [NSString stringWithFormat:@"%@",dic[@"per_mean"]];
             mod.send_dis = dic[@"send_dis"];
             mod.send_time = dic[@"send_time"];
             mod.send_pic = dic[@"send_pic"];
@@ -81,7 +84,7 @@
             mod.store_img = dic[@"store_img"];
             mod.store_name = dic[@"store_name"];
             mod.up_pic = dic[@"up_pic"];
-            
+            mod.opentime = dic[@"opentime"];
             mod.acTypeStr =[NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]] ;
             [self.arrForHomePageShopList addObject:mod];
         }
@@ -147,7 +150,7 @@
         }
         
         clickButton.tag=i;
-        clickButton.titleLabel.font=[UIFont systemFontOfSize:14.0];
+        clickButton.titleLabel.font=[UIFont systemFontOfSize:12.0];
         [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
         [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
@@ -186,18 +189,38 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    CellForHomeType *cell = [tableView dequeueReusableCellWithIdentifier:@"pool2"];
+  
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+    
+    TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[TableViewCellForHomepageList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    cell.isShowLong =dicForShow[indexPath];
     cell.mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.blockChooseShow = ^(NSString *isShow) {
+        dicForShow[indexPath] = [NSNumber numberWithBool:![dicForShow[indexPath] boolValue]];
+        [self.tableView reloadData];
+        
+    };
+    
     return cell;
+    
     
     
 }
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 120;
-    
+    if (dicForShow[indexPath]== [NSNumber numberWithBool:YES] ) {
+        ModelForShopList *mod =[self.arrForHomePageShopList objectAtIndex:indexPath.row];
+        NSInteger cont = mod.act_list.count - 2;
+        NSInteger addHeight = cont * 25 + 110;
+        return addHeight;
+        
+    }
+    return 110;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

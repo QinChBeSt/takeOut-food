@@ -7,7 +7,7 @@
 //
 
 #import "MinePageVC.h"
-#import "LoginByPhoneVC.h"
+#import "NewLoginByPhoneVC.h"
 #import "FileTool.h"
 #import "MineAddressVC.h"
 #import "MyEvaVC.h"
@@ -106,6 +106,7 @@
         make.height.equalTo(@(70));
     }];
     
+   
     self.userName = [[UILabel alloc]init];
     self.userName.font = [UIFont systemFontOfSize:18];
     [self.headView addSubview:self.userName];
@@ -130,6 +131,16 @@
         make.width.equalTo(ws.headView);
         make.top.equalTo(ws.headIamge.mas_bottom).offset(5);
         make.bottom.equalTo(ws.headView.mas_bottom);
+    }];
+    
+    UIButton *iconLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [iconLoginBtn addTarget:self action:@selector(toLogin) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:iconLoginBtn];
+    [iconLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.headView);
+        make.centerY.equalTo(ws.headView.mas_centerY).offset(-10);
+        make.width.equalTo(@(70));
+        make.height.equalTo(@(70));
     }];
 }
 -(void)createMidView{
@@ -307,14 +318,36 @@
 //            [self.navigationController presentViewController:vc animated:YES completion:nil];
             [self createChangeLag];
         }else if (indexPath.row == 1){
-            MineAddressVC *myaddress = [[MineAddressVC alloc]init];
-            myaddress.hidesBottomBarWhenPushed=YES;
-            [self.navigationController pushViewController:myaddress animated:YES];
+           
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *userID = [defaults objectForKey:UD_USERID];
+            if (userID == nil || [userID isEqualToString:@""]) {
+                NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
+                login.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:login animated:YES];
+                
+            }else{
+                MineAddressVC *myaddress = [[MineAddressVC alloc]init];
+                myaddress.hidesBottomBarWhenPushed=YES;
+                [self.navigationController pushViewController:myaddress animated:YES];
+                
+            }
             
         }else if (indexPath.row == 2){
-            MyEvaVC *eva = [[MyEvaVC alloc]init];
-            eva.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:eva animated:YES];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *userID = [defaults objectForKey:UD_USERID];
+            if (userID == nil || [userID isEqualToString:@""]) {
+                NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
+                login.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:login animated:YES];
+               
+            }else{
+                MyEvaVC *eva = [[MyEvaVC alloc]init];
+                eva.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:eva animated:YES];
+            }
+      
             
         }
     }
@@ -417,10 +450,12 @@
     okBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.windowBackView addSubview:okBtn];
     [okBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        
         make.top.equalTo(ws.tableView.mas_bottom).offset(5);
         make.bottom.equalTo(ws.changeLagView.mas_bottom).offset(-15);
-        make.right.equalTo(ws.changeLagView.mas_centerX).offset(-10);
-        make.left.equalTo(ws.changeLagView.mas_left).offset(15);
+        make.left.equalTo(ws.changeLagView.mas_centerX).offset(10);
+        make.right.equalTo(ws.changeLagView.mas_right).offset(-15);
     }];
     
     UIButton *cleanBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -437,8 +472,8 @@
     [cleanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.tableView.mas_bottom).offset(5);
         make.bottom.equalTo(ws.changeLagView.mas_bottom).offset(-15);
-        make.left.equalTo(ws.changeLagView.mas_centerX).offset(10);
-        make.right.equalTo(ws.changeLagView.mas_right).offset(-15);
+        make.right.equalTo(ws.changeLagView.mas_centerX).offset(-10);
+        make.left.equalTo(ws.changeLagView.mas_left).offset(15);
     }];
     
 }
@@ -484,8 +519,8 @@
     [okBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@(40));
         make.bottom.equalTo(ws.changeLagView.mas_bottom).offset(-15);
-        make.right.equalTo(ws.changeLagView.mas_centerX).offset(-10);
-        make.left.equalTo(ws.changeLagView.mas_left).offset(15);
+        make.left.equalTo(ws.changeLagView.mas_centerX).offset(10);
+        make.right.equalTo(ws.changeLagView.mas_right).offset(-15);
     }];
     
     UIButton *cleanBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -502,8 +537,9 @@
     [cleanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@(40));
         make.bottom.equalTo(ws.changeLagView.mas_bottom).offset(-15);
-        make.left.equalTo(ws.changeLagView.mas_centerX).offset(10);
-        make.right.equalTo(ws.changeLagView.mas_right).offset(-15);
+        make.right.equalTo(ws.changeLagView.mas_centerX).offset(-10);
+        make.left.equalTo(ws.changeLagView.mas_left).offset(15);
+       
     }];
     
     UILabel *subText = [[UILabel alloc]init];
@@ -591,7 +627,7 @@
     }
     if (indexPath.section == 0) {
         if (indexPath.row == 0){
-            cell.name.text = @"บทความภาษาไทย";
+            cell.name.text = @"ภาษาไทย";
         }else if (indexPath.row == 1){
             cell.name.text = @"简体中文";
         }else if (indexPath.row == 2){
@@ -609,7 +645,7 @@
     NSString *userName = [defaults objectForKey:UD_USERNAME];
     NSString *userID = [defaults objectForKey:UD_USERID];
     if (userID == nil || [userID isEqualToString:@""]) {
-        LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+        NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
         login.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:login animated:YES];
     }else{

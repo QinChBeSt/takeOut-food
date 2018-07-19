@@ -105,10 +105,10 @@
         CGFloat yhF = [yhStr floatValue];
         NSString *toStr = dic[@"totals"];
         CGFloat toF = [toStr floatValue];
-        toF = toF - yhF;
-        self.psPicStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),psF];
-        self.yhPicStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"-￥", nil),yhF];
-        self.totleStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"￥", nil),toF];
+        toF = toF  ;
+        self.psPicStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),psF];
+        self.yhPicStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"-฿", nil),yhF];
+        self.totleStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),toF];
         self.totleStr.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
         self.shopPhoneNo = [NSString stringWithFormat:@"%@",dic[@"shopphone"]];
         self.userName.text = [NSString stringWithFormat:@"%@  %@",dic[@"uname"],dic[@"uphone"]] ;
@@ -412,7 +412,7 @@
     
     UILabel *compName = [[UILabel alloc]init];
     [addressbackview addSubview:compName];
-    compName.text = @"Beeorder";
+    compName.text = @"BEEORDER";
     compName.font = [UIFont systemFontOfSize:13];
     compName.textColor = [UIColor colorWithHexString:BaseYellow];
     [compName mas_makeConstraints:^(MASConstraintMaker *make) {

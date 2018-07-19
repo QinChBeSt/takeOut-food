@@ -10,7 +10,7 @@
 #import "ZWMSegmentController.h"
 #import "AllOrderVC.h"
 #import "WillEvaluateVC.h"
-#import "LoginByPhoneVC.h"
+#import "NewLoginByPhoneVC.h"
 #import "ModelForOrderList.h"
 @interface OrderPageVC ()
 @property (nonatomic , strong)UIView *naviView;
@@ -89,7 +89,7 @@
 }
 
 -(void)toLogin{
-LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
     self.hidesBottomBarWhenPushed = YES;
 [self.navigationController pushViewController:login animated:YES];
 

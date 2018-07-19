@@ -11,7 +11,7 @@
 #import "ModelForOrderList.h"
 #import "DetailForOrder.h"
 #import "OrderEditVC.h"
-#import "LoginByPhoneVC.h"
+#import "NewLoginByPhoneVC.h"
 
 @interface WillEvaluateVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UITableView *tableView;
@@ -250,8 +250,8 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)toLogin{
-    LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
-    self.hidesBottomBarWhenPushed = YES;
+    NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
+    login.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:login animated:YES];
     
 }

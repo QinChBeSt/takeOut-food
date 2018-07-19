@@ -63,7 +63,7 @@
     self.foodCount.text = [NSString stringWithFormat:@"x %@",dic[@"ordersGoodsNum"]];
     NSString *picStr = dic[@"ordersGoodsPic"];
     CGFloat picF  = [picStr floatValue];
-    self.foodPic.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"￥", nil),picF];
+    self.foodPic.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),picF];
     NSString *imgUrl = [NSString stringWithFormat:@"%@/%@",IMGBaesURL,dic[@"ordersGoodsLog"]];
     [self.bigImage sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"logo"]];
     

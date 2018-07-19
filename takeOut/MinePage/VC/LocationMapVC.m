@@ -9,6 +9,7 @@
 #import "LocationMapVC.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+
 @interface LocationMapVC ()<MKMapViewDelegate,UITextViewDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic , strong)UIView *naviView;
 @property(nonatomic,strong) NSMutableArray *searchResultArray;
@@ -17,6 +18,8 @@
 
 @implementation LocationMapVC
 {
+
+  
     CLLocationManager *   locationManager;
     MKMapView         *   maMapView;
     NSString *currentCity;//当前城市
@@ -26,6 +29,11 @@
     
     UILabel *cityName;
     UITextView *loactionLabel;
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    _returnKeyHander = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
+//    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -200,6 +208,7 @@
     if(![CLLocationManager locationServicesEnabled]||[CLLocationManager authorizationStatus]!=kCLAuthorizationStatusAuthorizedWhenInUse){
         [locationManager requestWhenInUseAuthorization];
     }
+    locationManager.desiredAccuracy = 100;
     //用户位置追踪(用户位置追踪用于标记用户当前位置，此时会调用定位服务)
     maMapView.userTrackingMode = MKUserTrackingModeFollow;
     //设置地图类型
@@ -267,6 +276,7 @@
     if ([textView.text isEqualToString:locationStr]) {
         
         textView.text = @"";
+        maMapView.userTrackingMode=MKUserTrackingModeNone;
         
     }
 }

@@ -114,16 +114,7 @@
         make.width.equalTo(@(15));
         make.height.equalTo(@(15));
     }];
-    
-    self.shopSaveLabel = [[UILabel alloc]init];
-    self.shopSaveLabel.font = [UIFont systemFontOfSize:12];
-    self.shopSaveLabel.textColor = [UIColor blackColor];
-    self.shopSaveLabel.text = shopSaveStr;
-    [self.niveView addSubview:self.shopSaveLabel];
-    [self.shopSaveLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_shopSaveImg);
-        make.left.equalTo(ws.shopSaveImg.mas_right).offset(5);
-    }];
+   
     
     UIImageView *rightIcon = [[UIImageView alloc]init];
     [rightIcon setImage:[UIImage imageNamed:@"右箭头黑"]];
@@ -146,6 +137,16 @@
         make.right.equalTo(rightIcon.mas_left).offset(-5);
     }];
     
+    self.shopSaveLabel = [[UILabel alloc]init];
+    self.shopSaveLabel.font = [UIFont systemFontOfSize:12];
+    self.shopSaveLabel.textColor = [UIColor blackColor];
+    self.shopSaveLabel.text = shopSaveStr;
+    [self.niveView addSubview:self.shopSaveLabel];
+    [self.shopSaveLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_shopSaveImg);
+        make.left.equalTo(ws.shopSaveImg.mas_right).offset(5);
+        make.right.equalTo(ws.shopSaveNumLabel.mas_left).offset(-5);
+    }];
     UIButton *toDetailVC = [UIButton buttonWithType:UIButtonTypeCustom];
     [toDetailVC addTarget:self action:@selector(toDetail) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toDetailVC];
@@ -219,7 +220,37 @@
         int count = 0;
         
         NSMutableDictionary *dic = self.saveListArr[0];
-        shopSaveStr = dic[@"content"];
+        
+        NSString *savr1Str =dic[@"content"];
+        NSArray *arraySave1 = [savr1Str componentsSeparatedByString:@","];
+        NSString *CHSave1Str;
+        NSString *THSave1Str;
+        NSString *ENSave1Str;
+        if (arraySave1.count == 1) {
+            CHSave1Str =savr1Str;
+            THSave1Str = savr1Str;
+            ENSave1Str = savr1Str;
+        }else if(arraySave1.count == 2){
+            CHSave1Str =arraySave1[0];
+            THSave1Str = arraySave1[1];
+            ENSave1Str = arraySave1[1];
+        }else{
+            CHSave1Str =arraySave1[0];
+            THSave1Str = arraySave1[1];
+            ENSave1Str = arraySave1[2];
+        }
+        
+        NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+        if ([language isEqualToString:@"th"]) {
+            shopSaveStr =THSave1Str;
+        }
+        else if ([language isEqualToString:@"zh-Hans"]) {
+            shopSaveStr = CHSave1Str;
+        }
+        else if ([language isEqualToString:@"en"]) {
+            shopSaveStr = ENSave1Str;
+        }
+        
 //        for (NSMutableDictionary *dic in self.saveListArr) {
 //
 //            if (shopSaveStr == nil) {

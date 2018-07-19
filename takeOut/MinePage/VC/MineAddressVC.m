@@ -8,7 +8,8 @@
 
 #import "MineAddressVC.h"
 #import "AddNewAddressVC.h"
-#import "LoginByPhoneVC.h"
+#import "NewAddVC.h"
+#import "NewLoginByPhoneVC.h"
 #import "ModelForGetAddress.h"
 #import "CellForMyAddress.h"
 @interface MineAddressVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -38,7 +39,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userid = [defaults objectForKey:UD_USERID];
     if (userid == nil) {
-        LoginByPhoneVC *login = [[LoginByPhoneVC alloc]init];
+        NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];
         [self.navigationController pushViewController:login animated:YES];
     }else{
         NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getAddressUrl];
@@ -168,7 +169,7 @@
     return 90;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    AddNewAddressVC *addnewVC = [[AddNewAddressVC alloc]init];
+    NewAddVC *addnewVC = [[NewAddVC alloc]init];
     ModelForGetAddress *mod = [[ModelForGetAddress alloc]init];
     mod = [self.arrForGetAddress objectAtIndex:indexPath.row];
     addnewVC.userNameStr = mod.userAddrsUname;
@@ -204,7 +205,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)addAddress{
-    AddNewAddressVC *ADD = [[AddNewAddressVC alloc]init];
+    NewAddVC *ADD = [[NewAddVC alloc]init];
     [self.navigationController pushViewController:ADD animated:YES];
 }
 - (void)didReceiveMemoryWarning {
