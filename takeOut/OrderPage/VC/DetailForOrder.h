@@ -10,4 +10,5 @@
 
 @interface DetailForOrder : UIViewController
 @property (nonatomic , strong)NSString *orderID;
+@property (nonatomic , strong)NSString *shopNameStr;
 @end

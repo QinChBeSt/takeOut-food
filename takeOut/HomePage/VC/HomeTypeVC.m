@@ -135,12 +135,12 @@
     [self createTableView];
 }
 -(void)createHeadView{
-    sortingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+    sortingView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - kWidthScale(18), 30)];
     [sortingView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:sortingView];
     
     NSArray *arrButtonTitle = @[ZBLocalized(@"综合排序", nil),ZBLocalized(@"销量最高", nil),ZBLocalized(@"距离最近", nil)];
-    CGFloat buttonW = SCREEN_WIDTH / arrButtonTitle.count; //按钮的宽度和高度
+    CGFloat buttonW = (SCREEN_WIDTH - kWidthScale(18)) / arrButtonTitle.count; //按钮的宽度和高度
     CGFloat buttonH = 30;
     for (int i=0; i<arrButtonTitle.count; i++) {  // 循环创建3个按钮
         clickButton=[[SortButton alloc]initWithFrame:CGRectMake(buttonW*i, 0, buttonW, buttonH)];

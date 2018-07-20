@@ -33,20 +33,22 @@
     }];
   
     self.shopName = [[UILabel alloc]init];
+    self.shopName.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
     [self.contentView addSubview:self.shopName];
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(10);
         make.top.equalTo(ws.bigImage);
-        make.bottom.equalTo(ws.bigImage.mas_centerY);
+        //make.bottom.equalTo(ws.bigImage.mas_centerY);
     }];
     self.priceLabel = [[UILabel alloc]init];
     self.priceLabel.numberOfLines = 2;
+    self.priceLabel.font = [UIFont systemFontOfSize:18];
     self.priceLabel.textColor = [UIColor redColor];
     [self.contentView addSubview:self.priceLabel];
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(10);
         make.bottom.equalTo(ws.contentView.mas_bottom).offset(-10);
-         make.top.equalTo(ws.bigImage.mas_centerY);
+        // make.top.equalTo(ws.bigImage.mas_centerY);
     }];
 
     
@@ -72,11 +74,16 @@
     NSString *ImgUrl = [NSString stringWithFormat:@"%@/%@",IMGBaesURL,mod.godslog];
     [self.bigImage sd_setImageWithURL:[NSURL URLWithString:ImgUrl] placeholderImage:[UIImage imageNamed:@"logo"]];
     self.acType = self.acTypeStr;
+    NSArray *arritem = mod.goodspic;
+    for (NSDictionary *dic1 in arritem) {
+    
+        self.modId = [NSString stringWithFormat:@"%@",dic1[@"id"]];
+    }
 }
 
 -(void)addToShopingCarAction:(UIButton *)btn{
-    if (self.mod.id == 0 ) {
-        [MBManager showBriefAlert:@"禁止添加此商品"];
+    if ([self.modId isEqualToString:@"0"]) {
+        [MBManager showBriefAlert:ZBLocalized(@"禁止添加此商品", nil) ];
         return;
     }
     if (![self.acTypeStr isEqualToString:@"2"]) {
@@ -91,7 +98,7 @@
                 make.right.equalTo(ws.addToShoppingCar.mas_left).offset(-5);
             }];
             self.delectToShoppingCar = [UIButton buttonWithType:UIButtonTypeCustom];
-            self.delectToShoppingCar.backgroundColor = [UIColor colorWithHexString:BaseYellow];
+           
             self.delectToShoppingCar.layer.cornerRadius=10;
             self.delectToShoppingCar.clipsToBounds = YES;
             [self.delectToShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiajianhao"] forState:UIControlStateNormal];

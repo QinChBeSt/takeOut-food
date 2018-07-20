@@ -110,7 +110,11 @@
     }];
     
     self.shopNotiLab = [[UILabel alloc]init];
+    if ([self isBlankString:self.shopNotiStr]) {
+        self.shopNotiStr = @"";
+    }
     self.shopNotiLab.text = [NSString stringWithFormat:@"%@:%@",ZBLocalized(@"公告", nil),self.shopNotiStr];
+    
     self.shopNotiLab.font = [UIFont systemFontOfSize:14];
     self.shopNotiLab.textColor = [UIColor blackColor];
     [self.niveView addSubview:self.shopNotiLab];
@@ -233,7 +237,19 @@
         self.saveListArr = modShopList.act_list;
         numForSaveCount = [NSString stringWithFormat:@"%lu%@",(unsigned long)self.saveListArr.count,ZBLocalized(@"个活动", nil)];
          NSString *imgUrl =  self.saveListArr[0][@"img"];
-         shopSaveIconUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,imgUrl] ;
+        NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+        NSLog(@"切换后的语言:%@",language);
+        NSString *lauStr;
+        if ([language isEqualToString:@"th"]) {
+            lauStr = @"th";
+        }
+        else if ([language isEqualToString:@"en"]){
+            lauStr = @"en";
+        }
+        else if ([language isEqualToString:@"zh-Hans"]){
+            lauStr = @"zh";
+        }
+         shopSaveIconUrl =[NSString stringWithFormat:@"%@/%@/%@",IMGBaesURL,lauStr,imgUrl] ;
         int count = 0;
         
         NSMutableDictionary *dic = self.saveListArr[0];
@@ -257,7 +273,7 @@
             ENSave1Str = arraySave1[2];
         }
         
-        NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+        
         if ([language isEqualToString:@"th"]) {
             shopSaveStr =THSave1Str;
         }
@@ -282,6 +298,45 @@
 //        }
     }
     
+}
+
+-(BOOL) isBlankString:(NSString *)string{
+    NSString *str = [NSString stringWithFormat:@"%@",string];
+    
+    if ([str isEqualToString:@""]) {
+        return YES;
+    }
+    
+    if ([str isEqualToString:@"<null>"]) {
+        return YES;
+    }
+    
+    if ([str isEqualToString:@"(null)"]) {
+        return YES;
+    }
+    
+    if ([str isEqualToString:@"<nil>"]) {
+        return YES;
+    }
+    
+    if (str == nil || str == NULL) {
+        return YES;
+    }
+    
+    if ([str isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    
+    if ([str isEqual:[NSNull null]]) {
+        return YES;
+    }
+    
+    if ([[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        return YES;
+    }
+    
+    
+    return NO;
 }
 /*
 #pragma mark - Navigation

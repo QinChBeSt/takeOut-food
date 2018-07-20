@@ -66,6 +66,8 @@
 @property (nonatomic , strong)NSMutableArray *arrForHaveBuyList;
 @property (nonatomic , strong)NSIndexPath *rightChooseIndex;
 @property (nonatomic , strong)UIButton *chooseSizeBackBtn;
+@property (nonatomic , assign)BOOL isFirstShow;
+@property (nonatomic , assign)NSInteger FirstShowCount;
 @end
 
 @implementation FoodListVC{
@@ -162,6 +164,7 @@
 //            }
 //        }
         [self.leftTable reloadData];
+         [self.leftTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
         [self.rightTable reloadData];
     } withFail:^(NSError *error) {
         
@@ -288,8 +291,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isFirstShow = YES;
     defaults = [NSUserDefaults standardUserDefaults];
     self.ShoppingCarRedNum = 0;
+    self.FirstShowCount = 0;
     self.view.backgroundColor = [UIColor whiteColor];
     [self initTableView];
     [self addChooseView];
@@ -305,11 +310,12 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     self.leftTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width / 4, self.view.frame.size.height - SafeAreaTopHeight - 100 -36 - SafeAreaTabbarHeight - shoppingCarViewHeight) style:UITableViewStylePlain];
     self.leftTable.delegate = self;
     self.leftTable.dataSource = self;
-
+    self.leftTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.leftTable.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
     self.leftTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:self.leftTable];
    // [self.leftTable registerClass:[UITableViewCell class] forCellReuseIdentifier:resueIdleft];
-    [self.leftTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self.leftTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
     
     self.rightTable = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 4, 0, self.view.frame.size.width / 4 * 3, self.view.frame.size.height - SafeAreaTopHeight - 100 -36 - SafeAreaTabbarHeight - shoppingCarViewHeight) style:UITableViewStylePlain];
     self.rightTable.dataSource = self;
@@ -560,7 +566,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     if (tableView == self.rightTable) {
         return 100;
     }else if (tableView == self.leftTable){
-        return 80;
+        return kWidthScale(80);
     }
     return 50;
 }
@@ -601,7 +607,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
        NSDictionary *dic = [self.arrForType objectAtIndex:indexPath.row];
         cell.typeName.text = dic[@"goodsTypeEntity"][@"goodsTypeName"];
-
+       // cell.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
         NSInteger nowRow = indexPath.row + 1;
         NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%ld",(long)indexPath.row];
          NSString *COUNT = [defaults objectForKey:value];
@@ -833,7 +839,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 [defaults setObject:countStr forKey:value];
                 [defaults synchronize];
                 [self.leftTable reloadData];
-                
+                 [self.leftTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.section inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
                 self.ShoppingCarRedNum++;
                 self.ShoppingCarRedLabel.hidden = NO;
                 self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
@@ -933,7 +939,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 [defaults setObject:countStr forKey:value];
                 [defaults synchronize];
                 [self.leftTable reloadData];
-                
+                [self.leftTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.section inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
                 self.ShoppingCarRedNum--;
                 if (self.ShoppingCarRedNum == 0) {
                     self.ShoppingCarRedNum = 0;
@@ -1180,10 +1186,29 @@ self.addBuyCarViewAddBtn.enabled = NO;
 // 头部视图将要显示时调用
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     if (tableView == self.rightTable) {
+        
+        if ([view isKindOfClass: [UITableViewHeaderFooterView class]]) {
+            UITableViewHeaderFooterView* castView = (UITableViewHeaderFooterView*) view;
+            UIView* content = castView.contentView;
+            UIColor* color = [UIColor whiteColor]; // substitute your color here
+            content.backgroundColor = color;
+        }
+        
         // 判断，如果是左边点击触发的滚动，这不执行下面代码
         if (self.isSelected) {
             return;
         }
+        self.FirstShowCount ++;
+        if (self.FirstShowCount > self.arrForType.count) {
+            self.isFirstShow = NO;
+            
+        }
+        if (self.isFirstShow == YES) {
+           
+            
+            return;
+        }
+        
         
         // 获取可见视图的第一个row
         //NSInteger currentSection = [[[self.rightTable indexPathsForVisibleRows] firstObject] section];
@@ -1497,11 +1522,35 @@ self.addBuyCarViewAddBtn.enabled = NO;
              [defaults setObject:nil forKey:value];
         }
         
+        //[self.arrForAddShoppingCarList removeAllObjects];
+        [self.arrForDelShoppingCar removeAllObjects];
+        [defaults synchronize];
+    }
+    for (int i = 0; i < self.arrForAddShoppingCarList.count; i++) {
+        NSMutableDictionary *dicForChoose = [NSMutableDictionary dictionary];
+        dicForChoose = [self.arrForAddShoppingCarList objectAtIndex:i];
+        removeIndex = i;
+        chooseIndex = dicForChoose[@"selectIndex"];
+        //左边小红点
+        self.leftTableViewSelectRow = chooseIndex.section + 1;
+        if (self.leftTableViewSelectRow == nil) {
+            self.leftTableViewSelectRow = 1;
+        }
+        NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%ld",(long)chooseIndex.section];
+        NSString *cellValue = [NSString stringWithFormat:@"RightTableViewsection%ldrow%ld",chooseIndex.section,chooseIndex.row];
+        
+        [defaults setObject:nil forKey:cellValue];
+        [defaults setObject:nil forKey:value];
+        
+        for (int i = 0 ; i < 99; i++) {
+            NSString *value = [NSString stringWithFormat:@"LEFTTABLEVIEW%d",i];
+            [defaults setObject:nil forKey:value];
+        }
+        
         [self.arrForAddShoppingCarList removeAllObjects];
         [self.arrForDelShoppingCar removeAllObjects];
         [defaults synchronize];
     }
-    
     
     
     [self.haveBuyListTableview reloadData];

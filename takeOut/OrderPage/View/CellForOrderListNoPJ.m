@@ -133,7 +133,7 @@
         self.haveEvaluateLabel.text = ZBLocalized(@"骑手到店", nil);
     }
     else if ([shopStrat isEqualToString:@"8"]){
-        self.haveEvaluateLabel.text = ZBLocalized(@"骑手拿到东西", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"骑手已取货", nil);
     }
     else if ([shopStrat isEqualToString:@"9"]){
         self.haveEvaluateLabel.text = ZBLocalized(@"订单完成", nil);

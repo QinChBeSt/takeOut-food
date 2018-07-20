@@ -236,13 +236,13 @@
 }
 
 #pragma mark - 监听textFile
--(void)phoneTextFieldDidChange :(UITextField *)theTextField{
+-(void)phoneTextFieldDidChange:(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     
     self.phoneNumStr = theTextField.text;
    
 }
--(void)codeTextFieldDidChange :(UITextField *)theTextField{
+-(void)codeTextFieldDidChange:(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.codeNumStr = theTextField.text;
    
@@ -257,10 +257,13 @@
     
     if (self.phoneNumTextField == textField)
     {
-        textField.text = [toBeString substringToIndex:11];
-        NSLog(@"不能大于11");
-        [MBManager showBriefAlert:@"手机号不能大于11位数"];
-        return NO;
+        if ([toBeString length] > 11) {
+            textField.text = [toBeString substringToIndex:11];
+            NSLog(@"不能大于11");
+            [MBManager showBriefAlert:ZBLocalized(@"手机号应该为9~11位数字", nil)];
+            return NO;
+        }
+        
             
        
     }

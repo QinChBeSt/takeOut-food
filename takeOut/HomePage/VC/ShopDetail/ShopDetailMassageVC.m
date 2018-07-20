@@ -73,6 +73,7 @@
     
     self.shopName = [[UILabel alloc]init];
     self.shopName.text = shopNameStr;
+    self.shopName.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     self.shopName.textColor = [UIColor blackColor];
     [self.niveView addSubview:self.shopName];
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {

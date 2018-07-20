@@ -96,14 +96,7 @@
             NSLog(@"删除Alias==%ld",(long)iResCode);
             
         } seq:0];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *userId = [defaults objectForKey:UD_USERID];
-        NSString *strTag = [NSString stringWithFormat:@"bee%@",userId];
-        NSSet *set = [[NSSet alloc] initWithObjects:strTag,nil];
-        [JPUSHService deleteTags:set completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
-            
-            NSLog(@"删除Tag====%ld",(long)iResCode);
-        } seq:0];
+        
     }
     
     

@@ -501,7 +501,7 @@
     }];
 
      NSArray *arrButtonTitle = @[ZBLocalized(@"综合排序", nil),ZBLocalized(@"销量最高", nil),ZBLocalized(@"距离最近", nil)];
-    CGFloat buttonW = (SCREEN_WIDTH - kWidthScale(36) )/ arrButtonTitle.count; //按钮的宽度和高度
+    CGFloat buttonW = (SCREEN_WIDTH - kWidthScale(18) )/ arrButtonTitle.count; //按钮的宽度和高度
     CGFloat buttonH = kWidthScale(60);
     for (int i=0; i<arrButtonTitle.count; i++) {  // 循环创建3个按钮
         clickButton=[[SortButton alloc]initWithFrame:CGRectMake(kWidthScale(18) +  buttonW*i, kWidthScale(100), buttonW, buttonH)];
@@ -511,7 +511,7 @@
         }
         
         clickButton.tag=i;
-        clickButton.titleLabel.font=[UIFont systemFontOfSize:12.0];
+        clickButton.titleLabel.font=[UIFont systemFontOfSize:14.0];
         [clickButton setTitleColor:[UIColor lightGrayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
         [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];

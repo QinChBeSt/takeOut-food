@@ -41,7 +41,7 @@
     }];
     
     self.shopName = [[UILabel alloc]init];
-    self.shopName.font = [UIFont systemFontOfSize:16];
+    self.shopName.font = [UIFont systemFontOfSize:18];
     [self.contentView addSubview:self.shopName];
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.bigImage.mas_top).offset(-2) ;
@@ -57,19 +57,49 @@
     [self.shopDistance mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.contentView.mas_right).offset(-10);
         make.top.equalTo(ws.bigImage.mas_top).offset(kWidthScale(45));
+        make.height.equalTo(@(kWidthScale(40)));
     }];
     [self.shopDistance setContentCompressionResistancePriority:UILayoutPriorityRequired
                                                       forAxis:UILayoutConstraintAxisHorizontal];
+    
+    UIImageView *muzhi = [[UIImageView alloc]init];
+    [self.contentView addSubview:muzhi];
+    [muzhi mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.bigImage.mas_right).offset(kWidthScale(15));
+        make.top.equalTo(ws.bigImage.mas_top).offset(kWidthScale(50));
+        make.width.equalTo(@(kWidthScale(0)));
+        make.height.equalTo(@(kWidthScale(30)));
+    }];
     self.shopLikeLab = [[UILabel alloc]init];
     self.shopLikeLab.numberOfLines = 1;
     self.shopLikeLab.textColor = [UIColor lightGrayColor];
     self.shopLikeLab.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:self.shopLikeLab];
     [self.shopLikeLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(ws.bigImage.mas_right).offset(kWidthScale(15));
+        make.left.equalTo(muzhi.mas_right).offset(kWidthScale(0));
         make.top.equalTo(ws.bigImage.mas_top).offset(kWidthScale(45));
-        make.right.equalTo(ws.shopDistance.mas_left).offset(-20);
+        //make.right.equalTo(ws.shopDistance.mas_left).offset(-20);
         make.height.equalTo(@(kWidthScale(40)));
+    }];
+    UIImageView *like = [[UIImageView alloc]init];
+    like.image =[UIImage imageNamed:ZBLocalized(@"icon_zan", nil)];
+    [self.contentView addSubview:like];
+    [like mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.shopLikeLab.mas_right).offset(kWidthScale(4));
+        make.centerY.equalTo(ws.shopLikeLab);
+        make.width.equalTo(@(kWidthScale(47)));
+        make.height.equalTo(@(kWidthScale(24)));
+    }];
+    
+    
+    UIImageView *Bps = [[UIImageView alloc]init];
+    Bps.image = [UIImage imageNamed:@"icon_beeorderzhuansong"];
+    [self.contentView addSubview:Bps];
+    [Bps mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@(kWidthScale(32)));
+        make.width.equalTo(@(kWidthScale(80)));
+        make.top.equalTo(ws.shopLikeLab.mas_bottom).offset(kWidthScale(4));
+        make.right.equalTo(ws.contentView.mas_right).offset(-kWidthScale(18));
     }];
     
     self.shopMassage = [[UILabel alloc]init];
@@ -80,7 +110,7 @@
     [self.shopMassage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(kWidthScale(15));
         make.top.equalTo(ws.shopLikeLab.mas_bottom).offset(0);
-        make.right.equalTo(ws.contentView.mas_right).offset(-20);
+        make.right.equalTo(Bps.mas_right).offset(-kWidthScale(18));
         make.height.equalTo(@(kWidthScale(40)));
     }];
     self.showMoreImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"showMore"]];
@@ -231,7 +261,7 @@
    
     self.shopDistance.text = dis;
     NSString *yueShou = [NSString stringWithFormat:@"👍%@",mod.per_mean];
-    self.shopLikeLab.text = [NSString stringWithFormat:@"%@%@",yueShou,ZBLocalized(@"赞", nil)];
+    self.shopLikeLab.text = [NSString stringWithFormat:@"%@",yueShou];
     
     NSString *msg = [NSString stringWithFormat:@"%@%@ | %@%@",ZBLocalized(@"起送：฿", nil),mod.up_pic,ZBLocalized(@"配送：฿", nil),mod.send_pic];
     self.shopMassage.text = msg;
@@ -512,6 +542,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
+   
     // Configure the view for the selected state
 }
 

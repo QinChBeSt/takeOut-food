@@ -36,7 +36,8 @@
     .heightIs(30);
     
     self.shopNameLabel = [[UILabel alloc]init];
-    self.shopNameLabel.textColor = [UIColor colorWithHexString:BaseTextGrayColor];
+    self.shopNameLabel.textColor = [UIColor blackColor];
+    self.shopNameLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     [self.contentView addSubview:self.shopNameLabel];
     [self.shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.shopIcon);
@@ -67,12 +68,12 @@
     
     
     self.topLine = [[UIView alloc]init];
-    self.topLine.backgroundColor = [UIColor grayColor];
+    self.topLine.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
     [self.contentView addSubview:self.topLine];
     [self.topLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.shopIcon.mas_bottom).offset(10);
         make.centerX.equalTo(self.contentView);
-        make.left.equalTo(self.contentView.mas_left).offset(10);
+        make.left.equalTo(self.shopNameLabel.mas_left);
         make.height.equalTo(@(0.5));
     }];
     
@@ -136,7 +137,7 @@
         self.haveEvaluateLabel.text = ZBLocalized(@"骑手到店", nil);
     }
     else if ([shopStrat isEqualToString:@"8"]){
-        self.haveEvaluateLabel.text = ZBLocalized(@"骑手拿到东西", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"骑手已取货", nil);
     }
     else if ([shopStrat isEqualToString:@"9"]){
         self.haveEvaluateLabel.text = ZBLocalized(@"订单完成", nil);
@@ -157,12 +158,17 @@
     self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"共计", nil),foodsnum,ZBLocalized(@"件商品,实付", nil)];
     self.orderTimeLabel.text = [NSString stringWithFormat:@"%@  %@",ZBLocalized(@"订单时间", nil),mod.cdata];
     NSArray *foodsArr = mod.godslist;
-    
-    for (int i = 0; i < mod.godslist.count; i++) {
+    NSInteger count;
+    if (mod.godslist.count > 3) {
+        count=3;
+    }else{
+        count = mod.godslist.count;
+    }
+    for (int i = 0; i < count; i++) {
         self.foodsView = [[ViewForOrderListFoodsName alloc]init];
         self.foodsView.foodsName.text = foodsArr[i][@"ordersGoodsName"];
         NSString *listFoodcount = foodsArr[i][@"ordersGoodsNum"];
-        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"%@",listFoodcount];
+        self.foodsView.foodsCount.text = [NSString stringWithFormat:@"x  %@",listFoodcount];
         [self.contentView addSubview:self.foodsView];
         __weak typeof(self) ws = self;
         [self.foodsView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -208,7 +214,7 @@
         self.bottomLine.sd_layout
         .leftSpaceToView(self.contentView, 0)
         .rightSpaceToView(self.contentView,0)
-        .heightIs(10)
+        .heightIs(1)
         .topSpaceToView(self.orderTimeLabel, 10);
         [self setupAutoHeightWithBottomView:self.bottomLine bottomMargin:10];
     }

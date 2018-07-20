@@ -27,5 +27,6 @@ typedef void (^blockDelShopingCar)(ModelForFoodList *);
 @property (nonatomic , strong)UILabel *chooseCountLabel;
 @property (nonatomic , strong)NSString *acType;
 @property (nonatomic , strong)NSString *acTypeStr;
+@property (nonatomic , strong)NSString *modId;
 
 @end
