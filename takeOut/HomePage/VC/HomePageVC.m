@@ -587,8 +587,11 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
-    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+  
+    ModelForShopList *mod =[[ModelForShopList alloc]init];
+    mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
+    
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld%@",indexPath.section,indexPath.row,mod.store_id];
     
     TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
@@ -609,15 +612,8 @@
 }
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (dicForShow[indexPath]== [NSNumber numberWithBool:YES] ) {
-        ModelForShopList *mod =[self.arrForHomePageShopList objectAtIndex:indexPath.row];
-        NSInteger cont = mod.act_list.count - 2;
-        cont = cont / 3 + 1;
-        NSInteger addHeight = cont * 20 + kWidthScale(250);
-        return addHeight;
-        
-    }
-       return kWidthScale(250);
+
+       return [self cellHeightForIndexPath:indexPath cellContentViewWidth:SCREEN_WIDTH tableView:self.tableView];
     
 }
 

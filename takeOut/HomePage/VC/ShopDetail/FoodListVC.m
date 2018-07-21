@@ -534,6 +534,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         }];
         
     }else{
+        
         __weak typeof(self) ws = self;
         self.buyCarView = [[UIView alloc]init];
         self.buyCarView.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
@@ -646,7 +647,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             mod.godsname = dic1[@"godsname"];
             mod.godslog = [NSString stringWithFormat:@"%@",dic1[@"godslog"]];
             mod.ys = dic1[@"ys"];
-            mod.pic = [dic1[@"pic"] floatValue];
+            mod.pic =[dic1[@"pic"] floatValue];
             NSArray *array = dic1[@"goodspic"];
             if ([dic1[@"goodspic"] isKindOfClass:[NSNull class]] ){
                 mod.goodspic = @[@{@"goodsId":dic1[@"id"],@"goodsPicName":@"",@"goodsPicPic":@"0",@"id":@"0"}];
@@ -681,6 +682,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             cell1.mod = mod;
             //选大小后加购物车
             cell1.blockChooseSize = ^(ModelForFoodList *mod1) {
+              
                 NSLog(@"%f",mod1.pic);
                 if (![self.acTypeStr isEqualToString:@"2"]) {
                     [MBManager showBriefAlert:ZBLocalized(@"打烊了", nil)];
@@ -707,9 +709,11 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         }
         //直接加购物车=======================
         else{
+            
             NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
             CellForShopFood *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
              ModelForFoodList *mod = [arrForDetal objectAtIndex:indexPath.row];
+            
             if (!cell2) {
                 
                 cell2 = [[CellForShopFood alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
@@ -774,7 +778,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                     NSNumber * goodsCount = [NSNumber numberWithInteger:GetgoodsCount];
                     [self.arrForAddShoppingCarList removeObjectAtIndex:removeIndex];
                     NSNumber * good_Id =  [NSNumber numberWithInteger:mod11.id];
-                    NSString *picStr = [NSString stringWithFormat:@"%.f",mod11.pic];
+                    NSString *picStr = [NSString stringWithFormat:@"%.2f",mod11.pic];
                     [dicForChoose setObject:goodsCount forKey:@"count"];
                     [dicForChoose setObject:good_Id forKey:@"g_id"];
                     [dicForChoose setObject:mod.godsname forKey:@"g_name"];
@@ -786,7 +790,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 }else{
                     //新添加的商品
                     NSNumber * good_Id =  [NSNumber numberWithInteger:mod11.id];
-                    NSString *picStr = [NSString stringWithFormat:@"%.f",mod11.pic];
+                    NSString *picStr = [NSString stringWithFormat:@"%.2f",mod11.pic];
                     NSNumber * goodsCount = [NSNumber numberWithInteger:1];
                     NSMutableDictionary *dicForChoose = [NSMutableDictionary dictionary];
                     [dicForChoose setObject:goodsCount forKey:@"count"];
@@ -877,7 +881,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                         NSNumber * goodsCount = [NSNumber numberWithInteger:GetgoodsCount];
                         [self.arrForAddShoppingCarList removeObjectAtIndex:removeIndex];
                         NSNumber * good_Id =  [NSNumber numberWithInteger:mod3.id];
-                        NSString *picStr = [NSString stringWithFormat:@"%.f",mod3.pic];
+                        NSString *picStr = [NSString stringWithFormat:@"%.2f",mod3.pic];
                         [dicForChoose setObject:goodsCount forKey:@"count"];
                         [dicForChoose setObject:good_Id forKey:@"g_id"];
                         [dicForChoose setObject:mod.godsname forKey:@"g_name"];
@@ -894,7 +898,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 }else{
                     //新添加的商品
                     NSNumber * good_Id =  [NSNumber numberWithInteger:mod3.id];
-                    NSString *picStr = [NSString stringWithFormat:@"%.f",mod3.pic];
+                    NSString *picStr = [NSString stringWithFormat:@"%.2f",mod3.pic];
                     NSNumber * goodsCount = [NSNumber numberWithInteger:1];
                     NSMutableDictionary *dicForChoose = [NSMutableDictionary dictionary];
                     [dicForChoose setObject:goodsCount forKey:@"count"];
@@ -1002,9 +1006,9 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             GetgoodsCount = GetgoodsCount + 1;
             cell1.goodsCount.text = [NSString stringWithFormat:@"%ld",(long)GetgoodsCount];
             cell1.removeBtn.hidden = NO;
-            NSInteger price = [mod.g_pic integerValue];
+            CGFloat price = [mod.g_pic floatValue];
             price = price * GetgoodsCount;
-            NSString *priceStr = [NSString stringWithFormat:@"%ld",(long)price];
+            NSString *priceStr = [NSString stringWithFormat:@"%.2f",price];
             cell1.goodsMoney.text =ZBLocalized(priceStr, nil);
             NSNumber * goodsCount = [NSNumber numberWithInteger:GetgoodsCount];
             [self.arrForAddShoppingCarList removeObjectAtIndex:removeIndex];
@@ -1069,9 +1073,9 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             NSInteger  GetgoodsCount = [dicForChoose[@"count"] integerValue];
             GetgoodsCount = GetgoodsCount - 1;
             cell1.goodsCount.text = [NSString stringWithFormat:@"%ld",(long)GetgoodsCount];
-            NSInteger price = [mod.g_pic integerValue];
+            CGFloat price = [mod.g_pic floatValue];
             price = price * GetgoodsCount;
-            NSString *priceStr = [NSString stringWithFormat:@"%ld",(long)price];
+            NSString *priceStr = [NSString stringWithFormat:@"%.2f",price];
             cell1.goodsMoney.text =ZBLocalized(priceStr, nil);
             NSNumber * goodsCount = [NSNumber numberWithInteger:GetgoodsCount];
             
@@ -1093,16 +1097,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                     make.bottom.equalTo(self.buyCarView.mas_top);
                     make.height.equalTo(@(self.arrForAddShoppingCarList.count * 50 + 40));
                 }];
-                CGFloat upPayF = [self.upPayMoney floatValue];
-                if (_addMoney < upPayF) {
-                    self.addBuyCarViewAddBtn.enabled = NO;
-                    self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
-   NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
-                    [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
-                    self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-                    [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                }
-                
+               
                 if (self.arrForAddShoppingCarList.count == 0) {
                      [self.haveBuyBackView  removeFromSuperview];
                     self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
@@ -1145,6 +1140,17 @@ self.addBuyCarViewAddBtn.enabled = NO;
             //底部数据
             self.addMoney =  self.addMoney -[mod.g_pic floatValue] ;
             self.buyCarAddLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),self.addMoney];
+            CGFloat upPayF = [self.upPayMoney floatValue];
+            if (_addMoney < upPayF) {
+                self.addBuyCarViewAddBtn.enabled = NO;
+                self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
+                NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
+                [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
+                self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+                [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            }
+            
+            
             self.ShoppingCarRedNum--;
             if (self.ShoppingCarRedNum == 0) {
                 self.ShoppingCarRedNum = 0;
@@ -1293,7 +1299,7 @@ self.addBuyCarViewAddBtn.enabled = NO;
     [defaults setObject:countStr forKey:value];
     [defaults synchronize];
     [self.leftTable reloadData];
-    
+    [self.leftTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.leftTableViewSelectRow - 1 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
     self.ShoppingCarRedNum++;
     
     CGFloat upPayF = [self.upPayMoney floatValue];

@@ -124,7 +124,7 @@
             [self.countryNumLab mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(backView).offset(kWidthScale(0));
                 make.left.equalTo(backView.mas_left).offset(kWidthScale(20));
-//make.width.equalTo(@(kWidthScale(150)));
+make.width.equalTo(@(kWidthScale(150)));
                 make.bottom.equalTo(backView);
             }];
             UITapGestureRecognizer *countryNoTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toChooseCountry)];
@@ -419,17 +419,17 @@
 }
 #pragma mark - 点击事件
 -(void)regisAction{
-    
-    if (![self.passwordStr isEqualToString:self.SurePasswordStr]) {
-        [MBManager showBriefAlert: ZBLocalized(@"两次密码不相同，请检查输入的密码", nil)];
+    if (self.passwordStr.length == 0) {
+        [MBManager showBriefAlert:ZBLocalized(@"请输入手机号", nil)];
         return;
     }
+    
     else if (self.xuanze.selected == NO) {
         [MBManager showBriefAlert: ZBLocalized(@"请同意用户协议", nil)];
         return;
     }
-    else if (self.passwordStr.length == 0) {
-        [MBManager showBriefAlert:ZBLocalized(@"请输入手机号", nil)];
+    else if (![self.passwordStr isEqualToString:self.SurePasswordStr]) {
+        [MBManager showBriefAlert: ZBLocalized(@"两次密码不相同，请检查输入的密码", nil)];
         return;
     }
     else if (_codeNumStr.length == 0) {
@@ -522,8 +522,9 @@
         [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
         return;
     }
+    
     //启动倒计时
-    [self performSelector:@selector(reflashGetKeyBt:)withObject:[NSNumber numberWithInt:60] afterDelay:0];
+   
     NSString * uuidStr= [UUID getUUID];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getsmsMsg];
     NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
@@ -532,6 +533,10 @@
     if ([self.countryNumLab.text isEqualToString:@"+86"]) {
         phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
         phoneZoneStr = [NSString stringWithFormat:@"86"];
+        if (phoneStr.length !=11) {
+            [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
+            return;
+        }
     }else{
         
         NSString *first = [self.phoneNumStr substringToIndex:1];
@@ -539,14 +544,22 @@
             if (self.phoneNumStr.length >10) {
                 [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于10位数", nil) ];
                 return;
-            }else{
+            }else if (self.phoneNumStr.length <10) {
+                [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
+                return;
+            }
+            else{
                 phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
             }
         }else  {
             if (self.phoneNumStr.length >9) {
                 [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于9位数", nil) ];
                 return;
-            }else{
+            }else if (self.phoneNumStr.length <9) {
+                [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
+                return;
+            }
+            else{
                 phoneStr = [NSString stringWithFormat:@"0%@",self.phoneNumStr];
             }
         }
@@ -556,7 +569,7 @@
     [par setValue:uuidStr forKey:@"phonemac"];
     [par setValue:phoneStr forKey:@"phone"];
     [par setValue:phoneZoneStr forKey:@"phonezone"];
-    
+     [self performSelector:@selector(reflashGetKeyBt:)withObject:[NSNumber numberWithInt:60] afterDelay:0];
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         NSString *code =[NSString stringWithFormat:@"%@",result[@"code"]];
         if ([code isEqualToString:@"1"]) {

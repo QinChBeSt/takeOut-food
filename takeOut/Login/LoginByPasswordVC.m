@@ -202,7 +202,7 @@
     hintLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:hintLabel];
     hintLabel.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登陆代表您已同意《BEEORDER用户协议》", nil)];
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登录代表您已同意《BEEORDER用户协议》", nil)];
     //获取要调整颜色的文字位置,调整颜色
     NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BEEORDER用户协议》", nil)];
     [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];

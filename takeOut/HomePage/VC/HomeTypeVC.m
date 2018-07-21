@@ -81,7 +81,7 @@
             mod.send_time = dic[@"send_time"];
             mod.send_pic = dic[@"send_pic"];
             mod.store_id = dic[@"store_id"];
-            mod.store_img = dic[@"store_img"];
+            mod.store_img =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dic[@"store_img"] ];
             mod.store_name = dic[@"store_name"];
             mod.up_pic = dic[@"up_pic"];
             mod.opentime = dic[@"opentime"];
@@ -213,14 +213,8 @@
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (dicForShow[indexPath]== [NSNumber numberWithBool:YES] ) {
-        ModelForShopList *mod =[self.arrForHomePageShopList objectAtIndex:indexPath.row];
-        NSInteger cont = mod.act_list.count - 2;
-        NSInteger addHeight = cont * 25 + 110;
-        return addHeight;
-        
-    }
-    return 110;
+    return [self cellHeightForIndexPath:indexPath cellContentViewWidth:SCREEN_WIDTH tableView:self.tableView];
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

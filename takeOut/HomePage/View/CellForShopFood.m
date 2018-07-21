@@ -67,13 +67,16 @@
     
     
 }
+-(void)setAcType:(NSString *)acType{
+    self.acTypeStr = acType;
+}
 -(void)setMod:(ModelForFoodList *)mod{
     self.chooseMod = mod;
     self.shopName.text = mod.godsname;
      self.priceLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),mod.pic];
     NSString *ImgUrl = [NSString stringWithFormat:@"%@/%@",IMGBaesURL,mod.godslog];
     [self.bigImage sd_setImageWithURL:[NSURL URLWithString:ImgUrl] placeholderImage:[UIImage imageNamed:@"logo"]];
-    self.acType = self.acTypeStr;
+    //self.acType = self.acTypeStr;
     NSArray *arritem = mod.goodspic;
     for (NSDictionary *dic1 in arritem) {
     
@@ -86,7 +89,11 @@
         [MBManager showBriefAlert:ZBLocalized(@"禁止添加此商品", nil) ];
         return;
     }
-    if (![self.acTypeStr isEqualToString:@"2"]) {
+     if (![self.acTypeStr isEqualToString:@"2"]) {
+         [MBManager showBriefAlert:ZBLocalized(@"打烊了", nil) ];
+         return;
+    }
+    if ([self.acTypeStr isEqualToString:@"2"]) {
         if (!_delectToShoppingCar) {
             __weak typeof(self) ws = self;
             

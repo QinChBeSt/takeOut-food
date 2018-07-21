@@ -28,6 +28,7 @@
     MKMapView         *   maMapView;
     NSString *currentCity;//当前城市
     NSString *locationStr;
+    NSString *thrRowStr;
     NSString *getlatitude;
     NSString *getlongitude;
     
@@ -126,7 +127,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.nearTableView) {
-        return self.nearSpaceArray.count;
+        return self.nearSpaceArray.count + 1;
     }else{
         return self.searchResultArray.count;
     }
@@ -137,17 +138,32 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.nearTableView) {
-        CellForMyNearSpace *cell1 = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell1"];
+        NSString *idf = [NSString stringWithFormat:@"%ldcell%ld",(long)indexPath.row,(long)indexPath.section];
+        CellForMyNearSpace *cell1 = [tableView dequeueReusableCellWithIdentifier:idf];
         if(cell1 == nil)
         {
-            cell1 = [[CellForMyNearSpace alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell1"];
+            cell1 = [[CellForMyNearSpace alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:idf];
         }
-        ZHPlaceInfoModel *model = [self.nearSpaceArray objectAtIndex:indexPath.row];
-        cell1.titLab.text = [ NSString stringWithFormat:@"%@",model.name];
+        
+       
+        
         if (indexPath.row == 0) {
+            if (locationStr == nil) {
+                locationStr = @"";
+            }
+            if (thrRowStr == nil) {
+                thrRowStr = @"";
+            }
+            cell1.titLab.text = [ NSString stringWithFormat:@"%@",locationStr];
+            cell1.subLab.text = [ NSString stringWithFormat:@"%@",thrRowStr];
             cell1.titLab.textColor = [UIColor colorWithHexString:BaseYellow];
+        }else{
+             ZHPlaceInfoModel *model = [self.nearSpaceArray objectAtIndex:indexPath.row - 1];
+            cell1.titLab.text = [ NSString stringWithFormat:@"%@",model.name];
+            cell1.subLab.text = [ NSString stringWithFormat:@"%@",model.thoroughfare];
+            cell1.titLab.textColor = [UIColor blackColor];
         }
-        cell1.subLab.text = [ NSString stringWithFormat:@"%@",model.thoroughfare];
+        //cell1.subLab.text = [ NSString stringWithFormat:@"%@",model.thoroughfare];
         
         cell1.selectionStyle =UITableViewCellSelectionStyleNone;
         
@@ -174,10 +190,20 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.nearTableView) {
-        ZHPlaceInfoModel *model = [self.nearSpaceArray objectAtIndex:indexPath.row];
         
-        locationStr = [NSString stringWithFormat:@"%@,%@",model.name,model.thoroughfare];
-        [self save];
+        if (indexPath.row == 0) {
+            locationStr = [NSString stringWithFormat:@"%@,%@",locationStr,thrRowStr];
+            [self save];
+        }
+        else{
+            ZHPlaceInfoModel *model = [self.nearSpaceArray objectAtIndex:indexPath.row - 1];
+            
+            locationStr = [NSString stringWithFormat:@"%@,%@",model.name,model.thoroughfare];
+            getlatitude =[NSString stringWithFormat:@"%f",model.coordinate.latitude];
+            getlongitude = [NSString stringWithFormat:@"%f",model.coordinate.longitude];
+            [self save];
+        }
+        
         
     }else{
         CLPlacemark *placemark = [self.searchResultArray objectAtIndex:indexPath.row];
@@ -373,7 +399,7 @@
     MKCoordinateRegion regionaaa = MKCoordinateRegionMakeWithDistance(centerCoordinate,100, 100);
     MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc]init];
     request.region = regionaaa;
-    request.naturalLanguageQuery = @"Restaurants";
+    request.naturalLanguageQuery = @"apartment";
     MKLocalSearch *localSearch = [[MKLocalSearch alloc]initWithRequest:request];
     [localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error){
         if (!error) {
@@ -403,14 +429,22 @@
     
             NSString *subLoc = placeMark.subLocality;
             NSString *locName = placeMark.name;
+            NSString *thrStr = placeMark.thoroughfare;
             if (subLoc == nil) {
                 subLoc = @"";
             }
             if (locName == nil) {
                 locName = @"";
             }
+            if (thrStr == nil) {
+                thrStr = @"";
+            }
+            if (currentCity == nil) {
+                currentCity = @"";
+            }
 //            NSString *locStr = [NSString stringWithFormat:@"%@%@%@",currentCity,placeMark.subLocality,placeMark.name];
 
+            thrRowStr = thrStr;
             locationStr = [NSString stringWithFormat:@"%@ %@%@",currentCity,subLoc,locName];
             NSLog(@"%@",locationStr);//具体地址
             cityName.text = currentCity;
