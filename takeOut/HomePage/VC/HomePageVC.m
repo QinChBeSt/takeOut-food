@@ -448,7 +448,7 @@
     }];
     
     headviewSelectLeftView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [headviewSelectLeftView setImage:[UIImage imageNamed:@"banner1"] forState:UIControlStateNormal];
+    [headviewSelectLeftView setImage:[UIImage imageNamed:ZBLocalized(@"chihuozhongwen", nil)] forState:UIControlStateNormal];
     [headviewSelectLeftView addTarget:self action:@selector(tapSelectLeft) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectLeftView];
     
@@ -461,7 +461,7 @@
 
    
     headviewSelectRightView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [headviewSelectRightView setImage:[UIImage imageNamed:@"banner2"] forState:UIControlStateNormal];
+    [headviewSelectRightView setImage:[UIImage imageNamed:ZBLocalized(@"hongbaozhongwen", nil) ] forState:UIControlStateNormal];
     [headviewSelectRightView addTarget:self action:@selector(tapSelectRight) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectRightView];
     [headviewSelectRightView mas_makeConstraints:^(MASConstraintMaker *make) {

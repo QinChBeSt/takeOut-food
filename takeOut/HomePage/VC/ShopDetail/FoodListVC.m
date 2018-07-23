@@ -649,7 +649,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             mod.ys = dic1[@"ys"];
             mod.pic =[dic1[@"pic"] floatValue];
             NSArray *array = dic1[@"goodspic"];
-            if ([dic1[@"goodspic"] isKindOfClass:[NSNull class]] ){
+            if ([dic1[@"goodspic"] isKindOfClass:[NSNull class]] || array.count == 0){
                 mod.goodspic = @[@{@"goodsId":dic1[@"id"],@"goodsPicName":@"",@"goodsPicPic":@"0",@"id":@"0"}];
                 [arrForDetal addObject:mod];
                

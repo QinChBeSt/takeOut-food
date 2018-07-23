@@ -130,7 +130,7 @@
     [self.shopSaveImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.shopName);
         make.bottom.equalTo(ws.shipIcon.mas_bottom).offset(0);
-        make.width.equalTo(@(15));
+        make.width.equalTo(@(41));
         make.height.equalTo(@(15));
     }];
    
@@ -249,7 +249,7 @@
         else if ([language isEqualToString:@"zh-Hans"]){
             lauStr = @"zh";
         }
-         shopSaveIconUrl =[NSString stringWithFormat:@"%@/%@/%@",IMGBaesURL,lauStr,imgUrl] ;
+         shopSaveIconUrl =[NSString stringWithFormat:@"%@/%@/%@",IMGsaveBaesURL,lauStr,imgUrl] ;
         int count = 0;
         
         NSMutableDictionary *dic = self.saveListArr[0];

@@ -639,12 +639,18 @@
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+    if ([text isEqualToString:@""])
+    {
+        return NO;
+        
+    }
     //[text isEqualToString:@""] 表示输入的是退格键
     if (![text isEqualToString:@""])
     {
         self.placeHolder.hidden = YES;
        
     }
+    
     
     //range.location == 0 && range.length == 1 表示输入的是第一个字符
     if ([text isEqualToString:@""] && range.location == 0 && range.length == 1)

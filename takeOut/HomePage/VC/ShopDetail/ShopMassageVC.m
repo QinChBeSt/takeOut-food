@@ -225,8 +225,25 @@
     
     if (self.arrForSAVE.count != 0) {
         for (int i = 0 ; i < self.arrForSAVE.count; i++) {
-            UIImageView *saveIcon = [[UIImageView alloc]initWithFrame:CGRectMake(30, 60 +  i * 30, 15, 15)];
-            NSString *shopSaveStr = [NSString stringWithFormat:@"%@/%@",BASEURL,self.arrForSAVE[i][@"img"]];
+            UIImageView *saveIcon = [[UIImageView alloc]initWithFrame:CGRectMake(30, 60 +  i * 30, 41, 15)];
+            
+            NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+            NSLog(@"切换后的语言:%@",language);
+            NSString *lauStr;
+            if ([language isEqualToString:@"th"]) {
+                lauStr = @"th";
+            }
+            else if ([language isEqualToString:@"en"]){
+                lauStr = @"en";
+            }
+            else if ([language isEqualToString:@"zh-Hans"]){
+                lauStr = @"zh";
+            }
+            
+            NSString *shopSaveStr = [NSString stringWithFormat:@"%@/%@/%@",IMGsaveBaesURL,lauStr,self.arrForSAVE[i][@"img"]];
+       
+            
+            
             [saveIcon sd_setImageWithURL:[NSURL URLWithString:shopSaveStr]];
             [self.footView addSubview:saveIcon];
             
@@ -255,7 +272,7 @@
                 ENSave1Str = arraySave1[2];
             }
             
-            NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+           
             if ([language isEqualToString:@"th"]) {
                  saveLabel.text =THSave1Str;
             }
