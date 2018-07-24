@@ -45,6 +45,7 @@
     if (self.TypeFlgStr.length == 0) {
          [self netWorkForShopList:0];
     }else{
+        [self netWorkForShopList:0];
         //[self netWorkForShopFlgList:self.TypeFlgStr];
     }
     [self.view addSubview:view];

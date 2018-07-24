@@ -90,6 +90,16 @@
         make.centerX.equalTo(ws.niveView);
         make.top.equalTo(ws.shopName.mas_bottom).offset(20);
     }];
+    UIImageView *like = [[UIImageView alloc]init];
+    like.image =[UIImage imageNamed:ZBLocalized(@"icon_zan", nil)];
+    [self.niveView addSubview:like];
+    [like mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.shopMassageLabelLine1.mas_right).offset(kWidthScale(2));
+        make.centerY.equalTo(ws.shopMassageLabelLine1);
+        make.width.equalTo(@(kWidthScale(47)));
+        make.height.equalTo(@(kWidthScale(24)));
+    }];
+    
     self.shopMassageLabelLine2 = [[UILabel alloc]init];
     self.shopMassageLabelLine2.text = shopMassage2;
     self.shopMassageLabelLine2.textColor = [UIColor blackColor];
@@ -164,11 +174,11 @@
     NSString *yueShou = [NSString stringWithFormat:@"👍%@",modShopList.per_mean];
     NSString *time = modShopList.opentime;
     NSString *noti = modShopList.notice;
-    if (noti == NULL ) {
+    if ([IsStringNull isBlankString:noti] ) {
         noti = @"";
     }
     self.shopIcomURL = modShopList.store_img;
-    shopMassage1 = [NSString stringWithFormat:@"%@：%@ | %@：%@ | %@%@",ZBLocalized(@"配送", nil),send_pay,ZBLocalized(@"起送", nil),send_Start,yueShou,ZBLocalized(@"份", nil)];
+    shopMassage1 = [NSString stringWithFormat:@"%@：%@ | %@：%@ | %@",ZBLocalized(@"配送", nil),send_pay,ZBLocalized(@"起送", nil),send_Start,yueShou];
     shopMassage2 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"配送时间", nil),time];
     shopMassage3 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"商家公告", nil),noti];
     if (modShopList.act_list.count != 0) {

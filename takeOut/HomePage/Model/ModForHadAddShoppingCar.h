@@ -16,4 +16,5 @@
 @property (nonatomic , strong)NSString *g_log;
 @property (nonatomic , strong)NSIndexPath *seleIndex;
 @property (nonatomic , strong)NSString *g_chooseType;
+@property (nonatomic , strong)NSDictionary *g_goodsPic;
 @end

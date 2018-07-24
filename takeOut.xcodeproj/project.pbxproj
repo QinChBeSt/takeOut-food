@@ -82,6 +82,7 @@
 		9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B9206B262300CEE3B0 /* LoginByPhoneVC.m */; };
 		9D72E2BD206B263F00CEE3B0 /* LoginByPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */; };
 		9D72E2C1206B4B3A00CEE3B0 /* MBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2C0206B4B3900CEE3B0 /* MBManager.m */; };
+		9D82B1A021070E5F00F765CF /* CellForBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D82B19F21070E5F00F765CF /* CellForBox.m */; };
 		9D84190120AD2C28005F7B6A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D84190020AD2C28005F7B6A /* Images.xcassets */; };
 		9D84190420AD5833005F7B6A /* CellForChooseCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D84190320AD5833005F7B6A /* CellForChooseCountry.m */; };
 		9D923F0D20ABE2C80057540B /* CellForChooseLag.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D923F0C20ABE2C80057540B /* CellForChooseLag.m */; };
@@ -300,6 +301,8 @@
 		9D775A1020847B7A00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9D775A1120847B7B00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9D775A1220847B7C00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9D82B19E21070E5F00F765CF /* CellForBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForBox.h; sourceTree = "<group>"; };
+		9D82B19F21070E5F00F765CF /* CellForBox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForBox.m; sourceTree = "<group>"; };
 		9D84190020AD2C28005F7B6A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9D84190220AD5833005F7B6A /* CellForChooseCountry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForChooseCountry.h; sourceTree = "<group>"; };
 		9D84190320AD5833005F7B6A /* CellForChooseCountry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForChooseCountry.m; sourceTree = "<group>"; };
@@ -826,6 +829,8 @@
 				9D4CBDB220B013EF009E626C /* CellForChooseOrderAdd.m */,
 				9D04639A20E7180B00812EC5 /* CellForPay.h */,
 				9D04639B20E7180B00812EC5 /* CellForPay.m */,
+				9D82B19E21070E5F00F765CF /* CellForBox.h */,
+				9D82B19F21070E5F00F765CF /* CellForBox.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1234,6 +1239,7 @@
 				9DA0228A2074DBDD005F7168 /* PayOrderChooseAddressVC.m in Sources */,
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
 				9D3854E82079AC4200175693 /* OrderSuccessfullVC.m in Sources */,
+				9D82B1A021070E5F00F765CF /* CellForBox.m in Sources */,
 				9DA0227E20746DEB005F7168 /* ModelForGetAddress.m in Sources */,
 				9D430E13207DF55300CE8F2A /* CellForOrderListNoPJ.m in Sources */,
 				9D98D969206A30BA0019AC0C /* UIView+CHView.m in Sources */,

@@ -14,7 +14,7 @@
 #import "bzDetailVC.h"
 #import "ChoosePayType.h"
 #define topHieght 100
-#define midHeight 80
+#define midHeight 120
 #define bottomHeight 80
 @interface SubmitOrderVC ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 @property (nonatomic , strong)UIView *naviView;
@@ -27,6 +27,7 @@
 @property (nonatomic , assign)float FsavePic;
 @property (nonatomic , assign)float FpsPic;
 @property (nonatomic , assign)float FpayMoney;
+@property (nonatomic , assign)float FBoxMoney;
 @property (nonatomic , strong)UIView *SwipeView;
 @property (nonatomic , strong)UILabel *bzLabSun;
 @property (nonatomic , strong)UIImageView *bzRightIcon;
@@ -60,7 +61,7 @@
     self.FallPIC = [self.ypic floatValue];
     self.FpsPic = [self.pspic floatValue];
     self.FsavePic = [self.yhpic floatValue];
-    
+    self.FBoxMoney = [self.boxPic floatValue];
     self.view.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
     [self createNaviView];
     [self setUpUI];
@@ -261,7 +262,7 @@
     
     [addView addGestureRecognizer:tapGesturRecognizer];
 //尾视图
-    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, midHeight + bottomHeight + 40)];
+    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, midHeight + bottomHeight + 80)];
     bottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomView];
     
@@ -274,7 +275,7 @@
     [bottomView addSubview:psMoney];
     [psMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(bottomView.mas_right).offset(-20);
-        make.centerY.equalTo(bottomView.mas_top).offset(midHeight / 4);
+        make.top.equalTo(bottomView.mas_top);
         make.height.equalTo(@(40));
     }];
     
@@ -285,12 +286,34 @@
     [bottomView addSubview:psMoneyTitle];
     [psMoneyTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bottomView.mas_left).offset(20);
-        make.centerY.equalTo(bottomView.mas_top).offset(midHeight / 4);
+        make.centerY.equalTo(psMoney);
     }];
     
     UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(15, 40, SCREEN_WIDTH - 30, 0.5)];
     line1.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [bottomView addSubview:line1];
+    
+    UILabel *boxMoney = [[UILabel alloc]init];
+    boxMoney.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"฿", nil),self.boxPic];
+    boxMoney.font = [UIFont systemFontOfSize:14];
+    boxMoney.textColor = [UIColor colorWithHexString:@"959595"];
+    [bottomView addSubview:boxMoney];
+    [boxMoney mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(bottomView.mas_right).offset(-20);
+        make.top.equalTo(psMoney.mas_bottom);
+        make.height.equalTo(@(40));
+    }];
+    
+    UILabel *boxMoneyTitle = [[UILabel alloc]init];
+    boxMoneyTitle.font = [UIFont systemFontOfSize:14];
+    boxMoneyTitle.text = ZBLocalized(@"餐盒费", nil);
+    boxMoneyTitle.textColor = [UIColor colorWithHexString:@"4b4b4b"];
+    [bottomView addSubview:boxMoneyTitle];
+    [boxMoneyTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bottomView.mas_left).offset(20);
+        make.centerY.equalTo(boxMoney);
+        make.height.equalTo(@(40));
+    }];
     
     
     UILabel *ADDMoneyTitle = [[UILabel alloc]init];
@@ -300,7 +323,8 @@
     [bottomView addSubview:ADDMoneyTitle];
     [ADDMoneyTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bottomView.mas_left).offset(20);
-        make.centerY.equalTo(bottomView.mas_top).offset(midHeight / 4 * 3);
+        make.top.equalTo(boxMoney.mas_bottom);
+        make.height.equalTo(@(40));
     }];
     
     
@@ -311,14 +335,15 @@
     [bottomView addSubview:ADDMoney];
     [ADDMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(bottomView.mas_right).offset(-20);
-        make.centerY.equalTo(bottomView.mas_top).offset(midHeight / 4 * 3);
+        make.centerY.equalTo(ADDMoneyTitle);
+        make.height.equalTo(@(40));
     }];
     
     UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(0,midHeight, SCREEN_WIDTH , 1)];
     line2.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [bottomView addSubview:line2];
     
-    self.FpayMoney = self.FallPIC - self.FsavePic + self.FpsPic;
+    self.FpayMoney = self.FallPIC - self.FsavePic + self.FpsPic + self.FBoxMoney;
     if (self.FpayMoney < 0) {
         self.FpayMoney = 0.01;
     }

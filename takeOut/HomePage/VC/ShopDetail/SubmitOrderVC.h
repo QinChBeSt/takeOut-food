@@ -15,4 +15,5 @@
 @property (nonatomic , strong)NSString *ypic;
 @property (nonatomic , strong)NSMutableArray *arrForOrder;
 @property (nonatomic , strong)NSString *shopId;
+@property (nonatomic , strong)NSString *boxPic;
 @end
