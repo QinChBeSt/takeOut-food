@@ -109,6 +109,7 @@
 		9DDFD2B52064F21900393DE5 /* HomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2B42064F21900393DE5 /* HomePageVC.m */; };
 		9DDFD2B82064F23400393DE5 /* MinePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2B72064F23400393DE5 /* MinePageVC.m */; };
 		9DDFD2BB2064F24700393DE5 /* OrderPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2BA2064F24700393DE5 /* OrderPageVC.m */; };
+		9DF398422106D52D002F2C59 /* IsStringNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF398412106D52D002F2C59 /* IsStringNull.m */; };
 		9DFF11DC206B6DB30084D63F /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF11DB206B6DB30084D63F /* UUID.m */; };
 		9DFF11DF206B6DEE0084D63F /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF11DE206B6DEE0084D63F /* KeyChainStore.m */; };
 		9DFF11E3206B93DE0084D63F /* MD5encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF11E2206B93DE0084D63F /* MD5encryption.m */; };
@@ -353,6 +354,8 @@
 		9DDFD2B72064F23400393DE5 /* MinePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePageVC.m; sourceTree = "<group>"; };
 		9DDFD2B92064F24700393DE5 /* OrderPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderPageVC.h; sourceTree = "<group>"; };
 		9DDFD2BA2064F24700393DE5 /* OrderPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderPageVC.m; sourceTree = "<group>"; };
+		9DF398402106D52D002F2C59 /* IsStringNull.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IsStringNull.h; sourceTree = "<group>"; };
+		9DF398412106D52D002F2C59 /* IsStringNull.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IsStringNull.m; sourceTree = "<group>"; };
 		9DFF11D8206B6D600084D63F /* takeOut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = takeOut.entitlements; sourceTree = "<group>"; };
 		9DFF11DA206B6DB30084D63F /* UUID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
 		9DFF11DB206B6DB30084D63F /* UUID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
@@ -854,6 +857,15 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		9DF3983F2106D516002F2C59 /* isNullBlock */ = {
+			isa = PBXGroup;
+			children = (
+				9DF398402106D52D002F2C59 /* IsStringNull.h */,
+				9DF398412106D52D002F2C59 /* IsStringNull.m */,
+			);
+			path = isNullBlock;
+			sourceTree = "<group>";
+		};
 		9DFF11D9206B6D8E0084D63F /* UUID */ = {
 			isa = PBXGroup;
 			children = (
@@ -907,6 +919,7 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9DF3983F2106D516002F2C59 /* isNullBlock */,
 				D62866342101F8090048F9A3 /* JKUiviewExtension */,
 				9D33AFCD2085C0CB0086DC93 /* MJRefresh */,
 				9D33AFC32085A2D90086DC93 /* GDLocalizableController */,
@@ -1204,6 +1217,7 @@
 				9D98D96C206A43780019AC0C /* CellForShopFoodChooseSize.m in Sources */,
 				9D5F243F20E4D73700C6A23D /* NewAddVC.m in Sources */,
 				D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */,
+				9DF398422106D52D002F2C59 /* IsStringNull.m in Sources */,
 				9D33B0012085C0CB0086DC93 /* MJRefreshAutoGifFooter.m in Sources */,
 				9DFF11DC206B6DB30084D63F /* UUID.m in Sources */,
 				9D33B00B2085C0CB0086DC93 /* MJRefreshConst.m in Sources */,

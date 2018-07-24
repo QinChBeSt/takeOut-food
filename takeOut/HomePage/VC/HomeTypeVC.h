@@ -13,4 +13,5 @@
 @property (nonatomic , strong) NSString *strlatitude;//经度
 @property (nonatomic , strong) NSString *strlongitude;
 @property (nonatomic , strong) NSString *typeName;
+@property (nonatomic , strong) NSString *TypeFlgStr;
 @end

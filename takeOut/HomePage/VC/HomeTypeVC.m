@@ -41,12 +41,41 @@
     self.view.backgroundColor = [UIColor whiteColor];
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
     view.backgroundColor = [UIColor whiteColor];
-    [self netWorkForShopList:0];
+   
+    if (self.TypeFlgStr.length == 0) {
+         [self netWorkForShopList:0];
+    }else{
+        //[self netWorkForShopFlgList:self.TypeFlgStr];
+    }
     [self.view addSubview:view];
     [self createNaviView];
     [self setUpUI];
 }
 #pragma mark - 网络请求
+//-(void)netWorkForShopFlgList:(NSString *)Flg{
+//    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,homeshopRecommendList];
+//    NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
+//    if (!strlongitude) {
+//        strlongitude = @"0";
+//    }
+//    if (!strlatitude) {
+//        strlatitude = @"0";
+//    }
+//    [par setValue:strlongitude forKey:@"lonng"];
+//    [par setValue:strlatitude forKey:@"lat"];
+//    NSString * strPage =@"1";
+//    int strPageid =[strPage intValue];
+//    NSNumber *numPage =[NSNumber numberWithInt:strPageid];
+//    [par setValue:@"1" forKey:@"flg"];
+//    [par setValue:Flg forKey:@"typeflg"];
+//    [par setValue:numPage forKey:@"page"];
+//     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+//
+//
+//     } withFail:^(NSError *error) {
+//
+//     }];
+//}
 -(void)netWorkForShopList:(NSInteger )tag{
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,homeGetShopList];
     NSMutableDictionary *par = [[NSMutableDictionary alloc]init];

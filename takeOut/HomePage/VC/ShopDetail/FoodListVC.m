@@ -441,6 +441,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     [self.addBuyCarBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.addBuyCarBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
     [self.addBuyCarBtn addTarget:self action:@selector(addBuyCar) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.chooseSizeView addSubview:self.addBuyCarBtn];
     [self.addBuyCarBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.choosePrice);

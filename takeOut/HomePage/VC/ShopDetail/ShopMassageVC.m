@@ -70,11 +70,18 @@
         [self.shopIcon sd_setImageWithURL:[NSURL URLWithString:shopLOGURL]];
         self.openTime = [NSString stringWithFormat:@"%@:%@",ZBLocalized(@"配送时间", nil),resDic[@"opentime"]];
         self.shopName =resDic[@"shopname"];
-        self.shopADD =resDic[@"shopad"];
+        self.shopADD = [NSString stringWithFormat:@"%@",resDic[@"shopad"]];
+        if ([IsStringNull isBlankString:self.shopADD]) {
+            self.shopADD = @"";
+        }
+        
         self.shopPhotoArr = resDic[@"shopphoto"];
         self.shopSafePhotoArr = resDic[@"safephoto"];
-        self.addressLab.text = resDic[@"shopad"];
-        self.shopPhoneNo = resDic[@"shopphone"];
+        self.addressLab.text = self.shopADD;
+        self.shopPhoneNo =[NSString stringWithFormat:@"%@",resDic[@"shopphone"]];
+        if ([IsStringNull isBlankString:self.shopPhoneNo]) {
+            self.shopPhoneNo = @"";
+        }
         self.latStr = resDic[@"lat"];
         self.longStr = resDic[@"lang"];
         __weak typeof(self) ws = self;

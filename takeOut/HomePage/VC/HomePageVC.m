@@ -256,7 +256,7 @@
     NSInteger strFlgid =self.chooseType + 1;
     NSNumber *numFlg =[NSNumber numberWithInteger:strFlgid];
     
-    NSString * strTypeFlg =@"1";
+    NSString * strTypeFlg =@"0";
     int strTypeFlgid =[strTypeFlg intValue];
     NSNumber *numTypeFlg =[NSNumber numberWithInt:strTypeFlgid];
     _pageIndex++;
@@ -312,7 +312,7 @@
     NSInteger strFlgid =self.chooseType + 1;
     NSNumber *numFlg =[NSNumber numberWithInteger:strFlgid];
     
-    NSString * strTypeFlg =@"1";
+    NSString * strTypeFlg =@"0";
     int strTypeFlgid =[strTypeFlg intValue];
     NSNumber *numTypeFlg =[NSNumber numberWithInt:strTypeFlgid];
     _pageIndex = 1;
@@ -820,7 +820,7 @@
 -(void)tapSelectLeft{
     HomeTypeVC *shop = [[HomeTypeVC alloc]init];
     shop.typeName = ZBLocalized(@"优惠专区", nil);
-    shop.shopTypeId = @"2";
+    shop.TypeFlgStr = @"2";
     shop.strlatitude = strlatitude;
     shop.strlongitude = strlongitude;
     shop.hidesBottomBarWhenPushed = YES;
@@ -829,7 +829,7 @@
 -(void)tapSelectRight{
     HomeTypeVC *shop = [[HomeTypeVC alloc]init];
     shop.typeName = ZBLocalized(@"优惠专区", nil);
-    shop.shopTypeId = @"3";
+    shop.TypeFlgStr = @"3";
     shop.strlatitude = strlatitude;
     shop.strlongitude = strlongitude;
     shop.hidesBottomBarWhenPushed = YES;

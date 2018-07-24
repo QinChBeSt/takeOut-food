@@ -109,6 +109,16 @@
          make.right.equalTo(ws.niveView.mas_right).offset(-kWidthScale(18));
     }];
     
+    UIImageView *shopNotiImg = [[UIImageView alloc]init];
+    [shopNotiImg setImage:[UIImage imageNamed:@"shopNoti"]];
+    [self.niveView addSubview:shopNotiImg];
+    [shopNotiImg mas_makeConstraints:^(MASConstraintMaker *make){
+        make.left.equalTo(ws.shipIcon.mas_right).offset(kWidthScale(18));
+        make.centerY.equalTo(ws.shipIcon);
+        make.width.equalTo(@(kWidthScale(30)));
+        make.height.equalTo(@(kWidthScale(30)));
+    }];
+    
     self.shopNotiLab = [[UILabel alloc]init];
     if ([self isBlankString:self.shopNotiStr]) {
         self.shopNotiStr = @"";
@@ -119,7 +129,7 @@
     self.shopNotiLab.textColor = [UIColor blackColor];
     [self.niveView addSubview:self.shopNotiLab];
     [self.shopNotiLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(ws.shipIcon.mas_right).offset(kWidthScale(18));
+        make.left.equalTo(shopNotiImg.mas_right).offset(kWidthScale(5));
         make.centerY.equalTo(ws.shipIcon) ;
         make.right.equalTo(ws.niveView.mas_right).offset(-kWidthScale(18));
     }];
