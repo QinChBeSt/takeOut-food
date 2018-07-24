@@ -448,7 +448,7 @@
     }];
     
     headviewSelectLeftView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [headviewSelectLeftView setImage:[UIImage imageNamed:@"banner1"] forState:UIControlStateNormal];
+    [headviewSelectLeftView setImage:[UIImage imageNamed:ZBLocalized(@"chihuozhongwen", nil)] forState:UIControlStateNormal];
     [headviewSelectLeftView addTarget:self action:@selector(tapSelectLeft) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectLeftView];
     
@@ -461,7 +461,7 @@
 
    
     headviewSelectRightView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [headviewSelectRightView setImage:[UIImage imageNamed:@"banner2"] forState:UIControlStateNormal];
+    [headviewSelectRightView setImage:[UIImage imageNamed:ZBLocalized(@"hongbaozhongwen", nil) ] forState:UIControlStateNormal];
     [headviewSelectRightView addTarget:self action:@selector(tapSelectRight) forControlEvents:UIControlEventTouchUpInside];
     [headviewSelectView addSubview:headviewSelectRightView];
     [headviewSelectRightView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -501,7 +501,7 @@
     }];
 
      NSArray *arrButtonTitle = @[ZBLocalized(@"综合排序", nil),ZBLocalized(@"销量最高", nil),ZBLocalized(@"距离最近", nil)];
-    CGFloat buttonW = (SCREEN_WIDTH - kWidthScale(36) )/ arrButtonTitle.count; //按钮的宽度和高度
+    CGFloat buttonW = (SCREEN_WIDTH - kWidthScale(18) )/ arrButtonTitle.count; //按钮的宽度和高度
     CGFloat buttonH = kWidthScale(60);
     for (int i=0; i<arrButtonTitle.count; i++) {  // 循环创建3个按钮
         clickButton=[[SortButton alloc]initWithFrame:CGRectMake(kWidthScale(18) +  buttonW*i, kWidthScale(100), buttonW, buttonH)];
@@ -511,8 +511,8 @@
         }
         
         clickButton.tag=i;
-        clickButton.titleLabel.font=[UIFont systemFontOfSize:10.0];
-        [clickButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+        clickButton.titleLabel.font=[UIFont systemFontOfSize:14.0];
+        [clickButton setTitleColor:[UIColor lightGrayColor]forState:UIControlStateNormal];
         [clickButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
         [clickButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         [clickButton setImage:[UIImage imageNamed:@"ic_pulldown"] forState:UIControlStateSelected];
@@ -587,8 +587,11 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
-    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+  
+    ModelForShopList *mod =[[ModelForShopList alloc]init];
+    mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
+    
+    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld%@",indexPath.section,indexPath.row,mod.store_id];
     
     TableViewCellForHomepageList *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
@@ -609,15 +612,8 @@
 }
 /* 行高 **/
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (dicForShow[indexPath]== [NSNumber numberWithBool:YES] ) {
-        ModelForShopList *mod =[self.arrForHomePageShopList objectAtIndex:indexPath.row];
-        NSInteger cont = mod.act_list.count - 2;
-        cont = cont / 3 + 1;
-        NSInteger addHeight = cont * 20 + kWidthScale(250);
-        return addHeight;
-        
-    }
-       return kWidthScale(250);
+
+       return [self cellHeightForIndexPath:indexPath cellContentViewWidth:SCREEN_WIDTH tableView:self.tableView];
     
 }
 

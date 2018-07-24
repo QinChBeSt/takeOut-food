@@ -21,12 +21,14 @@
 @property (nonatomic , strong)NSArray *saveListArr;
 @property (nonatomic , strong)UIImageView *shipIcon;
 @property (nonatomic , strong)UILabel *shopName;
+@property (nonatomic , strong)UILabel *shopNotiLab;
 @property (nonatomic , strong)UILabel *shopSaveLabel;
 @property (nonatomic , strong)UIImageView *shopSaveImg;
 @property (nonatomic , strong)UILabel *shopSaveNumLabel;
 @property (nonatomic , strong)ModelForShopList *toNextMod;
 @property (nonatomic , strong)NSString *shopIcomURL;
 @property (nonatomic , strong)NSString *shopACType;
+@property (nonatomic , strong)NSString *shopNotiStr;
 @end
 
 @implementation ShopDetailVC{
@@ -51,7 +53,7 @@
 
 #pragma mark - ui
 -(void)createNaviView{
-    self.niveView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaTopHeight + 100)];
+    self.niveView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaTopHeight + kWidthScale(250))];
     self.niveView.image =[UIImage imageNamed:@"bg_shangjiaxiangqing2"];
     self.niveView.backgroundColor = [UIColor colorWithHexString:@"737300"];
     [self.view addSubview:self.niveView];
@@ -90,19 +92,36 @@
     [self.shipIcon sd_setImageWithURL:[NSURL URLWithString:self.shopIcomURL] placeholderImage:[UIImage imageNamed:@"logo"]];
     [self.niveView addSubview:self.shipIcon];
     [self.shipIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(ws.niveView.mas_left).offset(10);
-        make.bottom.equalTo(ws.niveView.mas_bottom).offset(-10);
-        make.width.equalTo(@(SCREEN_WIDTH / 5));
-        make.height.equalTo(@(SCREEN_WIDTH / 5));
+        make.left.equalTo(ws.niveView.mas_left).offset(kWidthScale(18));
+        make.bottom.equalTo(ws.niveView.mas_bottom).offset(-(kWidthScale(250) - 40) / 2);
+        make.width.equalTo(@(kWidthScale(155)));
+        make.height.equalTo(@(kWidthScale(155)));
     }];
     
     self.shopName = [[UILabel alloc]init];
     self.shopName.text = shopNameStr;
+    self.shopName.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     self.shopName.textColor = [UIColor blackColor];
     [self.niveView addSubview:self.shopName];
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(ws.shipIcon.mas_right).offset(20);
-        make.top.equalTo(ws.shipIcon);
+        make.left.equalTo(ws.shipIcon.mas_right).offset(kWidthScale(18));
+        make.top.equalTo(ws.shipIcon).offset(-2) ;
+         make.right.equalTo(ws.niveView.mas_right).offset(-kWidthScale(18));
+    }];
+    
+    self.shopNotiLab = [[UILabel alloc]init];
+    if ([self isBlankString:self.shopNotiStr]) {
+        self.shopNotiStr = @"";
+    }
+    self.shopNotiLab.text = [NSString stringWithFormat:@"%@:%@",ZBLocalized(@"公告", nil),self.shopNotiStr];
+    
+    self.shopNotiLab.font = [UIFont systemFontOfSize:14];
+    self.shopNotiLab.textColor = [UIColor blackColor];
+    [self.niveView addSubview:self.shopNotiLab];
+    [self.shopNotiLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.shipIcon.mas_right).offset(kWidthScale(18));
+        make.centerY.equalTo(ws.shipIcon) ;
+        make.right.equalTo(ws.niveView.mas_right).offset(-kWidthScale(18));
     }];
     
     self.shopSaveImg = [[UIImageView alloc]init];
@@ -110,8 +129,8 @@
     [self.niveView addSubview:self.shopSaveImg];
     [self.shopSaveImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.shopName);
-        make.top.equalTo(ws.shopName.mas_bottom).offset(20);
-        make.width.equalTo(@(15));
+        make.bottom.equalTo(ws.shipIcon.mas_bottom).offset(0);
+        make.width.equalTo(@(41));
         make.height.equalTo(@(15));
     }];
    
@@ -181,6 +200,7 @@
     self.segmentVC = [[ZWMSegmentController alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight + 100, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight -100) titles:@[ZBLocalized(@"点菜", nil),ZBLocalized(@"评价", nil),ZBLocalized(@"商家", nil)]];
     self.segmentVC.segmentView.showSeparateLine = YES;
     self.segmentVC.segmentView.segmentTintColor = [UIColor blackColor];
+    self.segmentVC.segmentView.segmentNormalColor = [UIColor colorWithHexString:@"696969"];
     self.segmentVC.viewControllers = [array copy];
     if (array.count==1) {
         self.segmentVC.segmentView.style=ZWMSegmentStyleDefault;
@@ -210,13 +230,26 @@
     self.shopId = modShopList.store_id;
     self.shopUpPayMoney = modShopList.up_pic;
     self.shopIcomURL = modShopList.store_img;
+    self.shopNotiStr = modShopList.notice;
     shopNameStr = modShopList.store_name;
     self.shopACType = modShopList.acTypeStr;
     if (modShopList.act_list.count != 0) {
         self.saveListArr = modShopList.act_list;
         numForSaveCount = [NSString stringWithFormat:@"%lu%@",(unsigned long)self.saveListArr.count,ZBLocalized(@"个活动", nil)];
          NSString *imgUrl =  self.saveListArr[0][@"img"];
-         shopSaveIconUrl =[NSString stringWithFormat:@"%@/%@",BASEURL,imgUrl] ;
+        NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+        NSLog(@"切换后的语言:%@",language);
+        NSString *lauStr;
+        if ([language isEqualToString:@"th"]) {
+            lauStr = @"th";
+        }
+        else if ([language isEqualToString:@"en"]){
+            lauStr = @"en";
+        }
+        else if ([language isEqualToString:@"zh-Hans"]){
+            lauStr = @"zh";
+        }
+         shopSaveIconUrl =[NSString stringWithFormat:@"%@/%@/%@",IMGsaveBaesURL,lauStr,imgUrl] ;
         int count = 0;
         
         NSMutableDictionary *dic = self.saveListArr[0];
@@ -240,7 +273,7 @@
             ENSave1Str = arraySave1[2];
         }
         
-        NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+        
         if ([language isEqualToString:@"th"]) {
             shopSaveStr =THSave1Str;
         }
@@ -265,6 +298,45 @@
 //        }
     }
     
+}
+
+-(BOOL) isBlankString:(NSString *)string{
+    NSString *str = [NSString stringWithFormat:@"%@",string];
+    
+    if ([str isEqualToString:@""]) {
+        return YES;
+    }
+    
+    if ([str isEqualToString:@"<null>"]) {
+        return YES;
+    }
+    
+    if ([str isEqualToString:@"(null)"]) {
+        return YES;
+    }
+    
+    if ([str isEqualToString:@"<nil>"]) {
+        return YES;
+    }
+    
+    if (str == nil || str == NULL) {
+        return YES;
+    }
+    
+    if ([str isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    
+    if ([str isEqual:[NSNull null]]) {
+        return YES;
+    }
+    
+    if ([[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        return YES;
+    }
+    
+    
+    return NO;
 }
 /*
 #pragma mark - Navigation

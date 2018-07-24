@@ -24,7 +24,7 @@
     [self.contentView addSubview:self.bigImage];
     [self.bigImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.contentView.mas_top).offset(10);
-        make.left.equalTo(ws.contentView.mas_left).offset(24);
+        make.left.equalTo(ws.contentView.mas_left).offset(30);
         make.centerY.equalTo(ws.contentView);
         make.width.equalTo(ws.bigImage.mas_height);
     }];

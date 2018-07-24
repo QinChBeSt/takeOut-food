@@ -15,6 +15,7 @@
 #define callToShopViewHeight 40
 #define addressViewHeight 125
 #define orderMassageViewHeight 90
+#define ShopNameHeight 40
 
 @interface DetailForOrder ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong)UIView *naviView;
@@ -84,7 +85,7 @@
             self.orderNowType.text = ZBLocalized(@"骑手到店", nil);
         }
         else if ([orderNowType isEqualToString:@"8"]){
-            self.orderNowType.text = ZBLocalized(@"骑手拿到东西", nil);
+            self.orderNowType.text = ZBLocalized(@"骑手已取货", nil);
         }
         else if ([orderNowType isEqualToString:@"9"]){
             self.orderNowType.text = ZBLocalized(@"订单完成", nil);
@@ -168,11 +169,11 @@
     }];
 }
 -(void)createHeadView{
-    self.headBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headViewHeight + 20 )];
+    self.headBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headViewHeight + 20 + ShopNameHeight)];
     self.headBackView.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [self.view addSubview:self.headBackView];
     
-    UIView *backview = [[UIView alloc]initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, headViewHeight)];
+    UIView *backview = [[UIView alloc]initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, headViewHeight )];
     backview.backgroundColor = [UIColor whiteColor];
     [self.headBackView addSubview:backview];
     
@@ -194,7 +195,23 @@
         make.centerX.equalTo(backview);
         make.centerY.equalTo(backview.mas_centerY).offset(headViewHeight/4 );
     }];
-    
+    UIView *shopNameView = [[UIView alloc]init];
+    shopNameView.backgroundColor = [UIColor whiteColor];
+    [self.headBackView addSubview:shopNameView];
+    [shopNameView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.headBackView.mas_bottom);
+        make.height.equalTo(@(ShopNameHeight));
+        make.width.equalTo(@(SCREEN_WIDTH));
+        make.centerX.equalTo(WelcomeLabel);
+    }];
+    UILabel *shopNamelab = [[UILabel alloc]init];
+    shopNamelab.text = self.shopNameStr;
+    shopNamelab.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+    [shopNameView addSubview:shopNamelab];
+    [shopNamelab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(shopNameView);
+        make.left.equalTo(shopNameView.mas_left).offset(30);
+    }];
 //    self.shopNameLabel = [[UILabel alloc]init];
 //    self.shopNameLabel.backgroundColor = [UIColor whiteColor];
 //    self.shopNameLabel.textColor = [UIColor grayColor];
@@ -209,10 +226,12 @@
     
 }
 -(void)createBottonView{
-    self.bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,  moneyViewHeight + totitViewHeight + callToShopViewHeight + addressViewHeight + orderMassageViewHeight + 10)];
+    self.bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, moneyViewHeight + totitViewHeight + callToShopViewHeight + addressViewHeight + orderMassageViewHeight + 10)];
+    
     self.bottomView.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [self.view addSubview:self.bottomView];
     __weak typeof(self) ws = self;
+  
     UIView *backView = [[UIView alloc]init];
     backView.backgroundColor = [UIColor whiteColor];
     [self.bottomView addSubview:backView];

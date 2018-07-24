@@ -113,12 +113,16 @@
 		9DFF11DF206B6DEE0084D63F /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF11DE206B6DEE0084D63F /* KeyChainStore.m */; };
 		9DFF11E3206B93DE0084D63F /* MD5encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF11E2206B93DE0084D63F /* MD5encryption.m */; };
 		AE8788150AACCD47B1AFF44F /* libPods-takeOut.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C52C8109E37E7630666F17 /* libPods-takeOut.a */; };
+		D62866372101F80A0048F9A3 /* UIView+JKUiviewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D62866362101F8090048F9A3 /* UIView+JKUiviewExtension.m */; };
+		D628663A2101F8130048F9A3 /* JKSmallLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = D62866382101F8120048F9A3 /* JKSmallLabels.m */; };
 		D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88CF20652EA7000D509A /* UIColor+Hex.m */; };
 		D65D88D520652F25000D509A /* EXNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88D120652F24000D509A /* EXNavigationVC.m */; };
 		D65D88D620652F25000D509A /* EXTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D88D420652F24000D509A /* EXTabBarVC.m */; };
 		D6C301C42077BD24009B9B35 /* CellForOrderList.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C301C32077BD24009B9B35 /* CellForOrderList.m */; };
 		D6C301C82077C0BA009B9B35 /* ModelForOrderList.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C301C72077C0BA009B9B35 /* ModelForOrderList.m */; };
 		D6C301CB2077CA85009B9B35 /* ViewForOrderListFoodsName.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C301CA2077CA85009B9B35 /* ViewForOrderListFoodsName.m */; };
+		D6D7A6292100A6F50081AB3C /* ZHPlaceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D7A6282100A6F50081AB3C /* ZHPlaceInfoModel.m */; };
+		D6D7A62C2100AE2A0081AB3C /* CellForMyNearSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D7A62B2100AE2A0081AB3C /* CellForMyNearSpace.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,6 +360,10 @@
 		9DFF11DE206B6DEE0084D63F /* KeyChainStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
 		9DFF11E1206B93DE0084D63F /* MD5encryption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MD5encryption.h; sourceTree = "<group>"; };
 		9DFF11E2206B93DE0084D63F /* MD5encryption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MD5encryption.m; sourceTree = "<group>"; };
+		D62866352101F8090048F9A3 /* UIView+JKUiviewExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JKUiviewExtension.h"; sourceTree = "<group>"; };
+		D62866362101F8090048F9A3 /* UIView+JKUiviewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JKUiviewExtension.m"; sourceTree = "<group>"; };
+		D62866382101F8120048F9A3 /* JKSmallLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSmallLabels.m; sourceTree = "<group>"; };
+		D62866392101F8130048F9A3 /* JKSmallLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSmallLabels.h; sourceTree = "<group>"; };
 		D65D88CE20652EA7000D509A /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		D65D88CF20652EA7000D509A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		D65D88D120652F24000D509A /* EXNavigationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXNavigationVC.m; sourceTree = "<group>"; };
@@ -368,6 +376,10 @@
 		D6C301C72077C0BA009B9B35 /* ModelForOrderList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelForOrderList.m; sourceTree = "<group>"; };
 		D6C301C92077CA85009B9B35 /* ViewForOrderListFoodsName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewForOrderListFoodsName.h; sourceTree = "<group>"; };
 		D6C301CA2077CA85009B9B35 /* ViewForOrderListFoodsName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewForOrderListFoodsName.m; sourceTree = "<group>"; };
+		D6D7A6272100A6F50081AB3C /* ZHPlaceInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHPlaceInfoModel.h; sourceTree = "<group>"; };
+		D6D7A6282100A6F50081AB3C /* ZHPlaceInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHPlaceInfoModel.m; sourceTree = "<group>"; };
+		D6D7A62A2100AE2A0081AB3C /* CellForMyNearSpace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellForMyNearSpace.h; sourceTree = "<group>"; };
+		D6D7A62B2100AE2A0081AB3C /* CellForMyNearSpace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellForMyNearSpace.m; sourceTree = "<group>"; };
 		F3C52C8109E37E7630666F17 /* libPods-takeOut.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-takeOut.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -697,6 +709,8 @@
 			children = (
 				9DA0227C20746DEB005F7168 /* ModelForGetAddress.h */,
 				9DA0227D20746DEB005F7168 /* ModelForGetAddress.m */,
+				D6D7A6272100A6F50081AB3C /* ZHPlaceInfoModel.h */,
+				D6D7A6282100A6F50081AB3C /* ZHPlaceInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -733,6 +747,8 @@
 				9DA022802074734F005F7168 /* CellForMyAddress.m */,
 				9D430E14207E0A7500CE8F2A /* CellForMyAve.h */,
 				9D430E15207E0A7500CE8F2A /* CellForMyAve.m */,
+				D6D7A62A2100AE2A0081AB3C /* CellForMyNearSpace.h */,
+				D6D7A62B2100AE2A0081AB3C /* CellForMyNearSpace.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -877,9 +893,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D62866342101F8090048F9A3 /* JKUiviewExtension */ = {
+			isa = PBXGroup;
+			children = (
+				D62866392101F8130048F9A3 /* JKSmallLabels.h */,
+				D62866382101F8120048F9A3 /* JKSmallLabels.m */,
+				D62866352101F8090048F9A3 /* UIView+JKUiviewExtension.h */,
+				D62866362101F8090048F9A3 /* UIView+JKUiviewExtension.m */,
+			);
+			path = JKUiviewExtension;
+			sourceTree = "<group>";
+		};
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D62866342101F8090048F9A3 /* JKUiviewExtension */,
 				9D33AFCD2085C0CB0086DC93 /* MJRefresh */,
 				9D33AFC32085A2D90086DC93 /* GDLocalizableController */,
 				9D012B1E20736E440015322E /* JZLocationConverter */,
@@ -1149,6 +1177,7 @@
 				9D33AFFE2085C0CB0086DC93 /* MJRefreshComponent.m in Sources */,
 				9D33B0032085C0CB0086DC93 /* MJRefreshAutoStateFooter.m in Sources */,
 				9D012B1420734FDF0015322E /* MineAddressVC.m in Sources */,
+				D628663A2101F8130048F9A3 /* JKSmallLabels.m in Sources */,
 				9DDFD2842064EC7100393DE5 /* main.m in Sources */,
 				9D923F1020AC35ED0057540B /* CellForHomeType.m in Sources */,
 				9D4952692068CD95005A6BBC /* UIView+ZWMBadge.m in Sources */,
@@ -1205,6 +1234,7 @@
 				9DA022872074C5B3005F7168 /* CellForSubmitOrder.m in Sources */,
 				9D72E2B7206B25E200CEE3B0 /* RegisterVC.m in Sources */,
 				9D3854F1207A0FB400175693 /* CellForShopEva.m in Sources */,
+				D62866372101F80A0048F9A3 /* UIView+JKUiviewExtension.m in Sources */,
 				9D33AFFD2085C0CB0086DC93 /* MJRefreshBackFooter.m in Sources */,
 				9D33B0052085C0CB0086DC93 /* MJRefreshBackNormalFooter.m in Sources */,
 				D65D88D020652EA7000D509A /* UIColor+Hex.m in Sources */,
@@ -1231,10 +1261,12 @@
 				9D262035206CD24500A2351B /* WillEvaluateVC.m in Sources */,
 				9D4952612068C97C005A6BBC /* ShopDetailVC.m in Sources */,
 				9D262032206CD21F00A2351B /* AllOrderVC.m in Sources */,
+				D6D7A6292100A6F50081AB3C /* ZHPlaceInfoModel.m in Sources */,
 				9D33B0042085C0CB0086DC93 /* MJRefreshBackGifFooter.m in Sources */,
 				9D012B1D20736C200015322E /* LocationMapVC.m in Sources */,
 				9D33B0062085C0CB0086DC93 /* MJRefreshBackStateFooter.m in Sources */,
 				9D33B0092085C0CB0086DC93 /* MJRefreshStateHeader.m in Sources */,
+				D6D7A62C2100AE2A0081AB3C /* CellForMyNearSpace.m in Sources */,
 				D6C301C82077C0BA009B9B35 /* ModelForOrderList.m in Sources */,
 				9D2F370720AACBD000A916E6 /* UserProtoVC.m in Sources */,
 				9D923F0D20ABE2C80057540B /* CellForChooseLag.m in Sources */,

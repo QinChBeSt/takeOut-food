@@ -10,6 +10,8 @@
 
 @interface HomeDetailWebView ()
 @property (nonatomic , strong)UIView *naviView;
+
+@property (nonatomic, strong) UIWebView *webView;
 @end
 
 @implementation HomeDetailWebView
@@ -22,7 +24,7 @@
     
     __weak typeof(self) ws = self;
     UIImageView *backImg = [[UIImageView alloc]init];
-    backImg.backgroundColor = [UIColor orangeColor];
+    [backImg setImage:[UIImage imageNamed:@"back_black"]];
     [self.naviView addSubview:backImg];
     [backImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.naviView.mas_top).offset(SafeAreaStatsBarHeight + 5);
@@ -31,6 +33,7 @@
         make.height.equalTo(@(30));
     }];
     
+   
     UIButton *backBTN = [UIButton buttonWithType:UIButtonTypeCustom];
     [backBTN addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [self.naviView addSubview:backBTN];
@@ -57,6 +60,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createNaviView];
+    
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREENH_HEIGHT - SafeAreaTopHeight)];
+    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];
+    [self.view addSubview: self.webView];
+    [self.webView loadRequest:request];
+
+    
 }
 
 - (void)didReceiveMemoryWarning {

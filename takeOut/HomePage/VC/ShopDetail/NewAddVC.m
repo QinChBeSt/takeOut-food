@@ -224,6 +224,7 @@
     self.userPhoneNum.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     self.userPhoneNum.delegate = self;
     self.userPhoneNum.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    self.userPhoneNum.keyboardType = UIKeyboardTypeNumberPad;
     [self.userPhoneNum addTarget:self action:@selector(PhoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.userPhoneNum];
     [self.userPhoneNum mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -371,7 +372,12 @@
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人姓名", nil)];
     }else if (_userPhoneNum.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人电话", nil)];
-    }else if (_houseAdd.text.length == 0){
+    }else if (_userPhoneNum.text.length < 9){
+        [MBManager showBriefAlert:ZBLocalized(@"手机号应该为9~11位数字", nil)];
+    }else if (_userPhoneNum.text.length > 11){
+        [MBManager showBriefAlert:ZBLocalized(@"手机号应该为9~11位数字", nil)];
+    }
+    else if (_houseAdd.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请获填写具体位置", nil)];
     }else{
         
@@ -417,7 +423,15 @@
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人电话", nil)];
     }else if (_houseAdd.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请获填写具体位置", nil)];
-    }else{
+    }else if([[_userNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length]==0) {
+        [MBManager showBriefAlert:ZBLocalized(@"请填写收货人姓名", nil)];
+        return;
+    }else if ([[_userPhoneNum.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length]==0){
+        [MBManager showBriefAlert:ZBLocalized(@"请填写收货人电话", nil)];
+        return;
+    }
+    
+    else{
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
@@ -498,9 +512,9 @@
 -(void)PhoneTextFieldDidChange :(UITextField *)theTextField{
     
     if (theTextField == self.userPhoneNum) {
-        if (theTextField.text.length > 12) {
-            theTextField.text = [theTextField.text substringToIndex:12];
-           
+        if (theTextField.text.length > 11) {
+            theTextField.text = [theTextField.text substringToIndex:11];
+           [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于11位数", nil) ];
         }
          _userPhoneStr = theTextField.text;
     }

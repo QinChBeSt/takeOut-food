@@ -18,10 +18,14 @@
     }
     return self;
 }
+
+
+
 -(void)setupUI{
     __weak typeof(self) ws = self;
     self.typeName = [[UILabel alloc]init];
      self.typeName.font = [UIFont systemFontOfSize:14];
+    
     [self.contentView addSubview:self.typeName];
     [self.typeName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.contentView.mas_left).offset(12);
@@ -43,6 +47,10 @@
         make.width.equalTo(@(16));
         make.height.equalTo(@(16));
     }];
+    
+    
+    
+
 }
 
 - (void)awakeFromNib {
@@ -53,6 +61,14 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
+    if (selected == YES) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.typeName.textColor = [UIColor blackColor];
+    }
+    else{
+        self.typeName.textColor = [UIColor colorWithHexString:BaseTextGrayColor];
+        self.contentView.backgroundColor = [UIColor colorWithHexString:BaseBackgroundGray];
+    }
     // Configure the view for the selected state
 }
 

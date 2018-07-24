@@ -28,7 +28,7 @@
 {
     [super layoutSubviews];
     [self.foodsName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(25);
+        make.left.equalTo(self.mas_left).offset(45);
         make.centerY.equalTo(self);
     }];
     

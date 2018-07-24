@@ -76,10 +76,10 @@
     }];
 }
 -(void)setMod:(ModForHadAddShoppingCar *)Mod{
-    NSInteger price = [Mod.g_pic integerValue];
+    CGFloat price = [Mod.g_pic floatValue];
     NSInteger goodscount = [Mod.count integerValue];
     price = price * goodscount;
-    NSString *priceStr = [NSString stringWithFormat:@"%@%ld",ZBLocalized(@"฿", nil),(long)price];
+    NSString *priceStr = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),price];
     self.goodsName.text = Mod.g_name;
     self.goodsMoney.text =ZBLocalized(priceStr, nil);
     self.goodsCount.text = [NSString stringWithFormat:@"%@",Mod.count];

@@ -268,7 +268,7 @@
     hintLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:hintLabel];
     hintLabel.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登陆代表您已同意《BEEORDER用户协议》", nil)];
+    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登录代表您已同意《BEEORDER用户协议》", nil)];
     //获取要调整颜色的文字位置,调整颜色
     NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BEEORDER用户协议》", nil)];
     [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
@@ -319,8 +319,9 @@
         [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
         return;
     }
+    
     //启动倒计时
-    [self performSelector:@selector(reflashGetKeyBt:)withObject:[NSNumber numberWithInt:60] afterDelay:0];
+    
     NSString * uuidStr= [UUID getUUID];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getsmsMsg];
     NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
@@ -329,34 +330,43 @@
     if ([self.countryNumLab.text isEqualToString:@"+86"]) {
         phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
         phoneZoneStr = [NSString stringWithFormat:@"86"];
+        if (phoneStr.length !=11) {
+            [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
+            return;
+        }
     }else{
+        
         NSString *first = [self.phoneNumStr substringToIndex:1];
         if ([first isEqualToString:@"0"]) {
             if (self.phoneNumStr.length >10) {
                 [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于10位数", nil) ];
                 return;
-            }else{
-                 phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
+            }else if (self.phoneNumStr.length <10) {
+                [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
+                return;
             }
-        }else {
+            else{
+                phoneStr = [NSString stringWithFormat:@"%@",self.phoneNumStr];
+            }
+        }else  {
             if (self.phoneNumStr.length >9) {
                 [MBManager showBriefAlert:ZBLocalized(@"手机号不能大于9位数", nil) ];
                 return;
-            }else{
-                 phoneStr = [NSString stringWithFormat:@"0%@",self.phoneNumStr];
+            }else if (self.phoneNumStr.length <9) {
+                [MBManager showBriefAlert:ZBLocalized(@"请输入正确的手机号", nil)];
+                return;
+            }
+            else{
+                phoneStr = [NSString stringWithFormat:@"0%@",self.phoneNumStr];
             }
         }
-       
+        
         phoneZoneStr = [NSString stringWithFormat:@"66"];
     }
-   
-    
-    
-    
-    //[par setValue:uuidStr forKey:@"phonemac"];
+    [par setValue:uuidStr forKey:@"phonemac"];
     [par setValue:phoneStr forKey:@"phone"];
     [par setValue:phoneZoneStr forKey:@"phonezone"];
-    
+    [self performSelector:@selector(reflashGetKeyBt:)withObject:[NSNumber numberWithInt:60] afterDelay:0];
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         NSString *code =[NSString stringWithFormat:@"%@",result[@"code"]];
         if ([code isEqualToString:@"1"]) {
@@ -367,7 +377,7 @@
         }
         
     } withFail:^(NSError *error) {
-        [MBManager showBriefAlert:ZBLocalized(@"获取验证码失败，请检查网络", nil)];
+        [MBManager showBriefAlert:@"获取验证码失败，请检查网络"];
     }];
 }
 #pragma mark - 监听textFile

@@ -50,7 +50,7 @@
         _isLoginOut = 0;
         self.LogOutBtn.hidden = YES;
     }else{
-    self.userName.text = userName;
+    self.userName.text = [NSString stringWithFormat:@"kpV%@",userName];
     self.userPhone.text = userPhine;
         _isLoginOut = 1;
         self.LogOutBtn.hidden = NO;

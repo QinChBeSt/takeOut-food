@@ -242,6 +242,7 @@
     ModelForOrderList *mod = [[ModelForOrderList alloc]init];
     mod = [self.arrForOrerList objectAtIndex:indexPath.row];
     detailvc.orderID = mod.ordenum;
+    detailvc.shopNameStr = mod.shopname;
     [self.navigationController pushViewController:detailvc animated:YES];
 }
 
