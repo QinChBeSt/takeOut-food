@@ -122,13 +122,24 @@
     
     if (self.saveListArr.count != 0) {
         for (int i = 0 ; i < self.saveListArr.count; i++) {
-            UIImageView *saveIcon = [[UIImageView alloc]initWithFrame:CGRectMake(60, SafeAreaTopHeight + 195+10 + i * 30, 20, 20)];
-            NSString *shopSaveStr = [NSString stringWithFormat:@"%@/%@",BASEURL,self.saveListArr[i][@"img"]];
+            UIImageView *saveIcon = [[UIImageView alloc]initWithFrame:CGRectMake(60, SafeAreaTopHeight + 195+10 + i * 30, 41, 15)];
+            NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+            NSString *lauStr;
+            if ([language isEqualToString:@"th"]) {
+                lauStr = @"th";
+            }
+            else if ([language isEqualToString:@"en"]){
+                lauStr = @"en";
+            }
+            else if ([language isEqualToString:@"zh-Hans"]){
+                lauStr = @"zh";
+            }
+            NSString *shopSaveStr = [NSString stringWithFormat:@"%@/%@/%@",IMGsaveBaesURL,lauStr,self.saveListArr[i][@"img"]];
             [saveIcon sd_setImageWithURL:[NSURL URLWithString:shopSaveStr]];
-            saveIcon.backgroundColor = [UIColor orangeColor];
+            
             [self.view addSubview:saveIcon];
             
-            UILabel *saveLabel = [[UILabel alloc]initWithFrame:CGRectMake(85, SafeAreaTopHeight + 195+ 10 + i * 30, SCREEN_WIDTH - 85 - 30, 20)];
+            UILabel *saveLabel = [[UILabel alloc]initWithFrame:CGRectMake(85 + 30, SafeAreaTopHeight + 195+ 10 + i * 30, SCREEN_WIDTH - 85 - 30, 15)];
             saveLabel.font = [UIFont systemFontOfSize:14];
          
             NSString *savr1Str =[NSString stringWithFormat:@"%@",self.saveListArr[i][@"content"]];
@@ -151,7 +162,7 @@
                 ENSave1Str = arraySave1[2];
             }
             
-            NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+            //NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
             if ([language isEqualToString:@"th"]) {
                 saveLabel.text =THSave1Str;
             }
@@ -169,8 +180,8 @@
 }
 -(void)setModShopList:(ModelForShopList *)modShopList{
     shopNameStr = modShopList.store_name;
-    NSString *send_pay =[NSString stringWithFormat:@"%@฿",modShopList.send_pic];
-    NSString *send_Start = [NSString stringWithFormat:@"%@฿",modShopList.up_pic];
+    NSString *send_pay =[NSString stringWithFormat:@"฿%@",modShopList.send_pic];
+    NSString *send_Start = [NSString stringWithFormat:@"฿%@",modShopList.up_pic];
     NSString *yueShou = [NSString stringWithFormat:@"👍%@",modShopList.per_mean];
     NSString *time = modShopList.opentime;
     NSString *noti = modShopList.notice;
@@ -178,7 +189,7 @@
         noti = @"";
     }
     self.shopIcomURL = modShopList.store_img;
-    shopMassage1 = [NSString stringWithFormat:@"%@：%@ | %@：%@ | %@",ZBLocalized(@"配送", nil),send_pay,ZBLocalized(@"起送", nil),send_Start,yueShou];
+    shopMassage1 = [NSString stringWithFormat:@"%@：%@ | %@：%@ | %@",ZBLocalized(@"起送", nil),send_Start,ZBLocalized(@"配送", nil),send_pay,yueShou];
     shopMassage2 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"配送时间", nil),time];
     shopMassage3 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"商家公告", nil),noti];
     if (modShopList.act_list.count != 0) {

@@ -129,12 +129,20 @@
     [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
         NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
-        if ([code isEqualToString:@"1"]) {
+        if ([code isEqualToString:@"2"]) {
+            
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:ZBLocalized(@"发现新版本", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction * ok = [UIAlertAction actionWithTitle:ZBLocalized(@"取消", nil) style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction * update = [UIAlertAction actionWithTitle:ZBLocalized(@"去更新", nil)  style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                //跳转到App Store
+                NSString *urlStr = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/th/app/id1385904750?mt=8"];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+            }];
+            [alert addAction:ok];
+            [alert addAction:update];
+            [self presentViewController:alert animated:YES completion:nil];
             
             
-           
-       
-            [MBManager showBriefAlert:ZBLocalized(@"需要更新", nil)];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
       
@@ -196,6 +204,27 @@
        
         
     } withFail:^(NSError *error) {
+        self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
+        self.cycleScrollView.imageURLStringsGroup = self.netImages;
+        //设置图片视图显示类型
+        self.cycleScrollView.autoScrollTimeInterval = 5;
+        self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+        //设置轮播视图的分页控件的显示
+        self.cycleScrollView.showPageControl = YES;
+        //设置轮播视图分也控件的位置
+        self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+        //当前分页控件小圆标图片
+        self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
+        //其他分页控件小圆标图片
+        self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
+        
+        [self.tableView addSubview:self.cycleScrollView];
+        [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
+            make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
+            make.centerX.equalTo(headviewAddressView);
+            make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
+        }];
         NSLog(@"轮播图请求错误：%@,",error);
     }];
     
@@ -284,6 +313,7 @@
             mod.up_pic = dic[@"up_pic"];
             mod.act_list = dic[@"act_list"];
             mod.opentime = dic[@"opentime"];
+             mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
             [self.arrForHomePageShopList addObject:mod];
         }
             [self.tableView.mj_footer endRefreshing];
@@ -352,8 +382,6 @@
                 
                  NSLog(@"打烊了");
             }
-            
-           
             
             
         }
@@ -618,6 +646,23 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ModelForShopList *mod =[[ModelForShopList alloc]init];
+    mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
+    NSString *acType = mod.acTypeStr;
+    if ([acType isEqualToString:@"2"]) {
+        NSString *cyType = [self isACType:mod.opentime];
+        if ([cyType isEqualToString:@"2"]) {
+           
+            [MBManager showBriefAlert:ZBLocalized(@"该商店已打样", nil)];
+            return;
+        }
+    }else{
+        [MBManager showBriefAlert:ZBLocalized(@"该商店已打样", nil)];
+        return;
+    }
+    
+    
+    
     
     ShopDetailVC *shopDetailVC = [[ShopDetailVC alloc]init];
     shopDetailVC.modShopList = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
@@ -629,7 +674,49 @@
    
     
 }
-
+-(NSString *)isACType:(NSString *)optime{
+    NSArray *arrayTime = [optime componentsSeparatedByString:@"-"];
+    NSString *openTime = arrayTime[0];
+    if ([openTime isEqualToString:@"null"]) {
+        return @"2";
+    }
+    NSArray *openTimeArr = [openTime componentsSeparatedByString:@":"];
+    NSInteger openTimeHour = [openTimeArr[0] integerValue];
+    NSInteger openTimeMin =[openTimeArr[1] integerValue];
+    
+    NSString *closeTime = arrayTime[1];
+    NSArray *closeTimeArr = [closeTime componentsSeparatedByString:@":"];
+    NSInteger closeTimeHour = [closeTimeArr[0] integerValue];;
+    NSInteger closeTimeMin =[closeTimeArr[1] integerValue];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSDate *data =[NSDate date];
+    NSString *nowDate = [dateFormatter stringFromDate:data];
+    NSArray *nowTimeArr = [nowDate componentsSeparatedByString:@":"];
+    NSInteger nowTimeHour = [nowTimeArr[0] integerValue];;
+    NSInteger nowTimeMin =[nowTimeArr[1] integerValue];
+    
+    if (nowTimeHour < openTimeHour) {
+        return @"2";
+        
+    }
+    if (nowTimeHour > closeTimeHour) {
+        return @"2";
+    }
+    
+    //开门小时一样 分钟符合
+    else if (nowTimeHour == openTimeHour && nowTimeMin <openTimeMin){
+        return @"2";
+    }
+    else if (nowTimeHour == closeTimeHour && nowTimeHour >closeTimeHour){
+        return @"2";
+    }
+    
+    
+    
+    return @"1";
+}
 #pragma mark collectionView代理方法
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

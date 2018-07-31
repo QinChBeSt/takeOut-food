@@ -22,30 +22,26 @@
 #define JPushIsProduction 1  //0 (默认值)表示采用的是开发证书，1 表示采用生产证书发布应用
 #define ICTYPE @"1"
 
-//测试
-//#define BASEURL @"http://beeorder.net:8080/spmvc"
-//#define IMGBaesURL @"http://beeorder.net:8080/spmvc/apidocs/upload/"
-//
+//==========图片
+#define IMGBaesURL @"http://pcobwjw66.sabkt.gdipper.com/"
+
+////=================  测试
+#define BASEURL @"http://beeorder.cn:8080/spmvc"
+#define IMGsaveBaesURL @"http://beeorder.cn:8080/spmvc/apidocs/img/"
 
 
+////=================  正式
+//#define BASEURL @"http://beeorder.net"
+//#define IMGsaveBaesURL @"http://beeorder.net/apidocs/img/"
 
-//#define BASEURL @"http://118.24.100.177:8080/spmvc"
-#define IMGBaesURL @"http://118.24.100.177:8080/spmvc/apidocs/upload/"
-#define IMGsaveBaesURL @"http://118.24.100.177:8080/spmvc/apidocs/img/"
 
-//
-//
-//#define BASEURL @"http://150.109.179.93"
-//#define IMGBaesURL @"http://150.109.179.93/apidocs/upload/"
-//#define IMGsaveBaesURL @"http://150.109.179.93/apidocs/img/"
 ////
 //#define BASEURL @"http://192.168.0.126:8082"
 //#define IMGBaesURL @"http://192.168.0.126:8082/apidocs/upload/"
-
-#define BASEURL @"http://192.168.0.106:8010"
-//#define IMGBaesURL @"http://192.168.0.106:8010/apidocs/upload/"
-//#define IMGsaveBaesURL @"192.168.0.106:8010/apidocs/img/"
-
+//
+//#define BASEURL @"http://192.168.0.106:8010"
+//#define IMGBaesURL @"http://118.24.100.177:8080/spmvc/apidocs/upload/"
+//#define IMGsaveBaesURL @"http://118.24.100.177:8080/spmvc/apidocs/img/"
 
 //bnner
 #define LUNBOURL @"/xmfapi/getCarousel"

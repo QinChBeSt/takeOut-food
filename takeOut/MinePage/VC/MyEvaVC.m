@@ -95,7 +95,7 @@
     [headView addSubview:userName];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *username = [defaults objectForKey:UD_USERNAME];
-    userName.text = username;
+    userName.text = [NSString stringWithFormat:@"kpV%@",username];
     [userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(icon);
         make.top.equalTo(icon.mas_bottom).offset(15);

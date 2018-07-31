@@ -639,11 +639,7 @@
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    if ([text isEqualToString:@""])
-    {
-        return NO;
-        
-    }
+    
     //[text isEqualToString:@""] 表示输入的是退格键
     if (![text isEqualToString:@""])
     {

@@ -205,7 +205,7 @@
     self.tableView.tableHeaderView = sortingView;
     
     /** 注册cell. */
-    [self.tableView registerClass:[CellForHomeType class] forCellReuseIdentifier:@"pool2"];
+    //[self.tableView registerClass:[CellForHomeType class] forCellReuseIdentifier:@"pool2"];
     [self.view addSubview:self.tableView];
 }
 
@@ -226,7 +226,7 @@
     if (!cell) {
         cell = [[TableViewCellForHomepageList alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    cell.isShowLong =dicForShow[indexPath];
+   // cell.isShowLong =dicForShow[indexPath];
     cell.mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.blockChooseShow = ^(NSString *isShow) {
@@ -248,6 +248,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    
     ShopDetailVC *shopDetailVC = [[ShopDetailVC alloc]init];
     shopDetailVC.modShopList = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:shopDetailVC animated:YES];

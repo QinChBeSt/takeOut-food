@@ -84,6 +84,10 @@
     self.foodsMuch.textColor = [UIColor redColor];
     [self.contentView addSubview:self.foodsMuch];
     
+    self.moreListIMG = [[UIImageView alloc]init];
+    [self.moreListIMG setImage:[UIImage imageNamed:@"showMore"]];
+    [self.contentView addSubview:self.moreListIMG];
+    
     self.foodsTolitLabel = [[UILabel alloc]init];
     self.foodsTolitLabel.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [self.contentView addSubview:self.foodsTolitLabel];
@@ -95,6 +99,9 @@
     self.foodsView.foodsName.font = [UIFont systemFontOfSize:15];
     self.foodsView2.foodsName.font = [UIFont systemFontOfSize:15];
     self.foodsView3.foodsName.font = [UIFont systemFontOfSize:15];
+    
+  
+    
     self.foodsMuch.font = [UIFont systemFontOfSize:24];
     self.foodsTolitLabel.font = [UIFont systemFontOfSize:15];
     self.orderTimeLabel.font = [UIFont systemFontOfSize:15];
@@ -119,10 +126,10 @@
     self.shopNameLabel.text = mod.shopname;
     NSString *shopStrat = mod.shopstart;
     if ([shopStrat isEqualToString:@"2"]) {
-        self.haveEvaluateLabel.text = ZBLocalized(@"商家未接单", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"等待商家接单", nil);
     }
     else if ([shopStrat isEqualToString:@"3"]){
-        self.haveEvaluateLabel.text = ZBLocalized(@"商家未接单", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"等待商家接单", nil);
     }
     else if ([shopStrat isEqualToString:@"4"]){
         self.haveEvaluateLabel.text = ZBLocalized(@"商家已接单", nil);
@@ -155,7 +162,7 @@
     
     self.foodsMuch.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"฿", nil),mod.totalpic];
     NSString *foodsnum = [NSString stringWithFormat:@"%@",mod.goodsnum];
-    self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"共计", nil),foodsnum,ZBLocalized(@"件商品,实付", nil)];
+    self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"共", nil),foodsnum,ZBLocalized(@"件商品,实付", nil)];
     self.orderTimeLabel.text = [NSString stringWithFormat:@"%@  %@",ZBLocalized(@"订单时间", nil),mod.cdata];
     NSArray *foodsArr = mod.godslist;
     NSInteger count;
@@ -180,6 +187,21 @@
         
     }
     
+    if (mod.godslist.count > 3) {
+        [self.moreListIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.foodsView.mas_left).offset(18);
+            make.top.equalTo(self.foodsView.mas_bottom).offset(0);
+            make.width.equalTo(@(70));
+            make.height.equalTo(@(35));
+        }];
+    }else{
+        [self.moreListIMG mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.foodsView.mas_left).offset(0);
+            make.top.equalTo(self.foodsView.mas_bottom).offset(0);
+            make.width.equalTo(@(0));
+            make.height.equalTo(@(0));
+        }];
+    }
     [self.foodsMuch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-15);
         make.top.equalTo(self.foodsView.mas_bottom).offset(15);

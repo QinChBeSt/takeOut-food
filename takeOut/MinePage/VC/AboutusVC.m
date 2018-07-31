@@ -111,6 +111,16 @@
         make.centerY.equalTo(yszcView);
     }];
     
+    UIImageView *rightIcon = [[UIImageView alloc]init];
+    [rightIcon setImage:[UIImage imageNamed:@"右箭头黑"]];
+    [yszcView addSubview:rightIcon];
+    [rightIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(yszcView);
+        make.right.equalTo(yszcView).offset(-15);
+        make.width.and.height.equalTo(@(25));
+    }];
+    
+    
     UIButton *toYszc = [UIButton buttonWithType:UIButtonTypeCustom];
     [toYszc addTarget:self action:@selector(toYszcAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toYszc];

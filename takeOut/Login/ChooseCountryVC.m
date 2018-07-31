@@ -56,7 +56,7 @@
     titleLabel.font = [UIFont systemFontOfSize:16];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(backBTN.mas_right).offset(kWidthScale(30));
+        make.centerX.equalTo(ws.niveView);
         make.centerY.equalTo(backImg);
         make.right.equalTo(ws.view.mas_right).offset(-kWidthScale(30));
     }];

@@ -115,10 +115,10 @@
     self.shopNameLabel.text = mod.shopname;
     NSString *shopStrat = mod.shopstart;
     if ([shopStrat isEqualToString:@"2"]) {
-        self.haveEvaluateLabel.text = ZBLocalized(@"商家未接单", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"等待商家接单", nil);
     }
     else if ([shopStrat isEqualToString:@"3"]){
-        self.haveEvaluateLabel.text = ZBLocalized(@"商家未接单", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"等待商家接单", nil);
     }
     else if ([shopStrat isEqualToString:@"4"]){
         self.haveEvaluateLabel.text = ZBLocalized(@"商家已接单", nil);
@@ -150,7 +150,7 @@
     
     self.foodsMuch.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"฿", nil),mod.totalpic];
     NSString *foodsnum = [NSString stringWithFormat:@"%@",mod.goodsnum];
-    self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"共计", nil),foodsnum,ZBLocalized(@"件商品", nil)];
+    self.foodsTolitLabel.text =[NSString stringWithFormat:@"%@%@%@",ZBLocalized(@"共", nil),foodsnum,ZBLocalized(@"件商品", nil)];
     self.orderTimeLabel.text = [NSString stringWithFormat:@"%@  %@",ZBLocalized(@"订单时间", nil),mod.cdata];
     NSArray *foodsArr = mod.godslist;
     if (foodsArr.count == 1) {

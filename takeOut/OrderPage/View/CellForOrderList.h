@@ -28,7 +28,7 @@ typedef void(^BlockButton)(NSString *str);
 @property (nonatomic , strong)UIView *bottomLine;
 @property (nonatomic , strong)UIButton *toPJbtn;
 @property (nonatomic , strong)ModelForOrderList *mod;
-
+@property (nonatomic , strong)UIImageView *moreListIMG;
 @property (nonatomic, copy) BlockButton button;
 - (void)handlerButtonAction:(BlockButton)block;
 

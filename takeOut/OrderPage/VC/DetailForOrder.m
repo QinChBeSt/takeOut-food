@@ -28,6 +28,8 @@
 @property (nonatomic , strong)UILabel *psPicStr;
 @property (nonatomic , strong)UILabel *yhPicStr;
 @property (nonatomic , strong)UILabel *totleStr;
+@property (nonatomic , strong)UILabel *boxPicStr;
+
 @property (nonatomic , strong)NSString *shopPhoneNo;
 @property (nonatomic , strong)UILabel *userName;
 @property (nonatomic , strong)UILabel *userAddress;
@@ -67,10 +69,10 @@
 
         NSString *orderNowType = [NSString stringWithFormat:@"%@",dic[@"ordertyppe"]];
         if ([orderNowType isEqualToString:@"2"]) {
-            self.orderNowType.text = ZBLocalized(@"商家未接单", nil);
+            self.orderNowType.text = ZBLocalized(@"等待商家接单", nil);
         }
         else if ([orderNowType isEqualToString:@"3"]){
-            self.orderNowType.text = ZBLocalized(@"商家未接单", nil);
+            self.orderNowType.text = ZBLocalized(@"等待商家接单", nil);
         }
         else if ([orderNowType isEqualToString:@"4"]){
             self.orderNowType.text = ZBLocalized(@"商家已接单", nil);
@@ -100,6 +102,10 @@
         }
         NSString *shopNameStr =[NSString stringWithFormat:@"  %@",dic[@"shopname"]];
         self.shopNameLabel.text = shopNameStr;
+        
+        NSString *boxPic  = dic[@"shopBoxPic"];
+        CGFloat boxF = [boxPic floatValue];
+        self.boxPicStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),boxF];;
         NSString *psStr = dic[@"orderpspic"];
         CGFloat psF = [psStr floatValue];
         NSString *yhStr = dic[@"yhpic"];
@@ -226,7 +232,7 @@
     
 }
 -(void)createBottonView{
-    self.bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, moneyViewHeight + totitViewHeight + callToShopViewHeight + addressViewHeight + orderMassageViewHeight + 10)];
+    self.bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, moneyViewHeight + 40+ totitViewHeight + callToShopViewHeight + addressViewHeight + orderMassageViewHeight + 10)];
     
     self.bottomView.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [self.view addSubview:self.bottomView];
@@ -242,8 +248,41 @@
     }];
 //金额
     
-    UIView *moneyView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , moneyViewHeight)];
+    UIView *moneyView = [[UIView alloc]initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH , moneyViewHeight)];
     [backView addSubview:moneyView];
+    
+    UIView *boxLine = [[UIView alloc]init];
+    boxLine.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
+    [backView addSubview:boxLine];
+    [boxLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(moneyView.mas_left).offset(15);
+        make.right.equalTo(moneyView);
+        make.height.equalTo(@(1));
+        make.top.equalTo(moneyView.mas_top).offset(-40);
+    }];
+    UILabel *boxPictit = [[UILabel alloc]init];
+    boxPictit.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"餐盒费", nil)];
+    boxPictit.font = [UIFont systemFontOfSize:16];
+    boxPictit.textColor = [UIColor colorWithHexString:@"222222"];
+    [backView addSubview:boxPictit];
+    [boxPictit mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(moneyView.mas_left).offset(30);
+        make.top.equalTo(moneyView.mas_top).offset(-40);
+        make.height.equalTo(@(40));
+    }];
+    
+    self.boxPicStr = [[UILabel alloc]init];
+    self.boxPicStr.font = [UIFont systemFontOfSize:14];
+    self.boxPicStr.textColor = [UIColor colorWithHexString:@"222222"];
+    [backView addSubview:self.boxPicStr];
+    [self.boxPicStr mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(moneyView.mas_right).offset(-30);
+        make.top.equalTo(moneyView.mas_top).offset(-40);
+        make.height.equalTo(@(40));
+    }];
+    
+    
+    
     UIView *psLine = [[UIView alloc]init];
     psLine.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [moneyView addSubview:psLine];
@@ -273,7 +312,6 @@
     }];
     
     self.psPicStr = [[UILabel alloc]init];
-    
     self.psPicStr.font = [UIFont systemFontOfSize:14];
     self.psPicStr.textColor = [UIColor colorWithHexString:@"222222"];
     [moneyView addSubview:self.psPicStr];
@@ -312,7 +350,7 @@
     }];
     
 //小计
-    UIView *totleView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight, SCREEN_WIDTH, totitViewHeight)];
+    UIView *totleView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + 40, SCREEN_WIDTH, totitViewHeight)];
     totleView.backgroundColor = [UIColor whiteColor];
     [backView addSubview:totleView];
     
@@ -345,7 +383,7 @@
         make.height.equalTo(@(0.5));
     }];
 //电话
-    UIView *shopPhoneView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + totitViewHeight, SCREEN_WIDTH,callToShopViewHeight)];
+    UIView *shopPhoneView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + totitViewHeight + 40, SCREEN_WIDTH,callToShopViewHeight)];
     shopPhoneView.backgroundColor = [UIColor whiteColor];
     [backView addSubview:shopPhoneView];
     UIView *btnView = [[UIView alloc]init];
@@ -377,7 +415,7 @@
     }];
     
 //地址
-    UIView *addressView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + totitViewHeight + callToShopViewHeight, SCREEN_WIDTH,addressViewHeight)];
+    UIView *addressView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + totitViewHeight + callToShopViewHeight + 40, SCREEN_WIDTH,addressViewHeight)];
     addressView.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [backView addSubview:addressView];
     UIView *addressbackview = [[UIView alloc]initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH , addressViewHeight - 20)];
@@ -450,7 +488,7 @@
         
     }];
     
-    UIView *orderMassageView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + totitViewHeight + callToShopViewHeight + addressViewHeight, SCREEN_WIDTH,orderMassageViewHeight)];
+    UIView *orderMassageView = [[UIView alloc]initWithFrame:CGRectMake(0, moneyViewHeight + totitViewHeight + callToShopViewHeight + addressViewHeight + 40, SCREEN_WIDTH,orderMassageViewHeight)];
     orderMassageView.backgroundColor = [UIColor whiteColor];
     [backView addSubview:orderMassageView];
     

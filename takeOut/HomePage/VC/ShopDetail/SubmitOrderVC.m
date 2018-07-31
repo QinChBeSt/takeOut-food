@@ -43,6 +43,11 @@
     UILabel *uAddLab;
     UILabel *uNameLab;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [self toGetNetForAdd];
+    
+}
 -(void)dealloc{
     //第一种方法.这里可以移除该控制器下的所有通知
     // 移除当前所有通知
@@ -56,6 +61,7 @@
     
      [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.FallPIC = [self.ypic floatValue];
@@ -266,7 +272,34 @@
     bottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomView];
     
+    UILabel *ADDMoneyTitle = [[UILabel alloc]init];
+    ADDMoneyTitle.text = ZBLocalized(@"菜品合计", nil);
+    ADDMoneyTitle.font = [UIFont systemFontOfSize:14];
+    ADDMoneyTitle.textColor = [UIColor colorWithHexString:@"4b4b4b"];
+    [bottomView addSubview:ADDMoneyTitle];
+    [ADDMoneyTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bottomView.mas_left).offset(20);
+        make.top.equalTo(bottomView.mas_top);
+        make.height.equalTo(@(40));
+    }];
+    
+    
+    UILabel *ADDMoney = [[UILabel alloc]init];
+    ADDMoney.font = [UIFont systemFontOfSize:14];
+    ADDMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),self.FallPIC];
+    ADDMoney.textColor = [UIColor colorWithHexString:@"959595"];
+    [bottomView addSubview:ADDMoney];
+    [ADDMoney mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(bottomView.mas_right).offset(-20);
+        make.centerY.equalTo(ADDMoneyTitle);
+        make.height.equalTo(@(40));
+    }];
+    
    
+    
+    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(15, 40, SCREEN_WIDTH - 30, 0.5)];
+    line1.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
+    [bottomView addSubview:line1];
     
     UILabel *psMoney = [[UILabel alloc]init];
     psMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),self.FpsPic];
@@ -275,7 +308,7 @@
     [bottomView addSubview:psMoney];
     [psMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(bottomView.mas_right).offset(-20);
-        make.top.equalTo(bottomView.mas_top);
+        make.top.equalTo(line1.mas_top);
         make.height.equalTo(@(40));
     }];
     
@@ -288,10 +321,6 @@
         make.left.equalTo(bottomView.mas_left).offset(20);
         make.centerY.equalTo(psMoney);
     }];
-    
-    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(15, 40, SCREEN_WIDTH - 30, 0.5)];
-    line1.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
-    [bottomView addSubview:line1];
     
     UILabel *boxMoney = [[UILabel alloc]init];
     boxMoney.text = [NSString stringWithFormat:@"%@%@",ZBLocalized(@"฿", nil),self.boxPic];
@@ -316,28 +345,7 @@
     }];
     
     
-    UILabel *ADDMoneyTitle = [[UILabel alloc]init];
-    ADDMoneyTitle.text = ZBLocalized(@"原价", nil);
-    ADDMoneyTitle.font = [UIFont systemFontOfSize:14];
-    ADDMoneyTitle.textColor = [UIColor colorWithHexString:@"4b4b4b"];
-    [bottomView addSubview:ADDMoneyTitle];
-    [ADDMoneyTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(bottomView.mas_left).offset(20);
-        make.top.equalTo(boxMoney.mas_bottom);
-        make.height.equalTo(@(40));
-    }];
     
-    
-    UILabel *ADDMoney = [[UILabel alloc]init];
-    ADDMoney.font = [UIFont systemFontOfSize:14];
-    ADDMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),self.FallPIC];
-    ADDMoney.textColor = [UIColor colorWithHexString:@"959595"];
-    [bottomView addSubview:ADDMoney];
-    [ADDMoney mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(bottomView.mas_right).offset(-20);
-        make.centerY.equalTo(ADDMoneyTitle);
-        make.height.equalTo(@(40));
-    }];
     
     UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(0,midHeight, SCREEN_WIDTH , 1)];
     line2.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
@@ -459,7 +467,8 @@
     }];
     self.CHOOSEPayLab = [[UILabel alloc]init];
     self.CHOOSEPayLab.textAlignment = NSTextAlignmentRight;
-    self.CHOOSEPayLab.text = ZBLocalized(@"请选择支付方式", nil);
+    self.CHOOSEPayLab.text = ZBLocalized(@"货到付款", nil);
+    self.payStr =ZBLocalized(@"货到付款", nil);
     self.CHOOSEPayLab.font = [UIFont systemFontOfSize:14];
     [bottomView addSubview:self.CHOOSEPayLab];
     self.CHOOSEPayLab.textColor = [UIColor colorWithHexString:@"959595"];
@@ -565,7 +574,8 @@
     }
    
     NSDictionary *dic = [self.arrForOrder objectAtIndex:indexPath.row];
-    cell.foodsName.text = dic[@"g_name"];
+    
+    cell.foodsName.text =[NSString stringWithFormat:@"%@ %@",dic[@"goodsPicName"],dic[@"g_name"]];
     float g_picF = [dic[@"g_pic"] floatValue];
     cell.foodsMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),g_picF];
     cell.foodsCount.text = [NSString stringWithFormat:@"× %@",dic[@"count"]];
@@ -648,6 +658,49 @@
         toPay.enabled = YES;
         [MBManager showBriefAlert:ZBLocalized(@"提交订单失败", nil) ];
     }];
+}
+
+-(void)toGetNetForAdd{
+    self.view.backgroundColor = [UIColor colorWithHexString:@"E8E8E8"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userid = [defaults objectForKey:UD_USERID];
+    if (userid == nil) {
+        
+    }else{
+        NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getAddressUrl];
+        NSDictionary *parameters = @{@"uid":userid,
+                                     @"page":@"1"
+                                     };
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        //请求的方式：POST
+        
+        [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSMutableArray *arr = responseObject[@"value"];
+            if (arr.count == 0) {
+                return;
+            }
+            NSDictionary *dic = arr[0];
+           
+                ModelForGetAddress *mod = [[ModelForGetAddress alloc]init];
+                mod.id = dic[@"id"];
+                mod.userAddrsAddr = dic[@"userAddrsAddr"];
+                mod.userAddrsAddrText = dic[@"userAddrsAddrText"];
+                mod.userAddrsLat = dic[@"userAddrsLat"];
+                mod.userAddrsLong = dic[@"userAddrsLong"];
+                mod.userAddrsUname = dic[@"userAddrsUname"];
+                mod.userAddrsUphone = dic[@"userAddrsUphone"];
+                mod.userAddrsUsex = dic[@"userAddrsUsex"];
+                mod.userId = dic[@"userId"];
+            self.uaddrid = [NSString stringWithFormat:@"%@",mod.id];
+            uAddLab.text = [NSString stringWithFormat:@"%@ %@",mod.userAddrsAddr,mod.userAddrsAddrText];
+            uNameLab.text = [NSString stringWithFormat:@"%@   %@",mod.userAddrsUname,mod.userAddrsUphone];
+            self.loactinonStrLabel.hidden = YES;
+            ICONloc.hidden = YES;
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
 }
 -(void)toChooseAddress{
     PayOrderChooseAddressVC *mineAddvc = [[PayOrderChooseAddressVC alloc]init];

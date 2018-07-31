@@ -29,6 +29,7 @@
     }];
    
     self.shopName = [[UILabel alloc]init];
+     self.shopName.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
     [self.contentView addSubview:self.shopName];
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(10);
