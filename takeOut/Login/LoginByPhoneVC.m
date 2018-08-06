@@ -390,10 +390,10 @@
             NSString *userName =[NSString stringWithFormat:@"%@",dic[@"userName"]];
             
         
-            [JPUSHService setAlias:@"bee" completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+            [JPUSHService setAlias:JGPushAlias completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
                 NSLog(@"注册Alias==%ld",(long)iResCode);
             } seq:0];
-            NSString *strTag = [NSString stringWithFormat:@"bee%@",userid];
+            NSString *strTag = [NSString stringWithFormat:@"%@%@",JGPushAlias,userid];
             NSSet *set = [[NSSet alloc] initWithObjects:strTag,nil];
             [JPUSHService setTags:set completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
                  NSLog(@"注册Tag===%ld",(long)iResCode);

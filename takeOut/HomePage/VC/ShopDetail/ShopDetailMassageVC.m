@@ -190,7 +190,7 @@
     }
     self.shopIcomURL = modShopList.store_img;
     shopMassage1 = [NSString stringWithFormat:@"%@：%@ | %@：%@ | %@",ZBLocalized(@"起送", nil),send_Start,ZBLocalized(@"配送", nil),send_pay,yueShou];
-    shopMassage2 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"配送时间", nil),time];
+    shopMassage2 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"营业时间", nil),time];
     shopMassage3 = [NSString stringWithFormat:@"%@：%@",ZBLocalized(@"商家公告", nil),noti];
     if (modShopList.act_list.count != 0) {
         self.saveListArr = modShopList.act_list;

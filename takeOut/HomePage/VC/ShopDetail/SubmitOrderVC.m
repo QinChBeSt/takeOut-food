@@ -574,8 +574,13 @@
     }
    
     NSDictionary *dic = [self.arrForOrder objectAtIndex:indexPath.row];
-    
-    cell.foodsName.text =[NSString stringWithFormat:@"%@ %@",dic[@"goodsPicName"],dic[@"g_name"]];
+    NSString *typeNameStr =[NSString stringWithFormat:@"%@",dic[@"goodsPicName"]];
+    if (typeNameStr.length == 0) {
+        cell.foodsName.text =[NSString stringWithFormat:@"%@",dic[@"g_name"]];
+    }else{
+         cell.foodsName.text =[NSString stringWithFormat:@"%@ (%@)",dic[@"g_name"],dic[@"goodsPicName"]];
+    }
+   
     float g_picF = [dic[@"g_pic"] floatValue];
     cell.foodsMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),g_picF];
     cell.foodsCount.text = [NSString stringWithFormat:@"× %@",dic[@"count"]];

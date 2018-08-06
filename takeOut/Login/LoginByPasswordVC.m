@@ -319,10 +319,10 @@
             NSString *userPhone =[NSString stringWithFormat:@"%@",dic[@"userPhone"]];
             NSString *userName =[NSString stringWithFormat:@"%@",dic[@"userName"]];
             
-            [JPUSHService setAlias:userid completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+            [JPUSHService setAlias:JGPushAlias completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
                 NSLog(@"%ld",(long)seq);
             } seq:0];
-            NSString *strTag = [NSString stringWithFormat:@"bee%@",userid];
+            NSString *strTag = [NSString stringWithFormat:@"%@%@",JGPushAlias,userid];
             NSSet *set = [[NSSet alloc] initWithObjects:strTag,nil];
             [JPUSHService setTags:set completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
                 NSLog(@"%ld",(long)seq);

@@ -179,9 +179,10 @@
 -(NSString *)isACType:(NSString *)optime{
     NSArray *arrayTime = [optime componentsSeparatedByString:@"-"];
     NSString *openTime = arrayTime[0];
-    if ([openTime isEqualToString:@"null"]) {
+    if ([IsStringNull isBlankString:openTime]) {
         return @"2";
     }
+    
     NSArray *openTimeArr = [openTime componentsSeparatedByString:@":"];
     NSInteger openTimeHour = [openTimeArr[0] integerValue];
     NSInteger openTimeMin =[openTimeArr[1] integerValue];

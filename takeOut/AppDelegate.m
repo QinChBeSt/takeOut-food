@@ -96,7 +96,9 @@
             NSLog(@"删除Alias==%ld",(long)iResCode);
             
         } seq:0];
-        
+        [JPUSHService setTags:nil completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+            
+        } seq:0];
     }
     
     

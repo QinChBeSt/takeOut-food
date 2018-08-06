@@ -68,7 +68,7 @@
         NSMutableDictionary *resDic = result[@"value"];
         NSString *shopLOGURL = [NSString stringWithFormat:@"%@%@",IMGBaesURL,resDic[@"shoplog"]];
         [self.shopIcon sd_setImageWithURL:[NSURL URLWithString:shopLOGURL]];
-        self.openTime = [NSString stringWithFormat:@"%@:%@",ZBLocalized(@"配送时间", nil),resDic[@"opentime"]];
+        self.openTime = [NSString stringWithFormat:@"%@:%@",ZBLocalized(@"营业时间", nil),resDic[@"opentime"]];
         self.shopName =resDic[@"shopname"];
         self.shopADD = [NSString stringWithFormat:@"%@",resDic[@"shopad"]];
         if ([IsStringNull isBlankString:self.shopADD]) {

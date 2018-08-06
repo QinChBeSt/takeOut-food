@@ -25,15 +25,22 @@
 //==========图片
 #define IMGBaesURL @"http://pcobwjw66.sabkt.gdipper.com/"
 
-////=================  测试
-#define BASEURL @"http://beeorder.cn:8080/spmvc"
-#define IMGsaveBaesURL @"http://beeorder.cn:8080/spmvc/apidocs/img/"
-
+////////=================  测试
+//#define BASEURL @"http://beeorder.cn:8080/spmvc"
+//#define IMGsaveBaesURL @"http://beeorder.cn:8080/spmvc/apidocs/img/"
+//#define JGPushAlias @"bee"
 
 ////=================  正式
-//#define BASEURL @"http://beeorder.net"
-//#define IMGsaveBaesURL @"http://beeorder.net/apidocs/img/"
+#define BASEURL @"http://beeorder.net/spmvc"
+#define IMGsaveBaesURL @"http://beeorder.net/spmvc/apidocs/img/"
+#define JGPushAlias @"150bee"
 
+
+
+////////=================  测试
+//#define BASEURL @"http://192.168.0.113:8010"
+//#define IMGsaveBaesURL @"192.168.0.113:8010/spmvc/apidocs/img/"
+//#define JGPushAlias @"bee"
 
 ////
 //#define BASEURL @"http://192.168.0.126:8082"

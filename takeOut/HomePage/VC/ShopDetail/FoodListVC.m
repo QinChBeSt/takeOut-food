@@ -1349,7 +1349,9 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     if (self.arrForChooseSize.count != 0) {
         NSDictionary *dic = [self.arrForChooseSize objectAtIndex:indexPath.row];
         cell.nameLabel.text = dic[@"goodsPicName"];
-        NSString *piece = [NSString stringWithFormat:@"฿ %@",self.arrForChooseSize[0][@"goodsPicPic"]];
+        NSString * pieceStr =[NSString stringWithFormat:@"%@",self.arrForChooseSize[0][@"goodsPicPic"]];
+       
+        NSString *piece = [NSString stringWithFormat:@"฿ %.2f",[pieceStr floatValue]];
         self.selectbuyCarMoncy =self.arrForChooseSize[0][@"goodsPicPic"];
         self.choosePrice.text = ZBLocalized(piece, nil) ;
   
@@ -1401,7 +1403,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
    
     self.newBoxMoney = boxPic * boxCOUNT;
 
-    NSString *piece = [NSString stringWithFormat:@"฿ %@",strPic];
+    NSString *piece = [NSString stringWithFormat:@"฿ %.2f",[strPic floatValue]];
     self.choosePrice.text = ZBLocalized(piece, nil) ;
     
 }
