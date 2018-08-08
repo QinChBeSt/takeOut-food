@@ -425,11 +425,11 @@ make.width.equalTo(@(kWidthScale(150)));
     }
     
     else if (self.xuanze.selected == NO) {
-        [MBManager showBriefAlert: ZBLocalized(@"请同意用户协议", nil)];
+        [MBManager showBriefAlert: ZBLocalized(@"请同意最下方的用户协议", nil)];
         return;
     }
     else if (![self.passwordStr isEqualToString:self.SurePasswordStr]) {
-        [MBManager showBriefAlert: ZBLocalized(@"两次密码不相同，请检查输入的密码", nil)];
+        [MBManager showBriefAlert: ZBLocalized(@"两次密码不一致，请检查", nil)];
         return;
     }
     else if (_codeNumStr.length == 0) {
@@ -481,7 +481,7 @@ make.width.equalTo(@(kWidthScale(150)));
             [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
         }else if ([code isEqualToString:@"2"]){
             // NSString *msg =[NSString stringWithFormat:@"%@",responseObject[@"msg"]];
-            NSString *error = [NSString stringWithFormat:@"%@",ZBLocalized(@"账号已存在", nil)];
+            NSString *error = [NSString stringWithFormat:@"%@",ZBLocalized(@"该号码已注册", nil)];
             [MBManager showBriefAlert:error];
         }else{
              NSString *error = [NSString stringWithFormat:@"%@",ZBLocalized(@"验证码错误", nil)];

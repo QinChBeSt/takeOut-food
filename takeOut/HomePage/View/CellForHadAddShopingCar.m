@@ -96,7 +96,7 @@
     }else{
        self.typeName.hidden = NO;
          self.goodsName.text = Mod.g_chooseType;
-        self.typeName.text = Mod.g_name;
+        self.typeName.text = Mod.g_goodsPic[@"goodsPicName"] ;
         [self.goodsName mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(ws.contentView.mas_centerY);
             make.left.equalTo(ws.contentView).offset(20);

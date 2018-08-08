@@ -291,11 +291,11 @@
 -(void)regisAction{
     
     if (![self.codeNumStr isEqualToString:self.sureCodeNumStr]) {
-        [MBManager showBriefAlert: ZBLocalized(@"两次密码不相同，请检查输入的密码", nil)];
+        [MBManager showBriefAlert: ZBLocalized(@"两次密码不一致，请检查", nil)];
         return;
     }
     if (self.xuanze.selected == NO) {
-        [MBManager showBriefAlert: ZBLocalized(@"请同意用户协议", nil)];
+        [MBManager showBriefAlert: ZBLocalized(@"请同意最下方的用户协议", nil)];
         return;
     }
     NSString *url11 = [NSString stringWithFormat:@"%@%@",BASEURL,RegisUserURL];

@@ -50,7 +50,7 @@
         _isLoginOut = 0;
         self.LogOutBtn.hidden = YES;
     }else{
-    self.userName.text = [NSString stringWithFormat:@"kpV%@",userName];
+    self.userName.text = [NSString stringWithFormat:@"%@",userName];
     self.userPhone.text = userPhine;
         _isLoginOut = 1;
         self.LogOutBtn.hidden = NO;
@@ -642,7 +642,7 @@
 }
 -(void)toLogin{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *userName = [defaults objectForKey:UD_USERNAME];
+   
     NSString *userID = [defaults objectForKey:UD_USERID];
     if (userID == nil || [userID isEqualToString:@""]) {
         NewLoginByPhoneVC *login = [[NewLoginByPhoneVC alloc]init];

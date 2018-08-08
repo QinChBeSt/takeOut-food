@@ -86,11 +86,11 @@
 
 -(void)addToShopingCarAction:(UIButton *)btn{
     if ([self.modId isEqualToString:@"0"]) {
-        [MBManager showBriefAlert:ZBLocalized(@"禁止添加此商品", nil) ];
+        [MBManager showBriefAlert:ZBLocalized(@"此商品不能选择", nil) ];
         return;
     }
      if (![self.acTypeStr isEqualToString:@"2"]) {
-         [MBManager showBriefAlert:ZBLocalized(@"打烊了", nil) ];
+         [MBManager showBriefAlert:ZBLocalized(@"该商家已打烊", nil) ];
          return;
     }
     if ([self.acTypeStr isEqualToString:@"2"]) {

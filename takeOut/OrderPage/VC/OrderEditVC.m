@@ -658,12 +658,23 @@
     
 }
 -(void)textViewDidChange:(UITextView *)textView{
+    if (textView.markedTextRange == nil && textView.text.length > 200) {
+        //提示语
+        [MBManager showBriefAlert:ZBLocalized(@"最多输入200字", nil)];
+        //截取
+        textView.text = [textView.text substringToIndex:200];
+        return;
+    }
+    
+   
     self.BZStr = textView.text;
 }
 -(void)getNetWork{
     if (_BZStr.length < 8) {
         [MBManager showBriefAlert:ZBLocalized(@"最少输入八个字", nil)];
-    }else if (_riderSelectStr.length == 0 ){
+    }
+  
+    else if (_riderSelectStr.length == 0 ){
         [MBManager showBriefAlert:ZBLocalized(@"请选择配送员评价", nil)];
     }else if (_foodSelectStr.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请选择订单评价", nil)];

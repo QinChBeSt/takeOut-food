@@ -47,7 +47,7 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = ZBLocalized(@"查看食品安全档案", nil) ;
+    titleLabel.text = ZBLocalized(@"食品安全档案", nil) ;
     titleLabel.textColor = [UIColor blackColor];
     [self.naviView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

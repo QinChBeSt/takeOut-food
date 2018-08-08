@@ -16,4 +16,5 @@
 @property (nonatomic , strong)NSMutableArray *arrForOrder;
 @property (nonatomic , strong)NSString *shopId;
 @property (nonatomic , strong)NSString *boxPic;
+@property (nonatomic , strong)NSString *YhNameStr;
 @end

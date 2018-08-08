@@ -63,13 +63,13 @@
 "订单详情" = "Detail Order";
 "感谢您的支持，欢迎下次光临！" = "Thank you for your support. Welcome next time!";
 "小计: ฿" = "total: ฿";
-"客服电话" = "Customer service phone";
+"联系客服" = "Customer service phone";
 "配送地址" = "Address";
 "配送服务" = "Delivery";
-"提供商品高品质配送服务" = "Provide high quality delivery service";
+"提供高品质配送服务" = "Provide high quality delivery service";
 "货到付款" = "Cash on delivery";
 "在线支付" = "Online payment";
-"订单日期" = "Order Data";
+"订单时间" = "Order Time";
 "支付方式" = "payType";
 "评价" = "comment";
 "最少输入八个字" = "least 8 words";
@@ -83,7 +83,7 @@
 "骑手未接单" = "Rider not received";
 "骑手已接单" ="The rider has received the order";
 "骑手到店" = "Riders to the store";
-"骑手已取货" ="The rider gets the thing.";
+"骑手配送中" ="Rider distribution";
 "订单完成" = "Order completed";
 "未评价" = "Not evaluated";
 "已评价" = "Evaluated";
@@ -110,7 +110,7 @@
 "重新获取" = "Reacquire";
 "请输入正确的手机号" = "Please enter the correct phone number";
 "获取验证码失败，请检查网络" = "Get the verification code failed, please check the network";
-"两次密码不相同，请检查输入的密码" = "Two passwords are different. Please check the password";
+"两次密码不一致，请检查" = "Two passwords are different. Please check the password";
 
 "保存" = "Save";
 "收货人" = "Consignee";
@@ -174,7 +174,7 @@
 "附近商家" = "Nearby businesses";
 
 
-"打烊了" = "closed";
+"该商家已打烊" = "closed";
 "打烊" = "closed";
 "BEEORDER, 目前领先的餐饮供应电商平台! F2B模式, 工厂直接报价给商家,去掉中间环节, 终端市场建仓配送直达餐厅。上百种产品厂家直供, 商家无忧买到性价比超高的优质产品, 并享受到专业的客户服务。不需要再起早贪黑跑菜市场、跑批发部, 不需要再货比三家讨价还价。无论是在店里还是在家里、旅途你都能随时随地为您的餐厅下单采购！BEEORDER, 餐厅老板的信赖之选, 让天下餐厅没有难做的生意。" = "BEEORDER, now the leading e-commerce platform for catering supply! In F2B mode, the factory directly quotes to the merchants, removes the intermediate link, and builds warehouses in the terminal market to deliver goods to the restaurant. Hundreds of products are directly supplied by manufacturers, and merchants are free to buy high-quality products with high cost performance and enjoy professional customer service. No need to get up early to run the vegetable market, run the wholesale department, no need to compare prices. You can shop for your restaurant anytime, anywhere, at home or on the road! BEEORDER, the trusted choice of the owner of the restaurant, makes it easy for the restaurant to do business.";
 
@@ -191,10 +191,10 @@
 "口味、偏好等要求" = "Taste, preference, etc.";
 
 
-"用户名或密码错误" = "User name or password error";
+"账号或密码错误" = "Accounts or password error";
 "服务器异常" = "Server exception";
 "份" = "part";
-"请同意用户协议" = "Please agree to the user agreement";
+"请同意最下方的用户协议" = "Please agree to the bottom user agreement";
 "隐私政策" = "Privacy policy";
 "支付方式" = "Payment method";
 "请选择支付方式" = "choose pay method";
@@ -209,11 +209,11 @@
 "选择手机号归属地" = "Choose mobile phone number attribution";
 "泰国" = "Thailand";
 "中国" = "China";
-"请同意用户协议" = "Please agree the user agreement";
+
 "登录代表您已同意《BEEORDER用户协议》" = "Login, you have agreed to the 《BEEORDER user agreement》";
 "用户协议" = "User agreement";
 "验证码错误" = "Verify code wrong";
-"账号已存在" = "Account already exists";
+"该号码已注册" = "Account already exists";
 "手机号不能大于11位数" = "The phone number cannot be greater than 11 digits";
 "手机号应该为9~11位数字" = "The phone number should be 9~11 digits";
 "手机号不能大于9位数" = "The phone number cannot be greater than 9 digits";
@@ -224,15 +224,21 @@
 "请输入您的地址" = "please enter your space";
 "公告" = "Notice";
 "秒后返回" = "second return";
-"禁止添加此商品" = "Prohibit the addition of this item";
+"此商品不能选择" = "This item cannot be selected";
 
-"餐盒费" = "meal box fee";
+"包装费" = "meal box fee";
 "菜品合计" = "Food Total";
 
 "该商店已打样" = "The store has been proofed";
 "发现新版本" = "Found a new version";
 "去更新" = "update";
 "营业时间" = "open Time";
+"食品安全档案" = "Food Safety Archives";
+
+"最多输入200字" = "Enter up to 200 words";
+"收货人姓名需小于15个字" = "The consignee name must be less than 15 words";
+"收货人姓名需大于2个字" = "The consignee name must be greater than 2 words";
+"请检查网络" = "Please check the network";
 //=============================================图
 "bg_zanwupinglun" = "bg_zanwupinglun2";
 "icon_shangguige"= "icon_shangguige2";

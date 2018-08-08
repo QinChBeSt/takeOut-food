@@ -183,6 +183,8 @@
         return @"2";
     }
     
+    
+    
     NSArray *openTimeArr = [openTime componentsSeparatedByString:@":"];
     NSInteger openTimeHour = [openTimeArr[0] integerValue];
     NSInteger openTimeMin =[openTimeArr[1] integerValue];

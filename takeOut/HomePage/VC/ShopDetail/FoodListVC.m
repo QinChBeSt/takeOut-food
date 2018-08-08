@@ -188,7 +188,7 @@
     __block NSString *pspic;
     __block NSString *yhpic;
     __block NSString *ypic;
-
+    __block NSString *yhName;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     
     [MBManager showLoadingInView:self.view];
@@ -293,6 +293,7 @@
             pspic = dicRes[@"pspic"];
             yhpic = dicRes[@"yhpic"];
             ypic = dicRes[@"ypic"];
+            yhName = [NSString stringWithFormat:@"%@",dicRes[@"yhname"]];
             //信号量+1
             dispatch_semaphore_signal(semaphore);
             
@@ -307,6 +308,8 @@
     order.pspic = pspic;
     order.yhpic = yhpic;
     order.ypic =ypic;
+    order.YhNameStr = yhName;
+    
     order.boxPic = [NSString stringWithFormat:@"%.2f",self.AllBoxAddMoney];
     order.shopId = self.shopId;
     order.arrForOrder = self.arrForHaveBuyList;
@@ -572,7 +575,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         }];
         
         UILabel *openLab = [[UILabel alloc]init];
-        openLab.text = ZBLocalized(@"打烊了", nil);
+        openLab.text = ZBLocalized(@"该商家已打烊", nil);
         openLab.font = [UIFont systemFontOfSize:22];
         openLab.textColor = [UIColor whiteColor];
         [self.buyCarView addSubview:openLab];
@@ -715,7 +718,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
               
                 NSLog(@"%f",mod1.pic);
                 if (![self.acTypeStr isEqualToString:@"2"]) {
-                    [MBManager showBriefAlert:ZBLocalized(@"打烊了", nil)];
+                    [MBManager showBriefAlert:ZBLocalized(@"该商家已打烊", nil)];
                     return ;
                 }
                 self.RightCollectionViewSelectceRow
@@ -776,7 +779,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 //添加购物车+++++++++++++++++++++++++++++++++
             cell2.blockAddShopingCar = ^(ModelForFoodList *mod2) {
                 if (![self.acTypeStr isEqualToString:@"2"]) {
-                    [MBManager showBriefAlert:ZBLocalized(@"打烊了", nil)];
+                    [MBManager showBriefAlert:ZBLocalized(@"该商家已打烊", nil)];
                     return ;
                 }
                 
@@ -1040,6 +1043,9 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             if (!cell1) {
                 cell1 = [[CellForHadAddShopingCar alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
+            
+            
+//================增加
             cell1.blockAddHadShopingCar = ^(ModForHadAddShoppingCar *mod) {
                 NSInteger removeIndex = 0;
                 NSIndexPath *chooseIndex ;
@@ -1125,6 +1131,10 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.arrForAddShoppingCarList.count inSection:0];
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
             };
+            
+            
+            
+//================减少
             cell1.blockDelHadShopingCar = ^(ModForHadAddShoppingCar *mod) {
                 NSInteger removeIndex = 0;
                 NSIndexPath *chooseIndex ;
@@ -1161,16 +1171,22 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                     [self.arrForAddShoppingCarList addObject:dicForChoose];
                 }else{
                     [self.arrForAddShoppingCarList removeObjectAtIndex:removeIndex];
+                    if (self.arrForAddShoppingCarList.count == 0) {
+                        [self cleanAllData];
+                        return ;
+                    }
                     [self.haveBuyListTableview reloadData];
                     [self.haveBuyListTableview mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.buyCarView);
                         make.width.equalTo(self.view);
                         make.bottom.equalTo(self.buyCarView.mas_top);
-                        make.height.equalTo(@(self.arrForAddShoppingCarList.count * 50 + 40));
+                        make.height.equalTo(@(self.arrForAddShoppingCarList.count * 50 + 40 + 50));
                     }];
                     
                     if (self.arrForAddShoppingCarList.count == 0) {
+                        
                         [self.haveBuyBackView  removeFromSuperview];
+                        
                         self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
                         self.addBuyCarViewAddBtn.enabled = NO;
                         NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
@@ -1235,6 +1251,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                     self.ShoppingCarRedLabel.hidden = YES;
                     self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
                     [self.imgShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiaxiangqinggouwu"]];
+                    
                 }else{
                     self.ShoppingCarRedLabel.hidden = NO;
                     self.ShoppingCarRedLabel.text = [NSString stringWithFormat:@"%ld",(long)_ShoppingCarRedNum];
@@ -1247,15 +1264,15 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
             return cell1;
         }
         
-        //餐盒费CELL
+        //包装费CELL
         else{
             
-            NSString *CellIdentifier = [NSString stringWithFormat:@"cellShowHaveBuy%ld%ld",indexPath.section,indexPath.row];
+            NSString *CellIdentifier = [NSString stringWithFormat:@"cellShowHaveBoxBuy%ld%ld",indexPath.section,indexPath.row];
             CellForBox *cellBOX = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (!cellBOX) {
                 cellBOX = [[CellForBox alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
             }
-            cellBOX.goodsName.text = ZBLocalized(@"餐盒费", nil);
+            cellBOX.goodsName.text = ZBLocalized(@"包装费", nil);
             cellBOX.goodsMoney.text = [NSString stringWithFormat:@"฿%.2f",self.AllBoxAddMoney];
             
             return cellBOX;
@@ -1697,12 +1714,12 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         [defaults synchronize];
     }
     
-    
+    self.AllBoxAddMoney = 0;
+    self.newBoxMoney = 0;
     [self.haveBuyListTableview reloadData];
     [self.haveBuyBackView  removeFromSuperview];
     self.buyCarAddLabel.text = @"฿0";
-    self.AllBoxAddMoney = 0;
-    self.newBoxMoney = 0;
+   
     self.addMoney = 0;
     self.ShoppingCarRedNum = 0;
     self.ShoppingCarRedLabel.hidden = YES;
@@ -1710,6 +1727,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
     [self.imgShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiaxiangqinggouwu"]];
     [self.leftTable reloadData];
     [self.rightTable reloadData];
+   
 }
 -(void)addShoppongCarNetWord{
     if (self.arrForAddShoppingCarList.count == 0) {

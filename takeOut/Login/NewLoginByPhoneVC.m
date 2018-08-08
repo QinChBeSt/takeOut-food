@@ -469,7 +469,7 @@
         [MBManager showBriefAlert:ZBLocalized(@"请输入验证码", nil)];
         return;
     }else if(_xuanze.selected == NO){
-        [MBManager showBriefAlert:ZBLocalized(@"请同意用户协议", nil)];
+        [MBManager showBriefAlert:ZBLocalized(@"请同意最下方的用户协议", nil)];
         return;
     }
     

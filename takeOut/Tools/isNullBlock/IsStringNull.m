@@ -27,7 +27,9 @@
     if ([str isEqualToString:@"<nil>"]) {
         return YES;
     }
-    
+    if ([str isEqualToString:@"null"]) {
+        return YES;
+    }
     if (str == nil || str == NULL) {
         return YES;
     }

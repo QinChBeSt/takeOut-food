@@ -335,7 +335,7 @@
     
     UILabel *boxMoneyTitle = [[UILabel alloc]init];
     boxMoneyTitle.font = [UIFont systemFontOfSize:14];
-    boxMoneyTitle.text = ZBLocalized(@"餐盒费", nil);
+    boxMoneyTitle.text = ZBLocalized(@"包装费", nil);
     boxMoneyTitle.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [bottomView addSubview:boxMoneyTitle];
     [boxMoneyTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -422,7 +422,7 @@
     line3.backgroundColor = [UIColor colorWithHexString:@"f5f5f5"];
     [bottomView addSubview:line3];
     UILabel *yhMoneyTitle = [[UILabel alloc]init];
-    yhMoneyTitle.text = ZBLocalized(@"优惠满减", nil);
+    yhMoneyTitle.text =[NSString stringWithFormat:@"%@(%@)",ZBLocalized(@"优惠满减", nil),self.YhNameStr] ;
     yhMoneyTitle.font = [UIFont systemFontOfSize:14];
     yhMoneyTitle.textColor = [UIColor colorWithHexString:@"4b4b4b"];
     [bottomView addSubview:yhMoneyTitle];

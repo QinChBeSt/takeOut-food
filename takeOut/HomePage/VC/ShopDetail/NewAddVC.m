@@ -370,6 +370,12 @@
         [MBManager showBriefAlert:ZBLocalized(@"请获取地理位置", nil)];
     }else if (_userNameTextField.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人姓名", nil)];
+    }
+    else if (_userNameTextField.text.length < 2){
+        [MBManager showBriefAlert:ZBLocalized(@"收货人姓名需大于2个字", nil)];
+    }
+    else if (_userNameTextField.text.length > 15){
+        [MBManager showBriefAlert:ZBLocalized(@"收货人姓名需小于15个字", nil)];
     }else if (_userPhoneNum.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人电话", nil)];
     }else if (_userPhoneNum.text.length < 9){
@@ -419,6 +425,12 @@
         [MBManager showBriefAlert:ZBLocalized(@"请获取地理位置", nil)];
     }else if (_userNameTextField.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人姓名", nil)];
+    }
+    else if (_userNameTextField.text.length < 2){
+        [MBManager showBriefAlert:ZBLocalized(@"收货人姓名需大于2个字", nil)];
+    }
+    else if (_userNameTextField.text.length > 15){
+        [MBManager showBriefAlert:ZBLocalized(@"收货人姓名需小于15个字", nil)];
     }else if (_userPhoneNum.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人电话", nil)];
     }else if (_houseAdd.text.length == 0){

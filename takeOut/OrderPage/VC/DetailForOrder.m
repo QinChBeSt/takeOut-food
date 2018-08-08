@@ -87,7 +87,7 @@
             self.orderNowType.text = ZBLocalized(@"骑手到店", nil);
         }
         else if ([orderNowType isEqualToString:@"8"]){
-            self.orderNowType.text = ZBLocalized(@"骑手已取货", nil);
+            self.orderNowType.text = ZBLocalized(@"骑手配送中", nil);
         }
         else if ([orderNowType isEqualToString:@"9"]){
             self.orderNowType.text = ZBLocalized(@"订单完成", nil);
@@ -261,7 +261,7 @@
         make.top.equalTo(moneyView.mas_top).offset(-40);
     }];
     UILabel *boxPictit = [[UILabel alloc]init];
-    boxPictit.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"餐盒费", nil)];
+    boxPictit.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"包装费", nil)];
     boxPictit.font = [UIFont systemFontOfSize:16];
     boxPictit.textColor = [UIColor colorWithHexString:@"222222"];
     [backView addSubview:boxPictit];
@@ -405,7 +405,7 @@
         make.width.and.height.equalTo(@(callToShopViewHeight * 0.7));
     }];
     UILabel *callShop = [[UILabel alloc]init];
-    callShop.text = ZBLocalized(@"客服电话", nil);
+    callShop.text = ZBLocalized(@"联系客服", nil);
     callShop.font = [UIFont systemFontOfSize:16];
     callShop.textColor = [UIColor colorWithHexString:@"222222"];
     [btnView addSubview:callShop];
@@ -478,7 +478,7 @@
     }];
     UILabel *compStr = [[UILabel alloc]init];
     [addressbackview addSubview:compStr];
-    compStr.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"提供商品高品质配送服务", nil)];
+    compStr.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"提供高品质配送服务", nil)];
     compStr.font = [UIFont systemFontOfSize:13];
     compStr.textColor = [UIColor colorWithHexString:@"222222"];
     [compStr mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -516,7 +516,7 @@
     
     UILabel *orderdateTitle = [[UILabel alloc]init];
     [orderMassageView addSubview:orderdateTitle];
-    orderdateTitle.text = ZBLocalized(@"订单日期", nil);
+    orderdateTitle.text = ZBLocalized(@"订单时间", nil);
     orderdateTitle.numberOfLines = 2;
     orderdateTitle.font = [UIFont systemFontOfSize:14];
     orderdateTitle.textColor = [UIColor colorWithHexString:@"959595"];

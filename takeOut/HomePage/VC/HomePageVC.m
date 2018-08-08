@@ -9,7 +9,7 @@
 #import "HomePageVC.h"
 #import <CoreLocation/CoreLocation.h>
 #import <SDCycleScrollView.h>
-
+#import "Reachability.h"
 //VC
 #import "ShopDetailVC.h"
 #import "HomeTypeVC.h"
@@ -99,24 +99,115 @@
     [self.navigationController.navigationBar setHidden:YES];
     [self.tabBarController.tabBar setHidden:NO];
     [self getLocation];
-    [self getNetworkForType];
+    //[self getNetworkForType];
+}
+-(BOOL)isConnectionAvailable{
+    
+    BOOL isExistenceNetwork = YES;
+    
+    Reachability *reach = [Reachability reachabilityWithHostName:BASEURL];
+    
+    switch ([reach currentReachabilityStatus]) {
+            
+        case NotReachable:
+            
+            isExistenceNetwork = NO;
+            
+            return isExistenceNetwork;
+            
+            //NSLog(@"notReachable");
+            
+            break;
+            
+        case ReachableViaWiFi:
+            
+            isExistenceNetwork = YES;
+            
+            return isExistenceNetwork;
+            
+            
+            
+            //NSLog(@"WIFI");
+            
+            break;
+            
+        case ReachableViaWWAN:
+            
+            isExistenceNetwork = YES;
+            
+            return isExistenceNetwork;
+            
+            
+            
+            //NSLog(@"3G");
+            
+            break;
+            
+    }
+    
+    return isExistenceNetwork;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self reachability];
      dicForShow = [NSMutableDictionary dictionary];
     self.view.backgroundColor = [UIColor colorWithHexString:BaseYellow];
     [self createTableView];
     // Do any additional setup after loading the view.
+    
+    //判断网络状态
+    
     [self getNetWork];
+    
 }
+- (void)reachability
+{
+    // 1.获得网络监控的管理者
+    AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
+    // 2.设置网络状态改变后的处理
+    [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        // 当网络状态改变了, 就会调用这个block
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown: // 未知网络
+                NSLog(@"未知网络");
+                break;
+            case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
+                NSLog(@"没有网络(断网)");
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
+                NSLog(@"手机自带网络");
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
+                NSLog(@"WIFI");
+                break;
+        }
+    }];
+    // 3.开始监控
+    [mgr startMonitoring];
+}
+
 
 #pragma mark - 网络请求
 -(void)getNetWork{
-    [self isNeedUpdate];
-    [self getNetWorkForBanner];
     
+    if( ![self isConnectionAvailable]){
+        
+        [MBManager showBriefAlert:ZBLocalized(@"请检查网络", nil)];
+        
+    }else{
+        [self isNeedUpdate];
+        if (self.netImages.count == 0) {
+            [self getNetWorkForBanner];
+        }
+        if (self.arrForHomePageTypeName.count == 0) {
+            [self getNetworkForType];
+        }
+        
+        [self.tableView reloadData];
+    }
     
-    [self.tableView reloadData];
+   
 }
 -(void)isNeedUpdate{
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,isNeedUpDateURL];
@@ -151,82 +242,83 @@
 }
 //banner
 -(void)getNetWorkForBanner{
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,LUNBOURL];
-    //@"http://118.24.100.177:8080/spmvc/xmfapi/getCarousel";
-    NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
-    NSLog(@"切换后的语言:%@",language);
-    NSString *lauStr;
-    if ([language isEqualToString:@"th"]) {
-        lauStr = @"1";
-    }
-    else if ([language isEqualToString:@"en"]){
-        lauStr = @"3";
-    }
-    else if ([language isEqualToString:@"zh-Hans"]){
-        lauStr = @"2";
-    }
-    NSDictionary *parameters = @{@"langet":lauStr,
-                               
-                                 };
-    [MHNetWorkTask getWithURL:url withParameter:parameters withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
-        
-        NSArray *dic = result[@"value"];
-        for (NSMutableDictionary *dicRes in dic) {
-            NSString *urlS =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
-            urlS = [urlS stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-            NSString *detailurl = [NSString stringWithFormat:@"%@",dicRes[@"bannerText"]];
-           [self.netImages addObject:urlS];
-           [self.arrForBannerDetail addObject:detailurl];
+        NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,LUNBOURL];
+        //@"http://118.24.100.177:8080/spmvc/xmfapi/getCarousel";
+        NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
+        NSLog(@"切换后的语言:%@",language);
+        NSString *lauStr;
+        if ([language isEqualToString:@"th"]) {
+            lauStr = @"1";
         }
-       
-        /** 测试本地图片数据*/
-        self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
-         self.cycleScrollView.imageURLStringsGroup = self.netImages;
-        //设置图片视图显示类型
-        self.cycleScrollView.autoScrollTimeInterval = 5;
-        self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
-        //设置轮播视图的分页控件的显示
-        self.cycleScrollView.showPageControl = YES;
-        //设置轮播视图分也控件的位置
-        self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        //当前分页控件小圆标图片
-        self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
-        //其他分页控件小圆标图片
-        self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
+        else if ([language isEqualToString:@"en"]){
+            lauStr = @"3";
+        }
+        else if ([language isEqualToString:@"zh-Hans"]){
+            lauStr = @"2";
+        }
+        NSDictionary *parameters = @{@"langet":lauStr,
+                                     
+                                     };
         
-        [self.tableView addSubview:self.cycleScrollView];
-        [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
-            make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
-            make.centerX.equalTo(headviewAddressView);
-            make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
+        [MHNetWorkTask getWithURL:url withParameter:parameters withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+            
+            NSArray *dic = result[@"value"];
+            for (NSMutableDictionary *dicRes in dic) {
+                NSString *urlS =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
+                urlS = [urlS stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+                NSString *detailurl = [NSString stringWithFormat:@"%@",dicRes[@"bannerText"]];
+                [self.netImages addObject:urlS];
+                [self.arrForBannerDetail addObject:detailurl];
+            }
+            
+            /** 测试本地图片数据*/
+            self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
+            self.cycleScrollView.imageURLStringsGroup = self.netImages;
+            //设置图片视图显示类型
+            self.cycleScrollView.autoScrollTimeInterval = 5;
+            self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+            //设置轮播视图的分页控件的显示
+            self.cycleScrollView.showPageControl = YES;
+            //设置轮播视图分也控件的位置
+            self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+            //当前分页控件小圆标图片
+            self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
+            //其他分页控件小圆标图片
+            self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
+            
+            [self.tableView addSubview:self.cycleScrollView];
+            [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
+                make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
+                make.centerX.equalTo(headviewAddressView);
+                make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
+            }];
+            
+            
+        } withFail:^(NSError *error) {
+            self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
+            self.cycleScrollView.imageURLStringsGroup = self.netImages;
+            //设置图片视图显示类型
+            self.cycleScrollView.autoScrollTimeInterval = 5;
+            self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+            //设置轮播视图的分页控件的显示
+            self.cycleScrollView.showPageControl = YES;
+            //设置轮播视图分也控件的位置
+            self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+            //当前分页控件小圆标图片
+            self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
+            //其他分页控件小圆标图片
+            self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
+            
+            [self.tableView addSubview:self.cycleScrollView];
+            [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
+                make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
+                make.centerX.equalTo(headviewAddressView);
+                make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
+            }];
+            NSLog(@"轮播图请求错误：%@,",error);
         }];
-       
-        
-    } withFail:^(NSError *error) {
-        self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
-        self.cycleScrollView.imageURLStringsGroup = self.netImages;
-        //设置图片视图显示类型
-        self.cycleScrollView.autoScrollTimeInterval = 5;
-        self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
-        //设置轮播视图的分页控件的显示
-        self.cycleScrollView.showPageControl = YES;
-        //设置轮播视图分也控件的位置
-        self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        //当前分页控件小圆标图片
-        self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
-        //其他分页控件小圆标图片
-        self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
-        
-        [self.tableView addSubview:self.cycleScrollView];
-        [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
-            make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
-            make.centerX.equalTo(headviewAddressView);
-            make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
-        }];
-        NSLog(@"轮播图请求错误：%@,",error);
-    }];
     
 }
 //选择分类
@@ -326,72 +418,81 @@
 }
 //推荐列表
 -(void)netWorkForShopList:(NSInteger )tag{
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,homeshopRecommendList];
-    NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
-    if (!strlongitude) {
-        strlongitude = @"0";
-    }
-    if (!strlatitude) {
-        strlatitude = @"0";
-    }
-    [par setValue:strlongitude forKey:@"lonng"];
-    [par setValue:strlatitude forKey:@"lat"];
-    
-    
-    
-    NSInteger strFlgid =self.chooseType + 1;
-    NSNumber *numFlg =[NSNumber numberWithInteger:strFlgid];
-    
-    NSString * strTypeFlg =@"0";
-    int strTypeFlgid =[strTypeFlg intValue];
-    NSNumber *numTypeFlg =[NSNumber numberWithInt:strTypeFlgid];
-    _pageIndex = 1;
-    NSString * strPage =@"1";
-    int strPageid =[strPage intValue];
-    NSNumber *numPage =[NSNumber numberWithInt:strPageid];
-    [par setValue:numFlg forKey:@"flg"];
-    [par setValue:numTypeFlg forKey:@"typeflg"];
-    [par setValue:numPage forKey:@"page"];
-    [self.arrForHomePageShopList removeAllObjects];
-    [self.tableView.mj_header setHidden:NO];
-   //  [self.tableView reloadData];
-    [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
-    
-        NSArray *arr = result[@"value"];
-        for (NSDictionary *dic in arr) {
-            ModelForShopList *mod = [[ModelForShopList alloc]init];
-            mod.per_mean = dic[@"per_mean"];
-            mod.send_dis = dic[@"send_dis"];
-            mod.send_time = dic[@"send_time"];
-            mod.send_pic = dic[@"send_pic"];
-            mod.store_id = dic[@"store_id"];
-            mod.store_img =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dic[@"store_img"]];
-            mod.store_name = dic[@"store_name"];
-            mod.up_pic = dic[@"up_pic"];
-            mod.act_list = dic[@"act_list"];
-            mod.opentime = dic[@"opentime"];
-            mod.notice  = dic[@"shop_notice"];
-            mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
-            NSInteger acType = dic[@"shop_ac_type"];
-             [self.arrForHomePageShopList addObject:mod];
-            
-            if (acType == 2) {
-               
+    if( ![self isConnectionAvailable]){
         
-            }else{
+        [MBManager showBriefAlert:ZBLocalized(@"请检查网络", nil)];
+        
+    }else{
+        NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,homeshopRecommendList];
+        NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
+        if (!strlongitude) {
+            strlongitude = @"0";
+        }
+        if (!strlatitude) {
+            strlatitude = @"0";
+        }
+        [par setValue:strlongitude forKey:@"lonng"];
+        [par setValue:strlatitude forKey:@"lat"];
+        
+        
+        
+        NSInteger strFlgid =self.chooseType + 1;
+        NSNumber *numFlg =[NSNumber numberWithInteger:strFlgid];
+        
+        NSString * strTypeFlg =@"0";
+        int strTypeFlgid =[strTypeFlg intValue];
+        NSNumber *numTypeFlg =[NSNumber numberWithInt:strTypeFlgid];
+        _pageIndex = 1;
+        NSString * strPage =@"1";
+        int strPageid =[strPage intValue];
+        NSNumber *numPage =[NSNumber numberWithInt:strPageid];
+        [par setValue:numFlg forKey:@"flg"];
+        [par setValue:numTypeFlg forKey:@"typeflg"];
+        [par setValue:numPage forKey:@"page"];
+        
+        //[self.tableView.mj_header setHidden:NO];
+        //  [self.tableView reloadData];
+        [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+            
+            NSArray *arr = result[@"value"];
+            [self.arrForHomePageShopList removeAllObjects];
+            for (NSDictionary *dic in arr) {
+                ModelForShopList *mod = [[ModelForShopList alloc]init];
+                mod.per_mean = dic[@"per_mean"];
+                mod.send_dis = dic[@"send_dis"];
+                mod.send_time = dic[@"send_time"];
+                mod.send_pic = dic[@"send_pic"];
+                mod.store_id = dic[@"store_id"];
+                mod.store_img =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dic[@"store_img"]];
+                mod.store_name = dic[@"store_name"];
+                mod.up_pic = dic[@"up_pic"];
+                mod.act_list = dic[@"act_list"];
+                mod.opentime = dic[@"opentime"];
+                mod.notice  = dic[@"shop_notice"];
+                mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
+                NSInteger acType = dic[@"shop_ac_type"];
+                [self.arrForHomePageShopList addObject:mod];
                 
-                 NSLog(@"打烊了");
+                if (acType == 2) {
+                    
+                    
+                }else{
+                    
+                    //NSLog(@"该商家已打烊");
+                }
+                
+                
             }
             
-            
-        }
+            [self.tableView.mj_footer resetNoMoreData];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
+        } withFail:^(NSError *error) {
+           
+        }];
         
-        [self.tableView.mj_footer resetNoMoreData];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView reloadData];
-    } withFail:^(NSError *error) {
-        
-    }];
+    }
+    
 }
 #pragma mark - 创建透视图
 -(void)createHeadView{
@@ -593,11 +694,28 @@
     self.tableView.tableHeaderView = self.headView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        if( ![self isConnectionAvailable]){
+            [self.tableView.mj_footer endRefreshing];
+
+            [self.tableView.mj_header endRefreshing];
+            [MBManager showBriefAlert:ZBLocalized(@"请检查网络", nil)];
+            
+        }else{
+            [self getNetWork];
         [self netWorkForShopList:self.chooseType];
+        }
     }];
     
     MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if( ![self isConnectionAvailable]){
+            [self.tableView.mj_footer endRefreshing];
+
+            [self.tableView.mj_header endRefreshing];
+            [MBManager showBriefAlert:ZBLocalized(@"请检查网络", nil)];
+            
+        }else{
         [self loadMoreBills:self.chooseType];
+        }
     }];
     self.tableView.mj_footer = footer;
     

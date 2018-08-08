@@ -82,6 +82,7 @@
 		9D72E2BA206B262300CEE3B0 /* LoginByPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2B9206B262300CEE3B0 /* LoginByPhoneVC.m */; };
 		9D72E2BD206B263F00CEE3B0 /* LoginByPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */; };
 		9D72E2C1206B4B3A00CEE3B0 /* MBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D72E2C0206B4B3900CEE3B0 /* MBManager.m */; };
+		9D73D248211AD33900D73E87 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D73D247211AD33900D73E87 /* Reachability.m */; };
 		9D82B1A021070E5F00F765CF /* CellForBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D82B19F21070E5F00F765CF /* CellForBox.m */; };
 		9D84190120AD2C28005F7B6A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D84190020AD2C28005F7B6A /* Images.xcassets */; };
 		9D84190420AD5833005F7B6A /* CellForChooseCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D84190320AD5833005F7B6A /* CellForChooseCountry.m */; };
@@ -297,6 +298,8 @@
 		9D72E2BC206B263F00CEE3B0 /* LoginByPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginByPasswordVC.m; sourceTree = "<group>"; };
 		9D72E2BF206B4B3900CEE3B0 /* MBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBManager.h; sourceTree = "<group>"; };
 		9D72E2C0206B4B3900CEE3B0 /* MBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBManager.m; sourceTree = "<group>"; };
+		9D73D246211AD33900D73E87 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../../../Downloads/Reachability/Reachability/Reachability.h; sourceTree = "<group>"; };
+		9D73D247211AD33900D73E87 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../../../Downloads/Reachability/Reachability/Reachability.m; sourceTree = "<group>"; };
 		9D775A0F20847B7900765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Main.strings; sourceTree = "<group>"; };
 		9D775A1020847B7A00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9D775A1120847B7B00765E9A /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -626,6 +629,15 @@
 			path = MBManager;
 			sourceTree = "<group>";
 		};
+		9D73D242211AD2A200D73E87 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				9D73D246211AD33900D73E87 /* Reachability.h */,
+				9D73D247211AD33900D73E87 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		9D98D966206A30B10019AC0C /* UIview+CHView */ = {
 			isa = PBXGroup;
 			children = (
@@ -924,6 +936,7 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9D73D242211AD2A200D73E87 /* Reachability */,
 				9DF3983F2106D516002F2C59 /* isNullBlock */,
 				D62866342101F8090048F9A3 /* JKUiviewExtension */,
 				9D33AFCD2085C0CB0086DC93 /* MJRefresh */,
@@ -1297,6 +1310,7 @@
 				9DA022812074734F005F7168 /* CellForMyAddress.m in Sources */,
 				9D1028DF20E61C6700E06F3D /* YSZCvc.m in Sources */,
 				9D430E10207DEE1D00CE8F2A /* AboutusVC.m in Sources */,
+				9D73D248211AD33900D73E87 /* Reachability.m in Sources */,
 				9D58C4932071D4CF00D49721 /* ModForHadAddShoppingCar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

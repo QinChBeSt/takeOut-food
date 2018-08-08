@@ -387,7 +387,7 @@
             NSDictionary *dic = responseObject[@"value"];
             NSString *userid =[NSString stringWithFormat:@"%@",dic[@"id"]];
             NSString *userPhone =[NSString stringWithFormat:@"%@",dic[@"userPhone"]];
-            NSString *userName =[NSString stringWithFormat:@"%@",dic[@"userName"]];
+            NSString *userName =[NSString stringWithFormat:@"kpV%@",dic[@"userName"]];
             
         
             [JPUSHService setAlias:JGPushAlias completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
@@ -408,7 +408,7 @@
             [MBManager showBriefAlert:ZBLocalized(@"登录成功", nil)];
             [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
         }else{
-            [MBManager showBriefAlert:ZBLocalized(@"用户名或密码错误", nil)];
+            [MBManager showBriefAlert:ZBLocalized(@"账号或密码错误", nil)];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
       [MBManager showBriefAlert:ZBLocalized(@"服务器异常", nil)];

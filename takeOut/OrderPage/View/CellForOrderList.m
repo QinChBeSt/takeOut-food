@@ -112,8 +112,9 @@
     
     self.toPJbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:_toPJbtn];
+    [self.toPJbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.toPJbtn setTitle:ZBLocalized(@"评价", nil) forState:UIControlStateNormal];
-    [self.toPJbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //[self.toPJbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.toPJbtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
     self.toPJbtn.layer.cornerRadius=5;
     self.toPJbtn.clipsToBounds = YES;
@@ -144,7 +145,7 @@
         self.haveEvaluateLabel.text = ZBLocalized(@"骑手到店", nil);
     }
     else if ([shopStrat isEqualToString:@"8"]){
-        self.haveEvaluateLabel.text = ZBLocalized(@"骑手已取货", nil);
+        self.haveEvaluateLabel.text = ZBLocalized(@"骑手配送中", nil);
     }
     else if ([shopStrat isEqualToString:@"9"]){
         self.haveEvaluateLabel.text = ZBLocalized(@"订单完成", nil);
