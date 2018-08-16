@@ -19,6 +19,9 @@
 		9D1028E220E62CC800E06F3D /* ChoosePayType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1028E120E62CC800E06F3D /* ChoosePayType.m */; };
 		9D1B00F320F48CA300EE25CA /* NewLoginByPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B00F220F48CA300EE25CA /* NewLoginByPhoneVC.m */; };
 		9D1B00F620F4A27F00EE25CA /* ChooseCountryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B00F520F4A27F00EE25CA /* ChooseCountryVC.m */; };
+		9D1BD6172123C29200154AFB /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BD6142123C29200154AFB /* CALayer+Transition.m */; };
+		9D1BD6182123C29200154AFB /* XTGuidePagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BD6152123C29200154AFB /* XTGuidePagesViewController.m */; };
+		9D1BD6192123C2B300154AFB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DDFD2752064EC7100393DE5 /* AppDelegate.m */; };
 		9D2338DF207B130200302F76 /* OrderEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2338DE207B130200302F76 /* OrderEditVC.m */; };
 		9D26201E206C877200A2351B /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D26201D206C877200A2351B /* FileTool.m */; };
 		9D262021206CB50000A2351B /* HomeTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D262020206CB50000A2351B /* HomeTypeVC.m */; };
@@ -171,6 +174,10 @@
 		9D1B00F220F48CA300EE25CA /* NewLoginByPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewLoginByPhoneVC.m; sourceTree = "<group>"; };
 		9D1B00F420F4A27F00EE25CA /* ChooseCountryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseCountryVC.h; sourceTree = "<group>"; };
 		9D1B00F520F4A27F00EE25CA /* ChooseCountryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseCountryVC.m; sourceTree = "<group>"; };
+		9D1BD6132123C29200154AFB /* XTGuidePagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTGuidePagesViewController.h; sourceTree = "<group>"; };
+		9D1BD6142123C29200154AFB /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
+		9D1BD6152123C29200154AFB /* XTGuidePagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTGuidePagesViewController.m; sourceTree = "<group>"; };
+		9D1BD6162123C29200154AFB /* CALayer+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Transition.h"; sourceTree = "<group>"; };
 		9D2338DD207B130200302F76 /* OrderEditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderEditVC.h; sourceTree = "<group>"; };
 		9D2338DE207B130200302F76 /* OrderEditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderEditVC.m; sourceTree = "<group>"; };
 		9D26201C206C877200A2351B /* FileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileTool.h; sourceTree = "<group>"; };
@@ -427,6 +434,17 @@
 				9D012B2020736E440015322E /* JZLocationConverter.m */,
 			);
 			path = JZLocationConverter;
+			sourceTree = "<group>";
+		};
+		9D1BD6122123C27F00154AFB /* GuidePageVC */ = {
+			isa = PBXGroup;
+			children = (
+				9D1BD6162123C29200154AFB /* CALayer+Transition.h */,
+				9D1BD6142123C29200154AFB /* CALayer+Transition.m */,
+				9D1BD6132123C29200154AFB /* XTGuidePagesViewController.h */,
+				9D1BD6152123C29200154AFB /* XTGuidePagesViewController.m */,
+			);
+			path = GuidePageVC;
 			sourceTree = "<group>";
 		};
 		9D26201B206C875E00A2351B /* CleanCache */ = {
@@ -936,6 +954,7 @@
 		D65D88CB20652E82000D509A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9D1BD6122123C27F00154AFB /* GuidePageVC */,
 				9D73D242211AD2A200D73E87 /* Reachability */,
 				9DF3983F2106D516002F2C59 /* isNullBlock */,
 				D62866342101F8090048F9A3 /* JKUiviewExtension */,
@@ -1251,6 +1270,7 @@
 				9D2338DF207B130200302F76 /* OrderEditVC.m in Sources */,
 				9DA0228A2074DBDD005F7168 /* PayOrderChooseAddressVC.m in Sources */,
 				9D9257802066015D00A6E262 /* CollectionViewCellForHomePageChoose.m in Sources */,
+				9D1BD6172123C29200154AFB /* CALayer+Transition.m in Sources */,
 				9D3854E82079AC4200175693 /* OrderSuccessfullVC.m in Sources */,
 				9D82B1A021070E5F00F765CF /* CellForBox.m in Sources */,
 				9DA0227E20746DEB005F7168 /* ModelForGetAddress.m in Sources */,
@@ -1307,6 +1327,7 @@
 				9D49525E2068B25A005A6BBC /* ModelForShopList.m in Sources */,
 				9D012B2120736E440015322E /* JZLocationConverter.m in Sources */,
 				9D4952782068EDD8005A6BBC /* ModelForFoodList.m in Sources */,
+				9D1BD6182123C29200154AFB /* XTGuidePagesViewController.m in Sources */,
 				9DA022812074734F005F7168 /* CellForMyAddress.m in Sources */,
 				9D1028DF20E61C6700E06F3D /* YSZCvc.m in Sources */,
 				9D430E10207DEE1D00CE8F2A /* AboutusVC.m in Sources */,
@@ -1327,6 +1348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D1BD6192123C2B300154AFB /* AppDelegate.m in Sources */,
 				9DDFD2992064EC7100393DE5 /* takeOutUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

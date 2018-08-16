@@ -37,6 +37,7 @@
 @property (nonatomic , strong)UILabel *orderNumLabel;
 @property (nonatomic , strong)UILabel *orderDateLabel;
 @property (nonatomic , strong)UILabel *orderPayType;
+@property (nonatomic , strong)UILabel *yhPictit;
 
 @property (nonatomic , strong)NSMutableArray *arrForOrerList;
 @end
@@ -102,7 +103,18 @@
         }
         NSString *shopNameStr =[NSString stringWithFormat:@"  %@",dic[@"shopname"]];
         self.shopNameLabel.text = shopNameStr;
-        
+        NSMutableArray *yhTitDic = dic[@"yhs"];
+        if (yhTitDic.count >0) {
+            NSString *yhName = yhTitDic[0][@"yhxTit"];
+            if ([IsStringNull isBlankString:yhName]) {
+                
+            }else
+            {
+                self.yhPictit.text = [NSString stringWithFormat:@"%@(%@)",ZBLocalized(@"优惠金额", nil),yhName];
+            }
+        }
+       
+       
         NSString *boxPic  = dic[@"shopBoxPic"];
         CGFloat boxF = [boxPic floatValue];
         self.boxPicStr.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),boxF];;
@@ -321,12 +333,12 @@
     }];
     
  
-    UILabel *yhPictit = [[UILabel alloc]init];
-    yhPictit.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"优惠金额", nil)];
-    yhPictit.font = [UIFont systemFontOfSize:16];
-    yhPictit.textColor = [UIColor colorWithHexString:@"222222"];
-    [moneyView addSubview:yhPictit];
-    [yhPictit mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.yhPictit = [[UILabel alloc]init];
+    self.yhPictit.text =[NSString stringWithFormat:@"%@",ZBLocalized(@"优惠金额", nil)];
+    self.yhPictit.font = [UIFont systemFontOfSize:16];
+    self.yhPictit.textColor = [UIColor colorWithHexString:@"222222"];
+    [moneyView addSubview:self.yhPictit];
+    [self.yhPictit mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(moneyView.mas_left).offset(30);
         make.centerY.equalTo(moneyView.mas_centerY).offset(moneyViewHeight / 4);
     }];

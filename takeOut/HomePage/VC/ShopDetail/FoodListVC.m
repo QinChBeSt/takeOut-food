@@ -334,7 +334,7 @@ static NSString *const resueIdright = @"rightCell";
 static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
 - (void)initTableView {
     
-    self.leftTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width / 4, self.view.frame.size.height - SafeAreaTopHeight - 100 -36 - SafeAreaTabbarHeight - shoppingCarViewHeight) style:UITableViewStylePlain];
+    self.leftTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width / 4, self.view.frame.size.height - SafeAreaTopHeight - 100 -46 - SafeAreaTabbarHeight - shoppingCarViewHeight) style:UITableViewStylePlain];
     self.leftTable.delegate = self;
     self.leftTable.dataSource = self;
     self.leftTable.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -344,7 +344,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
    // [self.leftTable registerClass:[UITableViewCell class] forCellReuseIdentifier:resueIdleft];
     [self.leftTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
     
-    self.rightTable = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 4, 0, self.view.frame.size.width / 4 * 3, self.view.frame.size.height - SafeAreaTopHeight - 100 -36 - SafeAreaTabbarHeight - shoppingCarViewHeight) style:UITableViewStylePlain];
+    self.rightTable = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 4, 0, self.view.frame.size.width / 4 * 3, self.view.frame.size.height - SafeAreaTopHeight - 100 -46 - SafeAreaTabbarHeight - shoppingCarViewHeight) style:UITableViewStylePlain];
     self.rightTable.dataSource = self;
     self.rightTable.delegate = self;
     self.rightTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

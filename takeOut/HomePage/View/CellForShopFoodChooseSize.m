@@ -30,10 +30,12 @@
    
     self.shopName = [[UILabel alloc]init];
      self.shopName.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
+    self.shopName.numberOfLines = 2;
     [self.contentView addSubview:self.shopName];
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(10);
         make.top.equalTo(ws.bigImage);
+        make.right.equalTo(ws.contentView.mas_right).offset(-10);
         make.bottom.equalTo(ws.bigImage.mas_centerY);
     }];
     self.priceLabel = [[UILabel alloc]init];
@@ -67,6 +69,8 @@
     self.shopName.text = mod.godsname;
     self.priceLabel.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),mod.pic];
     NSString *url = [NSString stringWithFormat:@"%@/%@",IMGBaesURL,mod.godslog];
+    
+    url =  [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
      [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
 }
 

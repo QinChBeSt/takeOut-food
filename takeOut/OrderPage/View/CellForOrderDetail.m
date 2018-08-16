@@ -65,6 +65,7 @@
     CGFloat picF  = [picStr floatValue];
     self.foodPic.text = [NSString stringWithFormat:@"%@ %.2f",ZBLocalized(@"฿", nil),picF];
     NSString *imgUrl = [NSString stringWithFormat:@"%@/%@",IMGBaesURL,dic[@"ordersGoodsLog"]];
+     imgUrl =  [imgUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [self.bigImage sd_setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"logo"]];
     
 }

@@ -160,7 +160,7 @@
 "我要合作" = "ร่วมงานกับเรา";
 "确定要退出吗？" = "ยืนยันออกจากระบบ?";
 "BEEORDER配送" = "การจัดส่งโดย  BeeOrder";
-"注册代表您已同意《BEEORDER用户协议》" = "หลังจาการสมัครการใช้งานแล้วแสดงว่าท่านยอมรับเงื่อนไขการใช้งานของแอพพลิเคชั่น Beeorder";
+" 注册代表您已同意" = " Register, you have agreed to the";
 "《BEEORDER用户协议》" ="《BEEORDER user agreement》";
 "经纬度错误" = "Latitude and longitude error";
 
@@ -205,7 +205,7 @@
 "泰国" = "ประเทศไทย";
 "中国" = "ประเทศจีน";
 
-"登录代表您已同意《BEEORDER用户协议》" = "ยืนยอมและรับทราบเงื่อนไขการใช้งานBEEORDER";
+"登录代表您已同意" = "Login, you have agreed to the";
 "用户协议" = "เงื่อนไขการใช้งาน";
 "验证码错误" = "รหัสยืนยันไม่ถูกต้อง";
 "该号码已注册" = "เบอร์โทรศัพท์นี้ใช้งานสมัครแล้ว";
@@ -235,6 +235,8 @@
 "收货人姓名需小于15个字" = "The consignee name must be less than 15 words";
 "收货人姓名需大于2个字" = "The consignee name must be greater than 2 words";
 "请检查网络" = "โปรดตรวจสอบเครือข่าย";
+"同意并注册" = "Agreed and Register";
+"我知道了" = "I know";
 //===========================================图
 "bg_zanwupinglun" = "bg_zanwupinglun2";
 "icon_shangguige" = "icon_shangguige2";

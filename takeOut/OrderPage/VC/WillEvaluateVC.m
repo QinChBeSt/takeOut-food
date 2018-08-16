@@ -47,7 +47,36 @@
         self.tableView.hidden = NO;
         self.toLOginBtn.hidden = YES;
         [self getNetwork];
+        [self getNetForNoPJCounut];
     }
+}
+-(void)getNetForNoPJCounut{
+    NSString *page = [NSString stringWithFormat:@"%d",self.pageIndex];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,getNoPingjiaUrl];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    NSDictionary *parameters = @{@"userid":userID,
+                                 @"flg":@"9",
+                                 @"page":page,
+                                 };
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSString *code = [NSString stringWithFormat:@"%@",responseObject[@"code"]];
+        if ([code isEqualToString:@"1"]) {
+            
+            NSDictionary *dic = responseObject[@"value"];
+            
+            NSString *willEvaCount =[NSString stringWithFormat:@"%@",dic[@"totals"]];
+            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+            
+            [center postNotificationName:@"willEvaCount" object:willEvaCount userInfo:nil];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSString *willEvaCount =@"";
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        
+        [center postNotificationName:@"willEvaCount" object:willEvaCount userInfo:nil];
+    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,7 +108,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userID = [defaults objectForKey:UD_USERID];
     NSDictionary *parameters = @{@"userid":userID,
-                                 @"flg":@"0",
+                                 @"flg":@"9",
                                  @"page":page,
                                  };
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
@@ -106,10 +135,7 @@
             
         }
         
-        NSString *willEvaCount =[NSString stringWithFormat:@"%lu",(unsigned long)self.arrForOrerList.count];
-        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-        
-        [center postNotificationName:@"willEvaCount" object:willEvaCount userInfo:nil];
+       
         if (self.arrForOrerList.count == 0) {
             self.kongBaiView.hidden = NO;
             
@@ -138,7 +164,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userID = [defaults objectForKey:UD_USERID];
     NSDictionary *parameters = @{@"userid":userID,
-                                 @"flg":@"0",
+                                 @"flg":@"9",
                                  @"page":page,
                                  };
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
@@ -148,6 +174,7 @@
         NSMutableArray *arr = dic[@"value"];
         if (arr.count == 0) {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            [self.tableView.mj_header endRefreshing];
         }else{
         
         for (NSMutableDictionary *dic11 in arr) {
@@ -164,9 +191,15 @@
             }
             
         }
+            [self.tableView.mj_footer resetNoMoreData];
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView reloadData];
         }
-        [self.tableView.mj_footer endRefreshing];
-        [self.tableView reloadData];
+        
+        
+           
+        
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];

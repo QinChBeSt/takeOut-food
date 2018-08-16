@@ -256,12 +256,55 @@
         else if ([language isEqualToString:@"zh-Hans"]){
             lauStr = @"2";
         }
-        NSDictionary *parameters = @{@"langet":lauStr,
-                                     
-                                     };
-        
+    NSDictionary *parameters = @{@"langet":lauStr};
+//        NSDictionary *parameters = @{//@"langet":lauStr,
+//                                     @"language":@"1",
+//                                     @"lat":@"13.744488",
+//                                     @"lng":@"100.551866",
+//                                     };
+//
+//    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+//    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//
+//                    NSArray *dic = responseObject[@"value"];
+//                    for (NSMutableDictionary *dicRes in dic) {
+//                        NSString *urlS =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
+//                        urlS = [urlS stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+//                        NSString *detailurl = [NSString stringWithFormat:@"%@",dicRes[@"bannerText"]];
+//                        [self.netImages addObject:urlS];
+//                        [self.arrForBannerDetail addObject:detailurl];
+//                    }
+//
+//                    /** 测试本地图片数据*/
+//                    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
+//                    self.cycleScrollView.imageURLStringsGroup = self.netImages;
+//                    //设置图片视图显示类型
+//                    self.cycleScrollView.autoScrollTimeInterval = 5;
+//                    self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+//                    //设置轮播视图的分页控件的显示
+//                    self.cycleScrollView.showPageControl = YES;
+//                    //设置轮播视图分也控件的位置
+//                    self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+//                    //当前分页控件小圆标图片
+//                    self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
+//                    //其他分页控件小圆标图片
+//                    self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
+//
+//                    [self.tableView addSubview:self.cycleScrollView];
+//                    [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                        make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
+//                        make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
+//                        make.centerX.equalTo(headviewAddressView);
+//                        make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
+//                    }];
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//
+//    }];
+    //请求的方式：POST
+    
         [MHNetWorkTask getWithURL:url withParameter:parameters withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
-            
+
             NSArray *dic = result[@"value"];
             for (NSMutableDictionary *dicRes in dic) {
                 NSString *urlS =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
@@ -270,7 +313,7 @@
                 [self.netImages addObject:urlS];
                 [self.arrForBannerDetail addObject:detailurl];
             }
-            
+
             /** 测试本地图片数据*/
             self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
             self.cycleScrollView.imageURLStringsGroup = self.netImages;
@@ -285,7 +328,7 @@
             self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
             //其他分页控件小圆标图片
             self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
-            
+
             [self.tableView addSubview:self.cycleScrollView];
             [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
@@ -293,8 +336,8 @@
                 make.centerX.equalTo(headviewAddressView);
                 make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
             }];
-            
-            
+
+
         } withFail:^(NSError *error) {
             self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
             self.cycleScrollView.imageURLStringsGroup = self.netImages;
@@ -309,7 +352,7 @@
             self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
             //其他分页控件小圆标图片
             self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
-            
+
             [self.tableView addSubview:self.cycleScrollView];
             [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
@@ -400,10 +443,13 @@
             mod.send_time = dic[@"send_time"];
             mod.send_pic = dic[@"send_pic"];
             mod.store_id = dic[@"store_id"];
-            mod.store_img = dic[@"store_img"];
+            NSString *storeImgStr =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dic[@"store_img"]];
+            storeImgStr =  [storeImgStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+            mod.store_img =storeImgStr;;
             mod.store_name = dic[@"store_name"];
             mod.up_pic = dic[@"up_pic"];
             mod.act_list = dic[@"act_list"];
+             mod.notice  = dic[@"shop_notice"];
             mod.opentime = dic[@"opentime"];
              mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
             [self.arrForHomePageShopList addObject:mod];
@@ -463,7 +509,9 @@
                 mod.send_time = dic[@"send_time"];
                 mod.send_pic = dic[@"send_pic"];
                 mod.store_id = dic[@"store_id"];
-                mod.store_img =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dic[@"store_img"]];
+                NSString *storeImgStr =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dic[@"store_img"]];
+                storeImgStr =  [storeImgStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+                mod.store_img =storeImgStr;
                 mod.store_name = dic[@"store_name"];
                 mod.up_pic = dic[@"up_pic"];
                 mod.act_list = dic[@"act_list"];
@@ -981,7 +1029,12 @@
     strlatitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.latitude];
     strlongitude = [NSString stringWithFormat:@"%f",currentLocation.coordinate.longitude];
    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:strlatitude forKey:UD_lat];
+    [defaults setObject:strlongitude forKey:UD_long];
+    //[defaults setObject:userPhone forKey:UD_USERPHONE];
     
+    [defaults synchronize];
     
     [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         
@@ -1007,9 +1060,15 @@
                 locName = @"";
             }
              NSString *locStr = [NSString stringWithFormat:@"%@ %@%@",currentCity,subLoc,locName];
-           
+            
              NSLog(@"%@",locStr);//具体地址
-            headviewAddressLabel.text = locStr;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:locName forKey:UD_AddR];
+           // [defaults setObject:strlongitude forKey:UD_long];
+            //[defaults setObject:userPhone forKey:UD_USERPHONE];
+            
+            [defaults synchronize];
+            headviewAddressLabel.text = locName;
             
         }
         else{

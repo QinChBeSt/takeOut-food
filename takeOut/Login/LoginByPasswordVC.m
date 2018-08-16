@@ -38,13 +38,13 @@
     
     __weak typeof(self) ws = self;
     UIImageView *backImg = [[UIImageView alloc]init];
-    [backImg setImage:[UIImage imageNamed:@"back_black"]];
+    [backImg setImage:[UIImage imageNamed:@"icon_@3jiantou"]];
     [self.niveView addSubview:backImg];
     [backImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(ws.niveView.mas_top).offset(SafeAreaStatsBarHeight + 5);
+        make.top.equalTo(ws.niveView.mas_top).offset(SafeAreaStatsBarHeight + 10);
         make.left.equalTo(ws.niveView.mas_left).offset(15);
-        make.width.equalTo(@(30));
-        make.height.equalTo(@(30));
+        make.width.equalTo(@(15));
+        make.height.equalTo(@(24));
     }];
     
     UIButton *backBTN = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -58,13 +58,14 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = [NSString stringWithFormat:@"%@BEEORDER",ZBLocalized(@"登录", nil)];
+    titleLabel.text = [NSString stringWithFormat:@"%@ BEEORDER",ZBLocalized(@"登录", nil)];
     titleLabel.textColor = [UIColor colorWithHexString:BaseTextBlackColor];
     titleLabel.font = [UIFont systemFontOfSize:16];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.niveView);
         make.centerY.equalTo(backImg);
+        make.left.equalTo(backImg.mas_right).offset(kWidthScale(45));
     }];
 }
 
@@ -162,7 +163,7 @@
     
    
     self.regisBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+    [self.regisBtn setBackgroundColor:[UIColor colorWithHexString:@"c9c9c9"]];
     self.regisBtn.layer.cornerRadius=kWidthScale(5);
     self.regisBtn.clipsToBounds = YES;
     [self.regisBtn setTitle:ZBLocalized(@"登录", nil) forState:UIControlStateNormal];
@@ -196,33 +197,54 @@
         make.height.equalTo(@(kWidthScale(85)));
     }];
     
-    
-    UILabel *hintLabel=[[UILabel alloc]initWithFrame:CGRectMake(kWidthScale(150), SCREENH_HEIGHT - SafeAreaTabbarHeight - kWidthScale(120), SCREEN_WIDTH - kWidthScale(190), kWidthScale(80))];
-    hintLabel.numberOfLines=0;
-    hintLabel.textAlignment = NSTextAlignmentLeft;
-    [self.view addSubview:hintLabel];
-    hintLabel.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登录代表您已同意《BEEORDER用户协议》", nil)];
-    //获取要调整颜色的文字位置,调整颜色
-    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BEEORDER用户协议》", nil)];
-    [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
-    hintLabel.attributedText=hintString;
+    UILabel *beeOrderArget = [[UILabel alloc]init];
+    beeOrderArget.text =ZBLocalized(@"《BEEORDER用户协议》", nil);
+    beeOrderArget.textColor = [UIColor colorWithHexString:BaseYellow];
+    beeOrderArget.font = [UIFont systemFontOfSize:12];
+    [self.view addSubview:beeOrderArget];
+    [beeOrderArget mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(ws.view.mas_bottom).offset(-SafeAreaTabbarHeight - kWidthScale(52));
+        make.centerX.equalTo(ws.view);
+    }];
+    UILabel *Arget = [[UILabel alloc]init];
+    Arget.text =ZBLocalized(@"登录代表您已同意", nil);
+    Arget.textColor = [UIColor colorWithHexString:@"616161"];
+    Arget.font = [UIFont systemFontOfSize:12];
+    [self.view addSubview:Arget];
+    [Arget mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(beeOrderArget.mas_top).offset(-5);
+        make.centerX.equalTo(ws.view);
+    }];
     
     UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seeProtpo)];
-    [hintLabel addGestureRecognizer:labelTapGestureRecognizer];
-    hintLabel.userInteractionEnabled = YES; // 可以理解为设置label可被点击
-    
-    self.xuanze = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.xuanze addTarget:self action:@selector(xuanzeAcTION) forControlEvents:UIControlEventTouchUpInside];
-    [self.xuanze setImage:[UIImage imageNamed:@"ubXIEYI"] forState:UIControlStateNormal];
-    [self.xuanze setImage:[UIImage imageNamed:@"xieyi"] forState:UIControlStateSelected];
-    self.xuanze.selected = YES;
-    [self.view addSubview:self.xuanze];
-    [self.xuanze mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(hintLabel);
-        make.right.equalTo(hintLabel.mas_left).offset(-kWidthScale(10));
-        make.width.and.height.equalTo(@(kWidthScale(40)));
-    }];
+    [beeOrderArget addGestureRecognizer:labelTapGestureRecognizer];
+    beeOrderArget.userInteractionEnabled = YES;
+//    beeOrderArget *hintLabel=[[UILabel alloc]initWithFrame:CGRectMake(kWidthScale(150), SCREENH_HEIGHT - SafeAreaTabbarHeight - kWidthScale(120), SCREEN_WIDTH - kWidthScale(190), kWidthScale(80))];
+//    hintLabel.numberOfLines=0;
+//    hintLabel.textAlignment = NSTextAlignmentCenter;
+//    [self.view addSubview:hintLabel];
+//    hintLabel.font = [UIFont systemFontOfSize:14];
+//    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登录代表您已同意", nil)];
+//    //获取要调整颜色的文字位置,调整颜色
+//    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BEEORDER用户协议》", nil)];
+//    [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
+//    hintLabel.attributedText=hintString;
+//
+//    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seeProtpo)];
+//    [hintLabel addGestureRecognizer:labelTapGestureRecognizer];
+//    hintLabel.userInteractionEnabled = YES; // 可以理解为设置label可被点击
+//
+//    self.xuanze = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.xuanze addTarget:self action:@selector(xuanzeAcTION) forControlEvents:UIControlEventTouchUpInside];
+//    [self.xuanze setImage:[UIImage imageNamed:@"ubXIEYI"] forState:UIControlStateNormal];
+//    [self.xuanze setImage:[UIImage imageNamed:@"xieyi"] forState:UIControlStateSelected];
+//    self.xuanze.selected = YES;
+//    [self.view addSubview:self.xuanze];
+//    [self.xuanze mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(hintLabel);
+//        make.right.equalTo(hintLabel.mas_left).offset(-kWidthScale(10));
+//        make.width.and.height.equalTo(@(kWidthScale(40)));
+//    }];
     
 }
 - (void)TouchDown
@@ -240,12 +262,24 @@
     NSLog( @"text changed: %@", theTextField.text);
     
     self.phoneNumStr = theTextField.text;
-   
+    if (self.phoneNumStr.length >= 9 && self.codeNumStr.length >= 1 ) {
+        self.regisBtn.enabled = YES;
+        self.regisBtn.backgroundColor =[ UIColor colorWithHexString:BaseYellow];
+    }else{
+        self.regisBtn.enabled = NO;
+        self.regisBtn.backgroundColor =[ UIColor colorWithHexString:@"c9c9c9"];
+    }
 }
 -(void)codeTextFieldDidChange:(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.codeNumStr = theTextField.text;
-   
+    if (self.phoneNumStr.length >= 9 && self.codeNumStr.length >= 1 ) {
+        self.regisBtn.enabled = YES;
+        self.regisBtn.backgroundColor =[ UIColor colorWithHexString:BaseYellow];
+    }else{
+        self.regisBtn.enabled = NO;
+        self.regisBtn.backgroundColor =[ UIColor colorWithHexString:@"c9c9c9"];
+    }
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if ([string isEqualToString:@"\n"])  //按会车可以改变
@@ -294,18 +328,23 @@
     else if (self.codeNumStr.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请输入密码", nil)];
         return;
-    }else if(_xuanze.selected == NO){
-        [MBManager showBriefAlert:ZBLocalized(@"请同意最下方的用户协议", nil)];
-        return;
     }
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,LoginUserURL];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *ADDR = [NSString stringWithFormat:@"%@",[defaults objectForKey:UD_AddR]];
+    NSString *LAT = [NSString stringWithFormat:@"%@",[defaults objectForKey:UD_lat]];
+    NSString *LONG = [NSString stringWithFormat:@"%@",[defaults objectForKey:UD_long]];
 //    NSMutableDictionary *par = [[NSMutableDictionary alloc]init];
 //    [par setValue:self.codeNumStr forKey:@"pwd"];
 //    [par setValue:self.phoneNumStr forKey:@"name"];
     NSString * md5Code = [MD5encryption MD5ForLower32Bate:self.codeNumStr];
     NSDictionary *parameters = @{@"name":self.phoneNumStr,
                                  @"pwd":md5Code,
+                                 @"addr":ADDR,
+                                 @"lat":LAT,
+                                 @"lng":LONG,
+                                 
                                  };
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
     //请求的方式：POST

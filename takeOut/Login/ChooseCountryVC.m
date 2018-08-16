@@ -30,13 +30,13 @@
     
     __weak typeof(self) ws = self;
     UIImageView *backImg = [[UIImageView alloc]init];
-    [backImg setImage:[UIImage imageNamed:@"back_black"]];
+    [backImg setImage:[UIImage imageNamed:@"icon_@3jiantou"]];
     [self.niveView addSubview:backImg];
     [backImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(ws.niveView.mas_top).offset(SafeAreaStatsBarHeight + 5);
+        make.top.equalTo(ws.niveView.mas_top).offset(SafeAreaStatsBarHeight + 10);
         make.left.equalTo(ws.niveView.mas_left).offset(15);
-        make.width.equalTo(@(30));
-        make.height.equalTo(@(30));
+        make.width.equalTo(@(15));
+        make.height.equalTo(@(24));
     }];
     
     UIButton *backBTN = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -56,9 +56,9 @@
     titleLabel.font = [UIFont systemFontOfSize:16];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(ws.niveView);
+         make.left.equalTo(backImg.mas_right).offset(kWidthScale(45));
         make.centerY.equalTo(backImg);
-        make.right.equalTo(ws.view.mas_right).offset(-kWidthScale(30));
+       
     }];
  
 }
@@ -84,22 +84,65 @@
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
+    
+    UIImageView *countryImg = [[UIImageView alloc]init];
+    [cell.contentView addSubview:countryImg];
+    [countryImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(cell.contentView);
+        make.left.equalTo(cell.contentView.mas_left).offset(kWidthScale(42));
+        make.width.equalTo(@(kWidthScale(50)));
+        make.height.equalTo(@(kWidthScale(33)));
+    }];
+    UILabel *countryName = [[UILabel alloc]init];
+    countryName.font = [UIFont systemFontOfSize:17];
+    [cell.contentView addSubview:countryName];
+    [countryName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(cell.contentView);
+        make.left.equalTo(countryImg.mas_right).offset(kWidthScale(28));
+    }];
+    UIImageView *chooseImg = [[UIImageView alloc]init];
+    [cell.contentView addSubview:chooseImg];
+    [chooseImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(cell.contentView);
+        make.right.equalTo(cell.contentView.mas_right).offset(-kWidthScale(65));
+        make.width.equalTo(@(kWidthScale(41)));
+        make.height.equalTo(@(kWidthScale(33)));
+    }];
+    
     UILabel *countryNo = [[UILabel alloc]init];
     countryNo.font = [UIFont systemFontOfSize:16];
     [cell.contentView addSubview:countryNo];
     [countryNo mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(cell.contentView);
-        make.right.equalTo(cell.contentView).offset(-kWidthScale(40));
+        make.right.equalTo(chooseImg.mas_left).offset(-kWidthScale(30));
     }];
-    
+    if ([self.hasChooseStr isEqualToString:@"0"]) {
+        if (indexPath.row == 0) {
+            chooseImg.image = [UIImage imageNamed:@"iocn_@3duihao"];
+        }else{
+            chooseImg.image = [UIImage imageNamed:@""];
+        }
+        
+    }else{
+        if (indexPath.row == 0) {
+            chooseImg.image = [UIImage imageNamed:@""];
+        }else{
+          chooseImg.image = [UIImage imageNamed:@"iocn_@3duihao"];
+        }
+        
+    }
     cell.textLabel.font = [UIFont systemFontOfSize:16];
     if (indexPath.row == 0) {
-        cell.textLabel.text = ZBLocalized(@"中国", nil);
+        countryName.text = ZBLocalized(@"中国", nil);
+        countryImg.image = [UIImage imageNamed:@"icon_@3guoqizhongguo"];
         countryNo.text = @"+86";
+        
     }
     else if (indexPath.row == 1){
-        cell.textLabel.text = ZBLocalized(@"泰国", nil);
+        countryName.text = ZBLocalized(@"泰国", nil);
+        countryImg.image = [UIImage imageNamed:@"icon_@3guoqitaiguo"];
         countryNo.text = @"+66";
+        
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

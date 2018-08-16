@@ -10,4 +10,5 @@
 typedef void (^blockChooseShow)(NSString *);
 @interface ChooseCountryVC : UIViewController
 @property (nonatomic , copy)blockChooseShow blockChooseShow;
+@property (nonatomic , strong)NSString *hasChooseStr;
 @end

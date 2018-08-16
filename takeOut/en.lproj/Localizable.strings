@@ -95,7 +95,7 @@
 "登录" = "Login";
 "登录成功" = "login success";
 "登录失败" = "login failed";
-"我的地址" = "My address";
+"我的地址" = "Address";
 " + 新增收货地址" = "+ Add Shipping Address";
 "新增收货地址" = "Add Shipping Address";
 "请输入手机号" = "Please enter your phone number";
@@ -130,7 +130,7 @@
 "地址添加成功" = "Add address success";
 "地址添加失败" = "Add address failed";
 "温馨提示，点击可以编辑地址，长按可以删除" = "TIPS.  Click can edit it,Long press can delete it";
-"我的评价" = "My evaluation";
+"我的评价" = "Evaluation";
 "关于我们" = "About us";
 "清除缓存" = "Clean cache";
 "没有缓存" = "no cache";
@@ -155,13 +155,13 @@
 "等待商家接单" = "Waiting for business receipt";
 "没有数据" = "No data";
 "选择失败，地址不在店铺覆盖范围" = "The selection failed, and the address was not covered by the store.";
-"更多推荐" = "more";
+"更多推荐" = "More";
 "语言切换" = "Language switch";
 "骑手招募" = "Rider recruitment";
 "我要合作" = "Join us";
 "确定要退出吗？" = "Are you sure you want to quit?";
 "BEEORDER配送" = "BEEORDER distribution";
-"注册代表您已同意《BEEORDER用户协议》" = "Register, you have agreed to the 《BEEORDER user agreement》";
+" 注册代表您已同意" = " Register, you have agreed to the";
 "《BEEORDER用户协议》" ="《BEEORDER user agreement》";
 "经纬度错误" = "Latitude and longitude error";
 
@@ -210,7 +210,7 @@
 "泰国" = "Thailand";
 "中国" = "China";
 
-"登录代表您已同意《BEEORDER用户协议》" = "Login, you have agreed to the 《BEEORDER user agreement》";
+"登录代表您已同意" = "Login, you have agreed to the";
 "用户协议" = "User agreement";
 "验证码错误" = "Verify code wrong";
 "该号码已注册" = "Account already exists";
@@ -239,6 +239,9 @@
 "收货人姓名需小于15个字" = "The consignee name must be less than 15 words";
 "收货人姓名需大于2个字" = "The consignee name must be greater than 2 words";
 "请检查网络" = "Please check the network";
+
+"同意并注册" = "Agreed and Register";
+"我知道了" = "I know";
 //=============================================图
 "bg_zanwupinglun" = "bg_zanwupinglun2";
 "icon_shangguige"= "icon_shangguige2";

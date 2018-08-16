@@ -42,13 +42,13 @@
     
     __weak typeof(self) ws = self;
     UIImageView *backImg = [[UIImageView alloc]init];
-    [backImg setImage:[UIImage imageNamed:@"back_black"]];
+    [backImg setImage:[UIImage imageNamed:@"icon_@3jiantou"]];
     [self.niveView addSubview:backImg];
     [backImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(ws.niveView.mas_top).offset(SafeAreaStatsBarHeight + 5);
+        make.top.equalTo(ws.niveView.mas_top).offset(SafeAreaStatsBarHeight + 10);
         make.left.equalTo(ws.niveView.mas_left).offset(15);
-        make.width.equalTo(@(30));
-        make.height.equalTo(@(30));
+        make.width.equalTo(@(15));
+        make.height.equalTo(@(24));
     }];
     
     UIButton *backBTN = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -62,12 +62,12 @@
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.text = [NSString stringWithFormat:@"%@BEEORDER",ZBLocalized(@"登录", nil)];
+    titleLabel.text = [NSString stringWithFormat:@"%@ BEEORDER",ZBLocalized(@"登录", nil)];
     titleLabel.textColor = [UIColor colorWithHexString:BaseTextBlackColor];
     titleLabel.font = [UIFont systemFontOfSize:16];
     [self.niveView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(ws.niveView);
+        make.left.equalTo(backImg.mas_right).offset(kWidthScale(45));
         make.centerY.equalTo(backImg);
     }];
     
@@ -94,27 +94,7 @@
 }
 -(void)setUpUI{
     __weak typeof(self) ws = self;
-    UILabel *countryTit = [[UILabel alloc]init];
-    countryTit.text = ZBLocalized(@"手机号归属地", nil);
-    countryTit.numberOfLines = 0;
-    countryTit.textColor = [UIColor colorWithHexString:@"626262"];
-    [self.view addSubview:countryTit];
-    [countryTit mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(ws.view.mas_left).offset(kWidthScale(65));
-        make.top.equalTo(ws.niveView.mas_bottom).offset(kWidthScale(130));
-        make.right.equalTo(ws.view).offset(-kWidthScale(225));
-    }];
-    
-    UIView *countryLine = [[UIView alloc]init];
-    countryLine.backgroundColor = [UIColor colorWithHexString:@"e9e9e9"];
-    [self.view addSubview:countryLine];
-    [countryLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(ws.view);
-        make.left.equalTo(countryTit);
-        make.top.equalTo(countryTit.mas_bottom).offset(kWidthScale(15));
-        make.height.equalTo(@(1));
-    }];
-    
+   
     self.countryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.countryBtn setTitleColor:[UIColor colorWithHexString:BaseYellow] forState:UIControlStateNormal];
     self.countryBtn.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -122,30 +102,21 @@
     [self.countryBtn addTarget:self action:@selector(toChooseCountry) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.countryBtn];
     [self.countryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(countryLine);
-        make.centerY.equalTo(countryTit);
-        make.width.equalTo(@(kWidthScale(100)));
-        make.height.equalTo(@(kWidthScale(66)));
+        make.left.equalTo(ws.view.mas_left).offset(kWidthScale(70));
+        make.top.equalTo(ws.niveView.mas_bottom).offset(kWidthScale(195));
+        make.width.equalTo(@(kWidthScale(50)));
+        make.height.equalTo(@(kWidthScale(35)));
     }];
     
-    UIView *countrySx = [[UIView alloc]init];
-    countrySx.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:countrySx];
-    [countrySx mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(countryTit);
-        make.width.equalTo(@(kWidthScale(1)));
-        make.bottom.equalTo(countryLine.mas_top).offset(-kWidthScale(10));
-        make.right.equalTo(ws.countryBtn.mas_left).offset(-kWidthScale(2));
-    }];
     
     self.countryNumLab = [[UILabel alloc]init];
     self.countryNumLab.font = [UIFont systemFontOfSize:14];
     self.countryNumLab.textColor = [UIColor colorWithHexString:@"626262"];
     [self.view addSubview:self.countryNumLab];
     [self.countryNumLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(countryLine.mas_bottom).offset(kWidthScale(60));
-        make.left.equalTo(countryTit);
-        make.width.equalTo(@(kWidthScale(150)));
+        make.top.equalTo(ws.niveView.mas_bottom).offset(kWidthScale(195));
+        make.left.equalTo(ws.countryBtn.mas_right).offset(kWidthScale(15));
+        make.width.equalTo(@(kWidthScale(90)));
         
     }];
     UITapGestureRecognizer *countryNoTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toChooseCountry)];
@@ -157,14 +128,19 @@
     [self.view addSubview:phoneLine];
     [phoneLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.view);
-        make.left.equalTo(countryTit);
-        make.top.equalTo(ws.countryNumLab.mas_bottom).offset(kWidthScale(15));
+        make.left.equalTo(ws.view.mas_left).offset(kWidthScale(65));
+        make.top.equalTo(ws.countryNumLab.mas_bottom).offset(kWidthScale(35));
         make.height.equalTo(@(1));
     }];
     
     self.phoneNumTextField = [[UITextField alloc]init];
     self.phoneNumTextField.delegate = self;
-    self.phoneNumTextField.placeholder = ZBLocalized(@"请输入手机号", nil);
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:ZBLocalized(@"请输入手机号", nil) attributes:
+                                      @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"aeaeae"],
+                                        NSFontAttributeName:self.phoneNumTextField.font
+                                        }];
+    self.phoneNumTextField.attributedPlaceholder = attrString;
+  
     self.phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.phoneNumTextField.returnKeyType = UIReturnKeyNext;
     [self.phoneNumTextField addTarget:self action:@selector(phoneTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -179,14 +155,19 @@
     self.codeTextField = [[UITextField alloc]init];
     self.codeTextField.delegate = self;
     self.codeTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    self.codeTextField.placeholder = ZBLocalized(@"请输入验证码", nil);
+    NSAttributedString *attrStringcode = [[NSAttributedString alloc] initWithString:ZBLocalized(@"请输入验证码", nil) attributes:
+                                      @{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"aeaeae"],
+                                        NSFontAttributeName:self.codeTextField.font
+                                        }];
+    self.codeTextField.attributedPlaceholder = attrStringcode;
+   
     self.codeTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.codeTextField.returnKeyType =  UIReturnKeyDone;
     [self.codeTextField addTarget:self action:@selector(codeTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.codeTextField];
     [self.codeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(phoneLine.mas_bottom).offset(kWidthScale(60));
-        make.left.equalTo(ws.countryNumLab.mas_left).offset(0);
+        make.top.equalTo(phoneLine.mas_bottom).offset(kWidthScale(90));
+        make.left.equalTo(ws.countryBtn.mas_left).offset(0);
         make.width.equalTo(@(kWidthScale(400)));
     }];
     
@@ -195,8 +176,8 @@
     [self.view addSubview:codeLine];
     [codeLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.view);
-        make.left.equalTo(countryTit);
-        make.top.equalTo(ws.codeTextField.mas_bottom).offset(kWidthScale(15));
+         make.left.equalTo(ws.view.mas_left).offset(kWidthScale(65));
+        make.top.equalTo(ws.codeTextField.mas_bottom).offset(kWidthScale(35));
         make.height.equalTo(@(1));
     }];
     self.codeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -218,10 +199,10 @@
     }];
     
     self.toLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+    [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:@"c9c9c9"]];
     self.toLoginButton.layer.cornerRadius=kWidthScale(5);
     self.toLoginButton.clipsToBounds = YES;
-    //self.toLoginButton.enabled = NO;
+    self.toLoginButton.enabled = NO;
     [self.toLoginButton setTitle:ZBLocalized(@"登录", nil) forState:UIControlStateNormal];
     [self.toLoginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.toLoginButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
@@ -229,7 +210,7 @@
     [self.toLoginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     [self.toLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.view.mas_left).offset(kWidthScale(65));
-        make.top.equalTo(codeLine.mas_bottom).offset(kWidthScale(90));
+        make.top.equalTo(codeLine.mas_bottom).offset(kWidthScale(132));
         make.centerX.equalTo(ws.view);
         make.height.equalTo(@(kWidthScale(85)));
     }];
@@ -239,7 +220,7 @@
     [loginByOthr setTitle:str forState:UIControlStateNormal];
     [loginByOthr addTarget:self action:@selector(loginByOther) forControlEvents:UIControlEventTouchUpInside];
     [loginByOthr setTitleColor:[UIColor colorWithHexString:BaseYellow] forState:UIControlStateNormal];
-    loginByOthr.titleLabel.font = [UIFont systemFontOfSize:14];
+    loginByOthr.titleLabel.font = [UIFont systemFontOfSize:16];
     CGSize titleSize = [str sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:loginByOthr.titleLabel.font.fontName size:loginByOthr.titleLabel.font.pointSize]}];
     
     titleSize.height = 20;
@@ -247,7 +228,7 @@
     [self.view addSubview:loginByOthr];
     [loginByOthr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.view);
-        make.top.equalTo(ws.toLoginButton.mas_bottom).offset(kWidthScale(24));
+        make.top.equalTo(ws.toLoginButton.mas_bottom).offset(kWidthScale(40));
         make.height.equalTo(@(30));
         make.width.equalTo(@(titleSize.width));
     }];
@@ -255,38 +236,36 @@
      NSString *language=[[ZBLocalized sharedInstance]currentLanguage];
     if ([language isEqualToString:@"zh-Hans"]) {
 
-        [self.countryBtn setImage:[UIImage imageNamed:@"中国"] forState:UIControlStateNormal];
+        [self.countryBtn setImage:[UIImage imageNamed:@"icon_@3guoqizhongguoxiao"] forState:UIControlStateNormal];
         self.countryNumLab.text = @"+86";
     }else{
-       [self.countryBtn setImage:[UIImage imageNamed:@"泰国"] forState:UIControlStateNormal];
+       [self.countryBtn setImage:[UIImage imageNamed:@"icon_@3guoqitaiguoxiao"] forState:UIControlStateNormal];
         self.countryNumLab.text = @"+66";
     }
     
     
-    UILabel *hintLabel=[[UILabel alloc]initWithFrame:CGRectMake(kWidthScale(150), SCREENH_HEIGHT - SafeAreaTabbarHeight - kWidthScale(120), SCREEN_WIDTH - kWidthScale(190), kWidthScale(80))];
-    hintLabel.numberOfLines=0;
-    hintLabel.textAlignment = NSTextAlignmentLeft;
-    [self.view addSubview:hintLabel];
-    hintLabel.font = [UIFont systemFontOfSize:14];
-    NSMutableAttributedString *hintString=[[NSMutableAttributedString alloc]initWithString:ZBLocalized(@"登录代表您已同意《BEEORDER用户协议》", nil)];
-    //获取要调整颜色的文字位置,调整颜色
-    NSRange range1=[[hintString string]rangeOfString:ZBLocalized(@"《BEEORDER用户协议》", nil)];
-    [hintString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:BaseYellow] range:range1];
-    hintLabel.attributedText=hintString;
-    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seeProtpo)];
-    [hintLabel addGestureRecognizer:labelTapGestureRecognizer];
-    hintLabel.userInteractionEnabled = YES; // 可以理解为设置label可被点击
-    self.xuanze = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.xuanze addTarget:self action:@selector(xuanzeAcTION) forControlEvents:UIControlEventTouchUpInside];
-    [self.xuanze setImage:[UIImage imageNamed:@"ubXIEYI"] forState:UIControlStateNormal];
-    [self.xuanze setImage:[UIImage imageNamed:@"xieyi"] forState:UIControlStateSelected];
-    self.xuanze.selected = YES;
-    [self.view addSubview:self.xuanze];
-    [self.xuanze mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(hintLabel);
-        make.right.equalTo(hintLabel.mas_left).offset(-kWidthScale(10));
-        make.width.and.height.equalTo(@(kWidthScale(40)));
+    UILabel *beeOrderArget = [[UILabel alloc]init];
+    beeOrderArget.text =ZBLocalized(@"《BEEORDER用户协议》", nil);
+    beeOrderArget.textColor = [UIColor colorWithHexString:BaseYellow];
+    beeOrderArget.font = [UIFont systemFontOfSize:12];
+    [self.view addSubview:beeOrderArget];
+    [beeOrderArget mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(ws.view.mas_bottom).offset(-SafeAreaTabbarHeight - kWidthScale(52));
+        make.centerX.equalTo(ws.view);
     }];
+    UILabel *Arget = [[UILabel alloc]init];
+    Arget.text =ZBLocalized(@"登录代表您已同意", nil);
+    Arget.textColor = [UIColor colorWithHexString:@"616161"];
+    Arget.font = [UIFont systemFontOfSize:12];
+    [self.view addSubview:Arget];
+    [Arget mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(beeOrderArget.mas_top).offset(-5);
+        make.centerX.equalTo(ws.view);
+    }];
+    
+    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seeProtpo)];
+    [beeOrderArget addGestureRecognizer:labelTapGestureRecognizer];
+    beeOrderArget.userInteractionEnabled = YES;
     
 }
 //倒数
@@ -384,24 +363,25 @@
 -(void)phoneTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.phoneNumStr = theTextField.text;
-//    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length != 0) {
-//        [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
-//        self.toLoginButton.enabled = YES;
-//    }else{
-//        [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
-//        self.toLoginButton.enabled = NO;
-//    }
+    if (self.phoneNumStr.length >= 9 && self.codeNumStr.length >= 1 ) {
+        [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+        self.toLoginButton.enabled = YES;
+    }else{
+        [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:@"c9c9c9"]];
+        self.toLoginButton.enabled = NO;
+    }
+    
 }
 -(void)codeTextFieldDidChange :(UITextField *)theTextField{
     NSLog( @"text changed: %@", theTextField.text);
     self.codeNumStr = theTextField.text;
-//    if (self.phoneNumStr != nil && self.codeNumStr != nil && self.phoneNumStr.length != 0 && self.codeNumStr.length != 0) {
-//        [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
-//        self.toLoginButton.enabled = YES;
-//    }else{
-//        [self.toLoginButton setBackgroundColor:[UIColor grayColor]];
-//        self.toLoginButton.enabled = NO;
-//    }
+    if (self.phoneNumStr.length >= 9 && self.codeNumStr.length >= 1 ) {
+        [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:BaseYellow]];
+        self.toLoginButton.enabled = YES;
+    }else{
+        [self.toLoginButton setBackgroundColor:[UIColor colorWithHexString:@"c9c9c9"]];
+        self.toLoginButton.enabled = NO;
+    }
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if ([string isEqualToString:@"\n"])  //按会车可以改变
@@ -468,9 +448,6 @@
     }else if (_codeNumStr.length == 0) {
         [MBManager showBriefAlert:ZBLocalized(@"请输入验证码", nil)];
         return;
-    }else if(_xuanze.selected == NO){
-        [MBManager showBriefAlert:ZBLocalized(@"请同意最下方的用户协议", nil)];
-        return;
     }
     
     
@@ -497,12 +474,31 @@
             }
         }
     }
+    NSString *COUNRT ;
+    NSString *PHZONE;
+    if ([self.countryNumLab.text isEqualToString:@"+86"]) {
+        COUNRT = @"中国";
+        PHZONE = @"86";
+    }
+    else{
+        COUNRT = @"泰国";
+        PHZONE = @"66";
+    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *ADDR = [NSString stringWithFormat:@"%@",[defaults objectForKey:UD_AddR]];
+    NSString *LAT = [NSString stringWithFormat:@"%@",[defaults objectForKey:UD_lat]];
+    NSString *LONG = [NSString stringWithFormat:@"%@",[defaults objectForKey:UD_long]];
     NSString * uuidStr= [UUID getUUID];
     NSString * md5Code = [MD5encryption MD5ForLower32Bate:self.codeNumStr];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,setsmsMsg];
     NSDictionary *parameters = @{@"phone":phoneStr,
                                  @"yzm":md5Code,
-                                 @"phonemac":uuidStr
+                                 @"phonemac":uuidStr,
+                                 @"addr":ADDR,
+                                 @"lat":LAT,
+                                 @"lng":LONG,
+                                 @"country":COUNRT,
+                                 @"phonezone":PHZONE,
                                  };
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
     //请求的方式：POST
@@ -560,12 +556,17 @@
 }
 -(void)toChooseCountry{
     ChooseCountryVC *chooseCou  = [[ChooseCountryVC alloc]init];
+    if ([self.countryNumLab.text isEqualToString:@"+86"]) {
+        chooseCou.hasChooseStr = @"0";
+    }else{
+        chooseCou.hasChooseStr = @"1";
+    }
     chooseCou.blockChooseShow = ^(NSString *country) {
         if ([country isEqualToString:@"0"]) {
-           [self.countryBtn setImage:[UIImage imageNamed:@"中国"] forState:UIControlStateNormal];
+           [self.countryBtn setImage:[UIImage imageNamed:@"icon_@3guoqizhongguoxiao"] forState:UIControlStateNormal];
             self.countryNumLab.text = @"+86";
         }else{
-          [self.countryBtn setImage:[UIImage imageNamed:@"泰国"] forState:UIControlStateNormal];
+          [self.countryBtn setImage:[UIImage imageNamed:@"icon_@3guoqitaiguoxiao"] forState:UIControlStateNormal];
             self.countryNumLab.text = @"+66";
         }
     };

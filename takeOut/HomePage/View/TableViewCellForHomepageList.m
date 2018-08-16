@@ -264,15 +264,15 @@
     NSArray *array = [time componentsSeparatedByString:@"m"];
     CGFloat timeInt = [array[0] floatValue];
     
-    int disint = [mod.send_dis intValue];
-    float disFloat;
+    float disFloat = [mod.send_dis floatValue];
+    
     NSString *dis;
 //    if (disint >= 1000) {
 //        disFloat = (float)disint / (float)1000;
 //        dis = [NSString stringWithFormat:@"%.fmin | %.2fKm",timeInt,disFloat];
 //    }else{
-        disFloat = disint;
-        dis = [NSString stringWithFormat:@"%.fmin | %.fKm",timeInt,disFloat];
+        //disFloat = disint;
+        dis = [NSString stringWithFormat:@"%.fmin | %.2fKm",timeInt,disFloat];
    // }
    
     self.shopDistance.text = dis;

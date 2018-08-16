@@ -111,7 +111,11 @@
             mod.send_time = dic[@"send_time"];
             mod.send_pic = dic[@"send_pic"];
             mod.store_id = dic[@"store_id"];
-            mod.store_img =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dic[@"store_img"] ];
+            NSString *storeImgStr =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dic[@"store_img"]];
+            storeImgStr =  [storeImgStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+            mod.store_img =storeImgStr;
+            //@"http://pcobwjw66.sabkt.gdipper.com/9/12/1534167448239timg%20(7).jpg";
+            mod.notice  = dic[@"shop_notice"];
             mod.store_name = dic[@"store_name"];
             mod.up_pic = dic[@"up_pic"];
             mod.opentime = dic[@"opentime"];

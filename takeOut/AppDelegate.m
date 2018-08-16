@@ -18,9 +18,10 @@
 #endif
 // 如果需要使用idfa功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
+#import "XTGuidePagesViewController.h"
+#import "CALayer+Transition.h"
 
-
-@interface AppDelegate ()<UITabBarDelegate,JPUSHRegisterDelegate>
+@interface AppDelegate ()<UITabBarDelegate,JPUSHRegisterDelegate,selectDelegate>
 @property (strong, nonatomic)NSArray *viewControllers;
 @end
 
@@ -100,18 +101,30 @@
             
         } seq:0];
     }
+     NSArray *images = @[@"bg_@3qidongyea", @"bg_@3qidongyeb", @"bg_@3qidongyec"];
+    BOOL y = [XTGuidePagesViewController isShow];
+    if (y) {
+        XTGuidePagesViewController *xt = [[XTGuidePagesViewController alloc] init];
+        self.window.rootViewController = xt;
+        xt.delegate = self;
+        [xt guidePageControllerWithImages:images];
+    }else{
+        [self clickEnter];
+    }
     
     
-    EXTabBarVC *tabbar = [EXTabBarVC sharedInstance];
-    UIViewController * viewconrtoller = [[EXNavigationVC alloc]initWithRootViewController:tabbar];
-    [self.window setRootViewController:viewconrtoller];
-    [self.window makeKeyAndVisible];
     
     
     return YES;
     
 }
-
+- (void)clickEnter
+{
+    EXTabBarVC *tabbar = [EXTabBarVC sharedInstance];
+    UIViewController * viewconrtoller = [[EXNavigationVC alloc]initWithRootViewController:tabbar];
+    [self.window setRootViewController:viewconrtoller];
+    [self.window.layer transitionWithAnimType:TransitionAnimTypeCube subType:TransitionSubtypesFromRight curve:TransitionCurveDefault duration:1.0f];
+}
 #pragma mark - JPushDelegate
 //注册APNs成功并上报DeviceToken
 - (void)application:(UIApplication *)application

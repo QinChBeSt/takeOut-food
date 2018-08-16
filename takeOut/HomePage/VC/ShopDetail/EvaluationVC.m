@@ -44,7 +44,10 @@
         NSString *code = [NSString stringWithFormat:@"%@",responseObject[@"code"]];
         if ([code isEqualToString:@"1"]) {
             NSMutableDictionary *resDic = responseObject[@"value"];
-            self.csiLabel.text = resDic[@"csi"];
+            if ([type isEqualToString:@"0"]) {
+                 self.csiLabel.text = resDic[@"csi"];
+            }
+           
             NSMutableArray *arr = resDic[@"dat2"];
             for (NSMutableDictionary *dic in arr) {
                 [self.eavArr addObject:dic];

@@ -44,9 +44,9 @@
     UILabel *uNameLab;
 }
 -(void)viewWillAppear:(BOOL)animated{
-    
+    if (self.uaddrid == nil) {
     [self toGetNetForAdd];
-    
+    }
 }
 -(void)dealloc{
     //第一种方法.这里可以移除该控制器下的所有通知
@@ -585,6 +585,7 @@
     cell.foodsMoney.text = [NSString stringWithFormat:@"%@%.2f",ZBLocalized(@"฿", nil),g_picF];
     cell.foodsCount.text = [NSString stringWithFormat:@"× %@",dic[@"count"]];
     NSString *ImgUrl = [NSString stringWithFormat:@"%@/%@",IMGBaesURL,dic[@"g_log"]];
+    ImgUrl =  [ImgUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [cell.shopIcon sd_setImageWithURL:[NSURL URLWithString:ImgUrl] placeholderImage:[UIImage imageNamed:@"logo"]];
     return cell;
 }
