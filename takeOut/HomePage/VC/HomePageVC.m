@@ -256,7 +256,7 @@
         else if ([language isEqualToString:@"zh-Hans"]){
             lauStr = @"2";
         }
-    NSDictionary *parameters = @{@"langet":lauStr};
+    
 //        NSDictionary *parameters = @{//@"langet":lauStr,
 //                                     @"language":@"1",
 //                                     @"lat":@"13.744488",
@@ -301,8 +301,10 @@
 //    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //
 //    }];
-    //请求的方式：POST
     
+    NSDictionary *parameters = @{@"langet":lauStr};
+    请求的方式：POST
+
         [MHNetWorkTask getWithURL:url withParameter:parameters withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
 
             NSArray *dic = result[@"value"];
