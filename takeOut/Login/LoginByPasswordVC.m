@@ -357,7 +357,7 @@
             NSString *userid =[NSString stringWithFormat:@"%@",dic[@"id"]];
             NSString *userPhone =[NSString stringWithFormat:@"%@",dic[@"userPhone"]];
             NSString *userName =[NSString stringWithFormat:@"kpV%@",dic[@"userName"]];
-            
+            NSLog(@"id%@",userid);
             [JPUSHService setAlias:JGPushAlias completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
                 NSLog(@"%ld",(long)seq);
             } seq:0];

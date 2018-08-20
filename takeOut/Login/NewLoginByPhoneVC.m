@@ -513,7 +513,7 @@
             NSString *userPhone =[NSString stringWithFormat:@"%@",dic[@"userPhone"]];
             NSString *userName =[NSString stringWithFormat:@"%@",dic[@"userName"]];
             
-            
+            NSLog(@"id=%@",userid);
             [JPUSHService setAlias:JGPushAlias completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
                 NSLog(@"注册Alias==%ld",(long)iResCode);
             } seq:0];

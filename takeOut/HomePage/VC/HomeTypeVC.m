@@ -119,6 +119,7 @@
             mod.store_name = dic[@"store_name"];
             mod.up_pic = dic[@"up_pic"];
             mod.opentime = dic[@"opentime"];
+            mod.bussinesstime = dic[@"bussinesstime"];
             mod.acTypeStr =[NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]] ;
             [self.arrForHomePageShopList addObject:mod];
         }

@@ -180,7 +180,7 @@
     NSArray *arrayTime = [optime componentsSeparatedByString:@"-"];
     NSString *openTime = arrayTime[0];
     if ([IsStringNull isBlankString:openTime]) {
-        return @"2";
+        return @"1";
     }
     
     
@@ -227,30 +227,81 @@
         self.blockChooseShow(@"1");
     }
 }
-
+-(NSString *)isBuss:(NSMutableArray *)arr{
+    NSCalendar*calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDateComponents*comps = [[NSDateComponents alloc]init];
+    
+    NSInteger unitFlags =NSCalendarUnitWeekday;
+    
+    /*-----这里因为我只判断是周几,所以只添加了NSCalendarUnitWeekday,如果需要判断年月日的话,就需要添加NSCalendarUnitYear等,具体格式是
+     
+     NSInteger unitFlags =NSCalendarUnitWeekday|NSCalendarUnitYear ;
+     
+     -------*/
+    
+    
+    
+    NSDate*now =[NSDate date];
+    
+    comps = [calendar components:unitFlags fromDate:now];
+    NSLog(@"-----------weekday is %ld",(long)[comps weekday]);//周
+    
+    NSString *openType;
+    
+    
+    NSString *weekStr = [NSString stringWithFormat:@"%ld",(long)[comps weekday]];
+    NSInteger weekInt = [weekStr integerValue];
+    if (weekInt == 1) {
+        weekInt = 6;
+    }else{
+        weekInt = weekInt - 2;
+    }
+    
+    openType =[NSString stringWithFormat:@"%@",arr[weekInt]];
+    return openType;
+}
 -(void)setMod:(ModelForShopList *)mod{
+   
+  
     self.shopName.text = mod.store_name;
     NSString *acType = mod.acTypeStr;
+    NSString *url = [NSString stringWithFormat:@"%@",mod.store_img];
+    [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
+    //1. actype如果为2则营业,其他打烊
     if ([acType isEqualToString:@"2"]) {
+        
+        //2. 如果actype为2，则判断时间是否为营业时间
          NSString *cyType = [self isACType:mod.opentime];
+        
+        //3. 如果营业时间不符合，则为打烊，其他为营业（此处2位打烊，）
         if ([cyType isEqualToString:@"2"]) {
-            NSString *url = [NSString stringWithFormat:@"%@",mod.store_img];
-            
-            [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
+     
             self.dyLabel.hidden = NO;
             
-            //[self.bigImage sd_setImageWithURL:photourl];
-        }else{
+        }
+             //4. 如果营业时间也符合 则判断周几是否营业，
+        else{
+               //如果返回的周几数据不对则为不营业，
+            if (mod.bussinesstime.count != 7) {
+
+                self.dyLabel.hidden = YES;
+            }
+            else{
+                //如果返回的今天为2，则营业，
+                if ([[self isBuss:mod.bussinesstime] isEqualToString:@"2"]) {
+                    self.dyLabel.hidden = YES;
+
+                }else{
+             
+                    self.dyLabel.hidden = NO;
+                }
+     
+            }
             
-            self.dyLabel.hidden = YES;
-            NSString *url = [NSString stringWithFormat:@"%@",mod.store_img];
-            
-            [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
         }
     }else{
-        NSString *url = [NSString stringWithFormat:@"%@",mod.store_img];
-        
-        [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
+
         self.dyLabel.hidden = NO;
     }
    

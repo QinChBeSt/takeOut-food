@@ -303,7 +303,6 @@
 //    }];
     
     NSDictionary *parameters = @{@"langet":lauStr};
-    请求的方式：POST
 
         [MHNetWorkTask getWithURL:url withParameter:parameters withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
 
@@ -454,6 +453,7 @@
              mod.notice  = dic[@"shop_notice"];
             mod.opentime = dic[@"opentime"];
              mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
+            mod.bussinesstime = dic[@"bussinesstime"];
             [self.arrForHomePageShopList addObject:mod];
         }
             [self.tableView.mj_footer endRefreshing];
@@ -520,6 +520,7 @@
                 mod.opentime = dic[@"opentime"];
                 mod.notice  = dic[@"shop_notice"];
                 mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
+                mod.bussinesstime = dic[@"bussinesstime"];
                 NSInteger acType = dic[@"shop_ac_type"];
                 [self.arrForHomePageShopList addObject:mod];
                 
@@ -817,8 +818,10 @@
     ModelForShopList *mod =[[ModelForShopList alloc]init];
     mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
     NSString *acType = mod.acTypeStr;
+    //如果反的ACtype = 2 则营业，再判断时间
     if ([acType isEqualToString:@"2"]) {
         NSString *cyType = [self isACType:mod.opentime];
+        //如果cytype为2 则打烊
         if ([cyType isEqualToString:@"2"]) {
            
             [MBManager showBriefAlert:ZBLocalized(@"该商店已打样", nil)];

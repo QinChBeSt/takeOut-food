@@ -91,7 +91,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
      NSString *userID = [NSString stringWithFormat:@"%@",[defaults objectForKey:UD_USERID]];
-    if (userID == nil || [userID isEqualToString:@""]) {
+    if (userID == nil || [userID isEqualToString:@""]||[IsStringNull isBlankString:userID]) {
         [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
             
             NSLog(@"删除Alias==%ld",(long)iResCode);
