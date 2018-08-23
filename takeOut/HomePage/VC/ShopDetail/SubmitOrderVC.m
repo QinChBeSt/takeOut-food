@@ -642,7 +642,7 @@
                                  @"bz":self.bz,
                                  };
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
-    
+    NSLog(@"%@",parameters);
     toPay.enabled = NO;
     [MBManager showLoadingInView:self.view];
     [managers POST:Url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

@@ -511,7 +511,7 @@
             NSDictionary *dic = responseObject[@"value"];
             NSString *userid =[NSString stringWithFormat:@"%@",dic[@"id"]];
             NSString *userPhone =[NSString stringWithFormat:@"%@",dic[@"userPhone"]];
-            NSString *userName =[NSString stringWithFormat:@"%@",dic[@"userName"]];
+            NSString *userName =[NSString stringWithFormat:@"kpV%@",dic[@"userName"]];
             
             NSLog(@"id=%@",userid);
             [JPUSHService setAlias:JGPushAlias completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {

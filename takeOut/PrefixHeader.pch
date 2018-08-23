@@ -42,8 +42,8 @@
 
 ////////=================  测试
 //#define BASEURL @"http://192.168.0.132:8010"
-//#define IMGsaveBaesURL @"192.168.0.132:8010/spmvc/apidocs/img/"
-//#define JGPushAlias @"bee"
+//#define IMGsaveBaesURL @"http://192.168.0.132:8010/spmvc/apidocs/img/"
+//#define JGPushAlias @"150bee"
 
 ////
 //#define BASEURL @"http://192.168.0.126:8082"

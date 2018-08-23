@@ -157,6 +157,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
          //  [[NSNotificationCenter defaultCenter]postNotificationName:@"REFRESHYUJING" object:nil];
         
         NSLog(@"前台收到消息");
+        NSDictionary *aps = [userInfo valueForKey:@"aps"];
+        NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
+        NSInteger badge = [[aps valueForKey:@"badge"] integerValue]; //badge数量
+        NSString *sound = [aps valueForKey:@"sound"]; //播放的声音
+        
+        // 取得Extras字段内容
+        NSString *customizeField1 = [userInfo valueForKey:@"customizeExtras"]; //服务端中Extras字段，key是自己定义的
+        NSLog(@"content =[%@], badge=[%d], sound=[%@], customize field  =[%@]",content,badge,sound,customizeField1);
+        
+        // iOS 10 以下 Required
+        [JPUSHService handleRemoteNotification:userInfo];
         
     }
     
@@ -189,11 +200,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
     
     NSDictionary *userInfo = response.notification.request.content.userInfo;
-    
+     NSString *type =[NSString stringWithFormat:@"%@",userInfo[@"type"]] ;
     if ([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         
         [JPUSHService handleRemoteNotification:userInfo];
-        
+         [self toOrderVC:type];
         //[self SetMainTabbarController2]; //收到推送消息，需要调整的界面
         
         // 消息界面监听刷新
@@ -208,7 +219,16 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
 }
 
-
+-(void)toOrderVC:(NSString *)TAG{
+    EXTabBarVC *tab=[[EXTabBarVC alloc]init];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = tab;
+    
+    
+    if ([TAG isEqualToString:@"4"]) {
+        tab.selectedIndex=1;
+    }
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

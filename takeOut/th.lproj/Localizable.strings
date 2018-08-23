@@ -235,8 +235,8 @@
 "收货人姓名需小于15个字" = "The consignee name must be less than 15 words";
 "收货人姓名需大于2个字" = "The consignee name must be greater than 2 words";
 "请检查网络" = "โปรดตรวจสอบเครือข่าย";
-"同意并注册" = "Agreed and Register";
-"我知道了" = "I know";
+"同意并注册" = "ยอมรับและลงชื่อเข้าใช้";
+"我知道了" = "ฉันรู้แล้ว";
 //===========================================图
 "bg_zanwupinglun" = "bg_zanwupinglun2";
 "icon_shangguige" = "icon_shangguige2";

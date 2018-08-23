@@ -383,10 +383,8 @@
     }else if (_userPhoneNum.text.length > 11){
         [MBManager showBriefAlert:ZBLocalized(@"手机号应该为9~11位数字", nil)];
     }
-    else if (_houseAdd.text.length == 0){
-        [MBManager showBriefAlert:ZBLocalized(@"请获填写具体位置", nil)];
-    }else{
-        
+    else{
+      
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
@@ -433,8 +431,6 @@
         [MBManager showBriefAlert:ZBLocalized(@"收货人姓名需小于15个字", nil)];
     }else if (_userPhoneNum.text.length == 0){
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人电话", nil)];
-    }else if (_houseAdd.text.length == 0){
-        [MBManager showBriefAlert:ZBLocalized(@"请获填写具体位置", nil)];
     }else if([[_userNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length]==0) {
         [MBManager showBriefAlert:ZBLocalized(@"请填写收货人姓名", nil)];
         return;

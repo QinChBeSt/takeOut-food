@@ -497,11 +497,11 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         [self.imgShoppingCar setImage:[UIImage imageNamed:@"icon_shangjiaxiangqinggouwu"]];
         [self.buyCarView addSubview:self.imgShoppingCar];
         [self.imgShoppingCar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@(20));
+            make.left.equalTo(@(15));
             make.top.equalTo(@(5));
             
             make.centerY.equalTo(ws.buyCarView.mas_top).offset(shoppingCarViewHeight/2);
-            make.width.equalTo(@(40));
+            make.width.equalTo(@(45));
         }];
         
         self.ShoppingCarRedLabel = [[UILabel alloc]init];
@@ -516,7 +516,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         [self.imgShoppingCar addSubview:self.ShoppingCarRedLabel];
         [self.ShoppingCarRedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.imgShoppingCar.mas_right).offset(10);
-            make.bottom.equalTo(self.imgShoppingCar.mas_bottom).offset(3);
+            make.top.equalTo(self.imgShoppingCar.mas_top).offset(0);
             make.width.equalTo(@(20));
             make.height.equalTo(@(20));
         }];

@@ -198,7 +198,10 @@
     }else{
         [self isNeedUpdate];
         if (self.netImages.count == 0) {
-            [self getNetWorkForBanner];
+            if (strlatitude != nil) {
+                [self getNetWorkForBanner];
+            }
+            
         }
         if (self.arrForHomePageTypeName.count == 0) {
             [self getNetworkForType];
@@ -257,112 +260,112 @@
             lauStr = @"2";
         }
     
-//        NSDictionary *parameters = @{//@"langet":lauStr,
-//                                     @"language":@"1",
-//                                     @"lat":@"13.744488",
-//                                     @"lng":@"100.551866",
-//                                     };
-//
-//    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
-//    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//
-//                    NSArray *dic = responseObject[@"value"];
-//                    for (NSMutableDictionary *dicRes in dic) {
-//                        NSString *urlS =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
-//                        urlS = [urlS stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-//                        NSString *detailurl = [NSString stringWithFormat:@"%@",dicRes[@"bannerText"]];
-//                        [self.netImages addObject:urlS];
-//                        [self.arrForBannerDetail addObject:detailurl];
-//                    }
-//
-//                    /** 测试本地图片数据*/
-//                    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
-//                    self.cycleScrollView.imageURLStringsGroup = self.netImages;
-//                    //设置图片视图显示类型
-//                    self.cycleScrollView.autoScrollTimeInterval = 5;
-//                    self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
-//                    //设置轮播视图的分页控件的显示
-//                    self.cycleScrollView.showPageControl = YES;
-//                    //设置轮播视图分也控件的位置
-//                    self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-//                    //当前分页控件小圆标图片
-//                    self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
-//                    //其他分页控件小圆标图片
-//                    self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
-//
-//                    [self.tableView addSubview:self.cycleScrollView];
-//                    [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-//                        make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
-//                        make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
-//                        make.centerX.equalTo(headviewAddressView);
-//                        make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
-//                    }];
-//
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//
-//    }];
+        NSDictionary *parameters = @{//@"langet":lauStr,
+                                     @"language":lauStr,
+                                     @"lat":strlatitude,
+                                     @"lng":strlongitude,
+                                     };
+
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"ban====%@",responseObject);
+                    NSArray *dic = responseObject[@"value"];
+                    for (NSMutableDictionary *dicRes in dic) {
+                        NSString *urlS =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
+                        urlS = [urlS stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+                        NSString *detailurl = [NSString stringWithFormat:@"%@",dicRes[@"bannerText"]];
+                        [self.netImages addObject:urlS];
+                        [self.arrForBannerDetail addObject:detailurl];
+                    }
+
+                    /** 测试本地图片数据*/
+                    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
+                    self.cycleScrollView.imageURLStringsGroup = self.netImages;
+                    //设置图片视图显示类型
+                    self.cycleScrollView.autoScrollTimeInterval = 5;
+                    self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+                    //设置轮播视图的分页控件的显示
+                    self.cycleScrollView.showPageControl = YES;
+                    //设置轮播视图分也控件的位置
+                    self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+                    //当前分页控件小圆标图片
+                    self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
+                    //其他分页控件小圆标图片
+                    self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
+
+                    [self.tableView addSubview:self.cycleScrollView];
+                    [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
+                        make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
+                        make.centerX.equalTo(headviewAddressView);
+                        make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
+                    }];
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+    }];
     
-    NSDictionary *parameters = @{@"langet":lauStr};
-
-        [MHNetWorkTask getWithURL:url withParameter:parameters withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
-
-            NSArray *dic = result[@"value"];
-            for (NSMutableDictionary *dicRes in dic) {
-                NSString *urlS =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
-                urlS = [urlS stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-                NSString *detailurl = [NSString stringWithFormat:@"%@",dicRes[@"bannerText"]];
-                [self.netImages addObject:urlS];
-                [self.arrForBannerDetail addObject:detailurl];
-            }
-
-            /** 测试本地图片数据*/
-            self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
-            self.cycleScrollView.imageURLStringsGroup = self.netImages;
-            //设置图片视图显示类型
-            self.cycleScrollView.autoScrollTimeInterval = 5;
-            self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
-            //设置轮播视图的分页控件的显示
-            self.cycleScrollView.showPageControl = YES;
-            //设置轮播视图分也控件的位置
-            self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-            //当前分页控件小圆标图片
-            self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
-            //其他分页控件小圆标图片
-            self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
-
-            [self.tableView addSubview:self.cycleScrollView];
-            [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
-                make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
-                make.centerX.equalTo(headviewAddressView);
-                make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
-            }];
-
-
-        } withFail:^(NSError *error) {
-            self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
-            self.cycleScrollView.imageURLStringsGroup = self.netImages;
-            //设置图片视图显示类型
-            self.cycleScrollView.autoScrollTimeInterval = 5;
-            self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
-            //设置轮播视图的分页控件的显示
-            self.cycleScrollView.showPageControl = YES;
-            //设置轮播视图分也控件的位置
-            self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-            //当前分页控件小圆标图片
-            self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
-            //其他分页控件小圆标图片
-            self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
-
-            [self.tableView addSubview:self.cycleScrollView];
-            [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
-                make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
-                make.centerX.equalTo(headviewAddressView);
-                make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
-            }];
-            NSLog(@"轮播图请求错误：%@,",error);
-        }];
+//    NSDictionary *parameters = @{@"langet":lauStr};
+//
+//        [MHNetWorkTask getWithURL:url withParameter:parameters withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
+//
+//            NSArray *dic = result[@"value"];
+//            for (NSMutableDictionary *dicRes in dic) {
+//                NSString *urlS =[NSString stringWithFormat:@"%@%@",IMGBaesURL,dicRes[@"img"]];
+//                urlS = [urlS stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+//                NSString *detailurl = [NSString stringWithFormat:@"%@",dicRes[@"bannerText"]];
+//                [self.netImages addObject:urlS];
+//                [self.arrForBannerDetail addObject:detailurl];
+//            }
+//
+//            /** 测试本地图片数据*/
+//            self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
+//            self.cycleScrollView.imageURLStringsGroup = self.netImages;
+//            //设置图片视图显示类型
+//            self.cycleScrollView.autoScrollTimeInterval = 5;
+//            self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+//            //设置轮播视图的分页控件的显示
+//            self.cycleScrollView.showPageControl = YES;
+//            //设置轮播视图分也控件的位置
+//            self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+//            //当前分页控件小圆标图片
+//            self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
+//            //其他分页控件小圆标图片
+//            self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
+//
+//            [self.tableView addSubview:self.cycleScrollView];
+//            [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
+//                make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
+//                make.centerX.equalTo(headviewAddressView);
+//                make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
+//            }];
+//
+//
+//        } withFail:^(NSError *error) {
+//            self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"logo"]];
+//            self.cycleScrollView.imageURLStringsGroup = self.netImages;
+//            //设置图片视图显示类型
+//            self.cycleScrollView.autoScrollTimeInterval = 5;
+//            self.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+//            //设置轮播视图的分页控件的显示
+//            self.cycleScrollView.showPageControl = YES;
+//            //设置轮播视图分也控件的位置
+//            self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+//            //当前分页控件小圆标图片
+//            self.cycleScrollView.pageDotImage = [UIImage imageNamed:@"normal"];
+//            //其他分页控件小圆标图片
+//            self.cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"lighted"];
+//
+//            [self.tableView addSubview:self.cycleScrollView];
+//            [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.top.equalTo(headviewAddressView.mas_bottom).offset(kWidthScale(18)) ;
+//                make.width.equalTo(headviewAddressView).offset(-kWidthScale(36));
+//                make.centerX.equalTo(headviewAddressView);
+//                make.height.equalTo(@(kHeadImageViewHeight - kWidthScale(36)));
+//            }];
+//            NSLog(@"轮播图请求错误：%@,",error);
+//        }];
     
 }
 //选择分类
@@ -1028,6 +1031,7 @@
         
         dispatch_after(delayTime, dispatch_get_main_queue(), ^{
              [self netWorkForShopList:0];
+            [self getNetWorkForBanner];
         });
    
     }
