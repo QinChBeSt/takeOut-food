@@ -384,7 +384,9 @@
         [MBManager showBriefAlert:ZBLocalized(@"手机号应该为9~11位数字", nil)];
     }
     else{
-      
+        if ([IsStringNull isBlankString:_userHouseNoStr]) {
+            _userHouseNoStr = @"";
+        }
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
@@ -440,6 +442,7 @@
     }
     
     else{
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *userid = [defaults objectForKey:UD_USERID];
         if (userid == nil) {
@@ -448,6 +451,10 @@
         } else{
             if(_userSex == nil){
                 _userSex = @"1";
+            }
+            
+            if ([IsStringNull isBlankString:_userHouseNoStr]) {
+                _userHouseNoStr = @"";
             }
             NSString *url = [NSString stringWithFormat:@"%@%@",BASEURL,addAddressUrl];
             NSDictionary *parameters = @{@"uid":userid,

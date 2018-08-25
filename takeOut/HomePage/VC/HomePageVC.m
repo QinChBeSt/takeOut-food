@@ -53,6 +53,8 @@
 
 @property (nonatomic , strong)NSMutableArray *arrForBannerDetail;
 
+@property (nonatomic , strong)NSMutableArray *arrForListOpen;
+@property (nonatomic , strong)NSMutableArray *arrForListClose;
 /**
  *   页数
  */
@@ -94,7 +96,19 @@
     }
     return _arrForHomePageShopList;
 }
+-(NSMutableArray *)arrForListOpen{
+    if (!_arrForListOpen) {
+        _arrForListOpen = [NSMutableArray array];
+    }
+    return _arrForListOpen;
+}
 
+-(NSMutableArray *)arrForListClose{
+    if (!_arrForListClose) {
+        _arrForListClose = [NSMutableArray array];
+    }
+    return _arrForListClose;
+}
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
     [self.tabBarController.tabBar setHidden:NO];
@@ -455,10 +469,23 @@
             mod.act_list = dic[@"act_list"];
              mod.notice  = dic[@"shop_notice"];
             mod.opentime = dic[@"opentime"];
-             mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
-            mod.bussinesstime = dic[@"bussinesstime"];
-            [self.arrForHomePageShopList addObject:mod];
+            NSString *acStr =[NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
+            NSString *buss = [NSString stringWithFormat:@"%@",dic[@"bussiness"]];
+            mod.acTypeStr = acStr;//2开门 1打烊
+            mod.bussiness = buss;  //1开门 2关门
+            if ([acStr isEqualToString:@"2"]) {
+                if ([buss isEqualToString:@"1"]) {
+                    [self.arrForListOpen addObject:mod];
+                }else{
+                    [self.arrForListClose addObject:mod];
+                }
+            }else{
+                [self.arrForListClose addObject:mod];
+            }
         }
+            [self.arrForHomePageShopList removeAllObjects];
+            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListOpen];
+            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListClose];
             [self.tableView.mj_footer endRefreshing];
             [self.tableView reloadData];
         }
@@ -506,6 +533,8 @@
         [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
             
             NSArray *arr = result[@"value"];
+            [self.arrForListClose removeAllObjects];
+            [self.arrForListOpen removeAllObjects];
             [self.arrForHomePageShopList removeAllObjects];
             for (NSDictionary *dic in arr) {
                 ModelForShopList *mod = [[ModelForShopList alloc]init];
@@ -522,22 +551,29 @@
                 mod.act_list = dic[@"act_list"];
                 mod.opentime = dic[@"opentime"];
                 mod.notice  = dic[@"shop_notice"];
-                mod.acTypeStr = [NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
-                mod.bussinesstime = dic[@"bussinesstime"];
-                NSInteger acType = dic[@"shop_ac_type"];
-                [self.arrForHomePageShopList addObject:mod];
-                
-                if (acType == 2) {
-                    
-                    
+               
+                NSString *acStr =[NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
+                NSString *buss = [NSString stringWithFormat:@"%@",dic[@"bussiness"]];
+                mod.acTypeStr = acStr;//2开门 1打烊
+                mod.bussiness = buss;  //1开门 2关门
+                if ([acStr isEqualToString:@"2"]) {
+                    if ([buss isEqualToString:@"1"]) {
+                        [self.arrForListOpen addObject:mod];
+                    }else{
+                        [self.arrForListClose addObject:mod];
+                    }
                 }else{
-                    
-                    //NSLog(@"该商家已打烊");
+                    [self.arrForListClose addObject:mod];
                 }
+               
+                //[self.arrForHomePageShopList addObject:mod];
+                
+               
                 
                 
             }
-            
+            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListOpen];
+            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListClose];
             [self.tableView.mj_footer resetNoMoreData];
             [self.tableView.mj_header endRefreshing];
             [self.tableView reloadData];

@@ -44,7 +44,7 @@
                 if (i == images.count - 1) {
                     //[btn setTitle:@"点击进入" forState:UIControlStateNormal];
                 }
-                btn.frame = CGRectMake(s_w * i, s_h - kWidthScale(320), kWidthScale(310), kWidthScale(120));
+                btn.frame = CGRectMake(s_w * i, s_h - kWidthScale(320), kWidthScale(310), kWidthScale(250));
                 btn.center = CGPointMake(s_w / 2, s_h - kWidthScale(250));
                 btn.layer.cornerRadius = 4;
                 btn.clipsToBounds = YES;
@@ -60,9 +60,9 @@
     [self.view addSubview:gui];
     
     // pageControl
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, s_w / 2, 30)];
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0,0, 0)];
     self.pageControl.center = CGPointMake(s_w / 2, s_h - 95);
-    [self.view addSubview:self.pageControl];
+    //[self.view addSubview:self.pageControl];
     self.pageControl.numberOfPages = images.count;
 }
 - (void)clickEnter

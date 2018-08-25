@@ -86,7 +86,7 @@
     NSString *app_build = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     UILabel *vison = [[UILabel alloc]init];
     [self.view addSubview:vison];
-    vison.text = [NSString stringWithFormat:@"%@v%@",ZBLocalized(@"当前版本：", nil),app_build];
+    vison.text = [NSString stringWithFormat:@"%@v%@ (%@)",ZBLocalized(@"当前版本：", nil),app_build,[infoDictionary objectForKey:@"CFBundleVersion"]];
     vison.textColor = [UIColor colorWithHexString:BaseTextGrayColor];
     [vison mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.view);

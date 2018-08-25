@@ -22,4 +22,5 @@
 @property (nonatomic ,copy)NSString *acTypeStr;
 @property (nonatomic , copy)NSString *notice;
 @property (nonatomic , strong)NSMutableArray *bussinesstime;
+@property (nonatomic , strong)NSString *bussiness;
 @end

@@ -18,12 +18,29 @@
 @property (nonatomic , strong)UIButton *replaceButton;
 
 @property (nonatomic , strong)NSMutableArray *arrForHomePageShopList;
+
+@property (nonatomic , strong)NSMutableArray *arrForListOpen;
+@property (nonatomic , strong)NSMutableArray *arrForListClose;
 @end
 
 @implementation HomeTypeVC{
     SortButton *clickButton;
      UIView *sortingView;
      NSMutableDictionary *dicForShow;//创建一个字典进行判断收缩还是展开
+}
+
+-(NSMutableArray *)arrForListOpen{
+    if (!_arrForListOpen) {
+        _arrForListOpen = [NSMutableArray array];
+    }
+    return _arrForListOpen;
+}
+
+-(NSMutableArray *)arrForListClose{
+    if (!_arrForListClose) {
+        _arrForListClose = [NSMutableArray array];
+    }
+    return _arrForListClose;
 }
 -(NSMutableArray *)arrForHomePageShopList{
     if (_arrForHomePageShopList == nil) {
@@ -120,9 +137,23 @@
             mod.up_pic = dic[@"up_pic"];
             mod.opentime = dic[@"opentime"];
             mod.bussinesstime = dic[@"bussinesstime"];
-            mod.acTypeStr =[NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]] ;
-            [self.arrForHomePageShopList addObject:mod];
+            NSString *acStr =[NSString stringWithFormat:@"%@",dic[@"shop_ac_type"]];
+            NSString *buss = [NSString stringWithFormat:@"%@",dic[@"bussiness"]];
+            mod.acTypeStr = acStr;//2开门 1打烊
+            mod.bussiness = buss;  //1开门 2关门
+            if ([acStr isEqualToString:@"2"]) {
+                if ([buss isEqualToString:@"1"]) {
+                    [self.arrForListOpen addObject:mod];
+                }else{
+                    [self.arrForListClose addObject:mod];
+                }
+            }else{
+                [self.arrForListClose addObject:mod];
+            }
         }
+        
+        [self.arrForHomePageShopList addObjectsFromArray:self.arrForListOpen];
+        [self.arrForHomePageShopList addObjectsFromArray:self.arrForListClose];
         [self.tableView reloadData];
         
     } withFail:^(NSError *error) {
@@ -202,7 +233,7 @@
 #pragma mark - 创建tableView
 -(void)createTableView{
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight , self.view.frame.size.width, self.view.frame.size.height - SafeAreaTopHeight - SafeAreaTabbarHeight - 49) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, SafeAreaTopHeight , self.view.frame.size.width, SCREENH_HEIGHT - SafeAreaTopHeight - SafeAreaTabbarHeight ) style:UITableViewStylePlain];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
