@@ -117,9 +117,11 @@
     [par setValue:_shopTypeId forKey:@"id"];
     [par setValue:numPage forKey:@"page"];
     
-    [self.arrForHomePageShopList removeAllObjects];
     [MHNetWorkTask getWithURL:url withParameter:par withHttpHeader:nil withResponseType:ResponseTypeJSON withSuccess:^(id result) {
         NSArray *arr = result[@"value"];
+        [self.arrForListClose removeAllObjects];
+        [self.arrForListOpen removeAllObjects];
+        [self.arrForHomePageShopList removeAllObjects];
         for (NSDictionary *dic in arr) {
             ModelForShopList *mod = [[ModelForShopList alloc]init];
             mod.act_list = dic[@"act_list"];

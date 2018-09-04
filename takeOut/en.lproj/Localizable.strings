@@ -10,16 +10,16 @@
 "订单" = "Order";
 "我的" = "Mine";
 "获取位置中...." = "Getting location...";
-"去结算" = "To pay";
+"去结算" = "confirm&pay";
 "฿" = "฿";
 "个活动" = "promotions";
-"配送" = "Distribution";
-"起送" = "start";
+"配送" = "delivery fee";
+"起送" = "delivery from";
 "月售" = "Months sell";
 "配送时间" = "Distribution time";
 "提交订单" = "Submit Order";
 "选择收货地址" = "choose your address";
-"配送费" = "Distribution Costs";
+"配送费" = "delivery fee";
 "原价" = "Total Price";
 "小计" = "Subtotal";
 "备注" = "Remark";
@@ -34,29 +34,29 @@
 "商家评分" = "shop score";
 "满意" = "good";
 "不满意" = "not good";
-"一般" = "mid";
-"营业时间" = "open Time";
+"一般" = "normal";
+"营业时间" = "opening time";
 "优惠活动" = "Preferential activities";
 "感谢您的支持，欢迎下次光临" = "Thank you for your support. Welcome next time";
 "订单已完成" = "Order completed";
 "综合排序" = "comprehensive";
 "销量最高" = "Highest sales";
 "距离最近" = "The closest";
-"配送：฿" = "Distribution: ฿";
-"起送：฿" = "Start : ฿";
+"配送：฿" = "delivery fee: ฿";
+"起送：฿" = "delivery from: ฿";
 "月售：" = "On sale";
 "点菜" = "order";
-"商家" = "shop";
+"商家" = "about shop";
 "商家详情" = "shop details";
 "加入购物车" = "Add to cart";
-"元起送" = "฿ start";
+"元起送" = "฿ delivery from";
 "清空" = "clean";
 "购物车" = "shopping cart";
 "选规格" = "specifications";
-"查看食品安全档案" = "Check the food safety profile";
+"查看食品安全档案" = "shop information";
 // ---------------------- 订单
 "全部订单" = "All Order";
-"待评价" = "Will evaluate";
+"待评价" = "Will comments";
 "共" = "total of ";
 "件商品,实付" = " items goods";
 "订单时间" = "Order time";
@@ -67,17 +67,17 @@
 "配送地址" = "Address";
 "配送服务" = "Delivery";
 "提供高品质配送服务" = "Provide high quality delivery service";
-"货到付款" = "Cash on delivery";
+"货到付款" = "Destination pay";
 "在线支付" = "Online payment";
 "订单时间" = "Order Time";
 "支付方式" = "payType";
 "评价" = "comment";
 "最少输入八个字" = "least 8 words";
 "对菜品口味，包装服务的还满意吗？您可以在此处输入您的想法与意见~（至少输入8个字）" = "Are you satisfied with the dishes? You can enter your thoughts and comments here ~ (at least 8 words)";
-"请选择配送员评价" = "Please select the distributor evaluation";
-"请选择订单评价" = "Please select the order evaluation";
-"评价成功" = "Evaluation success";
-"评价失败" = "Evaluation failure";
+"请选择配送员评价" = "Please select the distributor comments";
+"请选择订单评价" = "Please select the order comments";
+"评价成功" = "comments success";
+"评价失败" = "comments failure";
 "等待商家接单" = "Waiting merchant to take orders";
 "商家已接单" ="The merchant has received the order";
 "骑手未接单" = "Rider not received";
@@ -85,8 +85,8 @@
 "骑手到店" = "Riders to the store";
 "骑手配送中" ="Rider distribution";
 "订单完成" = "Order completed";
-"未评价" = "Not evaluated";
-"已评价" = "Evaluated";
+"未评价" = "Not comments";
+"已评价" = "comments";
 "优惠金额" = "Preferential";
 "订单号码" = "Order number";
 "菜品合计" = "Food Total";
@@ -95,9 +95,9 @@
 "登录" = "Login";
 "登录成功" = "login success";
 "登录失败" = "login failed";
-"我的地址" = "Address";
-" + 新增收货地址" = "+ Add Shipping Address";
-"新增收货地址" = "Add Shipping Address";
+"我的地址" = "My address";
+" + 新增收货地址" = "+ Add new address";
+"新增收货地址" = "Add new address";
 "请输入手机号" = "Please enter your phone number";
 "再次输入密码" = "Please confirm the password";
 "请输入验证码" = "Please enter code";
@@ -112,7 +112,7 @@
 "获取验证码失败，请检查网络" = "Get the verification code failed, please check the network";
 "两次密码不一致，请检查" = "Two passwords are different. Please check the password";
 
-"保存" = "Save";
+"保存" = "save";
 "收货人" = "Consignee";
 "先生" = "Gentlemen";
 "女士" = "Ladies";
@@ -129,8 +129,8 @@
 "请获填写具体位置" = "Please write building Number";
 "地址添加成功" = "Add address success";
 "地址添加失败" = "Add address failed";
-"温馨提示，点击可以编辑地址，长按可以删除" = "TIPS.  Click can edit it,Long press can delete it";
-"我的评价" = "Evaluation";
+"温馨提示，点击可以编辑地址，长按可以删除" = "TIPS.  Click can edit it,Press long to delete";
+"我的评价" = "Comments";
 "关于我们" = "About us";
 "清除缓存" = "Clean cache";
 "没有缓存" = "no cache";
@@ -144,7 +144,7 @@
 "地址修改失败" = "Edit address failed";
 "地址删除成功" = "Delete address success";
 "地址删除失败" = "Delete address failed";
-"已评价" = "Evaluated";
+"已评价" = "Comments";
 "条" = "Article";
 "登录/注册" = "Login/registration";
 
@@ -160,7 +160,7 @@
 "骑手招募" = "Rider recruitment";
 "我要合作" = "Join us";
 "确定要退出吗？" = "Are you sure you want to quit?";
-"BEEORDER配送" = "BEEORDER distribution";
+"BEEORDER配送" = "Delivery by BEEORDER";
 " 注册代表您已同意" = " Register, you have agreed to the";
 "《BEEORDER用户协议》" ="《BEEORDER user agreement》";
 "经纬度错误" = "Latitude and longitude error";
@@ -198,9 +198,9 @@
 "隐私政策" = "Privacy policy";
 "支付方式" = "Payment method";
 "请选择支付方式" = "choose pay method";
-"货到付款" = "Cash on delivery";
+"货到付款" = "Destination pay";
 "信用卡"="CreditCard ";
-"泰银二维码"="Thai QR Payment ";
+"泰银二维码"="Thai QR code";
 "支付宝"="AliPay";
 "微信"="WeChat pay";
 "当前版本：" = "Current version:";
@@ -242,6 +242,11 @@
 
 "同意并注册" = "Agreed and Register";
 "我知道了" = "I know";
+
+"起送前缀" = "Delivery from";
+"起送后缀" = "";
+"分钟前缀" = "";
+"分钟后缀" = "min";
 //=============================================图
 "bg_zanwupinglun" = "bg_zanwupinglun2";
 "icon_shangguige"= "icon_shangguige2";

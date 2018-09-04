@@ -35,17 +35,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSString *userID = [defaults objectForKey:UD_USERID];
-    if (userID == nil || [userID isEqualToString:@""]) {
-        self.tableView.hidden = YES;
-        self.toLOginBtn.hidden = NO;
-    }else{
-        self.tableView.hidden = NO;
-        self.toLOginBtn.hidden = YES;
-     [self getNetwork];
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getNetwork) name:@"hadEvaSuss" object:nil];
+
 }
 -(void)viewWillDisappear:(BOOL)animated{
     self.kongBaiView.hidden = YES;
@@ -71,7 +62,16 @@
     self.kongBaiView.hidden = YES;
     self.kongBaiView.image = [UIImage imageNamed:ZBLocalized(@"bg_dingdankongbaiye", nil)];
     [[UIApplication sharedApplication].keyWindow addSubview:self.kongBaiView];
-    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    if (userID == nil || [userID isEqualToString:@""]) {
+        self.tableView.hidden = YES;
+        self.toLOginBtn.hidden = NO;
+    }else{
+        self.tableView.hidden = NO;
+        self.toLOginBtn.hidden = YES;
+        [self getNetwork];
+    }
     // Do any additional setup after loading the view.
 }
 -(void)getNetwork{
@@ -85,10 +85,10 @@
                                  @"page":page
                                  };
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
-    [self.arrForOrerList removeAllObjects];
-    [self.tableView reloadData];
+    
+    //[self.tableView reloadData];
     [managers POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+        [self.arrForOrerList removeAllObjects];
         NSMutableDictionary *dic = responseObject;
         NSMutableArray *arr = dic[@"value"];
         for (NSMutableDictionary *dic11 in arr) {

@@ -35,7 +35,7 @@
     [self.shopName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.bigImage.mas_right).offset(10);
         make.top.equalTo(ws.bigImage);
-        make.right.equalTo(ws.contentView.mas_right).offset(-10);
+        make.right.equalTo(ws.contentView.mas_right).offset(-10);  
         make.bottom.equalTo(ws.bigImage.mas_centerY);
     }];
     self.priceLabel = [[UILabel alloc]init];

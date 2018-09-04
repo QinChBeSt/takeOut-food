@@ -692,7 +692,15 @@
             NSString *code =[NSString stringWithFormat:@"%@",responseObject[@"code"]];
             if ([code isEqualToString:@"1"]) {
                 [MBManager showBriefAlert:@"评价成功"];
+                
+                
+               
                 [self performSelector:@selector(back) withObject:nil/*可传任意类型参数*/ afterDelay:2.0];
+                NSNotification *notification =[NSNotification notificationWithName:@"hadEvaSuss" object:nil userInfo:nil];
+                
+                //通过通知中心发送通知
+                
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
             }else{
                 [MBManager showBriefAlert:@"评价失败"];
             }
@@ -712,6 +720,7 @@
     [self.view endEditing:YES];
     
 }
+
 /*
 #pragma mark - Navigation
 

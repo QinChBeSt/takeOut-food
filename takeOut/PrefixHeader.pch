@@ -34,16 +34,16 @@
 //#define JGPushAlias @"bee"
 
 //=================  正式
-//#define BASEURL @"http://beeorder.net/spmvc"
-//#define IMGsaveBaesURL @"http://beeorder.net/spmvc/apidocs/img/"
-//#define JGPushAlias @"150bee"
+#define BASEURL @"http://beeorder.net/spmvc"
+#define IMGsaveBaesURL @"http://beeorder.net/spmvc/apidocs/img/"
+#define JGPushAlias @"150bee"
 
 
 
 ////////=================  测试
-#define BASEURL @"http://192.168.0.132:8010"
-#define IMGsaveBaesURL @"http://192.168.0.132:8010/spmvc/apidocs/img/"
-#define JGPushAlias @"150bee"
+//#define BASEURL @"http://192.168.0.132:8010"
+//#define IMGsaveBaesURL @"http://192.168.0.132:8010/spmvc/apidocs/img/"
+//#define JGPushAlias @"150bee"
 
 ////
 //#define BASEURL @"http://192.168.0.126:8082"

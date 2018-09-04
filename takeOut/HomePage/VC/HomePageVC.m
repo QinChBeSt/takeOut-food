@@ -857,11 +857,12 @@
     ModelForShopList *mod =[[ModelForShopList alloc]init];
     mod = [self.arrForHomePageShopList objectAtIndex:indexPath.row];
     NSString *acType = mod.acTypeStr;
+    NSString *buss = mod.bussiness;
     //如果反的ACtype = 2 则营业，再判断时间
     if ([acType isEqualToString:@"2"]) {
-        NSString *cyType = [self isACType:mod.opentime];
-        //如果cytype为2 则打烊
-        if ([cyType isEqualToString:@"2"]) {
+      
+        //如果cytype为1 则打烊
+        if ([buss isEqualToString:@"2"]) {
            
             [MBManager showBriefAlert:ZBLocalized(@"该商店已打样", nil)];
             return;

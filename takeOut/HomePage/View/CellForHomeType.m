@@ -136,7 +136,7 @@
     //        dis = [NSString stringWithFormat:@"%.fmin | %.2fKm",timeInt,disFloat];
     //    }else{
     disFloat = disint;
-    dis = [NSString stringWithFormat:@"%.fmin | %.fKm",timeInt,disFloat];
+    dis = [NSString stringWithFormat:@"%.fmin | %.f%@",timeInt,disFloat,ZBLocalized(@"Km", nil)];
     // }
     
     self.shopDistance.text = dis;

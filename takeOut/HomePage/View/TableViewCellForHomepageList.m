@@ -266,40 +266,25 @@
   
     self.shopName.text = mod.store_name;
     NSString *acType = mod.acTypeStr;
+    NSString *buss = mod.bussiness;
     NSString *url = [NSString stringWithFormat:@"%@",mod.store_img];
     [self.bigImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"logo"]];
     //1. actype如果为2则营业,其他打烊
     if ([acType isEqualToString:@"2"]) {
         
-        //2. 如果actype为2，则判断时间是否为营业时间
-         NSString *cyType = [self isACType:mod.opentime];
+       
         
         //3. 如果营业时间不符合，则为打烊，其他为营业（此处2位打烊，）
-        if ([cyType isEqualToString:@"2"]) {
+        if ([buss isEqualToString:@"2"]) {
      
             self.dyLabel.hidden = NO;
             
+        }else
+        {
+            self.dyLabel.hidden = YES;
         }
              //4. 如果营业时间也符合 则判断周几是否营业，
-        else{
-               //如果返回的周几数据不对则为不营业，
-            if (mod.bussinesstime.count != 7) {
-
-                self.dyLabel.hidden = YES;
-            }
-            else{
-                //如果返回的今天为2，则营业，
-                if ([[self isBuss:mod.bussinesstime] isEqualToString:@"2"]) {
-                    self.dyLabel.hidden = YES;
-
-                }else{
-             
-                    self.dyLabel.hidden = NO;
-                }
-     
-            }
-            
-        }
+       
     }else{
 
         self.dyLabel.hidden = NO;
@@ -323,7 +308,7 @@
 //        dis = [NSString stringWithFormat:@"%.fmin | %.2fKm",timeInt,disFloat];
 //    }else{
         //disFloat = disint;
-        dis = [NSString stringWithFormat:@"%.fmin | %.2fKm",timeInt,disFloat];
+        dis = [NSString stringWithFormat:@"%@%.f%@ | %.2f%@",ZBLocalized(@"分钟前缀", nil),timeInt,ZBLocalized(@"分钟后缀", nil),disFloat,ZBLocalized(@"Km", nil)];
    // }
    
     self.shopDistance.text = dis;

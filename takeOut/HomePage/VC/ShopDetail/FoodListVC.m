@@ -537,7 +537,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
         self.addBuyCarViewAddBtn.enabled = NO;
         self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
         self.addBuyCarViewAddBtn.layer.cornerRadius = 0;
-        NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
+         NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@%@",ZBLocalized(@"起送前缀", nil),self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送后缀", nil)];
         [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
         [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize: 14.0];
@@ -1012,7 +1012,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 if (_addMoney < upPayF) {
                     self.addBuyCarViewAddBtn.enabled = NO;
                     self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
-   NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
+   NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@%@",ZBLocalized(@"起送前缀", nil),self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送后缀", nil)];
                     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
                     self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize:14];
                     [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -1189,7 +1189,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                         
                         self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
                         self.addBuyCarViewAddBtn.enabled = NO;
-                        NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
+                         NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@%@",ZBLocalized(@"起送前缀", nil),self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送后缀", nil)];
                         self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize:14];
                         [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                         [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
@@ -1237,7 +1237,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
                 if (_addMoney < upPayF) {
                     self.addBuyCarViewAddBtn.enabled = NO;
                     self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
-                    NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
+                     NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@%@",ZBLocalized(@"起送前缀", nil),self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送后缀", nil)];
                     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
                     self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize:14];
                     [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -1652,7 +1652,7 @@ static NSString *const resueIdrightChooseSize = @"rightCellChooseSize";
    self.addBuyCarViewAddBtn.enabled =NO;
     self.addBuyCarViewAddBtn.backgroundColor = [UIColor colorWithHexString:@"3b3e47"];
  
-     NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@",self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送", nil)];
+     NSString *startPayMoney = [NSString stringWithFormat:@"%@%@%@%@",ZBLocalized(@"起送前缀", nil),self.upPayMoney,ZBLocalized(@"฿", nil),ZBLocalized(@"起送后缀", nil)];
     [self.addBuyCarViewAddBtn setTitle:startPayMoney forState:UIControlStateNormal];
     self.addBuyCarViewAddBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.addBuyCarViewAddBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

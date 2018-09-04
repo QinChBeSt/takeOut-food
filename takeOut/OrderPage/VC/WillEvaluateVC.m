@@ -37,18 +37,8 @@
 -(void)viewWillAppear:(BOOL)animated{
   
     [self.tabBarController.tabBar setHidden:NO];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getNetwork) name:@"hadEvaSuss" object:nil];
     
-    NSString *userID = [defaults objectForKey:UD_USERID];
-    if (userID == nil || [userID isEqualToString:@""]) {
-        self.tableView.hidden = YES;
-        self.toLOginBtn.hidden = NO;
-    }else{
-        self.tableView.hidden = NO;
-        self.toLOginBtn.hidden = YES;
-        [self getNetwork];
-        [self getNetForNoPJCounut];
-    }
 }
 -(void)getNetForNoPJCounut{
     NSString *page = [NSString stringWithFormat:@"%d",self.pageIndex];
@@ -99,6 +89,20 @@
     self.kongBaiView.hidden = YES;
     self.kongBaiView.image = [UIImage imageNamed:ZBLocalized(@"bg_dingdankongbaiye", nil)];
     [self.view addSubview:self.kongBaiView];
+    
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *userID = [defaults objectForKey:UD_USERID];
+    if (userID == nil || [userID isEqualToString:@""]) {
+        self.tableView.hidden = YES;
+        self.toLOginBtn.hidden = NO;
+    }else{
+        self.tableView.hidden = NO;
+        self.toLOginBtn.hidden = YES;
+        [self getNetwork];
+        [self getNetForNoPJCounut];
+    }
 }
 
 -(void)getNetwork{
