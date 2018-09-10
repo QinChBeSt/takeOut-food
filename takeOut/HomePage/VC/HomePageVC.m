@@ -473,19 +473,21 @@
             NSString *buss = [NSString stringWithFormat:@"%@",dic[@"bussiness"]];
             mod.acTypeStr = acStr;//2开门 1打烊
             mod.bussiness = buss;  //1开门 2关门
-            if ([acStr isEqualToString:@"2"]) {
-                if ([buss isEqualToString:@"1"]) {
-                    [self.arrForListOpen addObject:mod];
-                }else{
-                    [self.arrForListClose addObject:mod];
-                }
-            }else{
-                [self.arrForListClose addObject:mod];
-            }
+//            if ([acStr isEqualToString:@"2"]) {
+//                if ([buss isEqualToString:@"1"]) {
+//                    [self.arrForListOpen addObject:mod];
+//                }else{
+//                    [self.arrForListClose addObject:mod];
+//                }
+//            }else{
+//                [self.arrForListClose addObject:mod];
+//            }
+            [self.arrForHomePageShopList addObject:mod];
+            
         }
-            [self.arrForHomePageShopList removeAllObjects];
-            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListOpen];
-            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListClose];
+//            [self.arrForHomePageShopList removeAllObjects];
+//            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListOpen];
+//            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListClose];
             [self.tableView.mj_footer endRefreshing];
             [self.tableView reloadData];
         }
@@ -556,24 +558,24 @@
                 NSString *buss = [NSString stringWithFormat:@"%@",dic[@"bussiness"]];
                 mod.acTypeStr = acStr;//2开门 1打烊
                 mod.bussiness = buss;  //1开门 2关门
-                if ([acStr isEqualToString:@"2"]) {
-                    if ([buss isEqualToString:@"1"]) {
-                        [self.arrForListOpen addObject:mod];
-                    }else{
-                        [self.arrForListClose addObject:mod];
-                    }
-                }else{
-                    [self.arrForListClose addObject:mod];
-                }
+//                if ([acStr isEqualToString:@"2"]) {
+//                    if ([buss isEqualToString:@"1"]) {
+//                        [self.arrForListOpen addObject:mod];
+//                    }else{
+//                        [self.arrForListClose addObject:mod];
+//                    }
+//                }else{
+//                    [self.arrForListClose addObject:mod];
+//                }
                
-                //[self.arrForHomePageShopList addObject:mod];
+                [self.arrForHomePageShopList addObject:mod];
                 
                
                 
                 
             }
-            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListOpen];
-            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListClose];
+//            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListOpen];
+//            [self.arrForHomePageShopList addObjectsFromArray:self.arrForListClose];
             [self.tableView.mj_footer resetNoMoreData];
             [self.tableView.mj_header endRefreshing];
             [self.tableView reloadData];
